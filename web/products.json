@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "name": "Váy đầm voan Midi màu hồng",
+    "image": "image/8.jpg",
+    "price": "2.496.000đ",
+    "description": "descriptions/description1.txt"
+  },
+  {
+    "id": 2,
+    "name": "Black Leopard Midi Silk woman",
+    "image": "image/9.jpg",
+    "price": "1.996.000đ",
+    "description": "descriptions/description2.txt"
+  },
+  {
+    "id": 3,
+    "name": "Set Váy lụa màu bơ",
+    "image": "image/10.jpg",
+    "price": "1.996.000đ",
+    "description": "descriptions/description3.txt"
+  },
+  {
+    "id": 4,
+    "name": "Đầm cam SAUVAGE",
+    "image": "image/4.jpg",
+    "price": "1.996.000đ",
+    "description": "descriptions/description4.txt"
+  },
+  {
+    "id": 5,
+    "name": "Cream Leopard Midi Silk Dress",
+    "image": "image/1.jpg",
+    "price": "2.496.000đ",
+    "description": "descriptions/description5.txt"
+  },
+  {
+    "id": 6,
+    "name": "Chân váy phối nơ CV09-11",
+    "image": "image/2.jpg",
+    "price": "1.696.000đ",
+    "description": "descriptions/description6.txt"
+  },
+  {
+    "id": 7,
+    "name": "Short Sleeves",
+    "image": "image/3.jpg",
+    "price": "996.000 đ",
+    "description": "descriptions/description7.txt"
+  },
+  {
+    "id": 8,
+    "name": "ĐẦM CÔNG SỞ DÁNG SUÔNG TAY PHỒNG",
+    "image": "image/4.jpg",
+    "price": "596.000 đ",
+    "description": "descriptions/description8.txt"
+  },
+  {
+    "id": 9,
+    "name": "Đầm đen",
+    "image": "image/5.jpg",
+    "price": " 2.296.000 đ",
+    "description": "descriptions/description9.txt"
+  },
+  {
+    "id": 10,
+    "name": "Đầm hồng",
+    "image": "image/6a.jpg",
+    "price": "196.000 đ",
+    "description": "descriptions/description10.txt"
+  },
+  {
+    "id": 11,
+    "name": "Đầm hồng đen",
+    "image": "image/7a.jpg",
+    "price": "400.000 đ",
+    "description": "descriptions/description11.txt"
+  },
+  {
+    "id": 12,
+    "name": "Atticus Blue Stripe",
+    "image": "image/13.jpg",
+    "price": "423.000 đ",
+    "description": "descriptions/description12.txt"
+  }
+]
