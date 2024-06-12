@@ -62,7 +62,9 @@ html{
     left: 0;
     right: 0;
     height: 50px;
-    background-color:black(228, 217, 235);
+    background-color:lavender;
+    z-index: 3;
+
 }
 #khungdau div{
     float: left;
@@ -222,57 +224,66 @@ tr {
 }
 
 /*Footer----------------*/
-footer{
+footer {
+    background-color: #E6E6FA; /* Màu nền cho footer */
+    padding: 20px 0;
+}
+footer {
     position: relative;
     width: 100%;
-    height: auto;
     padding: 50px 100px;
-    background: pink;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
-footer .container{
+
+footer .container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    flex-direction: row;
+    width: 100%;
 }
 
 /*Thiết Lập Cho Thành Phần Nội Dung Giới Thiệu*/
-footer .container .noi-dung{
+footer .noi-dung {
     margin-right: 30px;
 }
-footer  .container .noi-dung.about{
-    width:40%;
+
+footer .noi-dung.about {
+    flex: 1;
+    min-width: 250px; /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
 }
-footer .container .noi-dung.about h2{
+
+footer .noi-dung.about h2 {
     position: relative;
     color: #fff;
     font-weight: 500;
     margin-bottom: 15px;
 }
-footer .container .noi-dung.about h2:before{
+
+footer .noi-dung.about h2:before {
     content: '';
     position: absolute;
     bottom: -5px;
     left: 0;
     width: 50px;
     height: 2px;
-    background: #f00;
 }
-footer .container .noi-dung.about p{
+
+footer .noi-dung.about p {
     color: black;
 }
 /*Thiết Lập Cho Thành Phần Icon Mạng Xã Hội*/
-.social-icon{
+.social-icon {
     margin-top: 20px;
     display: flex;
 }
+
 .social-icon li {
     list-style: none;
 }
-.social-icon li a{
+
+.social-icon li a {
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -284,27 +295,29 @@ footer .container .noi-dung.about p{
     text-decoration: none;
     border-radius: 4px;
 }
-.social-icon li a:hover{
+
+.social-icon li a:hover {
     background: #f00;
 }
-.social-icon li a .fa{
+
+.social-icon li a .fa {
     color: #fff;
     font-size: 20px;
 }
-.links h2{
+/* Duong dan */
+.links {
+    flex: 1;
+    min-width: 150px; /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
+}
+
+.links h2 {
     position: relative;
     color: #fff;
     font-weight: 500;
     margin-bottom: 15px;
 }
 
-.links h2{
-    position: relative;
-    color: #fff;
-    font-weight: 500;
-    margin-bottom: 15px;
-}
-.links h2::before{
+.links h2:before {
     content: '';
     position: absolute;
     bottom: -5px;
@@ -313,19 +326,76 @@ footer .container .noi-dung.about p{
     height: 2px;
     background: #f00;
 }
-.links{
-   position: relative;
-   width: 25%;
-}
-.links ul li{
+
+.links ul li {
     list-style: none;
 }
-.links ul li a{
+
+.links ul li a {
     color: #999;
     text-decoration: none;
     margin-bottom: 10px;
     display: inline-block;
 }
-.links ul li a:hover{
+
+.links ul li a:hover {
     color: #fff;
+}
+
+/*Thiết Lập Cho Thành Phần Liên Hệ*/
+.contact {
+    flex: 1;
+    min-width: 250px; /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
+}
+
+.contact h2 {
+    position: relative;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.contact h2:before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+}
+
+.info li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.info li span {
+    margin-right: 10px;
+    color: #666;
+}
+
+.form {
+    display: flex;
+}
+
+.form__field {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px 0 0 3px;
+    outline: none;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 0 3px 3px 0;
+}
+
+.btn:hover {
+    background-color: #000;
 }
