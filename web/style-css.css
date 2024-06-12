@@ -48,7 +48,8 @@ html{
     left: 0;
     right: 0;
     height: 50px;
-    background-color:black(228, 217, 235);
+    background-color:lavender;
+    z-index: 3;
 }
 #khungdau div{
     float: left;
@@ -78,9 +79,11 @@ html{
     padding-left: 20px;
     line-height: 40px;
     box-shadow:black;
+    z-index: 4;
 }
 .MeNu li{
     width: 100%;
+    z-index: 4;
 }
 ul li a{
     text-decoration: none;

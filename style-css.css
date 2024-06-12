@@ -71,6 +71,7 @@ html{
     line-height: 50px;
     width: 160px;
     text-align: center;
+    height: 50px;
 
    
     
@@ -99,6 +100,11 @@ html{
 }
 .MeNu li{
     width: 100%;
+
+}
+.MeNu ul{
+    margin-top: 0;
+    background: 0%;
 }
 ul li a{
     text-decoration: none;
