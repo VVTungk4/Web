@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiet san pham</title>
+    <link rel="stylesheet" href="style-detail-product.css">
+    <link rel="stylesheet" href="./themify-icons/themify-icons.css">
+    
+	<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="header">
+        <div id="header">
+			<div id="khungdau">
+				<div style="margin-left: 100px; width: 250px;" class="DanhMuc">
+				<p><i class="DanhMuc ti-menu-alt"></i>DANH SÁCH</p>
+					<ul class="MeNu">
+						<li><a href="Áo-Nữ.html">TRANG PHỤC NỮ-ÁO</a></li>
+						<li><a href="Đầm-Nữ.html">TRANG PHỤC NỮ-VÁY</a></li>
+						
+				  </ul>
+				</div>
+				<div><a href="Sản-phẩm.html" style="text-decoration:none; color:#000;"><p>SẢN PHẨM </p></div>
+				<div><a href="../index.html" style="text-decoration:none; color:#000;"><p>TRANG CHỦ</p></a></div>
+				<div><a href="Giới-Thiệu.html" style="text-decoration:none; color:#000;"><p>GIỚI THIỆU</p></a></div>
+				<div><a href="../Cart/cart.html" style="text-decoration:none; color:#000;"><p>GIỎ HÀNG</p></a></div>
+				<div id="TaiKhoan"><p>TÀI KHOẢN</p>
+					<ul class="MeNu">
+						<li><a href="../Login/Login.html">Đăng Nhập</a></li>
+						<li><a href="../Login/register.html">Đăng Ký</a></li>
+					</ul>
+				</div>
+			</div>
+	</div>
+
+
+
+
+
+
+
+
+
+	<div id="product-container">
+		<img id="product-image" src="" alt="Product Image" />
+		<div id="product-details">
+			<h1 id="product-name"></h1>
+			<p id="product-price"></p>
+			
+			<label for="color-select">Màu sắc:</label>
+			<select id="color-select">
+				<option value="Trắng">Trắng</option>
+				<option value="Đen">Đen</option>
+				<option value="Đỏ">Đỏ</option>
+				<option value="Hồng">Hồng</option>
+				<option value="Tím">Tím</option>
+			</select>
+			
+			<label for="size-select">Kích thước:</label>
+			<select id="size-select">
+				<option value="S">S</option>
+				<option value="M">M</option>
+				<option value="L">L</option>
+				<option value="XL">XL</option>
+				<option value="XXL">XXL</option>
+			</select>
+			
+			<label for="quantity">Số lượng:</label>
+			<div id="quantity-controls">
+				<button id="decrement">-</button>
+				<input type="number" id="quantity" value="1" min="1">
+				<button id="increment">+</button>
+			</div>
+			
+			<div id="button-group">
+				<button class="action-button" id="add-to-cart-button">Thêm vào giỏ hàng</button>
+				<button class="action-button" id="buy-now-button">Mua ngay</button>
+			</div>
+			
+			<p id="motasp">Mô tả sản phẩm</p>
+			<p id="product-description"></p>
+		</div>
+	</div>
+	
+	
+	
+	
+
+    <script src="product.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer>
+		<div class="container">
+			<!--Bắt Đầu Nội Dung Giới Thiệu-->
+			<div class="noi-dung about">
+				<h2>Về Chúng Tôi</h2>
+				<p>Website này được thiết kế và vận hành bởi nhóm admin: </br> 
+					1. Mai Đình Dũng</br>
+					2. Dương Đức Khôi</br>
+					3. Nguyễn Ngọc Sơn</br>
+					4. Vũ Văn Tùng</br>
+					5. Tăng Văn Tuấn</br>
+				</p>
+				<ul class="social-icon">
+					<li><a href=""><i class="fa fa-facebook"></i></a></li>
+					<li><a href=""><i class="fa fa-twitter"></i></a></li>
+					<li><a href=""><i class="fa fa-instagram"></i></a></li>
+					<li><a href=""><i class="fa fa-youtube"></i></a></li>
+				</ul>
+			</div>
+			<!--Kết Thúc Nội Dung Giới Thiệu-->
+			<!--Bắt Đầu Nội Dung Đường Dẫn-->
+			<div class="noi-dung links">
+				<h2>Đường Dẫn</h2>
+				<ul>
+					<li><a href="#">Trang Chủ</a></li>
+					<li><a href="./Giới-Thiệu.html">Về Chúng Tôi</a></li>
+					<li><a href="./Đăng-Nhập.html">Tài khoản</a></li>
+					<li><a href="./Sản-phẩm.html">Sản phẩm</a></li>
+					<li><a href="./Đầm-Nữ.html">Cửa hàng</a></li>
+				</ul>
+			</div>
+			<!--Kết Thúc Nội Dung Đường Dẫn-->
+			<!--Bắt Đâu Nội Dung Liên Hệ-->
+			<div class="noi-dung contact">
+				<h2 style="color: #000;">Thông Tin Liên Hệ</h2>
+				<ul class="info">
+					<li>
+						<span><i class="fa fa-map-marker"></i></span>
+						<span>52 Triều Khúc<br />
+							Quận Thanh Xuân, TP Hà Nội<br />
+							Việt Nam</span>
+					</li>
+					<li>
+						<span><i class="fa fa-phone"></i></span>
+						<p><a href="">0373999999</a>
+							<br />
+							<a href="">0373888888</a></p>
+					</li>
+					<li>
+						<span><i class="fa fa-envelope"></i></span>
+						<p><a href="">sale@sonic.vn</a></p>
+				   </li>
+					<li>
+						<form class="form">
+							<input type="email" class="form__field" placeholder="Đăng Ký Subscribe Email" />
+							<button type="button" class="btn btn--primary  uppercase">Gửi</button>
+						</form>
+					</li>
+				</ul>
+			</div>
+			<!--Kết Thúc Nội Dung Liên Hệ-->
+		</div>
+	</footer>
+  </body>
+</html>

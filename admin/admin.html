@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- Thêm CSS -->
+	<link rel="stylesheet" href="style.css">
+
+	<title>Trang Quản Trị</title>
+</head>
+<body>
+
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<i class='bx bxs-joystick bx-spin' ></i>
+			<span class="text">Trang Quản Trị</span>
+		</a>
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="#tongquan">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Trang Chủ</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">Cửa Hàng Của Tôi</span>
+				</a>
+			</li>
+			<li>
+				<a href="#report">
+					<i class='bx bxs-doughnut-chart' ></i>
+					<span class="text">Thống Kê Báo Cáo</span>
+				</a>
+			</li>
+			<li>
+				<a href="#Messangers">
+					<i class='bx bxs-message-dots' ></i>
+					<span class="text">Phản Hồi</span>
+				</a>
+			</li>
+			<li>
+				<a href="#TaiKhoan">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Quản Lý Tài Khoản</span>
+				</a>
+			</li>
+			<li>
+				<a href="#hihi">
+					<i class='bx bxs-cog' ></i>
+					<span class="text">Quản Lý Sản Phẩm</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			
+			<li>
+				<a href="#" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Đăng Xuất</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content" >
+		
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">Tìm Kiếm</a>
+			<form action="">
+				<div class="form-input">
+					<input type="search" list ="topics" placeholder="Search..." id ="topicInput">
+					<datalist id = "topics">
+						<option value ="Cửa Hàng Của Tôi">
+						<option value ="Thống Kê Báo Cáo">
+						<option value ="Tin Nhắn">
+						<option value ="Quản Lý Tài Khoản">
+						<option value ="Quản Lý Sản Phẩm">
+					</datalist>
+					<button type="submit" class="search-btn">
+						<i class='bx bx-search' ></i>
+						 </button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="#" class="notification">
+				<i class='bx bxs-bell bx-tada' ></i>
+				<span class="num">0</span>
+			</a>
+			<a href="#" class="profile">
+				<img src="img/people.png">
+			</a>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main class="main" id ="tongquan">
+			<div class="head-title">
+				<div class="left">
+					<h1>Trang Chủ</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Trang Chủ</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">Home</a>
+						</li>
+					</ul>
+				</div></div>
+
+			<ul class="box-info">
+				<li>
+					<i class='bx bxs-calendar-check' ></i>
+					<span class="text">
+						<h3>823</h3>
+						<p>Đơn Hàng Mới</p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-group' ></i>
+					<span class="text">
+						<h3>362</h3>
+						<p>Số lượng Khách Hàng</p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-dollar-circle' ></i>
+					<span class="text">
+						<h3>$1 tỷ gói mè</h3>
+						<p>Doanh Thu</p>
+					</span>
+				</li>
+			</ul>
+
+
+			<div class="table-data">
+				<div class="order">
+					<div class="head">
+						<h3>Đơn Hàng Gần Đây</h3>
+						<i class='bx bx-search' ></i>
+						<i class='bx bx-filter' ></i>
+					</div>
+					<table>
+						<thead>
+							<tr>
+								<th>Tài Khoản</th>
+								<th>Ngày Mua</th>
+								<th>Trạng Thái</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<img src="img/people.png">
+									<p>Sơn sẽ</p>
+								</td>
+								<td>09-06-2024</td>
+								<td><span class="status completed">Thành Công</span></td>
+							</tr>
+							<tr>
+								<td>
+									<img src="img/people.png">
+									<p>Đức cớp</p>
+								</td>
+								<td>08-06-2024</td>
+								<td><span class="status pending">Đang chờ</span></td>
+							</tr>
+							<tr>
+								<td>
+									<img src="img/people.png">
+									<p>Dũng Đìn</p>
+								</td>
+								<td>08-06-2024</td>
+								<td><span class="status process">Đang giao</span></td>
+							</tr>
+							<tr>
+								<td>
+									<img src="img/people.png">
+									<p>Tăng Tún</p>
+								</td>
+								<td>01-06-2024</td>
+								<td><span class="status pending">Đang chờ</span></td>
+							</tr>
+							<tr>
+								<td>
+									<img src="img/people.png">
+									<p>Vũ Tùn</p>
+								</td>
+								<td>01-06-2024</td>
+								<td><span class="status completed">Thành công</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+
+				<div class="banchay">
+					<div class="head">
+						<h3>Mặt Hàng Bán Chạy</h3>
+						<i class='bx bx-plus' ></i>
+						<i class='bx bx-filter' ></i>
+					</div>
+					<ul class="banchay-list">
+						<li class="top1">
+							<p>Liệt kê top 1 ra đây</p>							
+						</li>
+						<li class="top2">
+							<p>Liệt kê top 1 ra đây</p>							
+						</li>
+						<li class="top2">
+							<p>Liệt kê top 1 ra đây</p>							
+						</li>
+						<li class="top3">
+							<p>Liệt kê top 1 ra đây</p>							
+						</li>
+						<li class="top3">
+							<p>Liệt kê top 1 ra đây</p>						
+						</li>
+					</ul>
+				</div>
+			</div>
+		</main>
+
+
+
+		<main class="main" id ="hihi">
+			<div class="product-management-container">
+				<div class="search-bar">
+				  <input type="search" id="productSearch" name="productSearch" placeholder="Tìm kiếm sản phẩm...">
+				</div>
+				<form id="productForm">
+				  <div class="form-group">
+					<form id="productForm">
+						<label for="title">Tên Sản Phẩm:</label>
+						<input type="text" id="title" name="title" maxlength="250" required><br><br>
+					  
+						<label for="price"><i class='bx bx-money' ></i></i>Giá:</label>
+						<input type="number" id="price" name="price" required><br><br>
+					  
+						<label for="discount"><i class='bx bxs-discount'></i>Giảm giá (%):</label>
+						<input type="number" id="discount" name="discount" min="0" max="100"><br><br>
+					  
+						<label for="thumbnail"><i class='bx bx-image-add' ></i>URL Ảnh:</label>
+						<input type="text" id="thumbnail" name="thumbnail" maxlength="500"><br><br>
+					  
+						<label for="description"> <i class='bx bxs-comment-detail'></i>Mô tả:</label>
+						<textarea id="description" name="description"></textarea><br><br>
+					  
+						<label for="category_id"><i class='bx bxs-category' ></i>ID Danh mục:</label>
+						<input type="number" id="category_id" name="category_id" required><br><br>
+					  
+						<input type="submit" value="Xác Nhận" id="btn1">
+					  </form>
+				  <!-- Thêm các trường thông tin khác tại đây -->
+				  <button type="submit" id="btn">Thêm Sản Phẩm</button>
+				  <button type="button" id="btn">Sửa Sản Phẩm</button>
+				  <button type="button" id="btn">Xóa Sản Phẩm</button>
+				</form>
+			  </div>
+			  <script>
+			  	$(document).ready(function() {
+  				// Vô hiệu hóa tất cả các trường input trong container có id 'hihi'
+ 				$('#hihi .product-management-container input').prop('disabled', true);
+				// Khi nút "Thêm Sản Phẩm" được nhấn, bỏ vô hiệu hóa các trường input
+  				$('#hihi .product-management-container button[type="submit"]').click(function(e) {
+    			e.preventDefault(); // Ngăn không cho form nộp ngay lập tức
+    			$('#hihi .product-management-container input').prop('disabled', false);
+ 		 	});
+		});
+			  </script>
+		
+		</main>
+
+		<main id="Messangers" class="main">
+			<div class="message-container">
+				<div class="message-header">Người gửi: Sơn Sẽ</div>
+				<div class="message-content">
+				 Thèm bú lùn quá!!!!!
+				</div>
+				<div class="message-timestamp">09:00 AM</div>
+			  </div>
+			  <div class="message-container">
+				<div class="message-header">Người gửi: Tùng Núi</div>
+				<div class="message-content">
+				 Chỉ biết ước!!!!!
+				</div>
+				<div class="message-timestamp">08:30 AM</div>
+			  </div>
+			  <div class="message-container">
+				<div class="message-header">Người gửi: Văn Quán</div>
+				<div class="message-content">
+					Chào bạn, tôi hy vọng bạn có một ngày tốt lành! Bạn đã nhận được thông tin mới từ dự án chưa?
+				</div>
+				<div class="message-timestamp">09:00 AM</div>
+			  </div>
+		</main>
+
+		<main id="TaiKhoan" class="main">
+			<div class="user-container">
+				<h2>Thông Tin Người Dùng</h2>
+				<div class="form-group">
+				  <label for="fullname">Họ và Tên:</label>
+				  <input type="text" id="fullname" name="fullname" maxlength="50" required>
+				</div>
+				<div class="form-group">
+				  <label for="email">Email:</label>
+				  <input type="email" id="email" name="email" maxlength="150" required>
+				</div>
+				<div class="form-group">
+				  <label for="phone_number">Số Điện Thoại:</label>
+				  <input type="text" id="phone_number" name="phone_number" maxlength="20">
+				</div>
+				<div class="form-group">
+				  <label for="address">Địa Chỉ:</label>
+				  <input type="text" id="address" name="address" maxlength="200">
+				</div>
+				<div class="form-group">
+				  <label for="password">Mật Khẩu:</label>
+				  <input type="password" id="password" name="password" maxlength="32" required>
+				</div>
+				<div class="form-group">
+				  <label for="role_id">ID Vai Trò:</label>
+				  <input type="number" id="role_id" name="role_id" required>
+				</div>
+				<div class="form-group">
+				  <label for="created_at">Ngày Tạo:</label>
+				  <input type="datetime-local" id="created_at" name="created_at">
+				</div>
+				<div class="form-group">
+				  <label for="updated_at">Ngày Cập Nhật:</label>
+				  <input type="datetime-local" id="updated_at" name="updated_at">
+				</div>
+				<button id="btn">Thêm Người Dùng</button>
+				<button id="btn">Sửa Thông Tin</button>
+				<button id="btn">Xóa Người Dùng</button>
+			  </div>
+		</main>
+	 	<!-- MAIN -->
+		<main class="main" id="report"> 
+			<div class="report-container">
+				<h2>Báo Cáo Thống Kê Sản Phẩm</h2>
+				<table id="bangbaocao">
+				  <tr>
+					<th>ID Sản Phẩm</th>
+					<th>Tên Sản Phẩm</th>
+					<th>Số Lượng Bán</th>
+					<th>Doanh Thu</th>
+				  </tr>
+				  <!-- Dữ liệu sản phẩm sẽ được thêm vào đây -->
+				</table>
+			  </div>
+		</main>
+	</section>
+	<!-- CONTENT -->
+	
+	
+
+	<script src="script.js"></script>
+	<script src ="http://code.jquery.com/jquery-3.6.0.js"></script>
+	<script>
+		$(document).ready(function(){
+		$('.main').hide();
+		$('#tongquan.main').fadeIn();
+		$('.side-menu.top li').click(function(){
+			id_tab =$(this).children('a').attr('href');
+		//alert(id_tab);
+		$('.main').hide();
+		$(id_tab).fadeIn();
+			return false;
+		})
+		
+})
+	</script>	
+</body>
+</html>

@@ -1,0 +1,340 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+    margin: auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-family: Arial, Helvetica, sans-serif;
+}
+#logo{
+    height: 100px;
+    margin-top: 50px;
+    background-color: pink;
+}
+#logo img{
+	margin: 5px 5px 5px 0;
+    height: 90px;
+    float: right;
+}
+#logo p{
+    float: left;
+    line-height: 88px;
+    padding-left: 200px;
+}
+#logo p input{
+    height: 50px;
+    width: 350px;
+}
+#logo div{
+    height: 49px;
+    width: 53px;
+    float: left;
+    font-size: 20px;
+    margin-top: 20px;
+    background-color: darkgray;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    text-align: center;
+    font-size: 20px;
+    color:white;
+    line-height: 50px;
+} 
+#header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color:black(228, 217, 235);
+}
+#khungdau div{
+    float: left;
+    line-height: 50px;
+    width: 160px;
+    text-align: center;
+    
+}
+#khungdau div:hover{
+    background-color: white;
+    cursor: pointer;
+}
+.MeNu{
+    background-color: whitesmoke;
+}
+#khungdau .DanhMuc:hover li{
+    display: block;
+}
+
+#khungdau ul li{
+    height: 40px;
+    display: none;
+    float: none;
+    clear: both;
+    text-decoration: none;
+    text-align: left;
+    padding-left: 20px;
+    line-height: 40px;
+    box-shadow:black;
+}
+.MeNu li{
+    width: 100%;
+}
+ul li a{
+    text-decoration: none;
+    color: black;
+}
+.MeNu li:hover{
+    background-color: rgb(150, 142, 142);
+}
+.DanhMuc i{
+    margin: 10px;
+    line-height: 0px;
+    font-size: 13px;
+	
+}
+.DanhMuc ul li{
+    display: inline-block;
+}
+#TaiKhoan:hover ul li{
+    display: block;
+}
+#TaiKhoan ul li:hover{
+    background-color: rgb(150, 142, 142);
+}
+#TaiKhoan ul{
+    background-color: whitesmoke;
+}
+#content{
+    width: 80%;
+    margin-left:0 auto ;
+
+
+}
+
+.MeNu2{
+    display: none;
+    position: relative;
+    left: 230px;
+    top: -40px;
+}
+li:hover .MeNu2{
+    display: block;
+    background-color: rgb(241, 212, 212);
+}
+
+	
+
+img {
+    
+    width: 250px;
+    float: left;
+    margin: 20px 30px;
+    border: white 2px solid;
+    text-align: center;
+	  margin-top: 50px;
+
+}
+
+		
+tr {
+	text-align: center;
+}
+
+#content a{
+    text-decoration: none;
+    color: black;
+    list-style-type: none;
+}
+		
+#mini {
+	text-align: center;
+	font-weight: bold;
+	background-color: rgba(255,192,203,1.00);
+	height: 180px;
+	bottom: 10px;
+	text-transform: uppercase;
+	
+		}
+		
+	
+		
+.chuyen-slide{
+  width: 99999999px;
+  transition: all 0.5s;
+
+}
+.slide{
+  width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-top: 50px;
+  border-radius: 10px;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.imgSilde{
+  width: 960px;
+  height: 400px;
+  float:left;
+  transition: all 0.5s;
+}
+.dieuhuong{
+  position: absolute;
+  color: pink;
+  font-size: 40px;
+  top: 50%;
+  padding-left: 20px;
+}
+.dieuhuong i:last-child{
+  position: relative;
+  left: 880px;
+  
+}
+.card-img-top {
+    margin: 20px 9px;
+}
+
+/*Footer----------------*/
+footer{
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 50px 60px;
+    background: pink;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
+}
+
+footer .container1{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+/*Thiết Lập Cho Thành Phần Nội Dung Giới Thiệu*/
+footer .container .noi-dung{
+    margin-right: 30px;
+}
+
+footer  .container .noi-dung.about{
+    width:40%;
+}
+footer .container .noi-dung.about h2{
+    position: relative;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+footer .container .noi-dung.about h2:before{
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #f00;
+}
+
+footer .container .noi-dung.about p{
+    color: black;
+}
+
+
+
+/*Thiết Lập Cho Thành Phần Icon Mạng Xã Hội*/
+.social-icon{
+    margin-top: 20px;
+    display: flex;
+}
+.social-icon li {
+    list-style: none;
+}
+.social-icon li a{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.social-icon li a:hover{
+    background: #f00;
+}
+.social-icon li a .fa{
+    color: #fff;
+    font-size: 20px;
+}
+.links h2{
+    position: relative;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.links h2{
+    position: relative;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+.links h2::before{
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #f00;
+}
+
+.links{
+    position: relative;
+    width: 20%;
+ }
+ .links ul li{
+    list-style: none;
+}
+.links ul li a{
+    color: #999;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+.links ul li a:hover{
+    color: #fff;
+}
+
+.links h2::before{
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #f00;
+}
+
+ .links ul li{
+     list-style: none;
+ }
+ .links ul li a{
+     color: #999;
+     text-decoration: none;
+     margin-bottom: 10px;
+     display: inline-block;
+ }
+ .links ul li a:hover{
+     color: #fff;
+ } 

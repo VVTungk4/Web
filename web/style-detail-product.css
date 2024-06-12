@@ -1,0 +1,395 @@
+
+#khungdau div{
+    float: left;
+    line-height: 50px;
+    width: 160px;
+    text-align: center;
+    
+}
+#khungdau div:hover{
+    background-color: white;
+    cursor: pointer;
+}
+#khungdau .DanhMuc:hover li{
+    display: block;
+}
+#khungdau ul li{
+    height: 40px;
+    display: none;
+    float: none;
+    clear: both;
+    text-decoration: none;
+    text-align: left;
+    padding-left: 20px;
+    line-height: 40px;
+    box-shadow:black;
+}
+#header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color:black(228, 217, 235);
+}
+.DanhMuc i{
+    margin: 10px;
+    line-height: 0px;
+    font-size: 13px;
+	
+}
+.MeNu{
+    background-color: whitesmoke;
+}
+.MeNu li:hover{
+    background-color: rgb(150, 142, 142);
+}
+.DanhMuc ul li{
+    display: inline-block;
+}
+ul li a{
+    text-decoration: none;
+    color: black;
+}
+
+.MeNu li{
+    width: 100%;
+}
+#TaiKhoan:hover ul li{
+    display: block;
+}
+#TaiKhoan ul li:hover{
+    background-color: rgb(150, 142, 142);
+}
+#TaiKhoan ul{
+    background-color: whitesmoke;
+}
+footer {
+    background-color: pink; /* Màu nền cho footer */
+    padding: 20px 0;
+}
+footer {
+    position: relative;
+    width: 100%;
+    padding: 50px 100px;
+    background: pink;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/*Thiết Lập Cho Thành Phần Nội Dung Giới Thiệu*/
+footer .noi-dung {
+    margin-right: 30px;
+}
+
+footer .noi-dung.about {
+    flex: 1;
+    min-width: 250px; /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
+}
+
+footer .noi-dung.about h2 {
+    position: relative;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+footer .noi-dung.about h2:before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #f00;
+}
+
+footer .noi-dung.about p {
+    color: black;
+}
+
+/*Thiết Lập Cho Thành Phần Icon Mạng Xã Hội*/
+.social-icon {
+    margin-top: 20px;
+    display: flex;
+}
+
+.social-icon li {
+    list-style: none;
+}
+
+.social-icon li a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.social-icon li a:hover {
+    background: #f00;
+}
+
+.social-icon li a .fa {
+    color: #fff;
+    font-size: 20px;
+}
+
+/*Thiết Lập Cho Thành Phần Đường Dẫn*/
+.links {
+    flex: 1;
+    min-width: 150px; /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
+}
+
+.links h2 {
+    position: relative;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.links h2:before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #f00;
+}
+
+.links ul li {
+    list-style: none;
+}
+
+.links ul li a {
+    color: #999;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.links ul li a:hover {
+    color: #fff;
+}
+
+/*Thiết Lập Cho Thành Phần Liên Hệ*/
+.contact {
+    flex: 1;
+    min-width: 250px; /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
+}
+
+.contact h2 {
+    position: relative;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.contact h2:before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #f00;
+}
+
+.info li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.info li span {
+    margin-right: 10px;
+    color: #666;
+}
+
+.form {
+    display: flex;
+}
+
+.form__field {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px 0 0 3px;
+    outline: none;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 0 3px 3px 0;
+}
+
+.btn:hover {
+    background-color: #000;
+}
+
+#product-container {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 50px;
+}
+
+#product-image {
+    max-width: 300px;
+    height: auto;
+    border-radius: 5px;
+    margin-right: 40px;
+}
+
+#product-details {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+#product-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#product-price {
+    font-size: 20px;
+    color: #e60000;
+    margin-bottom: 10px;
+}
+
+#product-description {
+    font-size: 18px;
+    color: black;
+    line-height: 1.5;
+    margin-top: 10px;
+    margin-left: -340px;
+}
+
+.action-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    width: auto;
+    align-self: flex-start;
+}
+
+.action-button:hover {
+    background-color: #0056b3;
+}
+
+#add-to-cart-button {
+    margin-right: 10px;
+}
+
+#quantity::-webkit-outer-spin-button,
+#quantity::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#quantity {
+    -moz-appearance: textfield;
+    appearance: textfield;
+    text-align: center;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+select, #quantity {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    max-width: 200px;
+}
+
+#quantity {
+    width: 50px;
+}
+
+#quantity-controls {
+    display: flex;
+    align-items: center;
+}
+
+#quantity-controls button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#quantity-controls button:hover {
+    background-color: #0056b3;
+}
+
+#quantity-controls button {
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#quantity-controls button:last-child {
+    margin-right: 0;
+}
+
+#motasp {
+    color: #000;
+    font-size: 30px;
+    margin-top: 160px;
+    margin-left: -340px;
+}
+
+#button-group {
+    display: flex;
+    gap: 10px;
+}
+
+
+
+
+
+
+
