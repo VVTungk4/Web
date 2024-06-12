@@ -16,7 +16,8 @@ html, body{
     left: 0;
     right: 0;
     height: 50px;
-    background-color:black(228, 217, 235);
+    background-color:lavender;
+    z-index: 3;
 }
 #khungdau div{
     float: left;
@@ -506,14 +507,14 @@ table.table-cart tr td.remove {
 
 /* footer */
 footer {
-    background-color: pink; /* Màu nền cho footer */
+    background-color: lavender; /* Màu nền cho footer */
     padding: 20px 0;
 }
 footer {
     position: relative;
     width: 100%;
     padding: 50px 100px;
-    background: pink;
+    background: lavender;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -550,7 +551,6 @@ footer .noi-dung.about h2:before {
     left: 0;
     width: 50px;
     height: 2px;
-    background: #f00;
 }
 
 footer .noi-dung.about p {
@@ -581,7 +581,7 @@ footer .noi-dung.about p {
 }
 
 .social-icon li a:hover {
-    background: #f00;
+    background: ;
 }
 
 .social-icon li a .fa {
@@ -609,7 +609,7 @@ footer .noi-dung.about p {
     left: 0;
     width: 50px;
     height: 2px;
-    background: #f00;
+
 }
 
 .links ul li {
@@ -647,7 +647,7 @@ footer .noi-dung.about p {
     left: 0;
     width: 50px;
     height: 2px;
-    background: #f00;
+ 
 }
 
 .info li {
