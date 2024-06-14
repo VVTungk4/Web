@@ -28,6 +28,7 @@ if(isset($_POST['xacnhan'])){ //neu ton tai $_post['xacnhan']
             if(($row['email']==$username) && $row['password']==$password && $row['role_id']==1){
 
                 header('location: ../admin/admin.html');
+                exit();
  
             }
  
@@ -35,6 +36,7 @@ if(isset($_POST['xacnhan'])){ //neu ton tai $_post['xacnhan']
                      
  
                      header('location:../index.html');
+                     exit();
                      
  
             }
@@ -48,12 +50,6 @@ if(isset($_POST['xacnhan'])){ //neu ton tai $_post['xacnhan']
                     
  
         }
- 
-        if($error){
- 
-            echo print_r($error);
- 
-        }
- 
+
 }
 ?>
