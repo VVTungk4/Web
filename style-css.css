@@ -1,48 +1,57 @@
 @charset "utf-8";
+
 /* CSS Document */
-*{
+* {
     margin: auto;
     padding: 0;
     box-sizing: border-box;
 }
+
 @font-face {
     font-family: 'MTD Balerno';
     src: url('C:\xampp\htdocs\Website HERA\font-awesome\fonts\._MTD Balerno Regular.otf') format('otf'),
-         url('C:\xampp\htdocs\Website HERA\font-awesome\fonts\._MTD Balerno Light.otf') format('otf'),
-         url('C:\xampp\htdocs\Website HERA\font-awesome\fonts\._MTD Balerno Bold.otf') format('otf');
+        url('C:\xampp\htdocs\Website HERA\font-awesome\fonts\._MTD Balerno Light.otf') format('otf'),
+        url('C:\xampp\htdocs\Website HERA\font-awesome\fonts\._MTD Balerno Bold.otf') format('otf');
 }
+
 @font-face {
     font-family: montserrat;
     src: url('../Login/fonts/montserrat/Montserrat-Medium.ttf');
-  }
-  @font-face {
+}
+
+@font-face {
     font-family: montserrat_L;
     src: url('../Login/fonts/montserrat/Montserrat-Italic.ttf');
-  }
-  
-html{
-    font-family:  'montserrat' ;
 }
-#logo{
+
+html {
+    font-family: 'montserrat';
+}
+
+#logo {
     height: 100px;
     margin-top: 50px;
     background-color: pink;
 }
-#logo img{
-	margin: 5px 5px 5px 0;
+
+#logo img {
+    margin: 5px 5px 5px 0;
     height: 90px;
     float: right;
 }
-#logo p{
+
+#logo p {
     float: left;
     line-height: 88px;
     padding-left: 200px;
 }
-#logo p input{
+
+#logo p input {
     height: 50px;
     width: 350px;
 }
-#logo div{
+
+#logo div {
     height: 49px;
     width: 53px;
     float: left;
@@ -53,41 +62,49 @@ html{
     border-bottom-right-radius: 5px;
     text-align: center;
     font-size: 20px;
-    color:white;
+    color: white;
     line-height: 50px;
-} 
-#header{
+}
+
+#header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     height: 50px;
-    background-color:lavender;
+    background-color: lavender;
     z-index: 3;
 
 }
-#khungdau div{
+
+#khungdau div {
     float: left;
     line-height: 50px;
     width: 160px;
     text-align: center;
     height: 50px;
+<<<<<<< HEAD
 
-   
-    
+
+=======
+>>>>>>> 95418862838f86ffb88c00878d2d48af5e285460
+
 }
-#khungdau div:hover{
+
+#khungdau div:hover {
     background-color: white;
     cursor: pointer;
 }
-.MeNu{
+
+.MeNu {
     background-color: whitesmoke;
 }
-#khungdau .DanhMuc:hover li{
+
+#khungdau .DanhMuc:hover li {
     display: block;
 }
 
-#khungdau ul li{
+#khungdau ul li {
     height: 40px;
     display: none;
     float: none;
@@ -96,60 +113,78 @@ html{
     text-align: left;
     padding-left: 20px;
     line-height: 40px;
-    box-shadow:black;
+    box-shadow: black;
 }
-.MeNu li{
+
+.MeNu li {
     width: 100%;
+<<<<<<< HEAD
+    margin-top: -20px;
+=======
 
 }
 .MeNu ul{
     margin-top: 0;
     background: 0%;
+>>>>>>> 95418862838f86ffb88c00878d2d48af5e285460
 }
-ul li a{
+
+.MeNu ul {
+    margin-top: 0;
+}
+
+ul li a {
     text-decoration: none;
     color: black;
 }
-.MeNu li:hover{
+
+.MeNu li:hover {
     background-color: rgb(150, 142, 142);
 }
-.DanhMuc i{
+
+.DanhMuc i {
     margin: 10px;
     line-height: 0px;
     font-size: 13px;
-	
+
 }
-.DanhMuc ul li{
+
+.DanhMuc ul li {
     display: inline-block;
 }
-#TaiKhoan:hover ul li{
+
+#TaiKhoan:hover ul li {
     display: block;
 }
-#TaiKhoan ul li:hover{
+
+#TaiKhoan ul li:hover {
     background-color: rgb(150, 142, 142);
 }
-#TaiKhoan ul{
+
+#TaiKhoan ul {
     background-color: whitesmoke;
 }
-#content{
+
+#content {
     width: 80%;
-    margin-left:0 auto ;
+    margin-left: 0 auto;
 
 
 }
 
-.MeNu2{
+.MeNu2 {
     display: none;
     position: relative;
     left: 230px;
     top: -40px;
 }
-li:hover .MeNu2{
+
+li:hover .MeNu2 {
     display: block;
     background-color: rgb(241, 212, 212);
 }
 
-	
+
 
 img {
     height: 300px;
@@ -158,82 +193,90 @@ img {
     margin: 20px 30px;
     border: white 2px solid;
     text-align: center;
-	  margin-top: 50px;
+    margin-top: 50px;
 
 }
 
-		
+
 tr {
-	text-align: center;
+    text-align: center;
 }
 
-#content a{
+#content a {
     text-decoration: none;
     color: black;
     list-style-type: none;
 }
-		
+
 #mini {
-	text-align: center;
-	font-weight: bold;
-	background-color: rgba(255,192,203,1.00);
-	height: 180px;
-	bottom: 10px;
-	text-transform: uppercase;
-	
-		}
-		
-	
-		
-#footer{
-	float:both;
-	
-	background-color: rgb(241, 212, 212);
-	clear: both;
-	
-	}
-.chuyen-slide{
-  width: 99999999px;
-  transition: all 0.5s;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgba(255, 192, 203, 1.00);
+    height: 180px;
+    bottom: 10px;
+    text-transform: uppercase;
 
 }
-.slide{
-  width: 1000px;
-  margin: 0 auto;
-  overflow: hidden;
-  margin-top: 50px;
-  border-radius: 10px;
-  position: relative;
-  margin: 0;
-  padding: 0;
+
+
+
+#footer {
+    float: both;
+
+    background-color: rgb(241, 212, 212);
+    clear: both;
+
 }
-.imgSilde{
-  width: 960px;
-  height: 400px;
-  float:left;
-  transition: all 0.5s;
+
+.chuyen-slide {
+    width: 99999999px;
+    transition: all 0.5s;
+
 }
-.dieuhuong{
-  position: absolute;
-  color: pink;
-  font-size: 40px;
-  top: 50%;
-  padding-left: 20px;
+
+.slide {
+    width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-top: 50px;
+    border-radius: 10px;
+    position: relative;
+    margin: 0;
+    padding: 0;
 }
-.dieuhuong i:last-child{
-  position: relative;
-  left: 880px;
-  
+
+.imgSilde {
+    width: 960px;
+    height: 400px;
+    float: left;
+    transition: all 0.5s;
 }
+
+.dieuhuong {
+    position: absolute;
+    color: pink;
+    font-size: 40px;
+    top: 50%;
+    padding-left: 20px;
+}
+
+.dieuhuong i:last-child {
+    position: relative;
+    left: 880px;
+
+}
+
 .card-img-top {
     margin: 20px 9px;
 }
 
 /*Footer----------------*/
 footer {
-    background-color: #E6E6FA; /* Màu nền cho footer */
+    background-color: #E6E6FA;
+    /* Màu nền cho footer */
     padding: 20px 0;
 }
+
 footer {
     position: relative;
     width: 100%;
@@ -257,7 +300,8 @@ footer .noi-dung {
 
 footer .noi-dung.about {
     flex: 1;
-    min-width: 250px; /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
+    min-width: 250px;
+    /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
 }
 
 footer .noi-dung.about h2 {
@@ -279,6 +323,7 @@ footer .noi-dung.about h2:before {
 footer .noi-dung.about p {
     color: black;
 }
+
 /*Thiết Lập Cho Thành Phần Icon Mạng Xã Hội*/
 .social-icon {
     margin-top: 20px;
@@ -310,10 +355,12 @@ footer .noi-dung.about p {
     color: #fff;
     font-size: 20px;
 }
+
 /* Duong dan */
 .links {
     flex: 1;
-    min-width: 150px; /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
+    min-width: 150px;
+    /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
 }
 
 .links h2 {
@@ -351,7 +398,8 @@ footer .noi-dung.about p {
 /*Thiết Lập Cho Thành Phần Liên Hệ*/
 .contact {
     flex: 1;
-    min-width: 250px; /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
+    min-width: 250px;
+    /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
 }
 
 .contact h2 {
