@@ -23,11 +23,21 @@
     font-family: montserrat_L;
     src: url('../Login/fonts/montserrat/Montserrat-Italic.ttf');
 }
-
-html {
-    font-family: 'montserrat';
+@font-face {
+    font-family: quicksand;
+    src: url('font-awesome/fonts/quicksand/Quicksand-Regular.ttf');
 }
 
+
+html {
+    font-family: 'quicksand';
+}
+p {
+    font-family: 'quicksand';
+}
+h6{
+    font-family: 'quicksand';
+}
 #logo {
     height: 100px;
     margin-top: 50px;
