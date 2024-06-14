@@ -3,12 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="img/icon.png" type="image/x-icon">
+	
 
 	<!-- Boxicons -->
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<!-- Thêm CSS -->
 	<link rel="stylesheet" href="style.css">
-
+	<i class='bx bxs-joystick bx-spin' ></i>
 	<title>Trang Quản Trị</title>
 </head>
 <body>
@@ -28,7 +30,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="../index.html">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Cửa Hàng Của Tôi</span>
 				</a>
@@ -45,16 +47,17 @@
 					<span class="text">Phản Hồi</span>
 				</a>
 			</li>
-			<li>
-				<a href="#TaiKhoan">
-					<i class='bx bxs-group' ></i>
-					<span class="text">Quản Lý Tài Khoản</span>
-				</a>
-			</li>
+			
 			<li>
 				<a href="#hihi">
 					<i class='bx bxs-cog' ></i>
 					<span class="text">Quản Lý Sản Phẩm</span>
+				</a>
+			</li>
+			<li>
+				<a href="#TaiKhoan">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Quản Lý Tài Khoản</span>
 				</a>
 			</li>
 		</ul>
@@ -239,39 +242,60 @@
 
 
 		<main class="main" id ="hihi">
-			<div class="product-management-container">
-				<div class="search-bar">
-				  <input type="search" id="productSearch" name="productSearch" placeholder="Tìm kiếm sản phẩm...">
+			<button id="btn" onclick="showSanpham('sanpham1')">Xem Danh Sach Sản Phẩm</button>
+			<button id="btn" onclick="showSanpham('sanpham2')">Thêm Sản Phẩm</button>
+			<button id="btn" onclick="showSanpham('sanpham3')">Sửa Sản Phẩm</button>
+			
+			<!-- Các phần nội dung -->
+			<div id="sanpham1" class="sanpham">
+				
+				
+					<div class="form-input">
+						<input type="search" list ="topics" placeholder="Search..." id ="topicInput">
+						<datalist id = "topics">
+							<option value ="Cửa Hàng Của Tôi">
+							<option value ="Thống Kê Báo Cáo">
+							<option value ="Tin Nhắn">
+							<option value ="Quản Lý Tài Khoản">
+							<option value ="Quản Lý Sản Phẩm">
+						</datalist>
+						<button type="submit" class="search-btn">
+							<i class='bx bx-search' ></i>
+							 </button>
+					</div>
+				
+			</div>
+			<div id="sanpham2" class="sanpham" style="display:none;">
+						
+				<div id="productForm">
+					<label for="title">Tên Sản Phẩm:</label>
+					<input type="text" id="title" name="title" maxlength="250" required><br><br>
+				  
+					<label for="price"><i class='bx bx-money' ></i></i>Giá:</label>
+					<input type="number" id="price" name="price" required><br><br>
+				  
+					<label for="discount"><i class='bx bxs-discount'></i>Giảm giá (%):</label>
+					<input type="number" id="discount" name="discount" min="0" max="100"><br><br>
+				  
+					<label for="thumbnail"><i class='bx bx-image-add' ></i>URL Ảnh:</label>
+					<input type="text" id="thumbnail" name="thumbnail" maxlength="500"><br><br>
+				  
+					<label for="description"> <i class='bx bxs-comment-detail'></i>Mô tả:</label>
+					<textarea id="description" name="description"></textarea><br><br>
+				  
+					<label for="category_id"><i class='bx bxs-category' ></i>ID Danh mục:</label>
+					<input type="number" id="category_id" name="category_id" required><br><br>
+				
+					<input type="submit" value="Xác Nhận" id="btn1">
 				</div>
-				<form id="productForm">
-				  <div class="form-group">
-					<form id="productForm">
-						<label for="title">Tên Sản Phẩm:</label>
-						<input type="text" id="title" name="title" maxlength="250" required><br><br>
-					  
-						<label for="price"><i class='bx bx-money' ></i></i>Giá:</label>
-						<input type="number" id="price" name="price" required><br><br>
-					  
-						<label for="discount"><i class='bx bxs-discount'></i>Giảm giá (%):</label>
-						<input type="number" id="discount" name="discount" min="0" max="100"><br><br>
-					  
-						<label for="thumbnail"><i class='bx bx-image-add' ></i>URL Ảnh:</label>
-						<input type="text" id="thumbnail" name="thumbnail" maxlength="500"><br><br>
-					  
-						<label for="description"> <i class='bx bxs-comment-detail'></i>Mô tả:</label>
-						<textarea id="description" name="description"></textarea><br><br>
-					  
-						<label for="category_id"><i class='bx bxs-category' ></i>ID Danh mục:</label>
-						<input type="number" id="category_id" name="category_id" required><br><br>
-					  
-						<input type="submit" value="Xác Nhận" id="btn1">
-					  </form>
-				  <!-- Thêm các trường thông tin khác tại đây -->
-				  <button type="submit" id="btn">Thêm Sản Phẩm</button>
-				  <button type="button" id="btn">Sửa Sản Phẩm</button>
-				  <button type="button" id="btn">Xóa Sản Phẩm</button>
-				</form>
-			  </div>
+			</div>
+		
+			<div id="sanpham3" class="sanpham" style="display:none;">
+				<div>
+					hhh
+				</div>
+			</div>
+		
 			  <script>
 			  	$(document).ready(function() {
   				// Vô hiệu hóa tất cả các trường input trong container có id 'hihi'
@@ -311,44 +335,82 @@
 		</main>
 
 		<main id="TaiKhoan" class="main">
-			<div class="user-container">
-				<h2>Thông Tin Người Dùng</h2>
-				<div class="form-group">
-				  <label for="fullname">Họ và Tên:</label>
-				  <input type="text" id="fullname" name="fullname" maxlength="50" required>
-				</div>
-				<div class="form-group">
-				  <label for="email">Email:</label>
-				  <input type="email" id="email" name="email" maxlength="150" required>
-				</div>
-				<div class="form-group">
-				  <label for="phone_number">Số Điện Thoại:</label>
-				  <input type="text" id="phone_number" name="phone_number" maxlength="20">
-				</div>
-				<div class="form-group">
-				  <label for="address">Địa Chỉ:</label>
-				  <input type="text" id="address" name="address" maxlength="200">
-				</div>
-				<div class="form-group">
-				  <label for="password">Mật Khẩu:</label>
-				  <input type="password" id="password" name="password" maxlength="32" required>
-				</div>
-				<div class="form-group">
-				  <label for="role_id">ID Vai Trò:</label>
-				  <input type="number" id="role_id" name="role_id" required>
-				</div>
-				<div class="form-group">
-				  <label for="created_at">Ngày Tạo:</label>
-				  <input type="datetime-local" id="created_at" name="created_at">
-				</div>
-				<div class="form-group">
-				  <label for="updated_at">Ngày Cập Nhật:</label>
-				  <input type="datetime-local" id="updated_at" name="updated_at">
-				</div>
-				<button id="btn">Thêm Người Dùng</button>
-				<button id="btn">Sửa Thông Tin</button>
-				<button id="btn">Xóa Người Dùng</button>
-			  </div>
+			<!-- Các nút bấm -->
+				<button id="btn" onclick="showContent('content1')">Xem Danh Sách Tài Khoản</button>
+				<button id="btn" onclick="showContent('content2')">Thêm Tài Khoản</button>
+				<button id="btn" onclick="showContent('content3')">Sửa Tài Khoản</button>
+				<button id="btn" onclick="showContent('content4')">Xóa Tài Khoản</button>
+
+	<!-- Các phần nội dung -->
+			<div id="content1" class="content">
+				<table id="users-table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Họ Tên</th>
+							<th>Email</th>
+							<th>Số Điện Thoại</th>
+							<th>Địa Chỉ</th>
+							<th>Mật Khẩu</th>
+							<th>ID Vai Trò</th>
+							<th>Ngày Tạo</th>
+							<th>Ngày Cập Nhật</th>
+							<th>Đã Xóa</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- Các hàng dữ liệu sẽ được thêm vào đây -->
+					</tbody>
+				</table>
+		</div>
+
+			<div id="content2" class="content" style="display:none;">
+    			<div class="user-container">
+					<h2>Thông Tin Người Dùng</h2>
+					<div class="form-group">
+					  <label for="fullname">Họ và Tên:</label>
+					  <input type="text" id="fullname" name="fullname" maxlength="50" required>
+					</div>
+					<div class="form-group">
+					  <label for="email">Email:</label>
+					  <input type="email" id="email" name="email" maxlength="150" required>
+					</div>
+					<div class="form-group">
+					  <label for="phone_number">Số Điện Thoại:</label>
+					  <input type="text" id="phone_number" name="phone_number" maxlength="20">
+					</div>
+					<div class="form-group">
+					  <label for="address">Địa Chỉ:</label>
+					  <input type="text" id="address" name="address" maxlength="200">
+					</div>
+					<div class="form-group">
+					  <label for="password">Mật Khẩu:</label>
+					  <input type="password" id="password" name="password" maxlength="32" required>
+					</div>
+					<div class="form-group">
+					  <label for="role_id">ID Vai Trò:</label>
+					  <input type="number" id="role_id" name="role_id" required>
+					</div>
+					<div class="form-group">
+					  <label for="created_at">Ngày Tạo:</label>
+					  <input type="datetime-local" id="created_at" name="created_at">
+					</div>
+					<div class="form-group">
+					  <label for="updated_at">Ngày Cập Nhật:</label>
+					  <input type="datetime-local" id="updated_at" name="updated_at">
+					</div>
+					<button  id="btn1">Xác Nhận</button>
+					
+				  </div>
+	</div>
+			<div id="content3" class="content" style="display:none;">
+    			<p>Thông tin cho Nút 3</p>
+	</div>
+			<div id="content4" class="content" style="display:none;">
+    			<p>Thông tin cho Nút 4</p>
+	</div>
+
+			
 		</main>
 	 	<!-- MAIN -->
 		<main class="main" id="report"> 

@@ -706,7 +706,7 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    background-color: #5cb85c;
+    background-color:var(--blue);
     color: white;
     margin-top: 10px;
   }
@@ -754,3 +754,26 @@ body {
 	  #bangbaocao .tr:hover {
 		background-color: #ddd;
 	  }
+	 
+	#users-table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+	
+	#users-table th, #users-table td {
+		border: 1px solid #ddd;
+		padding: 8px;
+		text-align: left;
+	}
+	
+	#users-table th {
+		background-color: #f2f2f2;
+	}
+	
+	#users-table tr:nth-child(even) {
+		background-color: #f9f9f9;
+	}
+	
+	#users-table tr:hover {
+		background-color: #eaeaea;
+	}
