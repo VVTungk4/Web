@@ -33,6 +33,7 @@ li {
 
 html {
 	overflow-x: hidden;
+	overflow-y: hidden;
 }
 
 body.dark {
@@ -684,6 +685,7 @@ body {
   }
   .form-group {
     margin-bottom: 15px;
+	
   }
   label {
     display: block;
@@ -693,7 +695,7 @@ body {
   input[type="email"],
   input[type="password"],
   input[type="number"],
-  input[type="datetime-local"] {
+  input[type="date"] {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
