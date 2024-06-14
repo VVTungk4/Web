@@ -83,8 +83,11 @@ html {
     width: 160px;
     text-align: center;
     height: 50px;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 95418862838f86ffb88c00878d2d48af5e285460
 
 }
 
@@ -115,7 +118,15 @@ html {
 
 .MeNu li {
     width: 100%;
+<<<<<<< HEAD
     margin-top: -20px;
+=======
+
+}
+.MeNu ul{
+    margin-top: 0;
+    background: 0%;
+>>>>>>> 95418862838f86ffb88c00878d2d48af5e285460
 }
 
 .MeNu ul {
