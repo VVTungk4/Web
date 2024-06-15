@@ -1,19 +1,46 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
 
-#khungdau div{
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: lavender;
+    z-index: 3;
+
+}
+
+#khungdau div {
     float: left;
     line-height: 50px;
     width: 160px;
     text-align: center;
-    
+    height: 50px;
+
+
+
 }
-#khungdau div:hover{
+
+#khungdau div:hover {
     background-color: white;
     cursor: pointer;
 }
-#khungdau .DanhMuc:hover li{
+
+.MeNu {
+    background-color: whitesmoke;
+}
+
+#khungdau .DanhMuc:hover li {
     display: block;
 }
-#khungdau ul li{
+
+#khungdau ul li {
     height: 40px;
     display: none;
     float: none;
@@ -22,60 +49,128 @@
     text-align: left;
     padding-left: 20px;
     line-height: 40px;
-    box-shadow:black;
+    box-shadow: black;
 }
-#header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 50px;
-    background-color:black(228, 217, 235);
+
+.MeNu li {
+    width: 100%;
+
 }
-.DanhMuc i{
-    margin: 10px;
-    line-height: 0px;
-    font-size: 13px;
-	
+.MeNu ul{
+    margin-top: 0;
+    background: 0%;
 }
-.MeNu{
-    background-color: whitesmoke;
-}
-.MeNu li:hover{
-    background-color: rgb(150, 142, 142);
-}
-.DanhMuc ul li{
-    display: inline-block;
-}
-ul li a{
+ul li a {
     text-decoration: none;
     color: black;
 }
 
-.MeNu li{
-    width: 100%;
-}
-#TaiKhoan:hover ul li{
-    display: block;
-}
-#TaiKhoan ul li:hover{
+.MeNu li:hover {
     background-color: rgb(150, 142, 142);
 }
-#TaiKhoan ul{
+
+.DanhMuc i {
+    margin: 10px;
+    line-height: 0px;
+    font-size: 13px;
+
+}
+
+.DanhMuc ul li {
+    display: inline-block;
+}
+
+#TaiKhoan:hover ul li {
+    display: block;
+}
+
+#TaiKhoan ul li:hover {
+    background-color: rgb(150, 142, 142);
+}
+
+#TaiKhoan ul {
     background-color: whitesmoke;
 }
+
+#content {
+    width: 80%;
+    margin-left: 0 auto;
+
+
+}
+
+.MeNu2 {
+    display: none;
+    position: relative;
+    left: 230px;
+    top: -40px;
+}
+
+li:hover .MeNu2 {
+    display: block;
+    background-color: rgb(241, 212, 212);
+}
+
+
+
+img {
+    height: 300px;
+    width: 250px;
+    float: left;
+    margin: 20px 30px;
+    border: white 2px solid;
+    text-align: center;
+    margin-top: 50px;
+
+}
+
+
+tr {
+    text-align: center;
+}
+
+#content a {
+    text-decoration: none;
+    color: black;
+    list-style-type: none;
+}
+
+#mini {
+    text-align: center;
+    font-weight: bold;
+    background-color: rgba(255, 192, 203, 1.00);
+    height: 180px;
+    bottom: 10px;
+    text-transform: uppercase;
+
+}
+
+
+
+#footer {
+    float: both;
+
+    background-color: rgb(241, 212, 212);
+    clear: both;
+
+}
+
+
+/*Footer----------------*/
 footer {
-    background-color: pink; /* Màu nền cho footer */
+    background-color: #E6E6FA;
+    /* Màu nền cho footer */
     padding: 20px 0;
 }
+
 footer {
     position: relative;
     width: 100%;
     padding: 50px 100px;
-    background: pink;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-top: auto;
 }
 
 footer .container {
@@ -92,7 +187,8 @@ footer .noi-dung {
 
 footer .noi-dung.about {
     flex: 1;
-    min-width: 250px; /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
+    min-width: 250px;
+    /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
 }
 
 footer .noi-dung.about h2 {
@@ -109,7 +205,6 @@ footer .noi-dung.about h2:before {
     left: 0;
     width: 50px;
     height: 2px;
-    background: #f00;
 }
 
 footer .noi-dung.about p {
@@ -148,10 +243,11 @@ footer .noi-dung.about p {
     font-size: 20px;
 }
 
-/*Thiết Lập Cho Thành Phần Đường Dẫn*/
+/* Duong dan */
 .links {
     flex: 1;
-    min-width: 150px; /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
+    min-width: 150px;
+    /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
 }
 
 .links h2 {
@@ -189,7 +285,8 @@ footer .noi-dung.about p {
 /*Thiết Lập Cho Thành Phần Liên Hệ*/
 .contact {
     flex: 1;
-    min-width: 250px; /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
+    min-width: 250px;
+    /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
 }
 
 .contact h2 {
@@ -206,7 +303,6 @@ footer .noi-dung.about p {
     left: 0;
     width: 50px;
     height: 2px;
-    background: #f00;
 }
 
 .info li {
@@ -244,6 +340,7 @@ footer .noi-dung.about p {
 .btn:hover {
     background-color: #000;
 }
+
 
 #product-container {
     display: flex;
@@ -386,10 +483,3 @@ select, #quantity {
     display: flex;
     gap: 10px;
 }
-
-
-
-
-
-
-

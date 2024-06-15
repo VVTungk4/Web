@@ -779,3 +779,15 @@ body {
 	#users-table tr:hover {
 		background-color: #eaeaea;
 	}
+	.form-group select {
+		width: 100%;
+		padding: 10px;
+		font-size: 16px;
+		border-radius: 5px;
+		border: 1px solid #ccc;
+	  }
+	  
+	  /* Kiểu cho option */
+	  .form-group select option {
+		padding: 10px;
+	  }
