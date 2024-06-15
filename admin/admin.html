@@ -364,44 +364,48 @@
 				</table>
 		</div>
 
-			<div id="content2" class="content" style="display:none;">
-    			<div class="user-container">
-					<h2>Thông Tin Người Dùng</h2>
-					<div class="form-group">
-					  <label for="fullname">Họ và Tên:</label>
-					  <input type="text" id="fullname" name="fullname" maxlength="50" required>
-					</div>
-					<div class="form-group">
-						<label for="username">Tên Tài Khoản:</label>
-						<input type="text" id="username" name="username" maxlength="20">
-					  </div>
-					<div class="form-group">
-					  <label for="email">Email:</label>
-					  <input type="email" id="email" name="email" maxlength="150" required>
-					</div>
-					<div class="form-group">
-					  <label for="phone_number">Số Điện Thoại:</label>
-					  <input type="text" id="phone_number" name="phone_number" maxlength="20">
-					</div>					
-					<div class="form-group">
-					  <label for="address">Địa Chỉ:</label>
-					  <input type="text" id="address" name="address" maxlength="200">
-					</div>
-					<div class="form-group">
-					  <label for="password">Mật Khẩu:</label>
-					  <input type="password" id="password" name="password" maxlength="32" required>
-					</div>
-					<div class="form-group">
-					  <label for="role_id">ID Vai Trò:</label>
-					  <input type="number" id="role_id" name="role_id" required>
-					</div>
-					<div class="form-group">
-					  <label for="updated_at">Ngày Tạo:</label>
-					  <input type="date" id="todayDate" name="todayDate">
-					</div>
-					<button  id="btn1">Xác Nhận</button>
-					
-				  </div>
+			<div id="content2" class="content" style="display:none;" >
+				<form method="post" action="Taikhoan.php">
+					<div class="user-container">
+						<h2>Thông Tin Người Dùng</h2>
+						<div class="form-group">
+						  <label for="fullname">Họ và Tên:</label>
+						  <input type="text" id="fullname" name="fullname" maxlength="50" required>
+						</div>
+						<div class="form-group">
+						  <label for="email">Email:</label>
+						  <input type="email" id="email" name="email" maxlength="150" required>
+						</div>
+						<div class="form-group">
+						  <label for="phone_number">Số Điện Thoại:</label>
+						  <input type="text" id="phone_number" name="phone_number" maxlength="20" required>
+						</div>					
+						<div class="form-group">
+						  <label for="address">Địa Chỉ:</label>
+						  <input type="text" id="address" name="address" maxlength="200">
+						</div>
+						<div class="form-group">
+						  <label for="password">Mật Khẩu:</label>
+						  <input type="password" id="password" name="password" maxlength="32" required>
+						</div>
+						<div class="form-group">
+						  <label for="todaydate">Ngày Tạo:</label>
+						  <input type="date" id="todayDate" name="todayDate">
+						</div>
+						<div class="form-group">
+							<label for="role_id">ID Vai Trò:</label>
+							<select id="role_id" name="role_id" required>
+							  <option value="1">Admin</option>
+							  <option value="2">Nhân Viên</option>
+							  <option value="3">Khách Hàng</option>
+						  </select>
+						  </div> 	
+						
+						<button  type="submit" id="btn1" name="themtaikhoan">Xác Nhận</button>
+						
+					  </div>	
+				</form>
+    			
 	</div>
 			<div id="content3" class="content" style="display:none;">
     			<p>Thông tin cho Nút 3</p>
