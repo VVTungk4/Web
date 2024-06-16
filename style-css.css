@@ -163,8 +163,7 @@ h6 {
     background: -o-linear-gradient(bottom right, #e6d4ec, #ffacc7);
     background: -moz-linear-gradient(bottom right, #e6d4ec, #ffacc7);
     background: linear-gradient(bottom right, #e6d4ec, #ffacc7);
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+  
     padding-left: 10px;
     padding-right: 10px;
     
@@ -265,7 +264,7 @@ img {
     width: 250px;
     float: left;
     margin: 20px 30px;
-    border: white 2px solid;
+    border: 2px solid  #f0cfcf;
     text-align: center;
     margin-top: 50px;
 
