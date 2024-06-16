@@ -9,47 +9,93 @@ if(isset($_POST['xacnhan'])){ //neu ton tai $_post['xacnhan']
                $username =$_POST['username'];
  
                $password =$_POST['password'];
+               //----------------------------
+               if(isset($username)){
+                $conn=  mysqli_connect('localhost','root','') or die("Lỗi kết nối");
+ 
+                mysqli_select_db($conn,'webhangban') or die('Not find DataBase');
+     
+               }
+             // Chuẩn bị câu lệnh SQL để ngăn chặn SQL injection
+    $stmt = $conn->prepare("SELECT * FROM user WHERE email = ?");
+    $stmt->bind_param("s", $username);
 
+    // Thực hiện câu lệnh
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-         if(isset($username) && isset($password)){
- 
-            $conn=  mysqli_connect('localhost','root','') or die("Lỗi kết nối");
- 
-            mysqli_select_db($conn,'webhangban') or die('Not find DataBase');
- 
-            $sql="select * from user where email ='".$username."' and password='".$password."'";
- 
-            $query=mysqli_query($conn,$sql);//thuc thi cau lenh
- 
-            $row=  mysqli_fetch_array($query);
- 
-            //kiem tra coi dung khong nhe
- 
-            if(($row['email']==$username) && $row['password']==$password && $row['role_id']==1){
+    if ($result->num_rows > 0) {
+        // Lấy dữ liệu
+        $row = $result->fetch_assoc();
 
-                header('location: ../admin/admin.html');
-                exit();
- 
-            }
- 
-            else if(($row['email']==$username) && $row['password']==$password && $row['role_id']==2){
+        // So sánh mật khẩu trực tiếp (không an toàn)
+        if( $row['password']==$password && $row['role_id']==1){
+
+            header('location: ../admin/admin.html');
+            exit();
+
+        }else if (($row['email']==$username) && $row['password']==$password && $row['role_id']==2){
                      
  
-                     header('location:../index.html');
-                     exit();
+            header('location:../index.html');
+            exit();
+            
+   }else  {
+            // Mật khẩu không đúng, hiển thị thông báo lỗi
+           
+            header("location:../Login/Login.html?error=Sai mật khẩu!");
+            exit();
+        }
+    } else {
+       
+        header("Location: ../Login/Login.html?error=Không tìm thấy tài khoản!");
+        exit;
+}
+}
+
+    // Đóng câu lệnh và kết nối
+    $stmt->close();
+    $conn->close();
+
+//--------------------------------------------------------------------------
+        //  if(isset($username) && isset($password)){
+ 
+        //     $conn=  mysqli_connect('localhost','root','') or die("Lỗi kết nối");
+ 
+        //     mysqli_select_db($conn,'webhangban') or die('Not find DataBase');
+ 
+        //     $sql="select * from user where email ='".$username."' and password='".$password."'";
+ 
+        //     $query=mysqli_query($conn,$sql);//thuc thi cau lenh
+ 
+        //     $row=  mysqli_fetch_array($query);
+ 
+        //     //kiem tra coi dung khong nhe
+ 
+        //     if(($row['email']==$username) && $row['password']==$password && $row['role_id']==1){
+
+        //         header('location: ../admin/admin.html');
+        //         exit();
+ 
+        //     }
+ 
+        //     else if(($row['email']==$username) && $row['password']==$password && $row['role_id']==2){
                      
  
-            }
- 
-            else {
-                     header('locaton:../Login/Login.html');
+        //              header('location:../index.html');
+        //              exit();
                      
  
-            }
+        //     }
+ 
+        //     else {
+        //              header('locaton:../Login/Login.html');
+                     
+ 
+        //     }
  
                     
  
-        }
+        // }
 
-}
 ?>

@@ -12,8 +12,8 @@ if(isset($_POST['xacnhan'])){
     $repeat =$_POST['repeat'];
     if($password != $repeat){
         echo '<script language="javascript">alert("Không trùng password!"); window.location="register.html";</script>';
-        header("location:../Login/register.html");
-        exit();
+        die();
+        
        
     } else {
         $conn=  mysqli_connect('localhost','root','') or die("Lỗi kết nối");
@@ -32,7 +32,7 @@ if(isset($_POST['xacnhan'])){
     if (mysqli_num_rows($result) > 0)
     {
     // Sử dụng javascript để thông báo
-    echo '<script language="javascript">alert("Bị trùng tên hoặc chưa nhập tên!"); window.location="register.html";</script>';
+    echo '<script language="javascript">alert("Email đã tồn tại"); window.location="register.html";</script>';
     // Dừng chương trình
     die ();
     } else {
