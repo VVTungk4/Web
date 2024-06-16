@@ -95,7 +95,11 @@ ul li a{
     color: black;
 }
 .MeNu li:hover{
-    background-color: rgb(150, 142, 142);
+    background: #f0cfcf;
+    background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+    background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+    background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+    background: linear-gradient(bottom, #f0cfcf, #ffacc7);
 }
 .DanhMuc i{
     margin: 10px;
