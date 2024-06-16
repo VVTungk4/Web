@@ -18,7 +18,7 @@ if(isset($_POST['xacnhan'])){ //neu ton tai $_post['xacnhan']
                }
              // Chuẩn bị câu lệnh SQL để ngăn chặn SQL injection
     $stmt = $conn->prepare("SELECT * FROM user WHERE email = ?");
-    $stmt->bind_param("s", $username);
+    $stmt->bind_param("s", $email);
 
     // Thực hiện câu lệnh
     $stmt->execute();
@@ -51,10 +51,6 @@ if(isset($_POST['xacnhan'])){ //neu ton tai $_post['xacnhan']
         header("Location: ../Login/Login.html?error=Không tìm thấy tài khoản!");
         exit;
 }
-}
-
-    // Đóng câu lệnh và kết nối
-    $stmt->close();
     $conn->close();
 
 //--------------------------------------------------------------------------
