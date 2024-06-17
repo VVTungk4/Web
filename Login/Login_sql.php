@@ -40,6 +40,7 @@ if (isset($_POST['xacnhan'])) { //neu ton tai $_post['xacnhan']
                 'phone_number' => $row['phone_number'],
                 'address' => $row['address'],
                 'password' => $row['password']
+                'id' => $row['id']
 
             );
             header('location:../index.html');
