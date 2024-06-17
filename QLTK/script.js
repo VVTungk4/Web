@@ -13,4 +13,5 @@ function togglePassword() {
     } else {
         passwordInput.type = "password";
     }
+    
 }

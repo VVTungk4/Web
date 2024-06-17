@@ -97,7 +97,6 @@
     background: linear-gradient(bottom right, #e6d4ec, #ffacc7);
     padding-left: 10px;
     padding-right: 10px;
-
 }
 
 .MeNu ul {
@@ -133,6 +132,7 @@ ul li a {
 
 .MeNu li:hover {
     background: white;
+    margin-bottom: 5px;
 
 }
 
@@ -142,6 +142,8 @@ ul li a {
 
 #TaiKhoan ul li:hover {
     background: rgb(255, 254, 254);
+    margin-left: 5px;
+    font-weight: bold;
 
 }
 
@@ -185,9 +187,16 @@ tr {
     color: #2f2626;
     cursor: pointer;
     padding: 10px 20px;
-    border-radius: 10px;
+    border-radius: 50px;
+    background: #ffffff;
+    border: 2px solid #f0cfcf;
+
+}
+
+.btn-custom:hover {
+    font-weight: bold;
     border: 2px solid pink;
-    transition: font-weight 0.2s ease;
+    transition: font-weight ease;
     background: #f0cfcf;
     background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
     background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
