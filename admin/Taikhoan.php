@@ -9,7 +9,6 @@ if(isset($_POST['themtaikhoan'])){
     $address = $_POST['address'];
     $email =$_POST['email'];
     $role=$_POST['role_id'];
-    $date=$_POST['todayDate'];
     $password =$_POST['password'];
    
         $conn=  mysqli_connect('localhost','root','') or die("Lỗi kết nối");
@@ -32,13 +31,13 @@ if(isset($_POST['themtaikhoan'])){
     // Dừng chương trình
     die ();
     } else {
-        $sql = "INSERT INTO user (fullname, email, phone_number, address, password,role_id,created_at,updated_at) VALUES ('$fullname','$email','$phone','$address','$password','$role','$todayDate','$todayDate')";
+        $sql = "INSERT INTO user (fullname, email, phone_number, address, password,role_id) VALUES ('$fullname','$email','$phone','$address','$password','$role')";
     
         if($conn->query($sql)){
-            echo '<script language="javascript">alert("Thêm mới thành công!"); window.location="../index.html";</script>';
+            echo '<script language="javascript">alert("Thêm mới thành công!"); window.location="admin.html";</script>';
             exit();
         } else { 
-            echo '<script language="javascript">alert("Có lỗi xảy ra, vui lòng thử lại!"); window.location="register.html";</script>';
+            echo '<script language="javascript">alert("Có lỗi xảy ra, vui lòng thử lại!")";</script>';
             exit();
         }
     }

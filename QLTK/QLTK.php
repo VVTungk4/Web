@@ -5,11 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tài khoản cá nhân</title>
+    <link rel="icon" type="image/png" href="images/icon.ico" />
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body>
+    <?php session_start(); // Bắt đầu phiên làm việc 
+    ?>
+    <form action="update.php" method="post">
     <div id="header" style="font-weight: bold;">
         <div id="khungdau">
             <div style="width: 250px;" id="TaiKhoan">
@@ -58,8 +62,8 @@
             </div>
 
             <div class="infor">
-                <label for="dob">Ngày sinh</label>
-                <input type="date" id="dob" name="dob">
+                <label for="dob">Ngày tạo</label>
+                <input type="text" id="dob" name="dob" readonly>
             </div>
 
             <div class="infor">
@@ -76,7 +80,7 @@
 
             <div class="infor">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email">
+                <input type="email" id="email" name="email" readonly>
 
             </div>
 
@@ -85,25 +89,23 @@
                 <input type="password" id="password" name="password" style="width: 200px;">
                 <button onclick="togglePassword()" style="border: 1px;">Show/Hide</button>
             </div>
-            <div> <button type="button" class="btn-custom" style="margin-left: 250px; margin-top: 40px;">Cập
+            <div> <button type="submit" class="btn-custom" style="margin-left: 250px; margin-top: 40px;" name="update">Cập
                     nhật</button></div>
         </div>
-        <?php session_start(); // Bắt đầu phiên làm việc 
-        ?>
+
         <?php if (isset($_SESSION['user_info'])) : ?>
-            <form action="some_action.php" method="post">
-                <!-- Dùng PHP để điền thông tin vào các text box -->
-                <?php if (isset($_SESSION['user_info'])) : ?>
-                    <script type="text/javascript">
-                        document.getElementById('fullname').value = "<?php echo addslashes($_SESSION['user_info']['fullname']); ?>";
-                        document.getElementById('phone').value = "<?php echo addslashes($_SESSION['user_info']['phone_number']); ?>";
-                        document.getElementById('address').value = "<?php echo addslashes($_SESSION['user_info']['address']); ?>";
-                        document.getElementById('email').value = "<?php echo addslashes($_SESSION['user_info']['email']); ?>";
-                        document.getElementById('password').value = "<?php echo addslashes($_SESSION['user_info']['password']); ?>";
-                        // Thêm các dòng tương tự cho các text box khác
-                    </script>
-                <?php endif; ?>
-            </form>
+
+            <!-- Dùng PHP để điền thông tin vào các text box -->
+            <?php if (isset($_SESSION['user_info'])) : ?>
+                <script type="text/javascript">
+                    document.getElementById('fullname').value = "<?php echo addslashes($_SESSION['user_info']['fullname']); ?>";
+                    document.getElementById('phone').value = "<?php echo addslashes($_SESSION['user_info']['phone_number']); ?>";
+                    document.getElementById('address').value = "<?php echo addslashes($_SESSION['user_info']['address']); ?>";
+                    document.getElementById('email').value = "<?php echo addslashes($_SESSION['user_info']['email']); ?>";
+                    document.getElementById('password').value = "<?php echo addslashes($_SESSION['user_info']['password']); ?>";
+                    // Thêm các dòng tương tự cho các text box khác
+                </script>
+            <?php endif; ?>
         <?php endif; ?>
         <div class="anh">
             <img src="images/anh.jpg" alt="" style="height: 500px; width: 400px;">

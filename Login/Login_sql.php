@@ -35,14 +35,16 @@ if (isset($_POST['xacnhan'])) { //neu ton tai $_post['xacnhan']
             exit();
         } else if (($row["email"] == $email) && $row['password'] == $password && $row['role_id'] == 2) {
             $_SESSION['user_info'] = array(
+                'id' => $row['id'],
                 'fullname' => $row['fullname'],
                 'email' => $row['email'],
                 'phone_number' => $row['phone_number'],
                 'address' => $row['address'],
-                'password' => $row['password']
-                'id' => $row['id']
+                'password' => $row['password'],
+              
 
             );
+            $id = $_SESSION['id'];
             header('location:../index.html');
             exit();
         } else {
