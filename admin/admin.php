@@ -359,7 +359,22 @@
 						</tr>
 					</thead>
 					<tbody>
-						<!-- Các hàng dữ liệu sẽ được thêm vào đây -->
+			<?php
+			// Kết nối cơ sở dữ liệu
+			$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+			// Truy vấn lấy dữ liệu
+				$sql = "SELECT * FROM user";
+				$result = $conn->query($sql);
+			// Kiểm tra số lượng bản ghi trả về
+				if ($result->num_rows > 0) {
+ 			// Xuất dữ liệu của mỗi hàng
+ 			 while($row = $result->fetch_assoc()) {
+   		 echo "<tr><td>" . $row["id"]. "</td><td>" . $row["fullname"]. "</td><td>" . $row["email"]. "</td><td>" . $row["phone_number"]."</td><td>" .  $row["address"]."</td><td>" .  $row["password"]. "</td><td>" . $row["role_id"]."</td><td>" .  $row["created_at"]."</td><td>" .  $row["updated_at"]. "</td><td>" . $row["deleted"]. "</td></tr>";
+  }} else {echo "0 results";}
+					$conn->close();
+?>
+
 					</tbody>
 				</table>
 		</div>
@@ -435,27 +450,7 @@
 
 	<script src="script.js"></script>
 	<script src ="http://code.jquery.com/jquery-3.6.0.js"></script>
-	<script>
-		function setDateToday() {
-		  var today = new Date();
-		  var day = today.getDate();
-		  var month = today.getMonth() + 1; // January is 0!
-		  var year = today.getFullYear();
-	  
-		  if (day < 10) {
-			day = '0' + day;
-		  }
-		  if (month < 10) {
-			month = '0' + month;
-		  }
-	  
-		  today = year + '-' + month + '-' + day;
-		  document.getElementById('todayDate').value = today;
-		}
-	  
-		// Gọi hàm khi trang web tải xong
-		window.onload = setDateToday;
-	  </script>
+	
 	<script>
 		$(document).ready(function(){
 		$('.main').hide();
