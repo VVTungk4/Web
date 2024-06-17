@@ -51,6 +51,7 @@
     </div>
 
     <div class="container">
+        <i class="fa-solid fa-list"></i>
         <div class="imageInput">
             <img id="previewImage" src="" alt="Image preview">
             <input type="file" id="imageInput" accept="image/*">

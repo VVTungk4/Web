@@ -187,19 +187,12 @@ tr {
     padding: 10px 20px;
     border-radius: 10px;
     border: 2px solid pink;
-    font-weight: normal;
     transition: font-weight 0.2s ease;
     background: #f0cfcf;
     background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
     background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
     background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
     background: linear-gradient(bottom, #f0cfcf, #ffacc7);
-
-
-}
-
-.btn-custom:hover {
-    font-weight: 500;
 }
 
 .btn:hover {
