@@ -60,3 +60,4 @@ if (isset($_POST['xacnhan'])) { //neu ton tai $_post['xacnhan']
    
     $conn->close();
 }
+?>

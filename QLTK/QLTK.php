@@ -8,8 +8,9 @@
     <link rel="icon" type="image/png" href="images/icon.ico" />
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="path/to/icon-library.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+    
 </head>
 
 <body>
@@ -19,7 +20,7 @@
         <div id="header" style="font-weight: bold;">
             <div id="khungdau">
                 <div style="width: 250px;" id="TaiKhoan">
-                    <p style="margin-bottom: 0;" > DANH MỤC</p>
+                    <p style="margin-bottom: 0;" ><i class="bi bi-list-task"></i>&nbsp; DANH MỤC</p>
                     <ul class="MeNu">
                         <li style="font-weight: normal;"><a href="../web/Áo-Nữ.html ">Sản phẩm Nữ: Áo</a></li>
                         <li style="font-weight: normal;"><a href="../web/Đầm-Nữ.html ">Sản phẩm Nữ: Đầm</a></li>

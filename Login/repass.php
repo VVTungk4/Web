@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Reset Password</title>
+	<title>Quên mật khẩu</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -30,28 +30,41 @@
 </head>
 
 <body>
-	<form method="post" action="sendOTP.php" class="form">
 		<div class="limiter">
+            <form method="post" action="repass2.php" class="form">
 			<div class="container-login100" style="background-image: url('images/back.jpg');">
 				<div class="wrap-login100">
 					<form class="login100-form validate-form">
 
 
 						<span class="login100-form-title p-b-34 p-t-27" style="font-family: quicksand;">
-							Quên mật khẩu ?
+							Lấy lại mật khẩu
 						</span>
 
 						<div class="wrap-input100 validate-input" data-validate="Enter username">
-							<input class="input100" type="email" name="email" placeholder="Email"
+							<input class="input100" type="text" name="password" placeholder="Mật khẩu mới"
+								style="font-family: quicksand;" required>
+							<span class="focus-input100" data-placeholder="&#xf207;"></span>
+						</div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Enter username">
+							<input class="input100" type="text" name="repass" placeholder="Nhập lại mật khẩu"
+								style="font-family: quicksand;" required>
+							<span class="focus-input100" data-placeholder="&#xf207;"></span>
+						</div>
+
+                        <div class="wrap-input100 validate-input" data-validate="otp_n">
+							<input class="input100" type="text" name="otp_n" placeholder="Nhập OTP"
 								style="font-family: quicksand;" required>
 							<span class="focus-input100" data-placeholder="&#xf207;"></span>
 						</div>
 
 						<div class="container-login100-form-btn">
-							<button class="login100-form-btn" type="submit" name="repass" style="font-family: quicksand;">
+							<button class="login100-form-btn" type="submit" name="oce" style="font-family: quicksand;">
 								Xác nhận
 							</button>
 						</div>
+
 						<div id="error-message" style="display: none;
 							background: rgb(216, 64, 18);
 							color: rgb(244, 234, 234);
