@@ -116,7 +116,7 @@ h6 {
     left: 0;
     right: 0;
     height: 50px;
-    background-color: lavender;
+    background-color:#ffdce3;
     z-index: 3;
 
 }
@@ -541,16 +541,4 @@ footer .noi-dung.about p {
 
 .btn:hover {
     background-color: #000000;
-}
-
-.MeNu li {
-    width: 100%;
-    <<<<<<< HEAD margin-top: -20px;
-    =======
-}
-
-.MeNu ul {
-    margin-top: 0;
-    background: 0%;
-    >>>>>>>95418862838f86ffb88c00878d2d48af5e285460
 }
