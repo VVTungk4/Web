@@ -22,7 +22,7 @@ $colors_result = $conn->query("SELECT * FROM colors");
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>TRANG CHỦ</title>
+	<title>Chi tiết sản phâm</title>
 	<link rel="icon" type="image/png" href="image/logo.ico" />
 	<link rel="stylesheet" href="./themify-icons/themify-icons.css">
 	<link rel="stylesheet" type="text/css" href="style-detail-product.css" />
@@ -65,36 +65,219 @@ $colors_result = $conn->query("SELECT * FROM colors");
 		</div>
 	</div>
 
-	<h1><?php echo $product['title']; ?></h1>
-	<img src="<?php echo $product['thumbnail']; ?>" alt="<?php echo $product['title']; ?>">
-	<p>Giá: <?php echo number_format($product['price']); ?> VND</p>
-	<p><?php echo $product['description']; ?></p>
+	<div id="main-content" class="container-fluid">
+		<div class="product-detail">
+			<div class="image-container">
+				<img src="<?php echo $product['thumbnail']; ?>" alt="<?php echo $product['title']; ?>" class="img-fluid">
+			</div>
+			<div class="product-info">
+				<h1><?php echo $product['title']; ?></h1>
+				<p class="price">Giá: <?php echo number_format($product['price']); ?> VND</p>
 
-	<form id="order-form" action="order.php" method="POST">
-		<input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
 
-		<label for="size">Chọn size:</label>
-		<select name="size_id" id="size">
-			<?php while ($size = $sizes_result->fetch_assoc()) { ?>
-				<option value="<?php echo $size['id']; ?>"><?php echo $size['name']; ?></option>
-			<?php } ?>
-		</select>
+				<form id="order-form" action="order.php" method="POST">
+					<input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
 
-		<label for="color">Chọn màu sắc:</label>
-		<select name="color_id" id="color">
-			<?php while ($color = $colors_result->fetch_assoc()) { ?>
-				<option value="<?php echo $color['id']; ?>"><?php echo $color['name']; ?></option>
-			<?php } ?>
-		</select>
+					<div class="form-group">
+						<label for="size">Chọn size:</label>
+						<select name="size_id" id="size" class="form-control">
+							<?php while ($size = $sizes_result->fetch_assoc()) { ?>
+								<option value="<?php echo $size['id']; ?>"><?php echo $size['name']; ?></option>
+							<?php } ?>
+						</select>
+					</div>
 
-		<p id="quantity"></p>
+					<div class="form-group">
+						<label for="color">Chọn màu sắc:</label>
+						<select name="color_id" id="color" class="form-control">
+							<?php while ($color = $colors_result->fetch_assoc()) { ?>
+								<option value="<?php echo $color['id']; ?>"><?php echo $color['name']; ?></option>
+							<?php } ?>
+						</select>
+					</div>
 
-		<label for="quantity-input">Số lượng:</label>
-		<input type="number" id="quantity-input" name="quantity" min="1" disabled>
+					<p id="quantity" class="quantity-info"></p>
 
-		<button type="submit" id="buy-now" disabled>Mua ngay</button>
-	</form>
+					<div class="form-group">
+						<label for="quantity-input" id="soluong-label">Số lượng:</label>
+						<div class="quantity-control">
+							<button type="button" id="decrement" class="btn btn-secondary" disabled>-</button>
+							<input type="number" id="quantity-input" name="quantity" min="1" class="form-control" disabled>
+							<button type="button" id="increment" class="btn btn-secondary" disabled>+</button>
+						</div>
+					</div>
 
+					<div class="button-group">
+						<button type="submit" id="buy-now" class="btn btn-primary" disabled>Mua ngay</button>
+						<button type="button" id="add-to-cart" class="btn btn-secondary" disabled>Thêm vào giỏ hàng</button>
+					</div>
+					<p id="motasp">Mô tả sản phẩm</p>
+					<p id="description"><?php echo $product['description']; ?></p>
+				</form>
+			</div>
+		</div>
+	</div>
+	<style>
+		#main-content {
+			margin-top: 58px;
+			margin-bottom: 7px;
+			margin-left: 5px;
+			/* Cách lề 12px từng bên */
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			border-radius: 15px;
+			/* Bo cong khung */
+			overflow: hidden;
+			/* Ngăn không cho nội dung tràn ra ngoài */
+		}
+
+		.product-detail {
+			display: flex;
+			align-items: flex-start;
+			border-radius: 15px;
+			/* Bo cong các góc của phần product-detail */
+			overflow: hidden;
+			/* Đảm bảo không bị tràn khung khi bo cong */
+		}
+
+		.image-container {
+			flex: 1;
+			padding-right: 20px;
+		}
+
+		.image-container img {
+			display: block;
+			margin-top: 6px;
+			width: 310px;
+			height: 484px;
+
+			/* Bo cong góc dưới bên trái của ảnh */
+		}
+
+		.product-info {
+			flex: 1;
+			padding: 20px;
+		}
+
+		.product-info h1 {
+			font-size: 30px;
+			margin-top: -10px;
+			margin-left: -491px;
+		}
+
+		.product-info .price {
+			color: #e74c3c;
+			font-size: 18px;
+			margin: 26px -491px;
+		}
+
+		.product-info .description {
+			margin: 20px 0;
+			font-size: 16px;
+		}
+
+		.product-info form {
+			margin: 20px 0;
+		}
+
+		.product-info .form-group {
+			margin-bottom: 15px;
+		}
+
+		.product-info .form-control {
+			width: 70px;
+			padding: 10px;
+			font-size: 16px;
+			margin-left: -491px;
+			margin-top: 10px;
+		}
+
+		.product-info .button-group {
+			display: flex;
+			gap: 10px;
+		}
+
+		.product-info .btn {
+			width: 100%;
+			padding: 10px;
+			font-size: 16px;
+			background-color: #3498db;
+			color: #fff;
+			border: none;
+			cursor: pointer;
+		}
+
+		.product-info .btn:disabled {
+			background-color: #bdc3c7;
+			cursor: not-allowed;
+		}
+
+
+
+		.quantity-control button {
+			width: 40px;
+			height: 40px;
+			font-size: 20px;
+		}
+
+		.quantity-control input {
+			width: 60px;
+			text-align: center;
+			margin: 0 10px;
+		}
+
+		label {
+			display: inline-block;
+			margin-left: -491px;
+			font-size: 19px;
+		}
+
+		#quantity-input {
+			margin-top: -42px;
+			margin-left: -445px;
+		}
+
+		#increment {
+			margin-top: -75px;
+			width: 40px;
+			margin-left: -370px;
+		}
+
+		#decrement {
+			margin-left: -491px;
+			width: 40px;
+		}
+
+		#quantity {
+			margin-left: -491px;
+		}
+
+		#soluong-label {
+			margin-bottom: 10px;
+		}
+
+		#buy-now {
+			width: 92px;
+			margin-left: -491px;
+		}
+
+		#add-to-cart {
+			width: 160px;
+		}
+
+		#description {
+			font-size: 20px;
+			margin-left: -908px;
+			margin-top: 12px;
+		}
+
+		#motasp {
+			font-size: 30px;
+			margin-left: -908px;
+			margin-top: 57px;
+		}
+	</style>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		var maxQuantity = 0;
@@ -115,13 +298,17 @@ $colors_result = $conn->query("SELECT * FROM colors");
 				success: function(data) {
 					maxQuantity = parseInt(data);
 					if (maxQuantity > 0) {
-						$('#quantity').text('Số lượng còn lại: ' + maxQuantity);
-						$('#buy-now').prop('disabled', false);
+						$('#quantity').text(maxQuantity + ' sản phẩm có sẵn');
+						$('#buy-now, #add-to-cart').prop('disabled', false);
 						$('#quantity-input').prop('disabled', false).val(1).attr('max', maxQuantity);
+						$('#increment').prop('disabled', false);
+						$('#decrement').prop('disabled', false);
 					} else {
 						$('#quantity').text('Hết hàng');
-						$('#buy-now').prop('disabled', true);
+						$('#buy-now, #add-to-cart').prop('disabled', true);
 						$('#quantity-input').prop('disabled', true).val(0);
+						$('#increment').prop('disabled', true);
+						$('#decrement').prop('disabled', true);
 					}
 				}
 			});
@@ -129,18 +316,33 @@ $colors_result = $conn->query("SELECT * FROM colors");
 
 		$('#size, #color').change(updateQuantity);
 
-		$('#quantity-input').on('input', function() {
-			var quantity = parseInt($(this).val());
-			if (quantity > maxQuantity) {
-				$(this).val(maxQuantity);
-			} else if (quantity < 1) {
-				$(this).val(1);
+		$('#increment').click(function() {
+			var quantity = parseInt($('#quantity-input').val());
+			if (quantity < maxQuantity) {
+				$('#quantity-input').val(quantity + 1);
 			}
 		});
 
-		$(document).ready(updateQuantity);
-	</script>
+		$('#decrement').click(function() {
+			var quantity = parseInt($('#quantity-input').val());
+			if (quantity > 1) {
+				$('#quantity-input').val(quantity - 1);
+			}
+		});
 
+		$('#quantity-input').change(function() {
+			var quantity = parseInt($(this).val());
+			if (quantity < 1) {
+				$(this).val(1);
+			} else if (quantity > maxQuantity) {
+				$(this).val(maxQuantity);
+			}
+		});
+
+		$(document).ready(function() {
+			updateQuantity();
+		});
+	</script>
 	<footer>
 		<div class="container">
 			<div class="noi-dung about">
