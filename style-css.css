@@ -33,42 +33,12 @@
     display: flex;
     overflow: hidden;
     width: 1000px;
-    margin: 0 auto;
-    overflow: hidden;
-    margin-top: 50px;
-    border-radius: 10px;
-    position: relative;
-    margin: 0;
-    padding: 0;
-    z-index: -1;
-    transition: all 0.5s;
 }
 
 .image-slider img {
     width: 100%;
     height: auto;
-    animation: slide 48s infinite;
     /* 3s cho mỗi ảnh, 3 ảnh nên tổng thời gian là s */
-}
-
-@keyframes slide {
-
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-
-    25% {
-        transform: translateX(-100%);
-    }
-
-    50% {
-        transform: translateX(-200%);
-    }
-
-    75% {
-        transform: translateX(-300%);
-    }
 }
 
 html {
@@ -307,11 +277,9 @@ tr {
 }
 
 .slide {
-    width: 1000px;
     margin: 0 auto;
     overflow: hidden;
     margin-top: 50px;
-    border-radius: 10px;
     position: relative;
     margin: 0;
     padding: 0;

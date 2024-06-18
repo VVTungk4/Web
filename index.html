@@ -69,10 +69,6 @@
 
 	<center>
 		<div class="slide">
-			<div class="dieuhuong">
-				<i class="fa fa-arrow-left" aria-hidden="true" onclick="Back();"></i>
-				<i class="fa fa-arrow-right" aria-hidden="true" onclick="Next();"></i>
-			</div>
 			<div class="image-slider">
 				<img src="image/chuyen3.jpeg" class="imgSilde" />
 				<img src="image/chuyen1.png" class="imgSilde" />
@@ -81,19 +77,6 @@
 				<img src="image/logo12.png" class="imgSilde" />
 			</div>
 		</div>
-		<script type="text/javascript">
-			var KichThuoc = document.getElementsByClassName("slide")[0].clientWidth;
-			var ChuyenSlide = document.getElementsByClassName("chuyen-slide")[0];
-			var chuyen = 0;
-			function Next() {
-				chuyen += KichThuoc;
-				ChuyenSlide.style.marginLeft = '-' + chuyen + 'px';
-			}
-			function Back() {
-				chuyen -= KichThuoc;
-				ChuyenSlide.style.marginLeft = '-' + chuyen + 'px';
-			}
-		</script>
 	</center>
 
 	<div class="container" style="background-color: antiquewhite; height: 530px; width: 1080px">
