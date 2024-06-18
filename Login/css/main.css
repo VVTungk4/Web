@@ -30,6 +30,10 @@
   font-family: montserrat_L;
   src: url('../fonts/montserrat/Montserrat-Italic.ttf');
 }
+@font-face {
+  font-family: quicksand;
+  src: url('../fonts/quicksand/Quicksand-Regular.ttf');
+}
 
 
 
