@@ -36,64 +36,63 @@
 
 	<div class="limiter">
 		<form method="post" action="register_sql.php" class="form">
-		<div class="container-login100" style="background-image: url('images/back.jpg');">
-			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+			<div class="container-login100" style="background-image: url('images/back.jpg');">
+				<div class="wrap-login100">
+					<form class="login100-form validate-form">
 
 
-					<span class="login100-form-title p-b-34 p-t-27" style=" color:#0f3030;">
-						Sign Up
-					</span>
-
-					<div class="wrap-input100 validate-input" data-validate="fullname">
-						<input class="input100" type="text" name="fullname" placeholder="Full Name" style="font-family: montserrat;" required>
-						<span class="focus-input100" data-placeholder="&#xf207;"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate="phone">
-						<input class="input100" type="text" name="phone" placeholder="Số điện thoại" style="font-family: montserrat;"
-						type="text" pattern="(\+84|0)\d{9,10}"
-						 required>
-						<span class="focus-input100" data-placeholder="&#xf207;"></span>
-					</div>
-					<div class="wrap-input100 validate-input" data-validate="address">
-						<input class="input100" type="text" name="address" placeholder="Địa chỉ" style="font-family: montserrat;" required >
-						<span class="focus-input100" data-placeholder="&#xf207;"></span>
-					</div>
-					<div class="wrap-input100 validate-input" data-validate="email">
-						<input class="input100" type="email" name="email" placeholder="Email" style="font-family: montserrat;" required>
-						<span class="focus-input100" data-placeholder="&#xf207;"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate="password">
-						<input class="input100" type="password" name="password" placeholder="Password" style="font-family: montserrat;" required>
-						<span class="focus-input100" data-placeholder="&#xf191;"></span>
-					</div>
-					<div class="wrap-input100 validate-input" data-validate="repeat">
-						<input class="input100" type="password" name="repeat" placeholder="Repeat Password" style="font-family: montserrat;" required>
-						<span class="focus-input100" data-placeholder="&#xf191;"></span>
-					</div>
-
-					<div class="contact100-form-checkbox">
-						<input class="input-checkbox100" id="ckb1" type="checkbox" name=" I Agree to terms of user " required>
-						<label class="label-checkbox100" for="ckb1" style="font-family: montserrat;">
-							Tôi đồng ý với các <b>điều khoản sử dụng</b>
-						</label>
-					</div>
-
-					<div class="container-login100-form-btn" >
-						<button class="login100-form-btn" type="submit" name="xacnhan">
+						<span class="login100-form-title " style=" color:#0f3030; height: 70px;">
 							Sign Up
-						</button>
-					</div>
-					<div class="text-center p-t-60">
-						<a class="txt1" href="../Login/Login.html">
-							SING IN
-						</a>
-					</div>
-				</form>
+						</span>
+
+						<div class="wrap-input100 validate-input" data-validate="fullname">
+							<input class="input100" type="text" name="fullname" placeholder="Full Name" style="font-family: montserrat;" required>
+							<span class="focus-input100" data-placeholder="&#xf207;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate="phone">
+							<input class="input100" type="text" name="phone" placeholder="Số điện thoại" style="font-family: montserrat;" type="text" pattern="(\+84|0)\d{9,10}" required>
+							<span class="focus-input100" data-placeholder="&#xf207;"></span>
+						</div>
+						<div class="wrap-input100 validate-input" data-validate="address">
+							<input class="input100" type="text" name="address" placeholder="Địa chỉ" style="font-family: montserrat;" required>
+							<span class="focus-input100" data-placeholder="&#xf207;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate="password">
+							<input class="input100" type="password" name="password" placeholder="Password" style="font-family: montserrat;" required>
+							<span class="focus-input100" data-placeholder="&#xf191;"></span>
+						</div>
+						<div class="wrap-input100 validate-input" data-validate="repeat">
+							<input class="input100" type="password" name="repeat" placeholder="Repeat Password" style="font-family: montserrat;" required>
+							<span class="focus-input100" data-placeholder="&#xf191;"></span>
+						</div>
+						<div class="wrap-input100 validate-input" data-validate="otp_n">
+							<input class="input100" type="text" name="otp_n" placeholder="Nhập OTP"
+								style="font-family: quicksand;" required>
+							<span class="focus-input100" data-placeholder="&#xf207;"></span>
+						</div>
+
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name=" I Agree to terms of user " required>
+							<label class="label-checkbox100" for="ckb1" style="font-family: montserrat;">
+								Tôi đồng ý với các <b>điều khoản sử dụng</b>
+							</label>
+						</div>
+
+						<div class="container-login100-form-btn">
+							<button class="login100-form-btn" type="submit" name="signup">
+								Sign Up
+							</button>
+						</div>
+						<div class="text-center" style="margin-top: 30px;">
+							<a class="txt1" href="../Login/Login.php">
+								SING IN
+							</a>
+						</div>
+					</form>
+				</div>
 			</div>
-		</div>
 	</div>
 
 

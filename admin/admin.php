@@ -474,7 +474,7 @@
 						  </select>
 						  </div> 	
 						
-						<button  type="submit" id="btn1" name="themtaikhoan">Xác Nhận</button>
+						<button  type="submit" id="btn1" name="suataikhoan">Xác Nhận</button>
 						
 					  </div>	
 				</form>
@@ -556,14 +556,14 @@
 });
 
 // Đoạn mã này giúp đóng dialog khi click ngoài khu vực của nó
-window.addEventListener('click', function(event) {
-  if (dialog.style.display === 'block') {
-    var dialogRect = dialog.getBoundingClientRect();
-    if (!(event.clientX >= dialogRect.left && event.clientX <= dialogRect.right &&
-          event.clientY >= dialogRect.top && event.clientY <= dialogRect.bottom)) {
-      dialog.style.display = 'none';
-      row.style.backgroundColor = ''; // Xóa nổi bật trên tất cả các hàng
-    }
+window.addEventListener('mousemove', function(event) {
+  var dialogRect = dialog.getBoundingClientRect();
+  // Kiểm tra xem chuột có nằm ngoài phạm vi của dialog cộng thêm 5px không
+  if (event.clientX < dialogRect.left - 5 || event.clientX > dialogRect.right + 5 ||
+      event.clientY < dialogRect.top - 5 || event.clientY > dialogRect.bottom + 5) {
+    // Nếu có, ẩn dialog
+    dialog.style.display = 'none';
+	row.style.backgroundColor = '';
   }
 });
 	</script>

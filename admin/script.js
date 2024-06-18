@@ -105,16 +105,53 @@ function showDialog(row) {
 	};
   }
   
+  // Lấy tất cả các hàng trong bảng
+var rows = document.querySelectorAll('table tr');
+
+// Thêm event listener cho mỗi hàng
+rows.forEach(function(row) {
+  row.addEventListener('click', function() {
+    // 'this' trong context này sẽ là hàng được click
+    var rowData = this.querySelectorAll('td');
+
+    // Bây giờ bạn có thể sử dụng 'rowData' để làm gì đó
+    // Ví dụ: in ra console hoặc gọi hàm fillFormWithRowData(rowData)
+    console.log(rowData);
+    // fillFormWithRowData(rowData);
+  });
+});
+
   function transferDataToDiv(row) {
 	var data = row.querySelectorAll('td'); // Lấy tất cả các cell trong hàng
-	var targetDiv = document.getElementById('content3');
 	
-	// Xây dựng chuỗi HTML hoặc text từ dữ liệu của hàng
-	var htmlContent = '';
-	data.forEach(function(cell) {
-	  htmlContent += cell.textContent + ' '; // Hoặc cell.innerHTML nếu bạn muốn HTML
-	});
-	
-	targetDiv.innerHTML = htmlContent; // Cập nhật nội dung của div mục tiêu
+	function fillFormWithRowData(data) {
+		var fullname = data[0].textContent; // Giả sử fullname nằm ở cell đầu tiên
+		var email = data[1].textContent; // Giả sử email nằm ở cell thứ hai
+		var phone_number = data[2].textContent; // và cứ thế...
+		var address = data[3].textContent;
+		var password = data[4].textContent;
+		var role_id = data[5].textContent; 
+		// Gán giá trị cho các phần tử input
+		document.getElementById('fullname').value=fullname;
+  		document.getElementById('email').value=email;
+  		document.getElementById('phone_number').value=phone_number;
+  		document.getElementById('address').value=address;
+  		document.getElementById('password').value=password;
+  		document.getElementById('role_id').value=role_id;
+		
+		// Đối với select, chúng ta cần tìm và chọn option tương ứng
+		Array.from(roleIdSelect.options).forEach(function(optionElement) {
+		  if(optionElement.value === data[5]) {
+			optionElement.selected = true;
+		  }
+		});
+	  
+		// Hiển thị div chứa form
+		document.getElementById('content3').style.display = 'block';
+	  }
+	  document.getElementById('myElement').click();
+
+	  // Bạn cần gọi hàm này và truyền vào dữ liệu từ hàng khi người dùng chọn một hàng nào đó.
+	  
   }
   

@@ -52,8 +52,8 @@
 			<div id="TaiKhoan">
 				<p style="margin-bottom: 0;">TÀI KHOẢN</p>
 				<ul class="MeNu">
-					<li><a href="Login/Login.html">Đăng Nhập</a></li>
-					<li><a href="Login/register.html">Đăng Ký</a></li>
+					<li><a href="Login/Login.php">Đăng Nhập</a></li>
+					<li><a href="Login/email_dangki.php">Đăng Ký</a></li>
 					<li><a href="QLTK/QLTK.php">QL Tài Khoản</a></li>
 				</ul>
 			</div>
@@ -67,36 +67,20 @@
 
 	</div>
 
-	<center>
-		<div class="slide">
-			<div class="dieuhuong">
-				<i class="fa fa-arrow-left" aria-hidden="true" onclick="Back();"></i>
-				<i class="fa fa-arrow-right" aria-hidden="true" onclick="Next();"></i>
-			</div>
-			<div class="image-slider">
-				<img src="image/chuyen3.jpeg" class="imgSilde" />
-				<img src="image/chuyen1.png" class="imgSilde" />
-				<img src="image/chuyen0.png" class="imgSilde" />
-				<img src="image/chuyen4.png" class="imgSilde" />
-				<img src="image/logo12.png" class="imgSilde" />
-			</div>
+	<center style="margin: 10px;">
+		<div id="banner-1" class="banner">
+			<img src="image/chuyen5.jpg" class="active">
+			<img src="image/chuyen1.png" class="inactive">
+			<img src="image/chuyen2.jpeg" class="inactive">
+			<img src="image/chuyen3.jpeg" class="inactive">
+			<img src="image/chuyen4.png" class="inactive">
+
 		</div>
-		<script type="text/javascript">
-			var KichThuoc = document.getElementsByClassName("slide")[0].clientWidth;
-			var ChuyenSlide = document.getElementsByClassName("chuyen-slide")[0];
-			var chuyen = 0;
-			function Next() {
-				chuyen += KichThuoc;
-				ChuyenSlide.style.marginLeft = '-' + chuyen + 'px';
-			}
-			function Back() {
-				chuyen -= KichThuoc;
-				ChuyenSlide.style.marginLeft = '-' + chuyen + 'px';
-			}
-		</script>
+		<script src="slide.js"></script>
+		</div>
 	</center>
 
-	<div class="container" style="background-color: antiquewhite; height: 530px; width: 1080px">
+	<div class="container" style="background-color: antiquewhite; height: 530px; width: 1080px; margin-top: 20px;">
 		<h5 style="padding-top: 10px;">SẢN PHẨM TIÊU BIỂU</h5>
 		<div class="row">
 			<div class="col">
@@ -152,8 +136,18 @@
 
 				</div>
 			</div>
+<<<<<<< HEAD
 			
 			
+=======
+
+			<script>
+				function redirectToDetailPage(productId) {
+					// Chuyển hướng sang trang chi tiết sản phẩm với ID sản phẩm
+					window.location.href = 'web/product_detail.php?id=' + productId;
+				}
+			</script>
+>>>>>>> c868f8baa639ede756946cea79c2212d842b68b8
 		</div>
 		
 	</div>
@@ -439,7 +433,7 @@
 
 	<!--footer----------------------------------------------------------->
 	<footer>
-		<div class="container" >
+		<div class="container">
 			<!--Bắt Đầu Nội Dung Giới Thiệu-->
 			<div class="noi-dung about" style=" position: sticky;">
 				<h2 style="border-radius: 70px; text-align: center; height: 45px; ">
@@ -465,7 +459,7 @@
 				<ul>
 					<li><a href="#">Trang Chủ</a></li>
 					<li><a href="web/Giới-Thiệu.html">Về Chúng Tôi</a></li>
-					<li><a href="Login/Login.html">Tài khoản</a></li>
+					<li><a href="Login/Login.php">Tài khoản</a></li>
 					<li><a href="web/product.html">Sản phẩm</a></li>
 					<li><a href="web/Đầm-Nữ.html">Cửa hàng</a></li>
 				</ul>

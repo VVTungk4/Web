@@ -41,8 +41,8 @@
                 <div id="TaiKhoan">
                     <p style="margin-bottom: 0;">TÀI KHOẢN</p>
                     <ul class="MeNu">
-                        <li style="font-weight: normal;"><a href="../Login/register.html">Tài khoản mới</a></li>
-                        <li style="font-weight: normal;"><a href="../Login/Login.html">Đăng xuất</a></li>
+                        <li style="font-weight: normal;"><a href="../Login/email_dangki.php">Tài khoản mới</a></li>
+                        <li style="font-weight: normal;"><a href="../Login/Login.php">Đăng xuất</a></li>
                     </ul>
                 </div>
             </div>

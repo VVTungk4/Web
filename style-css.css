@@ -29,46 +29,29 @@
     src: url('font-awesome/fonts/quicksand/Quicksand-Regular.ttf');
 }
 
-.image-slider {
-    display: flex;
+.banner {
+    position: relative;
     overflow: hidden;
     width: 1000px;
-    margin: 0 auto;
-    overflow: hidden;
-    margin-top: 50px;
-    border-radius: 10px;
-    position: relative;
-    margin: 0;
-    padding: 0;
-    z-index: -1;
-    transition: all 0.5s;
+    height: 500px;
+    display: flex;
 }
 
-.image-slider img {
-    width: 100%;
-    height: auto;
-    animation: slide 48s infinite;
-    /* 3s cho mỗi ảnh, 3 ảnh nên tổng thời gian là s */
+.banner img {
+    position: absolute;
+    width: 1000px;
+    height: 500px;
+    transition: opacity 3s ease-in-out;
+    justify-content: 500px;
+    margin-top: 5px;
 }
 
-@keyframes slide {
+.banner img.inactive {
+    opacity: 0;
+}
 
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-
-    25% {
-        transform: translateX(-100%);
-    }
-
-    50% {
-        transform: translateX(-200%);
-    }
-
-    75% {
-        transform: translateX(-300%);
-    }
+.banner img.active {
+    opacity: 1;
 }
 
 html {
@@ -163,10 +146,10 @@ h6 {
     background: -o-linear-gradient(bottom right, #e6d4ec, #ffacc7);
     background: -moz-linear-gradient(bottom right, #e6d4ec, #ffacc7);
     background: linear-gradient(bottom right, #e6d4ec, #ffacc7);
-  
+
     padding-left: 10px;
     padding-right: 10px;
-    
+
 }
 
 
@@ -264,7 +247,7 @@ img {
     width: 250px;
     float: left;
     margin: 20px 30px;
-    border: 2px solid  #f0cfcf;
+    border: 2px solid pink;
     text-align: center;
     margin-top: 50px;
 
@@ -307,14 +290,16 @@ tr {
 }
 
 .slide {
-    width: 1000px;
     margin: 0 auto;
     overflow: hidden;
     margin-top: 50px;
-    border-radius: 10px;
     position: relative;
     margin: 0;
     padding: 0;
+
+    z-index: 1;
+    width: 80%;
+    order: 2;
 }
 
 .imgSilde {

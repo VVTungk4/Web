@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Reset Password</title>
+	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -30,27 +30,31 @@
 </head>
 
 <body>
-	<form method="post" action="sendOTP.php" class="form">
+	<form method="post" action="Login_sql.php" class="form">
+
 		<div class="limiter">
-			<div class="container-login100" style="background-image: url('images/back.jpg');">
+			<div class="container-login100" style="background-image: url('images/back.jpg'); ">
+
 				<div class="wrap-login100">
+
 					<form class="login100-form validate-form">
-
-
-						<span class="login100-form-title p-b-34 p-t-27" style="font-family: quicksand;">
-							Quên mật khẩu ?
+						<span class="login100-form-logo">
+							<img src="images/logo1.png" alt="" style="width: 80px;height: 80px;">
 						</span>
 
-						<div class="wrap-input100 validate-input" data-validate="Enter username">
-							<input class="input100" type="email" name="email" placeholder="Email"
-								style="font-family: quicksand;" required>
+						<span class="login100-form-title p-b-34 p-t-27" style=" color:#0f3030;">
+							SIGN IN
+						</span>
+
+						<div class="wrap-input100 validate-input" data-validate="Enter username" style="font-family: quicksand;" required>
+							<input class="input100" type="email" name="email" placeholder="Email">
 							<span class="focus-input100" data-placeholder="&#xf207;"></span>
 						</div>
 
-						<div class="container-login100-form-btn">
-							<button class="login100-form-btn" type="submit" name="repass" style="font-family: quicksand;">
-								Xác nhận
-							</button>
+						<div class="wrap-input100 validate-input" data-validate="Enter password">
+							<input class="input100" type="password" name="password" placeholder="Password" style="font-family: quicksand;" required>
+							<span class="focus-input100" data-placeholder="&#xf191;"></span>
+
 						</div>
 						<div id="error-message" style="display: none;
 							background: rgb(216, 64, 18);
@@ -58,12 +62,24 @@
 							height: 40px;
 							width: 390px;
 							text-align: center;
-							margin-top: 20px;
+							margin: auto;
 							line-height: 46px;
-							border-radius: 10px;">
+							border-radius: 10px;"></div>
+
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1" style="font-family: quicksand;">
+								Nhớ mật khẩu
+							</label>
+						</div>
+
+						<div class="container-login100-form-btn">
+							<button class="login100-form-btn" type="submit" name="xacnhan">
+								Login
+							</button>
 						</div>
 						<script>
-							window.onload = function () {
+							window.onload = function() {
 								const urlParams = new URLSearchParams(window.location.search);
 								const error = urlParams.get('error');
 								if (error) {
@@ -72,7 +88,7 @@
 									errorMessageDiv.style.display = 'block'; // Hiển thị thông báo
 
 									// Tự động tắt thông báo sau 5 giây
-									setTimeout(function () {
+									setTimeout(function() {
 										errorMessageDiv.style.display = 'none';
 									}, 5000);
 
@@ -84,8 +100,11 @@
 
 
 						<div class="text-center p-t-90">
-							<a class="txt1" href="Login.html">
-								Đăng nhập
+							<a class="txt1" href="resetpassword.html" style=" color:#0f3030;">
+								Quên mật khẩu?
+							</a>
+							<a class="txt1" href="email_dangki.html" style=" color:#0f3030;">
+								&nbsp;&nbsp;&nbsp;Đăng kí?
 							</a>
 						</div>
 					</form>
