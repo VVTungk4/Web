@@ -94,3 +94,27 @@ function showSanpham(sanphamId) {
     // Hiển thị phần nội dung được chọn
     document.getElementById(sanphamId).style.display = 'block';
 }
+
+// Giả sử bạn đã có một hàm để hiển thị dialog khi click vào hàng
+function showDialog(row) {
+	// Hiển thị dialog với các nút chỉnh sửa, xóa, hủy
+	// ...
+	var editButton = document.getElementById('edit-btn');
+	editButton.onclick = function() {
+	  transferDataToDiv(row);
+	};
+  }
+  
+  function transferDataToDiv(row) {
+	var data = row.querySelectorAll('td'); // Lấy tất cả các cell trong hàng
+	var targetDiv = document.getElementById('content3');
+	
+	// Xây dựng chuỗi HTML hoặc text từ dữ liệu của hàng
+	var htmlContent = '';
+	data.forEach(function(cell) {
+	  htmlContent += cell.textContent + ' '; // Hoặc cell.innerHTML nếu bạn muốn HTML
+	});
+	
+	targetDiv.innerHTML = htmlContent; // Cập nhật nội dung của div mục tiêu
+  }
+  

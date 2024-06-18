@@ -791,3 +791,7 @@ body {
 	  .form-group select option {
 		padding: 10px;
 	  }
+
+	  #users-table .data-row.selected {
+		background-color:var(--blue); /* Màu nền cho hàng được chọn */
+	  }
