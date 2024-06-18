@@ -31,7 +31,7 @@ if (isset($_POST['xacnhan'])) { //neu ton tai $_post['xacnhan']
         // So sánh mật khẩu trực tiếp (không an toàn)
         if ($row['password'] == $password && $row['role_id'] == 1) {
 
-            header('location: ../admin/admin.html');
+            header('location: ../admin/admin.php');
             exit();
         } else if (($row["email"] == $email) && $row['password'] == $password && $row['role_id'] == 2) {
             $_SESSION['user_info'] = array(
