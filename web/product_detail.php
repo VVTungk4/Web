@@ -1,6 +1,6 @@
 <?php
 // Kết nối đến cơ sở dữ liệu
-$conn = new mysqli('localhost', 'root', '', 'webbanhang');
+$conn = new mysqli('localhost', 'root', '', 'webhangban');
 if ($conn->connect_error) {
 	die("Kết nối thất bại: " . $conn->connect_error);
 }
@@ -112,7 +112,8 @@ $colors_result = $conn->query("SELECT * FROM colors");
 						<button type="button" id="add-to-cart" class="btn btn-secondary" disabled>Thêm vào giỏ hàng</button>
 					</div>
 					<p id="motasp">Mô tả sản phẩm</p>
-					<p id="description"><?php echo $product['description']; ?></p>
+					<p id="description"><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
+
 				</form>
 			</div>
 		</div>
