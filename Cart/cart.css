@@ -1,73 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
-html, body{
+
+html,
+body {
     height: 100%;
-    font-family: 'Quicksand', 'sans-serif';
+    font-family: 'quicksand', 'sans-serif';
 }
-*{
-    margin: 0;
+
+* {
     padding: 0;
     box-sizing: border-box;
+    font-family: quicksand;
 }
 
-/* header */
-#header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 50px;
-    background-color:lavender;
-    z-index: 3;
-}
-#khungdau div{
-    float: left;
-    line-height: 50px;
-    width: 160px;
+.ttcn {
     text-align: center;
-    
-}
-#khungdau div:hover{
-    background-color: white;
-    cursor: pointer;
-}
-.MeNu{
-    background-color: whitesmoke;
-}
-#khungdau .DanhMuc:hover li{
-    display: block;
+    background-color: #ffffff;
+    width: 400px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 25px;
+    margin-left: 500px;
+    border-radius: 30px;
 }
 
-#khungdau ul li{
-    height: 40px;
-    display: none;
-    float: none;
-    clear: both;
-    text-decoration: none;
-    text-align: left;
-    padding-left: 20px;
-    line-height: 40px;
-    box-shadow:black;
-}
-.MeNu li{
-    width: 100%;
-}
-ul li a{
-    text-decoration: none;
-    color: black;
-}
-.MeNu li:hover{
-    background-color: rgb(150, 142, 142);
-}
-.DanhMuc i{
-    margin: 10px;
-    line-height: 0px;
-    font-size: 13px;
-	
-}
-.DanhMuc ul li{
-    display: inline-block;
-}
-#logo{
+#logo {
     height: 100px;
     margin-top: 50px;
     background: #f0cfcf;
@@ -76,21 +34,27 @@ ul li a{
     background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
     background: linear-gradient(bottom, #f0cfcf, #ffacc7);
 }
-#logo img{
-	margin: 5px 5px 5px 0;
+
+#logo img {
+    margin: 5px 5px 5px 0;
     height: 90px;
     float: right;
+    position: absolute;
+    right: 0;
 }
-#logo p{
+
+#logo p {
     float: left;
     line-height: 88px;
     padding-left: 200px;
 }
-#logo p input{
+
+#logo p input {
     height: 50px;
     width: 350px;
 }
-#logo div{
+
+#logo div {
     height: 49px;
     width: 53px;
     float: left;
@@ -101,35 +65,130 @@ ul li a{
     border-bottom-right-radius: 5px;
     text-align: center;
     font-size: 20px;
-    color:white;
+    color: white;
     line-height: 50px;
-} 
-#TaiKhoan ul li:hover{
-    background-color: rgb(150, 142, 142);
 }
-#TaiKhoan ul{
-    background-color: whitesmoke;
+
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: #FFDCE3;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+
 }
+
+#khungdau div {
+    float: left;
+    line-height: 50px;
+    width: 160px;
+    text-align: center;
+    height: 50px;
+}
+
+#khungdau div:hover {
+    background: #f0cfcf;
+    background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+    background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+    background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+    background: linear-gradient(bottom, #f0cfcf, #ffacc7);
+    cursor: pointer;
+    display: inline;
+}
+
+.MeNu {
+    height: auto;
+    background: #f0cfcf;
+    background: -webkit-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+    background: -o-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+    background: -moz-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+    background: linear-gradient(bottom right, #e6d4ec, #ffacc7);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.MeNu ul {
+    margin-top: 0;
+}
+
+.MeNu li {
+    width: 100%;
+}
+
+#khungdau ul li {
+    height: 45px;
+    display: none;
+    float: none;
+    clear: both;
+    text-decoration: none;
+    text-align: left;
+    padding-left: 20px;
+    line-height: 40px;
+    box-shadow: black;
+
+}
+
+.MeNu ul {
+    margin-top: 0;
+    background: 0%;
+}
+
+ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.MeNu li:hover {
+    background: white;
+    margin-bottom: 5px;
+
+}
+
+#TaiKhoan:hover ul li {
+    display: block;
+}
+
+#TaiKhoan ul li:hover {
+    background: rgb(255, 254, 254);
+    margin-left: 5px;
+    font-weight: bold;
+
+}
+
+#TaiKhoan ul {
+    background: #f0cfcf;
+    background: -webkit-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+    background: -o-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+    background: -moz-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+    background: linear-gradient(bottom right, #e6d4ec, #ffacc7);
+    margin-left: 0;
+    margin-top: 0;
+}
+
 
 /*-----------------------LAYOUT-CART-------------------------------*/
-.layout-cart{
-    padding-top: 70px;
+.layout-cart {
+    padding-top: 10px;
 }
 
-.container-fluid{
+.container-fluid {
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
 }
 
-.nav-header-wrap{
+.nav-header-wrap {
     background: #f5f5f5;
     margin-right: -15px;
     margin-left: -15px;
 }
 
-.nav-header ol{
+.nav-header ol {
     padding: 10px 0;
     background: transparent;
     border-radius: 0;
@@ -146,47 +205,47 @@ ul li a{
     padding-inline-start: 40px;
 }
 
-.nav-header li{
+.nav-header li {
     font-size: 13px;
 }
 
-.nav-header ol > li{
+.nav-header ol>li {
     display: inline-block;
 }
 
-.nav-header ol li a{
+.nav-header ol li a {
     color: #001812;
     text-decoration: none;
 }
 
-.nav-header ol li a:hover{
+.nav-header ol li a:hover {
     color: #518372;
 }
 
-.nav-header ol > li+li::before{
+.nav-header ol>li+li::before {
     padding: 0 3px;
     color: #ccc;
     content: "/\00a0";
 }
 
-.nav-header ol >.active{
+.nav-header ol>.active {
     color: #777;
 }
 
-.cart-page{
+.cart-page {
     padding-top: 30px;
     margin-right: -15px;
     margin-left: -15px;
 }
 
-.cart-page .heading-page{
+.cart-page .heading-page {
     position: relative;
     text-align: center;
     padding: 0 0 30px 0;
     width: 100%;
 }
 
-.cart-page .heading-page::after{
+.cart-page .heading-page::after {
     content: "";
     background: #252a2b;
     display: block;
@@ -195,23 +254,23 @@ ul li a{
     margin: 25px auto 0;
 }
 
-.cart-page .heading-page h1{
+.cart-page .heading-page h1 {
     font-size: 30px;
     margin: 0 0 10px;
     font-weight: 700;
     color: #2a5f4b;
 }
 
-.cart-content-wrap{
+.cart-content-wrap {
     padding: 0 100px 30px;
     width: 100%;
 }
 
-.notifications{
+.notifications {
     text-align: center;
 }
 
-.link-continue a{
+.link-continue a {
     display: inline-block;
     height: 55px;
     line-height: 55px;
@@ -223,7 +282,7 @@ ul li a{
     color: #001812;
 }
 
-.link-continue a button{
+.link-continue a button {
     font-family: 'Quicksand', 'sans-serif';
     font-size: 12px;
     position: relative;
@@ -243,26 +302,26 @@ ul li a{
     transition: ease-out 0.4s;
 }
 
-.link-continue a button:hover{
+.link-continue a button:hover {
     box-shadow: inset 400px 0 0 0 #fff;
     border: 1px solid #487264;
     color: #487264;
 }
 
-.display-items{
+.display-items {
     margin-right: -15px;
     margin-left: -15px;
     width: 100%;
 }
 
-table{
+table {
     width: 100%;
     border-spacing: 0;
     background-color: transparent;
     border-collapse: collapse;
 }
 
-table .table-cart{
+table .table-cart {
     margin-bottom: 30px;
 }
 
@@ -289,11 +348,11 @@ table.table-cart tr td.item {
     padding-left: 15px;
 }
 
-table tr td{
+table tr td {
     text-align: left;
 }
 
-table.table-cart tr td.item a{
+table.table-cart tr td.item a {
     text-decoration: none;
 }
 
@@ -388,15 +447,15 @@ table.table-cart tr td.remove {
     border-top: 0;
 }
 
-.cart-others{
+.cart-others {
     display: flex;
 }
 
-.note-wrap{
+.note-wrap {
     width: 50%;
 }
 
-.checkout-note textarea{
+.checkout-note textarea {
     border-radius: 0;
     -webkit-appearance: none;
     background: #ededed;
@@ -413,12 +472,12 @@ table.table-cart tr td.remove {
     line-height: inherit;
 }
 
-.order-actions-wrap{
+.order-actions-wrap {
     width: 50%;
     text-align: right;
 }
 
-.order-actions-wrap p.order-infor{
+.order-actions-wrap p.order-infor {
     font-size: 16px;
     font-weight: 500;
     margin-bottom: 40px;
@@ -429,12 +488,12 @@ table.table-cart tr td.remove {
     margin-left: 7px;
 }
 
-.cart-buttons a{
+.cart-buttons a {
     margin-left: 0;
     text-decoration: none;
 }
 
-.cart-buttons a button{
+.cart-buttons a button {
     font-family: 'Quicksand', 'sans-serif';
     font-size: 14px;
     position: relative;
@@ -453,13 +512,13 @@ table.table-cart tr td.remove {
     transition: ease-out 0.4s;
 }
 
-.cart-buttons a button:hover{
+.cart-buttons a button:hover {
     box-shadow: inset 400px 0 0 0 #fff;
     border: 1px solid #487264;
     color: #487264;
 }
 
-.cart-buttons button.btn-update{
+.cart-buttons button.btn-update {
     font-family: 'Quicksand', 'sans-serif';
     font-size: 14px;
     position: relative;
@@ -478,13 +537,13 @@ table.table-cart tr td.remove {
     transition: ease-out 0.4s;
 }
 
-.cart-buttons button.btn-update:hover{
+.cart-buttons button.btn-update:hover {
     box-shadow: inset 400px 0 0 0 #fff;
     border: 1px solid #487264;
     color: #487264;
 }
 
-.cart-buttons button.btn-checkout{
+.cart-buttons button.btn-checkout {
     font-family: 'Quicksand', 'sans-serif';
     font-size: 14px;
     position: relative;
@@ -503,189 +562,10 @@ table.table-cart tr td.remove {
     transition: ease-out 0.4s;
 }
 
-.cart-buttons button.btn-checkout:hover{
+.cart-buttons button.btn-checkout:hover {
     box-shadow: inset 400px 0 0 0 #fff;
     border: 1px solid #487264;
     color: #487264;
 }
 
 /* footer */
-footer {
-    background-color: lavender; /* Màu nền cho footer */
-    padding: 20px 0;
-}
-footer {
-    position: relative;
-    width: 100%;
-    padding: 50px 100px;
-    background: lavender;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-footer .container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-/*Thiết Lập Cho Thành Phần Nội Dung Giới Thiệu*/
-footer .noi-dung {
-    margin-right: 30px;
-}
-
-footer .noi-dung.about {
-    flex: 1;
-    min-width: 250px; /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
-}
-
-footer .noi-dung.about h2 {
-    position: relative;
-    color: #fff;
-    font-weight: 500;
-    margin-bottom: 15px;
-}
-
-footer .noi-dung.about h2:before {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 50px;
-    height: 2px;
-}
-
-footer .noi-dung.about p {
-    color: black;
-}
-
-/*Thiết Lập Cho Thành Phần Icon Mạng Xã Hội*/
-.social-icon {
-    margin-top: 20px;
-    display: flex;
-}
-
-.social-icon li {
-    list-style: none;
-}
-
-.social-icon li a {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    background: pink;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10px;
-    text-decoration: none;
-    border-radius: 4px;
-}
-
-.social-icon li a:hover {
-    background: red;
-}
-
-.social-icon li a .fa {
-    color: #fff;
-    font-size: 20px;
-}
-
-/*Thiết Lập Cho Thành Phần Đường Dẫn*/
-.links {
-    flex: 1;
-    min-width: 150px; /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
-}
-
-.links h2 {
-    position: relative;
-    color: #fff;
-    font-weight: 500;
-    margin-bottom: 15px;
-}
-
-.links h2:before {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 50px;
-    height: 2px;
-
-}
-
-.links ul li {
-    list-style: none;
-}
-
-.links ul li a {
-    color: #999;
-    text-decoration: none;
-    margin-bottom: 10px;
-    display: inline-block;
-}
-
-.links ul li a:hover {
-    color: #fff;
-}
-
-/*Thiết Lập Cho Thành Phần Liên Hệ*/
-.contact {
-    flex: 1;
-    min-width: 250px; /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
-}
-
-.contact h2 {
-    position: relative;
-    color: #fff;
-    font-weight: 500;
-    margin-bottom: 15px;
-}
-
-.contact h2:before {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 50px;
-    height: 2px;
- 
-}
-
-.info li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.info li span {
-    margin-right: 10px;
-    color: #666;
-}
-
-.form {
-    display: flex;
-}
-
-.form__field {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px 0 0 3px;
-    outline: none;
-}
-
-.btn {
-    padding: 10px 20px;
-    border: none;
-    background-color: #333;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 0 3px 3px 0;
-}
-
-.btn:hover {
-    background-color: #000;
-}

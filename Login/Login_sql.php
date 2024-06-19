@@ -49,12 +49,12 @@ if (isset($_POST['xacnhan'])) { //neu ton tai $_post['xacnhan']
         } else {
             // Mật khẩu không đúng, hiển thị thông báo lỗi
 
-            header("location:../Login/Login.html?error=Sai mật khẩu!");
+            header("location:../Login/Login.php?error=Sai mật khẩu!");
             exit();
         }
     } else {
 
-        header("Location: ../Login/Login.html?error=Không tìm thấy tài khoản!");
+        header("Location: ../Login/Login.php?error=Không tìm thấy tài khoản!");
         exit;
     }
    

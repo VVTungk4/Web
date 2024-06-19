@@ -320,7 +320,7 @@ ul{
     vertical-align: middle;
     margin: 0 0.5em;
     color: #999999;
-    background-image: url(./image/angle-right-solid.svg), none;
+    background-image: url(../themify-icons/SVG/angle-right-solid.svg), none;
 }
 
 .checkout-main .main-header .breadcrumb .breadcrumb-item:last-child::after{
