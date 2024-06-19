@@ -59,16 +59,12 @@ if (session_status() === PHP_SESSION_NONE) {
                 </div>
             </div>
         </div>
-
-
-
         <div id="logo">
             <img src="image/logo.png">
             <p><input type="text" placeholder=" Tìm kiếm sản phẩm "></p>
             <div class="ti-arrow-right">
             </div>
 
-        </div>
         <!--------------------------------------------LAYOUT-CART----------------------------------------------------->
         <div class="layout-cart">
             <div class="container-fluid">

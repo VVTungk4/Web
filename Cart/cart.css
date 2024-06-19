@@ -58,10 +58,6 @@ ul li a{
 .MeNu li:hover{
     background-color: rgb(150, 142, 142);
 }
-.DanhMuc i{
-    margin: 10px;
-    line-height: 0px;
-    font-size: 13px;
 	
 }
 .DanhMuc ul li{
