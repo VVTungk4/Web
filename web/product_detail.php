@@ -70,6 +70,7 @@ $colors_result = $conn->query("SELECT * FROM colors");
 			<div class="image-container">
 				<img src="<?php echo $product['thumbnail']; ?>" alt="<?php echo $product['title']; ?>" class="img-fluid">
 			</div>
+
 			<div class="product-info">
 				<h1><?php echo $product['title']; ?></h1>
 				<p class="price">Giá: <?php echo number_format($product['price']); ?> VND</p>
@@ -111,10 +112,14 @@ $colors_result = $conn->query("SELECT * FROM colors");
 						<button type="submit" id="buy-now" class="btn btn-primary" disabled>Mua ngay</button>
 						<button type="button" id="add-to-cart" class="btn btn-secondary" disabled>Thêm vào giỏ hàng</button>
 					</div>
-					<p id="motasp">Mô tả sản phẩm</p>
-					<p id="description"><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
+
+
 
 				</form>
+			</div>
+			<div class="dcpt" style="float: left; clear: both; margin-top: 20px;margin-left: 20px; color: #333;">
+				<p id="motasp" style="font-size: 1.25em;">MÔ TẢ SẢN PHẨM</p>
+				<p id="description" style="font-size: 1em;"><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
 			</div>
 		</div>
 	</div>
