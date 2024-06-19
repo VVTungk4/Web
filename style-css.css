@@ -94,7 +94,9 @@ h6 {
     height: 50px;
     width: 350px;
 }
-
+table img{
+    border: 2px solid pink;
+}
 #logo div {
     height: 49px;
     width: 53px;

@@ -259,12 +259,12 @@ li:hover .MeNu2 {
 
 
 
-img {
+ table img {
     height: 300px;
     width: 250px;
     float: left;
     margin: 20px 30px;
-    border: 2px solid  #f0cfcf;
+    border: 2px solid pink;
     text-align: center;
     margin-top: 50px;
 
