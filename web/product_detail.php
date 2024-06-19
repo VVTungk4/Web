@@ -132,12 +132,6 @@ $colors_result = $conn->query("SELECT * FROM colors");
 						<button type="submit" id="buy-now" class="btn btn-primary" disabled>Mua ngay</button>
 						<button type="button" id="add-to-cart" class="btn-custom" disabled> <i class="bi bi-cart2"></i>&nbsp;Thêm vào giỏ hàng</button>
 					</div>
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 4f25c9b2a282a7b934237aee1e77eec276e9dd1e
 				</form>
 			</div>
 
