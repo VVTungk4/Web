@@ -117,10 +117,11 @@ $colors_result = $conn->query("SELECT * FROM colors");
 
 				</form>
 			</div>
-			<div class="dcpt" style="float: left; clear: both; margin-top: 20px;margin-left: 20px; color: #333;">
-				<p id="motasp" style="font-size: 1.25em;">MÔ TẢ SẢN PHẨM</p>
-				<p id="description" style="font-size: 1em;"><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
-			</div>
+
+		</div>
+		<div class="dcpt">
+			<p id="motasp" style="font-size: 1.25em;">MÔ TẢ SẢN PHẨM</p>
+			<p id="description" style="font-size: 1em;"><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
 		</div>
 	</div>
 
@@ -699,7 +700,23 @@ $colors_result = $conn->query("SELECT * FROM colors");
 		.btn-secondary:hover {
 			background-color: #545b62;
 		}
-	</style>
+
+		.dcpt {
+
+			clear: both;
+			margin-top: 20px;
+
+			color: #333;
+			background-color: #ffffff;
+
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+			border-radius: 8px;
+
+			padding: 20px;
+
+
+		}
 	</style>
 </body>
 
