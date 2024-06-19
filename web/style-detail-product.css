@@ -1,9 +1,123 @@
+/* CSS tổng hợp cho header, footer và chi tiết sản phẩm */
+@font-face {
+  font-family: quicksand;
+  src: url('../font-awesome/fonts/quicksand/Quicksand-Regular.ttf');
+}
+
+* {
+  font-family: quicksand;
+}
+
+.mota {
+  border: 2px solid pink;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+#description {
+  padding-top: 5px;
+  text-align: justify;
+  font-style: italic;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#motasp {
+  padding-top: 10px;
+  padding-left: 20px;
+  font-weight: 600;
+  font-style: oblique;
+
+}
+
+.btn-custom {
+  color: #2f2626;
+  cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 2px solid pink;
+  font-weight: normal;
+  transition: font-weight 0.2s ease;
+  background: whitesmoke;
+  margin: 10px;
+
+
+}
+
+.btn-custom:hover {
+  font-weight: 500;
+  background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+  background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+  background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+  background: linear-gradient(bottom, #f0cfcf, #ffacc7);
+}
+
+img {
+  border: 2px solid pink;
+  border-radius: 10px;
+}
+
 html,
 body {
   height: 100%;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+body {
+  background-color: #f8f9fa;
+}
+
+
+#logo {
+  height: 100px;
+  margin-top: 50px;
+  background: #f0cfcf;
+  background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+  background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+  background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+  background: linear-gradient(bottom, #f0cfcf, #ffacc7);
+}
+
+#logo img {
+  margin: 5px 5px 5px 0;
+  height: 90px;
+  float: right;
+  position: absolute;
+  right: 20px;
+  z-index: 1;
+}
+
+#logo p {
+  float: left;
+  line-height: 88px;
+  padding-left: 200px;
+}
+
+#logo p input {
+  height: 50px;
+  width: 350px;
+}
+
+#logo div {
+  height: 49px;
+  width: 53px;
+  float: left;
+  font-size: 20px;
+  margin-top: 20px;
+  background-color: darkgray;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+  line-height: 50px;
 }
 
 #header {
@@ -12,8 +126,12 @@ body {
   left: 0;
   right: 0;
   height: 50px;
-  background-color: lavender;
+  background-color: #FFDCE3;
   z-index: 3;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+
 }
 
 #khungdau div {
@@ -25,20 +143,36 @@ body {
 }
 
 #khungdau div:hover {
-  background-color: white;
+  background: #f0cfcf;
+  background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+  background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+  background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+  background: linear-gradient(bottom, #f0cfcf, #ffacc7);
   cursor: pointer;
+  display: inline;
 }
 
 .MeNu {
-  background-color: whitesmoke;
+  height: auto;
+  background: #f0cfcf;
+  background: -webkit-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+  background: -o-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+  background: -moz-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+  background: linear-gradient(bottom right, #e6d4ec, #ffacc7);
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-#khungdau .DanhMuc:hover li {
-  display: block;
+.MeNu ul {
+  margin-top: 0;
+}
+
+.MeNu li {
+  width: 100%;
 }
 
 #khungdau ul li {
-  height: 40px;
+  height: 45px;
   display: none;
   float: none;
   clear: both;
@@ -47,32 +181,23 @@ body {
   padding-left: 20px;
   line-height: 40px;
   box-shadow: black;
+
 }
 
-.MeNu li {
-  width: 100%;
-}
 .MeNu ul {
   margin-top: 0;
   background: 0%;
 }
+
 ul li a {
   text-decoration: none;
   color: black;
 }
 
 .MeNu li:hover {
-  background-color: rgb(150, 142, 142);
-}
+  background: white;
+  margin-bottom: 5px;
 
-.DanhMuc i {
-  margin: 10px;
-  line-height: 0px;
-  font-size: 13px;
-}
-
-.DanhMuc ul li {
-  display: inline-block;
 }
 
 #TaiKhoan:hover ul li {
@@ -80,35 +205,30 @@ ul li a {
 }
 
 #TaiKhoan ul li:hover {
-  background-color: rgb(150, 142, 142);
+  background: rgb(255, 254, 254);
+  margin-left: 5px;
+  font-weight: bold;
+
 }
 
 #TaiKhoan ul {
-  background-color: whitesmoke;
+  background: #f0cfcf;
+  background: -webkit-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+  background: -o-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+  background: -moz-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+  background: linear-gradient(bottom right, #e6d4ec, #ffacc7);
+  margin-left: 0;
+  margin-top: 0;
 }
 
-#content {
-  width: 80%;
-  margin-left: 0 auto;
-}
-
-.MeNu2 {
-  display: none;
-  position: relative;
-  left: 230px;
-  top: -40px;
-}
-
-li:hover .MeNu2 {
-  display: block;
-  background-color: rgb(241, 212, 212);
-}
 
 img {
-  height: 300px;
-  width: 250px;
+  height: 400px;
+  /* Increase the height */
+  width: 350px;
+  /* Increase the width */
   float: left;
-  margin: 20px 30px;
+  margin: 30px 30px;
   border: white 2px solid;
   text-align: center;
   margin-top: 50px;
@@ -135,67 +255,17 @@ tr {
 
 #footer {
   float: both;
-
   background-color: rgb(241, 212, 212);
   clear: both;
 }
 
-/*Footer----------------*/
-footer {
-  background-color: #e6e6fa;
-  /* Màu nền cho footer */
-  padding: 20px 0;
-}
+/* Footer */
 
-footer {
-  position: relative;
-  width: 100%;
-  padding: 50px 100px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-top: auto;
-}
-
-footer .container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-/*Thiết Lập Cho Thành Phần Nội Dung Giới Thiệu*/
-footer .noi-dung {
-  margin-right: 30px;
-}
-
-footer .noi-dung.about {
-  flex: 1;
-  min-width: 250px;
-  /* Đảm bảo rằng phần này không quá nhỏ trên các màn hình nhỏ */
-}
-
-footer .noi-dung.about h2 {
-  position: relative;
-  color: #fff;
-  font-weight: 500;
-}
-
-.btn {
-  padding: 10px 20px;
-  border: none;
-  background-color: #333;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 0 3px 3px 0;
-}
-
-.btn:hover {
-  background-color: #000;
-}
-/* css body */
+/* CSS cho chi tiết sản phẩm */
 .container-fluid {
   padding: 20px;
+  margin-top: 4px;
+
 }
 
 .product-detail {
@@ -209,7 +279,8 @@ footer .noi-dung.about h2 {
 
 .image-container {
   flex: 1;
-  min-width: 300px;
+  min-width: 400px;
+  /* Increase the min-width */
   padding: 20px;
   display: flex;
   justify-content: center;
@@ -220,6 +291,9 @@ footer .noi-dung.about h2 {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
+  margin: 5px;
+  border: 2px solid pink;
+
 }
 
 .product-info {
@@ -255,11 +329,14 @@ footer .noi-dung.about h2 {
 }
 
 .form-control {
-  width: 100%;
-  padding: 10px;
+  width: 8%;
+  /* Decrease the width */
+  padding: 5px;
+  /* Decrease the padding */
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 1em;
+  font-size: 0.9em;
+  /* Decrease the font size */
 }
 
 .quantity-control {
@@ -267,68 +344,64 @@ footer .noi-dung.about h2 {
   align-items: center;
 }
 
-.quantity-control button {
-  padding: 10px;
-  font-size: 1em;
-}
-
 .quantity-control input {
+  width: 50px;
   text-align: center;
-  max-width: 60px;
 }
 
-.button-group {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-}
-
-.button-group button {
-  flex: 1;
-  padding: 15px;
-  font-size: 1em;
-  border: none;
-  border-radius: 4px;
+.quantity-control button {
+  padding: 5px 10px;
+  /* Decrease the padding */
+  border: 1px solid #ccc;
+  background-color: #007bff;
   cursor: pointer;
+}
+
+.quantity-control button:hover {
+  background-color: #0056b3;
 }
 
 .btn-primary {
   background-color: #007bff;
   color: #fff;
+  border: none;
+  padding: 10px 15px;
+  /* Decrease the padding */
+  font-size: 0.9em;
+  /* Decrease the font size */
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
 }
 
 .btn-secondary {
   background-color: #6c757d;
   color: #fff;
+  border: none;
+  padding: 10px 15px;
+  /* Decrease the padding */
+  font-size: 0.9em;
+  /* Decrease the font size */
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.btn-primary:disabled,
-.btn-secondary:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+.btn-secondary:hover {
+  background-color: #545b62;
 }
 
-.quantity-info,
-#motasp,
-#description {
-  margin-top: 20px;
-}
-
-#description {
-  white-space: pre-line;
-}
-
-@media (max-width: 768px) {
-  .product-detail {
-    flex-direction: column;
-  }
-
-  .image-container,
-  .product-info {
-    min-width: 100%;
-  }
-
-  .product-info form {
-    margin-top: 0;
-  }
+.ttsp {
+  text-align: center;
+  background-color: #ffffff;
+  width: 400px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-left: 550px;
+  border-radius: 30px;
 }

@@ -118,7 +118,7 @@ h6 {
     height: 50px;
     background-color:#ffdce3;
     z-index: 3;
-
+    justify-content: center;
 }
 
 #khungdau div {
