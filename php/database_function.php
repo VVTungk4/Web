@@ -3,7 +3,7 @@
         $server = 'localhost';
         $user = 'root';
         $pass = '';
-        $database = 'xaml';
+        $database = 'webhangban';
 
         $conn = new mysqLi($server, $user, $pass, $database);
 

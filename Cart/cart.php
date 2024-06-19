@@ -14,8 +14,22 @@ if (session_status() === PHP_SESSION_NONE) {
     <script src="https://kit.fontawesome.com/39b6b90061.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="cart.css">
     <title>Giỏ hàng</title>
-    <link rel="icon" type="image/png" href="icons/cart.ico"/>
-    <script src="./javascript/cart_function.js?v=<?php echo time()?>"></script>
+    <link rel="icon" type="image/png" href="icons/cart.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css">
+    <script src="./javascript/cart_function.js?v=<?php echo time() ?>"></script>
 </head>
 
 <body>
@@ -28,42 +42,40 @@ if (session_status() === PHP_SESSION_NONE) {
     ?>
     <div class="main-body">
         <!--------------------------------------------HEADER----------------------------------------------------->
-        <div id="header">
+        <div id="header" style="font-weight: bold;">
             <div id="khungdau">
-                <div style="margin-left: 100px; width: 250px;" class="DanhMuc">
-                    <p><i class="DanhMuc ti-menu-alt"></i>DANH SÁCH</p>
+                <div style="width: 250px;" id="TaiKhoan">
+                    <p style="margin-bottom: 0;"><i class="bi bi-list-task"></i>&nbsp; DANH MỤC</p>
                     <ul class="MeNu">
-                        <li><a href="../web/">TRANG PHỤC NỮ-ÁO</a></li>
-                        <li><a href="../web/Đầm-Nữ.html">TRANG PHỤC NỮ-VÁY</a></li>
-
+                        <li style="font-weight: normal;"><a href="../sanpham/Áo-Nữ.html ">Sản phẩm Nữ: Áo</a></li>
+                        <li style="font-weight: normal;"><a href="../sanpham/Đầm-Nữ.html ">Sản phẩm Nữ: Đầm</a></li>
                     </ul>
                 </div>
-                <div><a href="../web/Sản-phẩm.html" style="text-decoration:none; color:#000;">
+                <div><a href="../sanpham/Sản-Phẩm.html" style="text-decoration:none; color:#000;">
                         <p>SẢN PHẨM </p>
                 </div>
                 <div><a href="../index.html" style="text-decoration:none; color:#000;">
                         <p>TRANG CHỦ</p>
                     </a></div>
-                <div><a href="../web/Giới-Thiệu.html" style="text-decoration:none; color:#000;">
+                <div><a href="../sanpham/Giới-Thiệu.html" style="text-decoration:none; color:#000;">
                         <p>GIỚI THIỆU</p>
                     </a></div>
-                <div><a href="cart.html" style="text-decoration:none; color:#000;">
+                <div><a href="../Cart/cart.html" style="text-decoration:none; color:#000;">
                         <p>GIỎ HÀNG</p>
                     </a></div>
                 <div id="TaiKhoan">
-                    <p>TÀI KHOẢN</p>
+                    <p style="margin-bottom: 0;">TÀI KHOẢN</p>
                     <ul class="MeNu">
-                        <li><a href="../Login/Login.html">Đăng Nhập</a></li>
-                        <li><a href="../Login/register.html">Đăng Ký</a></li>
+                        <li style="font-weight: normal;"><a href="../Login/Login.php">Đăng nhập</a></li>
+                        <li style="font-weight: normal;"><a href="../Login/email_dangki.php">Đăng kí</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div id="logo">
-            <img src="image/logo.png">
-            <p><input type="text" placeholder=" Tìm kiếm sản phẩm "></p>
-            <div class="ti-arrow-right">
-            </div>
+            <img src="images/logo1.png" style="height: 90px; width: 110px;">
+            <label for="TaiKhoan" class="ttcn"> Giỏ hàng của bạn</label>
+        </div>
 
         <!--------------------------------------------LAYOUT-CART----------------------------------------------------->
         <div class="layout-cart">
@@ -127,33 +139,33 @@ if (session_status() === PHP_SESSION_NONE) {
                                                                 $total_price += $row['price'] * $quantity;
                                                                 // Hiển thị thông tin sản phẩm trong giỏ hàng
                                                                 echo '<tr class="line-item-container">';
-                                                                    echo '<td class="image">';
-                                                                        echo '<div class="product-img">';
-                                                                            echo '<a href="">';
-                                                                                echo '<img src="../image/' . $row['thumbnail'] . '" alt="' . $row['title'] . '">';
-                                                                            echo '</a>';
-                                                                        echo '</div>';
-                                                                    echo '</td>';
-                                                                    echo '<td class="item">';
-                                                                        echo '<a href="./product.php?product_id=' . $row['id'] . '">' . $row['title'] . '</a>';
-                                                                        echo '<p>';
-                                                                            echo '<span>' . number_format($row['price'], 0, ',', '.') . '₫</span>';
-                                                                        echo '</p>';
-                                                                        echo '<div class="qty-click">';
-                                                                            echo '<button type="button" class="qtyminus qty-btn" data-product-id="' . $row['id'] . '">-</button>';
-                                                                            echo '<input type="text" size="4" min="1" data-price="' . $row['price'] . '" value="' . $quantity . '" class="item-quantity" data-product-id="' . $row['id'] . '"> ';
-                                                                            echo '<button type="button" class="qtyplys qty-btn" data-product-id="' . $row['id'] . '">+</button>';
-                                                                        echo '</div>';
-                                                                        echo '<p class="price">';
-                                                                            echo '<span class="text">Thành tiền</span>';
-                                                                            echo '<span class="line-iem-total">' . number_format($row['price'] * $quantity, 0, ',', '.') . '₫</span>';
-                                                                        echo '</p>';
-                                                                    echo '</td>';
-                                                                    echo '<td class="remove">';
-                                                                        echo '<a href="#" class="remove-from-cart" data-product-id="' . $row['id'] . '">';
-                                                                            echo '<ion-icon name="close-outline"></ion-icon>';
-                                                                        echo '</a>';
-                                                                    echo '</td>';
+                                                                echo '<td class="image">';
+                                                                echo '<div class="product-img">';
+                                                                echo '<a href="">';
+                                                                echo '<img src="../image/' . $row['thumbnail'] . '" alt="' . $row['title'] . '">';
+                                                                echo '</a>';
+                                                                echo '</div>';
+                                                                echo '</td>';
+                                                                echo '<td class="item">';
+                                                                echo '<a href="./product.php?product_id=' . $row['id'] . '">' . $row['title'] . '</a>';
+                                                                echo '<p>';
+                                                                echo '<span>' . number_format($row['price'], 0, ',', '.') . '₫</span>';
+                                                                echo '</p>';
+                                                                echo '<div class="qty-click">';
+                                                                echo '<button type="button" class="qtyminus qty-btn" data-product-id="' . $row['id'] . '">-</button>';
+                                                                echo '<input type="text" size="4" min="1" data-price="' . $row['price'] . '" value="' . $quantity . '" class="item-quantity" data-product-id="' . $row['id'] . '"> ';
+                                                                echo '<button type="button" class="qtyplys qty-btn" data-product-id="' . $row['id'] . '">+</button>';
+                                                                echo '</div>';
+                                                                echo '<p class="price">';
+                                                                echo '<span class="text">Thành tiền</span>';
+                                                                echo '<span class="line-iem-total">' . number_format($row['price'] * $quantity, 0, ',', '.') . '₫</span>';
+                                                                echo '</p>';
+                                                                echo '</td>';
+                                                                echo '<td class="remove">';
+                                                                echo '<a href="#" class="remove-from-cart" data-product-id="' . $row['id'] . '">';
+                                                                echo '<ion-icon name="close-outline"></ion-icon>';
+                                                                echo '</a>';
+                                                                echo '</td>';
                                                                 echo '</tr>';
                                                             }
                                                         }
@@ -165,27 +177,29 @@ if (session_status() === PHP_SESSION_NONE) {
                                         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                                         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                                         <script>
-                                            $(document).ready(function(){
-                                            // Xử lý sự kiện click cho nút "Xóa"
-                                    $('.remove-from-cart').click(function(e){
-                                        e.preventDefault(); // Ngăn chặn hành động mặc định của thẻ <a>
+                                            $(document).ready(function() {
+                                                // Xử lý sự kiện click cho nút "Xóa"
+                                                $('.remove-from-cart').click(function(e) {
+                                                    e.preventDefault(); // Ngăn chặn hành động mặc định của thẻ <a>
 
-                                        var productId = $(this).data('product-id');
+                                                    var productId = $(this).data('product-id');
 
-                                        // Gửi yêu cầu xóa sản phẩm thông qua Ajax
-                                        $.ajax({
-                                            url: '../php/remove_from_cart.php',
-                                            type: 'post',
-                                            data: {product_id: productId},
-                                            success:function(response){
-                                                // Cập nhật lại tổng tiền sau khi xóa sản phẩm
-                                                $('#total-cart').html(response);
-                                                location.reload();
-                                            }
-                                        });
-                                    });
-                                });
-                            </script>
+                                                    // Gửi yêu cầu xóa sản phẩm thông qua Ajax
+                                                    $.ajax({
+                                                        url: '../php/remove_from_cart.php',
+                                                        type: 'post',
+                                                        data: {
+                                                            product_id: productId
+                                                        },
+                                                        success: function(response) {
+                                                            // Cập nhật lại tổng tiền sau khi xóa sản phẩm
+                                                            $('#total-cart').html(response);
+                                                            location.reload();
+                                                        }
+                                                    });
+                                                });
+                                            });
+                                        </script>
                                     </div>
                                     <?php
                                     if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
@@ -199,7 +213,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                                 <p class="order-infor">
                                                     Tổng tiền
                                                     <span class="total-price">
-                                                        <b id="total-cart">'. number_format($total_price, 0, ',', '.').'₫</b>
+                                                        <b id="total-cart">' . number_format($total_price, 0, ',', '.') . '₫</b>
                                                     </span>
                                                 </p>
                                                 <div class="cart-buttons">
@@ -231,68 +245,118 @@ if (session_status() === PHP_SESSION_NONE) {
             </div>
         </div>
         <!--------------------------------------------FOOTER----------------------------------------------------->
-        <footer>
-            <div class="container" style="background-color: lavender;">
-                <!--Bắt Đầu Nội Dung Giới Thiệu-->
-                <div class="noi-dung about">
-                    <h2 style="border-radius: 70px; text-align: center; background-color: pink;">Về Chúng Tôi</h2>
-                    <p>Website này được thiết kế và vận hành bởi nhóm admin: </br>
-                        1. Mai Đình Dũng</br>
-                        2. Dương Đức Khôi</br>
-                        3. Nguyễn Ngọc Sơn</br>
-                        4. Vũ Văn Tùng</br>
-                        5. Tăng Văn Tuấn</br>
-                    </p>
-                    <ul class="social-icon">
-                        <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                        <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                        <li><a href=""><i class="fa fa-instagram"></i></a></li>
-                        <li><a href=""><i class="fa fa-youtube"></i></a></li>
-                    </ul>
-                </div>
-                <!--Kết Thúc Nội Dung Giới Thiệu-->
-                <!--Bắt Đầu Nội Dung Đường Dẫn-->
-                <div class="noi-dung links">
-                    <h2><br></h2>
-                    <ul>
-                        <li><a href="#">Trang Chủ</a></li>
-                        <li><a href="./Giới-Thiệu.html">Về Chúng Tôi</a></li>
-                        <li><a href="Login/Login.html">Tài khoản</a></li>
-                        <li><a href="./">Sản phẩm</a></li>
-                        <li><a href="./Đầm-Nữ.html">Cửa hàng</a></li>
-                    </ul>
-                </div>
-                <!--Kết Thúc Nội Dung Đường Dẫn-->
-                <!--Bắt Đâu Nội Dung Liên Hệ-->
-                <div class="noi-dung contact">
-                    <h2 style="border-radius: 70px; text-align: center; background-color: pink;">Thông Tin Liên Hệ</h2>
-                    <ul class="info">
-                        <li>
-                            <span><i class="fa fa-map-marker"></i></span>
-                            <span>52 Triều Khúc<br />
-                                Quận Thanh Xuân, TP Hà Nội<br />
-                                Việt Nam</span>
-                        </li>
-                        <li>
-                            <span><i class="fa fa-phone"></i></span>
-                            <p><a href="">0373999999</a>
-                                <br />
-                                <a href="">0373888888</a>
+        <footer class="text-center text-lg-start bg-body-tertiary text-muted" style=" background: #ffdce3;
+		padding: 10px;
+		color: #000;">
+            <!-- Section: Social media -->
+            <!-- Section: Social media -->
+
+            <!-- Section: Links  -->
+            <section class="" style="margin-top: 0px; height: 240px;">
+                <div class="container text-center text-md-start mt-5" style="margin-top: 1rem !important ;">
+                    <!-- Grid row -->
+                    <div class="row mt-3">
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                            <!-- Content -->
+                            <h6 class="text-uppercase fw-bold mb-4" style="font-size: 25px;">
+                                <i class="fas fa-gem me-3"></i>&nbsp;SONIC SHOP
+                            </h6>
+                            <p style="text-align: justify; font-weight: bold;">
+                                Website này được thiết kế và vận hành bởi nhóm admin: </br>
+                                1. Dương Đức Khôi </br>
+                                2. Mai Đình Dũng</br>
+                                3. Nguyễn Ngọc Sơn</br>
+                                4. Vũ Văn Tùng</br>
+                                5. Tăng Văn Tuấn</br>
                             </p>
-                        </li>
-                        <li>
-                            <span><i class="fa fa-envelope"></i></span>
-                            <p><a href="">sale@sonic.vn</a></p>
-                        </li>
-                        <li>
-                            <form class="form">
-                                <input type="email" class="form__field" placeholder="Đăng Ký Subscribe Email" />
-                                <button type="button" class="btn btn--primary  uppercase">Gửi</button>
-                            </form>
-                        </li>
-                    </ul>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4" style=" font-weight: bold;">
+                            <!-- Links -->
+                            <h6 class="text-uppercase fw-bold mb-4" style="font-size: 25px;">
+                                SẢN PHẨM
+                            </h6>
+                            <p>
+                                <a href="#!" class="text-reset">Váy nữ xinh </a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Đầm nữ xinh</a>
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <!-- Links -->
+                            <h6 class="text-uppercase fw-bold mb-4" style="font-size: 25px;">
+                                ĐƯỜNG DẪN
+                            </h6>
+                            <p>
+                                <a href="#!" class="text-reset">Trang chủ</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Sản phẩm</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Giới thiệu</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Tài khoản cá nhân</a>
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4" style="text-align: justify; font-weight: bold;">
+                            <!-- Links -->
+                            <h6 class="text-uppercase fw-bold mb-4" style="font-size: 25px;">Contact</h6>
+                            <p><i class="fas fa-home me-3"></i> 54, Triều Khúc, Thanh Xuân, Hà Nội</p>
+                            <p>
+                                <i class="fas fa-envelope me-3"></i>
+                                sonicshopxinh@gmail.com
+                            </p>
+                            <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+                            <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+                        </div>
+                        <!-- Grid column -->
+                    </div>
+                    <!-- Grid row -->
                 </div>
-                <!--Kết Thúc Nội Dung Liên Hệ-->
+            </section>
+            <!-- Section: Links  -->
+
+            <!-- Copyright -->
+            <!-- Right -->
+            <div class="bg-body-tertiary text-center" style="padding: 0;">
+                <!-- Grid container -->
+                <div class="container p-4 pb-0" style="padding: 0;">
+                    <!-- Section: Social media -->
+                    <section class="mb-4">
+                        <!-- Facebook -->
+                        <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+
+                        <!-- Twitter -->
+                        <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #55acee;" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+
+                        <!-- Google -->
+                        <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button"><i class="fab fa-google"></i></a>
+
+                        <!-- Instagram -->
+                        <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+
+                        <!-- Linkedin -->
+                        <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #0082ca;" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+                        <!-- Github -->
+                        <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #333333;" href="#!" role="button"><i class="fab fa-github"></i></a>
+                    </section>
+                    <!-- Section: Social media -->
+                </div>
+                <!-- Grid container -->
+                <!-- Right -->
+                <!-- Copyright -->
             </div>
         </footer>
 
