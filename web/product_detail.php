@@ -110,7 +110,7 @@ $colors_result = $conn->query("SELECT * FROM colors");
 
 					<div class="form-group">
 						<label for="color">Chọn màu sắc:</label>
-						<select name="color_id" id="color" class="form-control" style="width: 60px;">
+						<select name="color_id" id="color" class="form-control" style="width: 70px;">
 							<?php while ($color = $colors_result->fetch_assoc()) { ?>
 								<option value="<?php echo $color['id']; ?>"><?php echo $color['name']; ?></option>
 							<?php } ?>
