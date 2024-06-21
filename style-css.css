@@ -1,229 +1,271 @@
 @charset "utf-8";
+
 /* CSS Document */
 * {
-  margin: auto;
-  padding: 0;
-  box-sizing: border-box;
+    margin: auto;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+@font-face {
+    font-family: 'MTD Balerno';
+    src: url('C:\xampp\htdocs\Website HERA\font-awesome\fonts\._MTD Balerno Regular.otf') format('otf'),
+        url('C:\xampp\htdocs\Website HERA\font-awesome\fonts\._MTD Balerno Light.otf') format('otf'),
+        url('C:\xampp\htdocs\Website HERA\font-awesome\fonts\._MTD Balerno Bold.otf') format('otf');
+}
+
+@font-face {
+    font-family: montserrat;
+    src: url('../Login/fonts/montserrat/Montserrat-Medium.ttf');
+}
+
+@font-face {
+    font-family: montserrat_L;
+    src: url('../Login/fonts/montserrat/Montserrat-Italic.ttf');
+}
+
+@font-face {
+    font-family: quicksand;
+    src: url('font-awesome/fonts/quicksand/Quicksand-Regular.ttf');
+}
+
+.banner {
+    position: relative;
+    overflow: hidden;
+    width: 1000px;
+    height: 500px;
+    display: flex;
+}
+
+.banner img {
+    position: absolute;
+    width: 1000px;
+    height: 500px;
+    transition: opacity 3s ease-in-out;
+    justify-content: 500px;
+    margin-top: 5px;
+}
+
+.banner img.inactive {
+    opacity: 0;
+}
+
+.banner img.active {
+    opacity: 1;
+}
+
 html {
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'quicksand';
 }
 
-/* .logo {
-  height: 100px;
-  margin-top: 50px;
-  background-color: pink;
-}
-.img {
-  margin: 5px 5px 5px 0;
-  height: 90px;
-  float: right;
-}
-#timkiem {
-  height: 100px;
-  display: flex;
-  align-items: center;
-}
-#timkiem.input{
-  background-color: white;
-  height: 50px;
-  border-radius: 2px;
-  margin-left: 100px;
-  padding-right: 50px;
-  display: inline-block;
-} */
-.header-with-search {
-  background-color: pink;
-  margin-top: 50px;
-  height: 120px;
-  display: flex;
-  align-items: center;
-}
-.header__logo {
-  margin: 5px 5px 5px 0;
-  height: 90px;
-  position: absolute;
-  right: 0;
-}
-.header__logo-img {
-  margin: 5px 5px 5px 0;
-  height: 90px;
-  float: right;
-}
-.header__search {
-  background-color: white;
-  height: 50px;
-  border-radius: 2px;
-  margin-left: 100px;
-  display: flex;
-}
-.header__search-input-wrap {
-  flex: 1;
-}
-.header__search-history {
-  top: 50px;
-  left: 0;
-  width: 100%;
-  border-radius: 3px;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 0 3px #666;
-  display: none;
-}
-.header__search-input:focus ~ .header__search-history {
-  display: block;
-}
-.header__search-input {
-  width: 600px;
-  height: 100%;
-  border: none;
-  outline: none;
-  font-size: 1.2rem;
-  color: #342323;
-  padding: 4px 4px;
-  margin: 8px 6px;
-  border-radius: 3px;
-}
-.header__search-btn {
-  background-color: rgb(147, 145, 145);
-  border: none;
-  height: 50px;
-  border-radius: 3px;
-  width: 40px;
-  outline: none;
-}
-.header__search-btn :hover {
-  cursor: pointer;
-  background-color: rgb(147, 145, 145);
-}
-.header__search-history-heading {
-  margin: 4px 12px 0px 12px;
-  font-size: 1.3rem;
-  color: #999;
-  line-height: 38px;
-  font-weight: 400;
+p {
+    font-family: 'quicksand';
+    font-weight: bold;
 }
 
-.header__search-btn-icon {
-  font-size: 1.6rem;
-  color: rgb(63, 46, 46);
-  background-color: rgb(147, 145, 145);
+h6 {
+    font-family: 'quicksand';
+    font-weight: bold;
 }
-.header__search-history-list {
-  padding-left: 0;
-  list-style: none;
-  margin: 0px 0 0;
+
+#logo {
+    height: 100px;
+    margin-top: 50px;
+    background: #f0cfcf;
+    background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+    background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+    background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+    background: linear-gradient(bottom, #f0cfcf, #ffacc7);
 }
-.header__search-history-item {
-  height: 32px;
-  padding: 0 12px;
+
+#logo img {
+    margin: 5px 5px 5px 0;
+    height: 90px;
+    float: right;
 }
-.header__search-history-item:hover {
-  background-color: #fafafa;
+
+#logo p {
+    float: left;
+    line-height: 88px;
+    padding-left: 200px;
 }
-.header__search-history-item a {
-  text-decoration: none;
-  font-size: 1.2rem;
-  color: #634d4d;
-  line-height: 32px;
+
+#logo p input {
+    height: 50px;
+    width: 350px;
+}
+
+table img {
+    border: 2px solid pink;
+}
+
+#logo div {
+    height: 49px;
+    width: 53px;
+    float: left;
+    font-size: 20px;
+    margin-top: 20px;
+    background-color: darkgray;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    line-height: 50px;
 }
 
 #header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50px;
-  background-color: black(228, 217, 235);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: #ffdce3;
+    z-index: 3;
+    justify-content: center;
 }
+
 #khungdau div {
-  float: left;
-  line-height: 50px;
-  width: 160px;
-  text-align: center;
+    float: left;
+    line-height: 50px;
+    width: 160px;
+    text-align: center;
+    height: 50px;
+    <<<<<<< HEAD=======<<<<<<< HEAD=======>>>>>>>95418862838f86ffb88c00878d2d48af5e285460>>>>>>>197381142fec8d89f1d08d901c289e48811cc5b9
 }
+
 #khungdau div:hover {
-  background-color: white;
-  cursor: pointer;
+    background: #f0cfcf;
+    background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+    background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+    background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+    background: linear-gradient(bottom, #f0cfcf, #ffacc7);
+    cursor: pointer;
 }
+
 .MeNu {
-  background-color: whitesmoke;
+    height: auto;
+    background: #f0cfcf;
+    background: -webkit-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+    background: -o-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+    background: -moz-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+    background: linear-gradient(bottom right, #e6d4ec, #ffacc7);
+
+    padding-left: 10px;
+    padding-right: 10px;
+
 }
+
+
 #khungdau .DanhMuc:hover li {
-  display: block;
+    display: block;
 }
 
 #khungdau ul li {
-  height: 40px;
-  display: none;
-  float: none;
-  clear: both;
-  text-decoration: none;
-  text-align: left;
-  padding-left: 20px;
-  line-height: 40px;
-  box-shadow: black;
+    height: 40px;
+    display: none;
+    float: none;
+    clear: both;
+    text-decoration: none;
+    text-align: left;
+    padding-left: 20px;
+    line-height: 40px;
+    box-shadow: black;
 }
-.MeNu li {
-  width: 100%;
+
+<<<<<<< HEAD .MeNu li {
+    width: 100%;
+
 }
+
+.MeNu ul {
+    margin-top: 0;
+    background: 0%;
+}
+
+=======>>>>>>>197381142fec8d89f1d08d901c289e48811cc5b9 .MeNu ul {
+    margin-top: 0;
+}
+
 ul li a {
-  text-decoration: none;
-  color: black;
+    text-decoration: none;
+    color: black;
 }
+
 .MeNu li:hover {
-  background-color: rgb(150, 142, 142);
+    background: white;
 }
+
+
 .DanhMuc i {
-  margin: 10px;
-  line-height: 0px;
-  font-size: 13px;
+    margin: 10px;
+    line-height: 0px;
+    font-size: 13px;
+
 }
+
 .DanhMuc ul li {
-  display: inline-block;
+    display: inline-block;
 }
+
 #TaiKhoan:hover ul li {
-  display: block;
+    display: block;
 }
+
 #TaiKhoan ul li:hover {
-  background-color: rgb(150, 142, 142);
+    background: rgb(255, 254, 254);
 }
+
 #TaiKhoan ul {
-  background-color: whitesmoke;
+    background: #f0cfcf;
+    background: -webkit-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+    background: -o-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+    background: -moz-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+    background: linear-gradient(bottom right, #e6d4ec, #ffacc7);
 }
+
+
 #content {
-  width: 80%;
-  margin-left: 0 auto;
+    width: 80%;
+    margin-left: 0 auto;
+
+
 }
 
 .MeNu2 {
-  display: none;
-  position: relative;
-  left: 230px;
-  top: -40px;
+    display: none;
+    position: relative;
+    left: 230px;
+    top: -40px;
 }
+
 li:hover .MeNu2 {
-  display: block;
-  background-color: rgb(241, 212, 212);
+    display: block;
+    background-color: rgb(241, 212, 212);
 }
+
+
 
 img {
-  width: 250px;
-  height: 332px;
-  float: left;
-  margin: 20px 30px;
-  border: white 2px solid;
-  text-align: center;
-  margin-top: 50px;
+    height: 300px;
+    width: 250px;
+    float: left;
+    margin: 20px 30px;
+    border: 2px solid pink;
+    text-align: center;
+    margin-top: 50px;
+
 }
 
+
 tr {
-  text-align: center;
+    text-align: center;
 }
 
 #content a {
-  text-decoration: none;
-  color: black;
-  list-style-type: none;
+    text-decoration: none;
+    color: black;
+    list-style-type: none;
 }
 
 #mini {
@@ -493,16 +535,16 @@ footer .noi-dung.about p {
 }
 
 .btn {
-  padding: 10px 20px;
-  border: none;
-  background-color: #333;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 0 3px 3px 0;
+    padding: 10px 20px;
+    border: none;
+    background-color: #53CCEC;
+    color: #FFF7D9;
+    cursor: pointer;
+    border-radius: 10px;
 }
 
 .btn:hover {
-  background-color: #000;
+    background-color: #000000;
 }
 
 .f1-effect {
