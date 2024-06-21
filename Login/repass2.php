@@ -37,7 +37,7 @@ if (isset($_POST['oce'])) {
                     $stmt->execute();
                     session_unset();
                     session_destroy();
-                    header('location: ../Login/Login.html');
+                    header('location: ../Login/Login.php');
                     exit();
                 } else {
                     // Xử lý lỗi
