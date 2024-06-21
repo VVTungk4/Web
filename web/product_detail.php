@@ -24,7 +24,7 @@ $colors_result = $conn->query("SELECT * FROM colors");
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Chi tiết sản phâm</title>
 	<link rel="stylesheet" href="style-detail-product.css">
-	<link rel="icon" type="image/png" href="../images/logo1image/logo.ico" />
+	<link rel="icon" type="image/png" href="../sanpham/image/sp.ico" />
 	<link rel="stylesheet" href="./themify-icons/themify-icons.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 	<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css" />
