@@ -34,7 +34,7 @@ if(isset($_POST['themtaikhoan'])){
         $sql = "INSERT INTO user (fullname, email, phone_number, address, password,role_id) VALUES ('$fullname','$email','$phone','$address','$password','$role')";
     
         if($conn->query($sql)){
-            echo '<script language="javascript">alert("Thêm mới thành công!"); window.location="admin.html";</script>';
+            echo '<script language="javascript">alert("Thêm mới thành công!"); window.location="admin.php";</script>';
             exit();
         } else { 
             echo '<script language="javascript">alert("Có lỗi xảy ra, vui lòng thử lại!")";</script>';
