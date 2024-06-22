@@ -30,7 +30,7 @@
 </head>
 
 <body>
-	<form method="post" action="sendOTP.php" class="form">
+	<form method="post" action="sendOTP_repass.php" class="form">
 		<div class="limiter">
 			<div class="container-login100" style="background-image: url('images/back.jpg');">
 				<div class="wrap-login100">
