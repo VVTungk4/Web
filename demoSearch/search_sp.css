@@ -409,7 +409,6 @@ img {
     height: 600px;
     margin: auto;
     background-color: antiquewhite;
-    color: #eaeaea;
     margin-bottom: 20px;
 }
 
@@ -451,9 +450,7 @@ td {
     height: 500px;
 
 }
-table p{
-  
-}
+
 .thongbaotimkiem p{
     
     font-size: 30px;
