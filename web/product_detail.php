@@ -201,7 +201,19 @@ $colors_result = $conn->query("SELECT * FROM colors");
 				$(this).val(maxQuantity);
 			}
 		});
+		$('#add-to-cart').click(function() {
+			var formData = $('#order-form').serialize();
 
+			$.ajax({
+				url: '../php/addtocart.php',
+				method: 'POST',
+				data: formData,
+				success: function(response) {
+					// Hiển thị thông báo thành công
+					alert('Sản phẩm đã được thêm vào giỏ hàng thành công!');
+				}
+			});
+		});
 		$(document).ready(function() {
 			updateQuantity();
 		});
