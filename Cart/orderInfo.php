@@ -26,7 +26,7 @@
             <div class="checkout-main">
                 <div class="main-header">
                     <a href="" class="logo">
-                        <h1 class="logo-text">A Little Leaf</h1>
+                        <h1 class="logo-text">Sonic shop</h1>
                     </a>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
@@ -143,7 +143,7 @@
                         
                     </div>
                 </div>
-                <div class="main-footer footer-powered-by">Powered by HoanhNgjp</div>
+                <div class="main-footer footer-powered-by">Powered by aesiunhan</div>
             </div>
             <div class="checkout-sidebar">
                  <?php 
