@@ -96,7 +96,7 @@ $colors_result = $conn->query("SELECT * FROM colors");
 				<p class="price">Giá: <?php echo number_format($product['price']); ?> VND</p>
 
 
-				<form id="order-form" action="order.php" method="POST">
+				<form id="order-form" action="../Cart/cart.php" method="POST">
 					<input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
 
 					<div class="form-group">
@@ -213,6 +213,19 @@ $colors_result = $conn->query("SELECT * FROM colors");
 					alert('Sản phẩm đã được thêm vào giỏ hàng thành công!');
 				}
 			});
+		});
+		$('#buy-now').click(function() {
+
+			var formData = $('#order-form').serialize();
+
+			$.ajax({
+				url: '../php/addtocart.php',
+				method: 'POST',
+				data: formData,
+
+			});
+			// Chuyển hướng đến cart.php với các tham số query string
+			window.location.href = '../Cart/cart.php';
 		});
 		$(document).ready(function() {
 			updateQuantity();
