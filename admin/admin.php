@@ -85,7 +85,7 @@
 		<ul class="side-menu">
 			
 			<li>
-				<a href="#" class="logout">
+				<a href="../Login/Login.php" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Đăng Xuất</span>
 				</a>
@@ -100,7 +100,7 @@
 	<section id="content" >
 		
 		<!-- NAVBAR -->
-		<nav>
+		<nav style="overflow:hidden">
 			<i class='bx bx-menu' ></i>
 			<a href="#" class="nav-link">Tìm Kiếm</a>
 			<form action="">
@@ -150,21 +150,60 @@
 				<li>
 					<i class='bx bxs-calendar-check' ></i>
 					<span class="text">
-						<h3>823</h3>
+			<?php
+			$conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+			$sql = "SELECT COUNT(*) AS total_orders	FROM orders WHERE status = 0";
+			$result = $conn->query($sql);
+
+			if ($result->num_rows > 0) {
+    			while ($row = $result->fetch_assoc()) {
+       			$total_orders = $row["total_orders"];     
+  		      	echo "<h3>$total_orders</h3>";
+   			 	}
+			} else {
+    			echo "Không có dữ liệu.";}
+				$conn->close();?>
 						<p>Đơn Hàng Mới</p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bxs-group' ></i>
 					<span class="text">
-						<h3>362</h3>
+		<?php
+			$conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+			$sql = "SELECT COUNT(*) AS total_accounts FROM user WHERE role_id = 2";
+			$result = $conn->query($sql);
+
+			if ($result->num_rows > 0) {
+    			while ($row = $result->fetch_assoc()) {
+       			$totalAccounts = $row["total_accounts"];     
+  		      	echo "<h3>$totalAccounts</h3>";
+   			 	}
+			} else {
+    			echo "Không có dữ liệu.";}
+				$conn->close();?>
 						<p>Số lượng Khách Hàng</p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bxs-dollar-circle' ></i>
 					<span class="text">
-						<h3>$1 tỷ gói mè</h3>
+		<?php
+					$conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+					mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+					$sql = "SELECT SUM(total_money) AS total_revenue FROM orders;";
+					$result = $conn->query($sql);
+
+					if ($result->num_rows > 0) {
+						while ($row = $result->fetch_assoc()) {
+	   					$total_revenue = $row["total_revenue"];     
+						echo "<h3>$total_revenue</h3>";
+					}
+					} else {
+						echo "Không có dữ liệu.";}
+						$conn->close();?>
 						<p>Doanh Thu</p>
 					</span>
 				</li>
@@ -187,46 +226,35 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>Sơn sẽ</p>
-								</td>
-								<td>09-06-2024</td>
-								<td><span class="status completed">Thành Công</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>Đức cớp</p>
-								</td>
-								<td>08-06-2024</td>
-								<td><span class="status pending">Đang chờ</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>Dũng Đìn</p>
-								</td>
-								<td>08-06-2024</td>
-								<td><span class="status process">Đang giao</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>Tăng Tún</p>
-								</td>
-								<td>01-06-2024</td>
-								<td><span class="status pending">Đang chờ</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>Vũ Tùn</p>
-								</td>
-								<td>01-06-2024</td>
-								<td><span class="status completed">Thành công</span></td>
-							</tr>
+						<?php
+			// Kết nối cơ sở dữ liệu
+			$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+			// Truy vấn lấy dữ liệu
+				$sql = "Select * From orders ORDER BY order_date DESC LIMIT 5; ";
+				$result = $conn->query($sql);
+			// Kiểm tra số lượng bản ghi trả về
+				if ($result->num_rows > 0) {
+ 			// Xuất dữ liệu của mỗi hàng
+ 			while($row = $result->fetch_assoc()) {
+				$status=$row["status"];
+				if($status==0){
+					$trangthai='status pending';
+					$tt='Đang Chờ';
+				}
+				else if($status==1){
+					$trangthai='status process';
+					$tt='Đang Giao';
+				}
+				else{$trangthai='status completed';
+					$tt='Thành Công';}
+				
+				echo "<tr><td><img src=\"img/people.png\"><p>" . $row["fullname"] . "</p></td><td>" .
+    		 $row["order_date"] . "</td><td><span class=\"$trangthai\">".$tt."</span></td><td>";
+			}}
+			 else {echo "0 results";}
+					$conn->close();
+?>		
 						</tbody>
 					</table>
 				</div>
@@ -240,21 +268,26 @@
 						<i class='bx bx-filter' ></i>
 					</div>
 					<ul class="banchay-list">
-						<li class="top1">
-							<p>Liệt kê top 1 ra đây</p>							
-						</li>
-						<li class="top2">
-							<p>Liệt kê top 1 ra đây</p>							
-						</li>
-						<li class="top2">
-							<p>Liệt kê top 1 ra đây</p>							
-						</li>
-						<li class="top3">
-							<p>Liệt kê top 1 ra đây</p>							
-						</li>
-						<li class="top3">
-							<p>Liệt kê top 1 ra đây</p>						
-						</li>
+							<?php
+			// Kết nối cơ sở dữ liệu
+			$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+			// Truy vấn lấy dữ liệu
+				$sql = "SELECT p.id, p.title, SUM(od.num) AS total_quantity, SUM(od.total_money) AS total_revenue
+				FROM order_details od
+				INNER JOIN product p ON od.product_id = p.id
+				GROUP BY p.id, p.title
+				ORDER BY total_revenue DESC, total_quantity DESC
+				LIMIT 5;";
+				$result = $conn->query($sql);
+			// Kiểm tra số lượng bản ghi trả về
+				if ($result->num_rows > 0) {
+ 			// Xuất dữ liệu của mỗi hàng
+ 			while($row = $result->fetch_assoc()) {
+				echo "<li class=\"top1\"\<p>" . $row["p.id"] .":". $row["p.title"]. "    " . $row["od.total_money"]."</p></li>";
+			}} else {echo "0 results";}
+					$conn->close();
+?>										
 					</ul>
 				</div>
 			</div>
@@ -358,10 +391,8 @@
 		<main id="TaiKhoan" class="main">
 			<!-- Các nút bấm -->
 				<button id="btn" onclick="showContent('content1')">Xem Danh Sách Tài Khoản</button>
-				<button id="btn" onclick="showContent('content2')">Thêm Tài Khoản</button>
-				<button id="btn" onclick="showContent('content3')">Sửa Tài Khoản</button>
-				<button id="btn" onclick="showContent('content4')">Xóa Tài Khoản</button>
-
+				<button id="btn" onclick="showContent('content2')">Thêm Tài Khoản</button>	
+				<button id="btn" onclick="showContent('content3')">Sửa</button>		
 	<!-- Các phần nội dung -->
 			<div id="content1" class="content">
 				<table id="users-table">
@@ -441,36 +472,40 @@
     			
 	</div>
 			<div id="content3" class="content" style="display:none;">
-			<form method="post" action="Capnhattk.php">
+			<form method="post" action="update.php">
 					<div class="user-container">
 						<h2>Thông Tin Người Dùng</h2>
 						<div class="form-group">
-						  <label for="fullname">Họ và Tên:</label>
-						  <input type="text" id="fullname" name="fullname" maxlength="50" required>
+						  <label for="userid">ID:</label>
+						  <input type="number" id="userid" name="userid" maxlength="500" required  readonly>
 						</div>
 						<div class="form-group">
-						  <label for="email">Email:</label>
-						  <input type="email" id="email" name="email" maxlength="150" required>
+						  <label for="fullname1">Họ và Tên:</label>
+						  <input type="text" id="fullname1" name="fullname1" maxlength="50" required >
 						</div>
 						<div class="form-group">
-						  <label for="phone_number">Số Điện Thoại:</label>
-						  <input type="text" id="phone_number" name="phone_number" maxlength="20" required>
+						  <label for="email1">Email:</label>
+						  <input type="email" id="email1" name="email1" maxlength="150" required readonly>
+						</div>
+						<div class="form-group">
+						  <label for="phone_number1">Số Điện Thoại:</label>
+						  <input type="text" id="phone_number1" name="phone_number1" maxlength="20" required>
 						</div>					
 						<div class="form-group">
-						  <label for="address">Địa Chỉ:</label>
-						  <input type="text" id="address" name="address" maxlength="200">
+						  <label for="address1">Địa Chỉ:</label>
+						  <input type="text" id="address1" name="address1" maxlength="200" required>
 						</div>
 						<div class="form-group">
-						  <label for="password">Mật Khẩu:</label>
-						  <input type="password" id="password" name="password" maxlength="32" required>
+						  <label for="password1">Mật Khẩu:</label>
+						  <input type="text" id="password1" name="password1" maxlength="32" required>
 						</div>
 						
 						<div class="form-group">
-							<label for="role_id">ID Vai Trò:</label>
-							<select id="role_id" name="role_id" required>
+							<label for="role_id1">ID Vai Trò:</label>
+							<select id="role_id1" name="role_id1" required>
 							  <option value="1">Admin</option>
-							  <option value="2">Nhân Viên</option>
-							  <option value="3">Khách Hàng</option>
+							  <option value="2">Khách Hàng</option>
+							  <option value="3">Nhân Viên</option>
 						  </select>
 						  </div> 	
 						
@@ -528,7 +563,7 @@
 		document.addEventListener('DOMContentLoaded', function() {
   var rows = document.querySelectorAll('#users-table .data-row');
   var dialog = document.getElementById('dialog');
-  var editBtn = document.getElementById('edit-btn');
+  var editBtn = document.getElementById('edit_btn');
   var deleteBtn = document.getElementById('delete-btn');
   var cancelBtn = document.getElementById('cancel-btn');
 
@@ -546,8 +581,24 @@
       dialog.style.top = rect.top + window.scrollY + 'px'; // Đặt vị trí top dựa trên hàng
       dialog.style.left = rect.left + window.scrollX + 'px'; // Đặt vị trí left dựa trên hàng
       dialog.style.display = 'block';
+	  		const fullname = document.getElementById('fullname1');
+   			const email = document.getElementById('email1');
+			const phone_number = document.getElementById('phone_number1');
+    		const address = document.getElementById('address1');
+			const password = document.getElementById('password1');
+			const role_id = document.getElementById('role_id1');
+			const id = document.getElementById('userid');
+			fullname.value = row.cells[1].textContent; // Lấy giá trị từ cột Họ Tên
+            email.value = row.cells[2].textContent; // Lấy giá trị từ cột Email
+			phone_number.value = row.cells[3].textContent;
+			address.value = row.cells[4].textContent;
+			password.value = row.cells[5].textContent;
+			role_id.value = row.cells[6].textContent;
+			id.value =row.cells[0].textContent;
 
-      cancelBtn.onclick = function() {
+		
+
+      	cancelBtn.onclick = function() {
         dialog.style.display = 'none';
         row.style.backgroundColor = ''; // Xóa nổi bật khi hủy
       };
@@ -569,7 +620,7 @@ window.addEventListener('mousemove', function(event) {
 	</script>
 	<!-- Hộp thoại -->
 <div id="dialog" class="dialog">
-  <button id="edit-btn">Sửa</button>
+  <button id="edit_btn"  id="btn" onclick="showContent('content3')">Sửa</button>
   <button id="delete-btn">Xóa</button>
   <button id="cancel-btn">Hủy bỏ</button>
 </div>
