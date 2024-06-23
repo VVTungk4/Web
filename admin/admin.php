@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,17 @@
 	<link rel="icon" href="img/icon.png" type="image/x-icon">
 	
 	<style>
+	
+		  .my-button {
+        border: 1px solid gray;
+        border-radius: 7%;
+        font-size: 0.875rem;
+        word-wrap: break-word;
+        width: 100%; /* Chỉ dùng cho IE8 */
+        max-width: 100%; /* Kích thước tối đa */
+		max-block-size: 100%;
+
+    }
 	.dialog {
 		display: none;
 		width: 600px;
@@ -52,6 +64,12 @@
 	#bangdonhang td:hover {
   		background-color: plum;
 		
+	}
+	.th td{
+		background-color: #f0f0f0;
+	}
+	.th td:hover{
+		background-color: #f0f0f0;
 	}
 	#bangdonhang th {
   		background-color: var(--white);
@@ -105,7 +123,6 @@
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<!-- Thêm CSS -->
 	<link rel="stylesheet" href="style.css">
-	<i class='bx bxs-joystick bx-spin' ></i>
 	<title>Trang Quản Trị</title>
 </head>
 <body>
@@ -130,8 +147,8 @@
 					<span class="text">Cửa Hàng Của Tôi</span>
 				</a>
 			</li>
-			<li>
-				<a href="#report">
+			<li id="quanlycheck">
+				<a href="#report" >
 					<i class='bx bxs-cart-download' ></i>
 					<span class="text">Quản Lý Đơn Hàng</span>
 				</a>
@@ -174,19 +191,12 @@
 	<section id="content" >
 		
 		<!-- NAVBAR -->
-		<nav style="overflow:hidden">
+		<nav>
 			<i class='bx bx-menu' ></i>
 			<a href="#" class="nav-link">Tìm Kiếm</a>
 			<form action="">
 				<div class="form-input">
-					<input type="search" list ="topics" placeholder="Search..." id ="topicInput">
-					<datalist id = "topics">
-						<option value ="Cửa Hàng Của Tôi">
-						<option value ="Quản Lý Đơn Hàng">
-						<option value ="Tin Nhắn">
-						<option value ="Quản Lý Tài Khoản">
-						<option value ="Quản Lý Sản Phẩm">
-					</datalist>
+					<input type="search" placeholder="Search...">
 					<button type="submit" class="search-btn">
 						<i class='bx bx-search' ></i>
 						 </button>
@@ -365,6 +375,7 @@
 				$sql = "SELECT p.id, p.title, SUM(od.num) AS total_quantity, SUM(od.total_money) AS total_revenue
 				FROM order_details od
 				INNER JOIN product p ON od.product_id = p.id
+				
 				GROUP BY p.id, p.title
 				ORDER BY total_revenue DESC, total_quantity DESC
 				LIMIT 5;";
@@ -595,9 +606,9 @@
 
 	 	<!-- Đơn Hàng -->
 		<main class="main" id="report" > 
-				<button id="btn" onclick="showReport('report1')">Các Đơn Hàng </button>
-				<button id="btn" onclick="showReport('report2')">Thêm Tài Khoản</button>	
-				<button id="btn" onclick="showReport('report3')">Sửa</button>
+				<button id="btn" onclick="showReport('report1')">Các Đơn Hàng Mới </button>
+				<button id="btn" onclick="showReport('report2')">Chi Tiết Đơn Hàng</button>	
+				<button id="btn" onclick="showReport('report3')">Sửa Đơn Hàng</button>
 			<div class="report" id="report1" ">
 				<table id="bangdonhang">
    				 <thead>
@@ -611,9 +622,11 @@
             			<th width="4%">Duyệt</th>
             			<th width="4%">Xóa</th>
         			</tr>
-   				 </thead>
-    			<tbody>
+   				 </thead>	
+				<tbody>
+		
 	<?php
+	
 			// Kết nối cơ sở dữ liệu
 			$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
 			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
@@ -624,21 +637,38 @@
 				if ($result->num_rows > 0) {
  			// Xuất dữ liệu của mỗi hàng
  			while($row = $result->fetch_assoc()) {
-				echo "<tr class='rowdonhang' ><td>" . $row["id"]. "</td><td>" . $row["fullname"]. "</td><td>" . $row["phone_number"]."</td><td>" .  $row["address"]."</td><td>" .  $row["order_date"].
-				 " <td><i class='bx bx-low-vision' ></i></td>
-				 <td><i class='bx bxs-pencil' style='color:#1cce55'  ></i></td>
-				 <td><i class='bx bx-check' style='color:#189ad5'  ></i></td>
-				 <td><i class='bx bx-trash' style='color:#c63737'  ></i></td></tr>";
+				echo "<tr class=\"rowdonhang\"'><td data-product-id=\"" . $row["id"] . "\">" . $row["id"]. "</td><td>" . $row["fullname"]. "</td><td>" . $row["phone_number"]."</td><td>" .  $row["address"]."</td><td>" .  $row["order_date"].
+				 "</td><td id=\"xem\" ><i class='bx bx-low-vision'></i></td> 
+				 <td id=\"pencil\" onclick=\"showReport('report3')\"><i class='bx bxs-pencil' style='color:#1cce55'  ></i></td>
+				 <td id=\"check\"><i class='bx bx-check' style='color:#189ad5'  ></i></td>
+				 <td id=\"trash\" type=\"submit\"><i class='bx bx-trash' style='color:#c63737'  ></i></td></tr>";
 			}} else {echo "0 results";}
 					$conn->close();?>
-       
-  		  		</tbody>
+      
+  		  		</tbody> 
 			</table>
 		
 			  </div>
-
-			  <div class="report-container report" id="report2" style="display:none;">
-				
+<!-- Bảng chi tiết đơn hàng -->
+			<div class="report" id="report2" style="display:none">
+			  <table id="bangdonhang">
+   				 <thead>
+       				<tr"><th width="5%">STT</th>
+            			<th width="15%">Mã Sản Phẩm</th>
+            			<th width="10%">Tên Sản Phẩm</th>
+						<th width="10%">Màu Sắc</th>
+						<th width="10%">Size</th>
+           		 		<th width="20%">Số Lượng</th>
+            			<th width="10%">Giá</th>         			
+        			</tr>
+   				 </thead>
+    			<tbody>
+		<?php
+		include('chitietdon.php');
+		?>
+       
+  		  		</tbody>
+			</table>
 			  </div>
 
 			
@@ -671,19 +701,12 @@
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
   		var rows = document.querySelectorAll('#users-tab .data-row');
-		var donhangrow =document.querySelectorAll('#bangdonhang .rowdonhang');
+		
   		var dialog = document.getElementById('dialog');
   		var editBtn = document.getElementById('edit_btn');
   		var deleteBtn = document.getElementById('delete-btn');
   		var cancelBtn = document.getElementById('cancel-btn');
 		
-		donhangrow.forEach(function(row) {
-    		row.addEventListener('click', function(event) {
-        		donhangrow.forEach(function(r) { r.style.backgroundColor = ''; }); // Xóa nổi bật trên các hàng khác
-        		this.style.backgroundColor = 'var(--blue)';
-        // Thêm mã xử lý cho banhgr tại đây
-    });
-});
 
   		rows.forEach(function(row) {
     		row.addEventListener('click', function(event) {
@@ -744,6 +767,68 @@
     document.getElementById(report).style.display = 'block';
 }
 	</script>
+
+	<script>
+	document.addEventListener("DOMContentLoaded", function() {
+    const tableCells = document.querySelectorAll("td");
+	
+    tableCells.forEach(cell => {
+        cell.addEventListener("click", function() {
+            const row = this.parentElement;
+			const rowIndex = row.rowIndex; // Lấy số thứ tự của hàng
+            const productIdCell = row.querySelector("td[data-product-id]");
+           	const productId = productIdCell.getAttribute("data-product-id");
+//nút xem
+			const buttons = document.querySelectorAll('#xem');
+    		const Button = buttons[rowIndex-1]; // Lấy nút của hangf đấy		
+			Button.onclick = function() {
+			showCustomer();
+			function showCustomer() {
+  				var xhttp;    
+  				xhttp = new XMLHttpRequest();
+  				xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu đã gửi thành công');
+   			 }
+  			};
+  				xhttp.open("GET", "chitietdon.php?q="+productId, true);
+  				xhttp.send();
+			}
+			showReport('report2');
+			}	
+//nút sửa
+			const pencils =document.querySelectorAll('#pencil');
+			const Pencil = pencils[rowIndex-1]; // Lấy nút của hangf
+			Pencil.onclick = function() {
+				
+			}
+//nút xác nhận
+			const checks =document.querySelectorAll('#check');
+			const check = checks[rowIndex-1]; // Lấy nút của hangf
+			check.onclick = function() {
+
+				var xhttp;    
+  				xhttp = new XMLHttpRequest();
+  				xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+					alert("Đã xác nhận đơn hàng");
+   			 }
+  			};
+  				xhttp.open("GET", "capnhattrangthai.php?q="+productId, true);
+  				xhttp.send();
+				location.reload();
+				var link = document.getElementById('quanlycheck');
+ 			 	link.click();
+//nút xóa
+
+
+			}
+
+		});
+	});
+});
+	</script>
+	
 	<!-- Hộp thoại -->
 	<div id="dialog" class="dialog">
   			<button id="edit_btn" onclick="showContent('content3')">Sửa</button>
