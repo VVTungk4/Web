@@ -26,6 +26,80 @@
 		text-align: left;
 		color: black;
 }
+.report-container {
+		max-width: 800px;
+		margin: auto;
+		background: #fff;
+		padding: 20px;
+		border-radius: 8px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	  }
+	#report {
+		width: 100%;
+		border-collapse: collapse;
+		margin-top: 20px;
+	  }
+	 
+	#bangdonhang {
+  		width: 100%;
+ 		border-collapse: collapse;
+  		font-family: Arial, sans-serif;
+	}
+	#bangdonhang td {
+  		background-color: pink;
+		
+	}
+	#bangdonhang td:hover {
+  		background-color: plum;
+		
+	}
+	#bangdonhang th {
+  		background-color: var(--white);
+		color:var(--dark);
+	}
+	#bangdonhang th {
+  		border-bottom: 2px solid var(--dark);
+		border-right: 1px solid var(--dark);
+  		padding: 8px;
+  		text-align: left;
+	} 
+	#bangdonhang td {
+  		border: 1px solid #ddd;
+  		padding: 8px;
+  		text-align: left;
+	}
+	#users-tab,#bangdonhang {
+		border: 2px solid var(--dark);
+	}
+	#users-tab {
+		width: 100%;
+		border-collapse: collapse;
+		font-family: Arial, sans-serif;
+	}
+	#users-tab th	{
+		border-right: 1px solid var(--dark);
+		border-bottom: 2px solid var(--dark);
+		padding: 8px;
+		text-align: left;
+	}
+	#users-tab td {
+		border: 1px solid #ddd;
+		padding: 8px;
+		text-align: left;
+	}
+	#users-tab th {
+		background-color:var(--white);
+		color:var(--dark);
+	}
+	
+	#users-tab td {
+		background-color: pink;
+	}
+	#users-tab td:hover {
+		background-color: plum;
+	}
+	
+	
 	</style>
 	<!-- Boxicons -->
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -58,8 +132,8 @@
 			</li>
 			<li>
 				<a href="#report">
-					<i class='bx bxs-doughnut-chart' ></i>
-					<span class="text">Thống Kê Báo Cáo</span>
+					<i class='bx bxs-cart-download' ></i>
+					<span class="text">Quản Lý Đơn Hàng</span>
 				</a>
 			</li>
 			<li>
@@ -108,7 +182,7 @@
 					<input type="search" list ="topics" placeholder="Search..." id ="topicInput">
 					<datalist id = "topics">
 						<option value ="Cửa Hàng Của Tôi">
-						<option value ="Thống Kê Báo Cáo">
+						<option value ="Quản Lý Đơn Hàng">
 						<option value ="Tin Nhắn">
 						<option value ="Quản Lý Tài Khoản">
 						<option value ="Quản Lý Sản Phẩm">
@@ -122,7 +196,21 @@
 			<label for="switch-mode" class="switch-mode"></label>
 			<a href="#" class="notification">
 				<i class='bx bxs-bell bx-tada' ></i>
-				<span class="num">0</span>
+				<span class="num">
+		<?php
+			$conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+			$sql = "SELECT COUNT(*) as sl From orders Where status =0";
+			$result = $conn->query($sql);
+
+			if ($result->num_rows > 0) {
+    			while ($row = $result->fetch_assoc()) {
+       			$new_orders = $row["sl"];     
+  		      	echo "$new_orders";
+   			 	}
+			} else {
+    			echo "0";}
+				$conn->close();?></span>
 			</a>
 			<a href="#" class="profile">
 				<img src="img/people.png">
@@ -132,6 +220,7 @@
 
 		<!-- MAIN -->
 		<main class="main" id ="tongquan">
+			<!-- Trang Chủ -->
 			<div class="head-title">
 				<div class="left">
 					<h1>Trang Chủ</h1>
@@ -246,7 +335,7 @@
 					$trangthai='status process';
 					$tt='Đang Giao';
 				}
-				else{$trangthai='status completed';
+				else {$trangthai='status completed';
 					$tt='Thành Công';}
 				
 				echo "<tr><td><img src=\"img/people.png\"><p>" . $row["fullname"] . "</p></td><td>" .
@@ -292,9 +381,9 @@
 				</div>
 			</div>
 		</main>
+			<!-- Trang Chủ -->
 
-
-
+			<!-- Sản Phẩm -->
 		<main class="main" id ="hihi">
 			<button id="btn" onclick="showSanpham('sanpham1')">Xem Danh Sach Sản Phẩm</button>
 			<button id="btn" onclick="showSanpham('sanpham2')">Thêm Sản Phẩm</button>
@@ -348,22 +437,11 @@
 				<div>
 					hhh
 				</div>
-			</div>
-		
-			  <script>
-			  	$(document).ready(function() {
-  				// Vô hiệu hóa tất cả các trường input trong container có id 'hihi'
- 				$('#hihi .product-management-container input').prop('disabled', true);
-				// Khi nút "Thêm Sản Phẩm" được nhấn, bỏ vô hiệu hóa các trường input
-  				$('#hihi .product-management-container button[type="submit"]').click(function(e) {
-    			e.preventDefault(); // Ngăn không cho form nộp ngay lập tức
-    			$('#hihi .product-management-container input').prop('disabled', false);
- 		 	});
-		});
-			  </script>
-		
+			</div>	
 		</main>
+			<!-- Sản Phẩm -->
 
+			<!-- Tin Nhắn -->
 		<main id="Messangers" class="main">
 			<div class="message-container">
 				<div class="message-header">Người gửi: Sơn Sẽ</div>
@@ -387,15 +465,17 @@
 				<div class="message-timestamp">09:00 AM</div>
 			  </div>
 		</main>
+			<!-- Tin Nhắn -->
 
+			<!-- Tai Khoan -->
 		<main id="TaiKhoan" class="main">
-			<!-- Các nút bấm -->
+				<!-- Các nút bấm -->
 				<button id="btn" onclick="showContent('content1')">Xem Danh Sách Tài Khoản</button>
 				<button id="btn" onclick="showContent('content2')">Thêm Tài Khoản</button>	
 				<button id="btn" onclick="showContent('content3')">Sửa</button>		
-	<!-- Các phần nội dung -->
+				<!-- Các phần nội dung -->
 			<div id="content1" class="content">
-				<table id="users-table">
+				<table id="users-tab">
 					<thead>
 						<tr>
 							<th width="1%">ID</th>
@@ -407,7 +487,7 @@
 							<th width="7%">ID Vai Trò</th>
 							<th width="5%">Ngày Tạo</th>
 							<th width="5%">Ngày Cập Nhật</th>
-							<th width="5%">TT</th>
+							<th width="1%">TT</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -424,17 +504,15 @@
  			while($row = $result->fetch_assoc()) {
 				echo "<tr class='data-row' ><td>" . $row["id"]. "</td><td>" . $row["fullname"]. "</td><td>" . $row["email"]. "</td><td>" . $row["phone_number"]."</td><td>" .  $row["address"]."</td><td>" .  $row["password"]. "</td><td>" . $row["role_id"]."</td><td>" .  $row["created_at"]."</td><td>" .  $row["updated_at"]. "</td><td>" . $row["deleted"]. "</td></tr>";
 			}} else {echo "0 results";}
-					$conn->close();
-?>
-
+					$conn->close();?>
 					</tbody>
 				</table>
-		</div>
+			</div>
 
 			<div id="content2" class="content" style="display:none;" >
 				<form method="post" action="Taikhoan.php">
 					<div class="user-container">
-						<h2>Thông Tin Người Dùng</h2>
+						<h2 style="font-family:Arial">Thông Tin Người Dùng</h2>
 						<div class="form-group">
 						  <label for="fullname">Họ và Tên:</label>
 						  <input type="text" id="fullname" name="fullname" maxlength="50" required>
@@ -443,14 +521,17 @@
 						  <label for="email">Email:</label>
 						  <input type="email" id="email" name="email" maxlength="150" required>
 						</div>
+
 						<div class="form-group">
 						  <label for="phone_number">Số Điện Thoại:</label>
 						  <input type="text" id="phone_number" name="phone_number" maxlength="20" required>
-						</div>					
+						</div>		
+
 						<div class="form-group">
 						  <label for="address">Địa Chỉ:</label>
 						  <input type="text" id="address" name="address" maxlength="200">
 						</div>
+
 						<div class="form-group">
 						  <label for="password">Mật Khẩu:</label>
 						  <input type="password" id="password" name="password" maxlength="32" required>
@@ -462,17 +543,14 @@
 							  <option value="1">Admin</option>
 							  <option value="2">Nhân Viên</option>
 							  <option value="3">Khách Hàng</option>
-						  </select>
-						  </div> 	
-						
-						<button  type="submit" id="btn1" name="themtaikhoan">Xác Nhận</button>
-						
-					  </div>	
-				</form>
-    			
-	</div>
+						 	 </select>
+						</div> 				
+							<button  type="submit" id="btn1" name="themtaikhoan">Xác Nhận</button>					
+					</div>	
+				</form>			
+			</div>
 			<div id="content3" class="content" style="display:none;">
-			<form method="post" action="update.php">
+				<form method="post" action="update.php">
 					<div class="user-container">
 						<h2>Thông Tin Người Dùng</h2>
 						<div class="form-group">
@@ -507,34 +585,66 @@
 							  <option value="2">Khách Hàng</option>
 							  <option value="3">Nhân Viên</option>
 						  </select>
-						  </div> 	
-						
-						<button  type="submit" id="btn1" name="suataikhoan">Xác Nhận</button>
-						
-					  </div>	
+						</div> 	
+						<button  type="submit" id="btn1" name="suataikhoan">Xác Nhận</button>		
+					</div>	
 				</form>
-	</div>
-			<div id="content4" class="content" style="display:none;">
-    			<p>Thông tin cho Nút 4</p>
-	</div>
+			</div>	
+		</main>
+		<!-- Tài Khoản -->
+
+	 	<!-- Đơn Hàng -->
+		<main class="main" id="report" > 
+				<button id="btn" onclick="showReport('report1')">Các Đơn Hàng </button>
+				<button id="btn" onclick="showReport('report2')">Thêm Tài Khoản</button>	
+				<button id="btn" onclick="showReport('report3')">Sửa</button>
+			<div class="report" id="report1" ">
+				<table id="bangdonhang">
+   				 <thead>
+       				<tr><th width="5%">Mã Đơn Hàng</th>
+            			<th width="15%">Họ Tên</th>
+            			<th width="10%">Số Điện Thoại</th>
+           		 		<th width="20%">Địa Chỉ</th>
+            			<th width="10%">Ngày Đặt</th>
+            			<th width="6%">Xem chi tiết</th>
+            			<th width="6%">Chỉnh sửa</th>
+            			<th width="4%">Duyệt</th>
+            			<th width="4%">Xóa</th>
+        			</tr>
+   				 </thead>
+    			<tbody>
+	<?php
+			// Kết nối cơ sở dữ liệu
+			$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+			// Truy vấn lấy dữ liệu
+				$sql = "Select * From orders Where status = 0";
+				$result = $conn->query($sql);
+			// Kiểm tra số lượng bản ghi trả về
+				if ($result->num_rows > 0) {
+ 			// Xuất dữ liệu của mỗi hàng
+ 			while($row = $result->fetch_assoc()) {
+				echo "<tr class='rowdonhang' ><td>" . $row["id"]. "</td><td>" . $row["fullname"]. "</td><td>" . $row["phone_number"]."</td><td>" .  $row["address"]."</td><td>" .  $row["order_date"].
+				 " <td><i class='bx bx-low-vision' ></i></td>
+				 <td><i class='bx bxs-pencil' style='color:#1cce55'  ></i></td>
+				 <td><i class='bx bx-check' style='color:#189ad5'  ></i></td>
+				 <td><i class='bx bx-trash' style='color:#c63737'  ></i></td></tr>";
+			}} else {echo "0 results";}
+					$conn->close();?>
+       
+  		  		</tbody>
+			</table>
+		
+			  </div>
+
+			  <div class="report-container report" id="report2" style="display:none;">
+				
+			  </div>
 
 			
+
 		</main>
-	 	<!-- MAIN -->
-		<main class="main" id="report"> 
-			<div class="report-container">
-				<h2>Báo Cáo Thống Kê Sản Phẩm</h2>
-				<table id="bangbaocao">
-				  <tr>
-					<th width="23%">ID Sản Phẩm</th>
-					<th width="29%">Tên Sản Phẩm</th>
-					<th width="27%">Số Lượng Bán</th>
-					<th width="21%">Doanh Thu</th>
-				  </tr>
-				  <!-- Dữ liệu sản phẩm sẽ được thêm vào đây -->
-				</table>
-			  </div>
-		</main>
+		<!-- Đơn Hàng -->
 	</section>
 	<!-- CONTENT -->
 	
@@ -554,75 +664,92 @@
 		$(id_tab).fadeIn();
 			return false;
 		})
-		
 })
 	</script>	
 
-
+		<!-- Sự kiện khi click vào hàng -->
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
-  var rows = document.querySelectorAll('#users-table .data-row');
-  var dialog = document.getElementById('dialog');
-  var editBtn = document.getElementById('edit_btn');
-  var deleteBtn = document.getElementById('delete-btn');
-  var cancelBtn = document.getElementById('cancel-btn');
-
-  rows.forEach(function(row) {
-    row.addEventListener('click', function(event) {
-      // Làm nổi bật hàng được chọn
-      rows.forEach(function(r) { r.style.backgroundColor = ''; }); // Xóa nổi bật trên các hàng khác
-      this.style.backgroundColor = 'var(--blue)'; // Màu nền cho hàng được chọn
-
-      var userId = this.firstChild.textContent;
-      var rect = this.getBoundingClientRect();
-      dialog.style.position = 'absolute';
-      dialog.style.width = rect.width + 'px'; // Chiều rộng của dialog bằng với hàng
-      dialog.style.height = rect.height + 'px'; // Chiều cao của dialog bằng với hàng
-      dialog.style.top = rect.top + window.scrollY + 'px'; // Đặt vị trí top dựa trên hàng
-      dialog.style.left = rect.left + window.scrollX + 'px'; // Đặt vị trí left dựa trên hàng
-      dialog.style.display = 'block';
-	  		const fullname = document.getElementById('fullname1');
-   			const email = document.getElementById('email1');
-			const phone_number = document.getElementById('phone_number1');
-    		const address = document.getElementById('address1');
-			const password = document.getElementById('password1');
-			const role_id = document.getElementById('role_id1');
-			const id = document.getElementById('userid');
-			fullname.value = row.cells[1].textContent; // Lấy giá trị từ cột Họ Tên
-            email.value = row.cells[2].textContent; // Lấy giá trị từ cột Email
-			phone_number.value = row.cells[3].textContent;
-			address.value = row.cells[4].textContent;
-			password.value = row.cells[5].textContent;
-			role_id.value = row.cells[6].textContent;
-			id.value =row.cells[0].textContent;
-
+  		var rows = document.querySelectorAll('#users-tab .data-row');
+		var donhangrow =document.querySelectorAll('#bangdonhang .rowdonhang');
+  		var dialog = document.getElementById('dialog');
+  		var editBtn = document.getElementById('edit_btn');
+  		var deleteBtn = document.getElementById('delete-btn');
+  		var cancelBtn = document.getElementById('cancel-btn');
 		
-
-      	cancelBtn.onclick = function() {
-        dialog.style.display = 'none';
-        row.style.backgroundColor = ''; // Xóa nổi bật khi hủy
-      };
+		donhangrow.forEach(function(row) {
+    		row.addEventListener('click', function(event) {
+        		donhangrow.forEach(function(r) { r.style.backgroundColor = ''; }); // Xóa nổi bật trên các hàng khác
+        		this.style.backgroundColor = 'var(--blue)';
+        // Thêm mã xử lý cho banhgr tại đây
     });
-  });
+});
+
+  		rows.forEach(function(row) {
+    		row.addEventListener('click', function(event) {
+      			rows.forEach(function(r) { r.style.backgroundColor = ''; }); // Xóa nổi bật trên các hàng khác
+      			this.style.backgroundColor = 'var(--blue)'; // Màu nền cho hàng được chọn
+//nút sửa (khi click vào thì hiện thông tin hàng đc chọn và chuyển hướng khi bấm vào sửa)
+      			var userId = this.firstChild.textContent;
+     			var rect = this.getBoundingClientRect();
+      			dialog.style.position = 'absolute';
+      			dialog.style.width = rect.width + 'px'; // Chiều rộng của dialog bằng với hàng
+      			dialog.style.height = rect.height + 'px'; // Chiều cao của dialog bằng với hàng
+      			dialog.style.top = rect.top + window.scrollY + 'px'; // Đặt vị trí top dựa trên hàng
+      			dialog.style.left = rect.left + window.scrollX + 'px'; // Đặt vị trí left dựa trên hàng
+      			dialog.style.display = 'block';
+	  			const fullname = document.getElementById('fullname1');
+   				const email = document.getElementById('email1');
+				const phone_number = document.getElementById('phone_number1');
+    			const address = document.getElementById('address1');
+				const password = document.getElementById('password1');
+				const role_id = document.getElementById('role_id1');
+				const id = document.getElementById('userid');
+				fullname.value = row.cells[1].textContent; // Lấy giá trị từ cột Họ Tên
+           		email.value = row.cells[2].textContent; // Lấy giá trị từ cột Email
+				phone_number.value = row.cells[3].textContent;
+				address.value = row.cells[4].textContent;
+				password.value = row.cells[5].textContent;
+				role_id.value = row.cells[6].textContent;
+				id.value =row.cells[0].textContent;
+//nút hủy			
+      			cancelBtn.onclick = function() {
+       		 	dialog.style.display = 'none';
+        		row.style.backgroundColor = ''; // Xóa nổi bật khi hủy
+      		};
+   		});
+  	});
 });
 
 // Đoạn mã này giúp đóng dialog khi click ngoài khu vực của nó
-window.addEventListener('mousemove', function(event) {
-  var dialogRect = dialog.getBoundingClientRect();
-  // Kiểm tra xem chuột có nằm ngoài phạm vi của dialog cộng thêm 5px không
-  if (event.clientX < dialogRect.left - 5 || event.clientX > dialogRect.right + 5 ||
-      event.clientY < dialogRect.top - 5 || event.clientY > dialogRect.bottom + 5) {
-    // Nếu có, ẩn dialog
-    dialog.style.display = 'none';
-	row.style.backgroundColor = '';
-  }
+		window.addEventListener('mousemove', function(event) {
+ 		var dialogRect = dialog.getBoundingClientRect();
+// Kiểm tra xem chuột có nằm ngoài phạm vi của dialog cộng thêm 5px không
+ 		if (event.clientX < dialogRect.left - 5 || event.clientX > dialogRect.right + 5 ||
+      	event.clientY < dialogRect.top - 5 || event.clientY > dialogRect.bottom + 5) {
+// Nếu có, ẩn dialog
+    	dialog.style.display = 'none';
+		row.style.backgroundColor = '';
+ 	}
 });
 	</script>
+	<!-- Sự kiện khi click vào hàng -->
+	<script>
+		function showReport(report) {
+    // Ẩn tất cả các phần nội dung
+    var baocao = document.getElementsByClassName('report');
+    for (var i = 0; i < baocao.length; i++) {
+        baocao[i].style.display = 'none';
+    }
+    document.getElementById(report).style.display = 'block';
+}
+	</script>
 	<!-- Hộp thoại -->
-<div id="dialog" class="dialog">
-  <button id="edit_btn"  id="btn" onclick="showContent('content3')">Sửa</button>
-  <button id="delete-btn">Xóa</button>
-  <button id="cancel-btn">Hủy bỏ</button>
-</div>
+	<div id="dialog" class="dialog">
+  			<button id="edit_btn" onclick="showContent('content3')">Sửa</button>
+ 			<button id="delete-btn">Xóa</button>
+ 			<button id="cancel-btn">Hủy bỏ</button>
+	</div>
+	<!-- Hộp thoại -->
 </body>
 </html>
