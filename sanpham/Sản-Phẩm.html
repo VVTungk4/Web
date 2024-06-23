@@ -74,9 +74,15 @@
 
 	<div id="logo">
 		<img src="../Login/images/logo1.png" style="height: 90px; width: 110px;">
-		<p><input type="text" placeholder=" Tìm kiếm sản phẩm "></p>
-		<div class="ti-arrow-right"></div>
-
+		<div style="margin-top: 10px;">
+			<form method="post" action="../demoSearch/view_search.php" class="form">
+				<p><input type="text" placeholder=" Tìm kiếm sản phẩm " name="tt_timkiem"></p>
+				<button type="submit" class="btn btn-primary" data-mdb-ripple-init
+					style="margin-top: 22px;height: 45px; width: 60px; " name="timkiem" id="search">
+					<i class="fas fa-search"></i>
+				</button>
+			</form>
+		</div>
 	</div>
 
 	<div class="container" style="background-color: antiquewhite; height: 550px; width: 1080px">
