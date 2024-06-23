@@ -159,7 +159,7 @@
 		<ul class="side-menu">
 			
 			<li>
-				<a href="../Login/Login.php" class="logout">
+				<a href="../Login/logout.php" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Đăng Xuất</span>
 				</a>
@@ -598,7 +598,7 @@
 				<button id="btn" onclick="showReport('report1')">Các Đơn Hàng </button>
 				<button id="btn" onclick="showReport('report2')">Thêm Tài Khoản</button>	
 				<button id="btn" onclick="showReport('report3')">Sửa</button>
-			<div class="report" id="report1" ">
+			<div class="report" id="report1" >
 				<table id="bangdonhang">
    				 <thead>
        				<tr><th width="5%">Mã Đơn Hàng</th>
