@@ -33,7 +33,8 @@ if (isset($_POST['xacnhan'])) { //neu ton tai $_post['xacnhan']
 
             header('location: ../admin/admin.php');
             exit();
-        } else if (($row["email"] == $email) && $row['password'] == $password && $row['role_id'] == 2) {
+        }
+        if (($row["email"] == $email) && $row['password'] == $password && $row['role_id'] == 2 && $row['password'] == $password && $row['deleted'] == 1) {
             $_SESSION['user_info'] = array(
                 'id' => $row['id'],
                 'fullname' => $row['fullname'],
@@ -41,10 +42,14 @@ if (isset($_POST['xacnhan'])) { //neu ton tai $_post['xacnhan']
                 'phone_number' => $row['phone_number'],
                 'address' => $row['address'],
                 'password' => $row['password'],
-                'created_at'=> $row['created_at'],
-              
+                'created_at' => $row['created_at'],
+
             );
             header('location:../index.html');
+            exit();
+        }
+        if (($row["email"] == $email) && $row['password'] == $password && $row['role_id'] == 2 && $row['password'] == $password && $row['deleted'] == 0) {
+            header('location:../Login/Login.php?error=Tài khoản đã bị khóa!');
             exit();
         } else {
             // Mật khẩu không đúng, hiển thị thông báo lỗi
@@ -57,7 +62,6 @@ if (isset($_POST['xacnhan'])) { //neu ton tai $_post['xacnhan']
         header("Location: ../Login/Login.php?error=Không tìm thấy tài khoản!");
         exit;
     }
-   
+
     $conn->close();
 }
-?>

@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
-    
+
 </head>
 
 <body>
@@ -20,7 +20,7 @@
         <div id="header" style="font-weight: bold;">
             <div id="khungdau">
                 <div style="width: 250px;" id="TaiKhoan">
-                    <p style="margin-bottom: 0;" ><i class="bi bi-list-task"></i>&nbsp; DANH MỤC</p>
+                    <p style="margin-bottom: 0;"><i class="bi bi-list-task"></i>&nbsp; DANH MỤC</p>
                     <ul class="MeNu">
                         <li style="font-weight: normal;"><a href="../web/Áo-Nữ.html ">Sản phẩm Nữ: Áo</a></li>
                         <li style="font-weight: normal;"><a href="../web/Đầm-Nữ.html ">Sản phẩm Nữ: Đầm</a></li>
@@ -56,7 +56,7 @@
         <div class="container">
             <div class="imageInput">
                 <img id="previewImage" src="../image/my.jpg" alt="Image preview">
-                <input type="file" id="imageInput" accept="image/*">
+                <p style="margin-left: 50px;">Ảnh đại diện</p>
             </div>
             <div class="thongtin">
                 <div class="infor">
@@ -86,13 +86,6 @@
                     <input type="email" id="email" name="email" readonly>
 
                 </div>
-
-                <div class="infor">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" style="width: 200px;" required>
-                    <script src="script.js"></script>
-                    <button onclick="togglePassword()" style="border: 1px;" name="password">Show/Hide</button>
-                </div>
                 <div>
                     <button type="submit" class="btn-custom" style="margin-left: 250px; margin-top: 40px;" name="update">
                         Cập nhật
@@ -109,7 +102,6 @@
                         document.getElementById('phone').value = "<?php echo addslashes($_SESSION['user_info']['phone_number']); ?>";
                         document.getElementById('address').value = "<?php echo addslashes($_SESSION['user_info']['address']); ?>";
                         document.getElementById('email').value = "<?php echo addslashes($_SESSION['user_info']['email']); ?>";
-                        document.getElementById('password').value = "<?php echo addslashes($_SESSION['user_info']['password']); ?>";
                         document.getElementById('dob').value = "<?php echo addslashes($_SESSION['user_info']['created_at']); ?>";
                         // Thêm các dòng tương tự cho các text box khác
                     </script>

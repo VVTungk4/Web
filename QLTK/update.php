@@ -8,7 +8,6 @@ if (isset($_POST['update'])) { //neu ton tai $_post['xacnhan']
     $phone = $_POST['phone'];
     $address = $_POST['address'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
 
     //
     //
@@ -16,12 +15,12 @@ if (isset($_POST['update'])) { //neu ton tai $_post['xacnhan']
 
     mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
     //
-    if (!empty($fullname) && !empty($email) && !empty($phone) && !empty($address) && !empty($password)) {
-        $sql = "UPDATE user SET fullname=?, phone_number=?, address=?, password=? WHERE email=?";
+    if (!empty($fullname) && !empty($email) && !empty($phone) && !empty($address)) {
+        $sql = "UPDATE user SET fullname=?, phone_number=?, address=? WHERE email=?";
         $stmt = $conn->prepare($sql);
         //
         if ($stmt !== false) {
-            $stmt->bind_param("sssss", $fullname, $phone, $address, $password, $email);
+            $stmt->bind_param("ssss", $fullname, $phone, $address, $email);
             $stmt->execute();
         } else {
             // Xử lý lỗi
