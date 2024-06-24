@@ -64,8 +64,15 @@
         </div>
     </div>
     <div id="logo">
-        <label for="TaiKhoan" class="ttsp"> THÔNG TIN TÌM KIẾM</label>
+        <form method="post" action="../demoSearch/view_search.php" class="form">
+            <p><input type="text" placeholder=" Tìm kiếm sản phẩm " name="tt_timkiem"></p>
+            <button type="submit" class="btn btn-primary" data-mdb-ripple-init style="margin-top: 22px;height: 45px; width: 60px; " name="timkiem" id="search">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+        </form>
     </div>
+
     <div class="thongbaotimkiem">
         <?php
         $search = $_POST['tt_timkiem'];
