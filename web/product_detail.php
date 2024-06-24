@@ -68,7 +68,7 @@ $colors_result = $conn->query("SELECT * FROM colors");
 			<div><a href="../sanpham/Giới-Thiệu.html" style="text-decoration:none; color:#000;">
 					<p>GIỚI THIỆU</p>
 				</a></div>
-			<div><a href="../Cart/cart.html" style="text-decoration:none; color:#000;">
+			<div><a href="../Cart/cart.php" style="text-decoration:none; color:#000;">
 					<p>GIỎ HÀNG</p>
 				</a></div>
 			<div id="TaiKhoan">
@@ -222,10 +222,13 @@ $colors_result = $conn->query("SELECT * FROM colors");
 				url: '../php/addtocart.php',
 				method: 'POST',
 				data: formData,
+				success: function(response) {
 
+					var randomParam = new Date().getTime();
+					window.location.href = '../Cart/cart.php?refresh=' + randomParam;
+				}
 			});
-			// Chuyển hướng đến cart.php với các tham số query string
-			window.location.href = '../Cart/cart.php';
+
 		});
 		$(document).ready(function() {
 			updateQuantity();
