@@ -178,7 +178,7 @@
                         </div>
                     </div>
                     <div class="step-footer" id="step-footer-checkout">
-                        <form id="checkout_complete">
+                        <form id="checkout_complete" action="../php/complete_checkout.php" method="POST">
                             <button type="submit" class="step-footer-continue-btn btn">
                                 <span class="btn-content">Hoàn tất đơn
                                     hàng</span>

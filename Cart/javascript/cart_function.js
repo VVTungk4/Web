@@ -31,9 +31,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function updateCartItem(input) {
     let productId = input.dataset.productId;
+    let sizeId = input.dataset.sizeId;
+    let colorId = input.dataset.colorId;
     let quantity = parseInt(input.value);
     let itemPrice = parseFloat(input.dataset.price);
 
+    
     // Tính toán tổng giá của sản phẩm
     let lineItemTotal = quantity * itemPrice;
 
@@ -44,6 +47,8 @@ function updateCartItem(input) {
     // Gửi yêu cầu cập nhật giỏ hàng đến máy chủ
     let formData = new FormData();
     formData.append('product_id', productId);
+    formData.append('size_id', sizeId);
+    formData.append('color_id', colorId);
     formData.append('quantity', quantity);
 
     fetch('../php/cart_function.php', {
@@ -57,8 +62,11 @@ function updateCartItem(input) {
         return response.json();
     })
     .then(data => {
+
         let totalPriceElement = document.querySelector('.total-price b');
         totalPriceElement.textContent = formatCurrency(data.total_price);
+
+        // Tải lại trang để cập nhật giá tiền
         location.reload();
     })
     .catch(error => {

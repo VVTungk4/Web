@@ -2,6 +2,7 @@
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
+
     require_once "../php/database_function.php";
     $conn = connectDatabase();
 ?>
@@ -70,7 +71,7 @@
                                                     <option value="add" selected>Thêm địa chỉ mới ...</option>
                                                     
                                                     <?php
-                                                        if (isset($_SESSION['user_id'])) {
+                                                        /*if (isset($_SESSION['user_id'])) {
                                                             $user_id = $_SESSION['user_id'];
                                                             // Truy vấn để lấy thông tin địa chỉ từ bảng Address-List dựa trên user_id
                                                             $query = "SELECT * FROM `User` WHERE id = $user_id";
@@ -101,7 +102,7 @@
                                                             while ($row = mysqli_fetch_assoc($result)) {
                                                                 echo '<option value="'. $row['adrs_id'] .'">'. $row['adrs_address'] .'</option>';
                                                             }
-                                                        }
+                                                        }*/
                                                     ?>
                                                 </select>
                                             </div>

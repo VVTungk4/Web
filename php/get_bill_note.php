@@ -7,6 +7,6 @@
 
         $_SESSION['bill_note'] = $note;
 
-        header("Location: ../Cart/checkout.php");
+        header("Location: ../Cart/orderinfo.php");
     }
 ?>

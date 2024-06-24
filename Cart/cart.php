@@ -128,7 +128,13 @@ if (session_status() === PHP_SESSION_NONE) {
                                             <tbody>
                                                 <?php
                                                 if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
-                                                    foreach ($_SESSION['cart'] as $product_id => $quantity) {
+                                                    foreach ($_SESSION['cart'] as $product_key => $item) {
+
+                                                        $product_id = @$item['product_id'];
+                                                        $size_id = @$item['size_id'];
+                                                        $color_id = @$item['color_id'];
+                                                        $quantity = @$item['quantity'];
+
                                                         // Truy vấn cơ sở dữ liệu để lấy thông tin sản phẩm dựa trên product_id
                                                         $query = "SELECT * FROM Product WHERE id = '$product_id'";
 
@@ -152,9 +158,9 @@ if (session_status() === PHP_SESSION_NONE) {
                                                                 echo '<span>' . number_format($row['price'], 0, ',', '.') . '₫</span>';
                                                                 echo '</p>';
                                                                 echo '<div class="qty-click">';
-                                                                echo '<button type="button" class="qtyminus qty-btn" data-product-id="' . $row['id'] . '">-</button>';
-                                                                echo '<input type="text" size="4" min="1" data-price="' . $row['price'] . '" value="' . $quantity . '" class="item-quantity" data-product-id="' . $row['id'] . '"> ';
-                                                                echo '<button type="button" class="qtyplys qty-btn" data-product-id="' . $row['id'] . '">+</button>';
+                                                                echo '<button type="button" class="qtyminus qty-btn" data-product-id="' . $row['id'] . '" data-size-id="' . $size_id . '" data-color-id="' . $color_id . '">-</button>';
+                                                                echo '<input type="text" size="4" min="1" data-price="' . $row['price'] . '" value="' . $quantity . '" class="item-quantity" data-product-id="' . $row['id'] . '" data-size-id="' . $size_id . '" data-color-id="' . $color_id . '"> ';
+                                                                echo '<button type="button" class="qtyplys qty-btn" data-product-id="' . $row['id'] . '" data-size-id="' . $size_id . '" data-color-id="' . $color_id . '">+</button>';
                                                                 echo '</div>';
                                                                 echo '<p class="price">';
                                                                 echo '<span class="text">Thành tiền</span>';
@@ -162,7 +168,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                                                 echo '</p>';
                                                                 echo '</td>';
                                                                 echo '<td class="remove">';
-                                                                echo '<a href="#" class="remove-from-cart" data-product-id="' . $row['id'] . '">';
+                                                                echo '<a href="#" class="remove-from-cart" data-product-key="' . $product_key . '">';
                                                                 echo '<ion-icon name="close-outline"></ion-icon>';
                                                                 echo '</a>';
                                                                 echo '</td>';
@@ -182,14 +188,14 @@ if (session_status() === PHP_SESSION_NONE) {
                                                 $('.remove-from-cart').click(function(e) {
                                                     e.preventDefault(); // Ngăn chặn hành động mặc định của thẻ <a>
 
-                                                    var productId = $(this).data('product-id');
+                                                    var productKey = $(this).data('product-key');
 
                                                     // Gửi yêu cầu xóa sản phẩm thông qua Ajax
                                                     $.ajax({
                                                         url: '../php/remove_from_cart.php',
                                                         type: 'post',
                                                         data: {
-                                                            product_id: productId
+                                                            product_key: productKey
                                                         },
                                                         success: function(response) {
                                                             // Cập nhật lại tổng tiền sau khi xóa sản phẩm
