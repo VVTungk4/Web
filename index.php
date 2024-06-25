@@ -46,7 +46,7 @@
             <div style="height: 50px;"><a href="sanpham/Sản-phẩm.html" style="text-decoration:none; color:#000;">
                     <p>SẢN PHẨM </p>
             </div>
-            <div><a href="index.html" style="text-decoration:none; color:#000;">
+            <div><a href="index.php" style="text-decoration:none; color:#000;">
                     <p>TRANG CHỦ</p>
                 </a></div>
             <div><a href="../SonicShop/sanpham/Giới-Thiệu.html" style="text-decoration:none; color:#000;">
@@ -61,6 +61,8 @@
                     <li><a href="Login/Login.php">Đăng Nhập</a></li>
                     <li><a href="Login/email_dangki.php">Đăng Ký</a></li>
                     <li><a href="QLTK/QLTK.php">QL Tài Khoản</a></li>
+                    <li><a href="QLTK/myOder.php">Đơn hàng của tôi</a></li>
+
                 </ul>
             </div>
         </div>

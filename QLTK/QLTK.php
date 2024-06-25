@@ -29,7 +29,7 @@
                 <div><a href="../web/product.html" style="text-decoration:none; color:#000;">
                         <p>SẢN PHẨM </p>
                 </div>
-                <div><a href="../index.html" style="text-decoration:none; color:#000;">
+                <div><a href="../index.php" style="text-decoration:none; color:#000;">
                         <p>TRANG CHỦ</p>
                     </a></div>
                 <div><a href="../web/Giới-Thiệu.html" style="text-decoration:none; color:#000;">
