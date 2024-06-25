@@ -4,18 +4,17 @@ if ($conn->connect_error) {
 } //
 //Cbi câu lệnh sql
 session_start();
-$id=  $_SESSION['user_info']['id'];
+$id =  $_SESSION['user_info']['id'];
 $q = $_GET['q'];
 if ($q == 5) {
-$sql = "SELECT thumbnail, title, color, size, num, order_details.total_money, orders.status, order_date, orders.id
+    $sql = "SELECT thumbnail, title, color, size, num, order_details.total_money, orders.status, order_date, orders.id
                           FROM user
                           JOIN orders ON user.id = orders.user_id
                           JOIN order_details ON orders.id = order_details.order_id
                           JOIN product ON order_details.product_id = product.id
                         WHERE orders.user_id= $id
         ";
-}
-else $sql = "SELECT thumbnail, title, color, size, num, order_details.total_money, orders.status, order_date, orders.id
+} else $sql = "SELECT thumbnail, title, color, size, num, order_details.total_money, orders.status, order_date, orders.id
                           FROM user
                           JOIN orders ON user.id = orders.user_id
                           JOIN order_details ON orders.id = order_details.order_id
@@ -30,17 +29,17 @@ if (!empty($result) && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         if ($row['status'] == 0) {
             $st = "Đang chờ xác nhận";
-        } 
-        if( $row["status"] == 1) {
+        }
+        if ($row["status"] == 1) {
             $st = "Đang xử lý";
         }
-        if( $row["status"] == 2) {
+        if ($row["status"] == 2) {
             $st = "Đang giao";
         }
-        if( $row["status"] == 3) {
+        if ($row["status"] == 3) {
             $st = "Đã giao";
         }
-        if( $row["status"] == 4) {
+        if ($row["status"] == 4) {
             $st = "Đã hủy";
         }
         echo
@@ -61,8 +60,16 @@ if (!empty($result) && $result->num_rows > 0) {
                                         ' . $st . ' 
                                     </p>
                                     <p>Ngày đặt hàng: ' . $row['order_date'] . '</p>
+                                    <button class="btn-custom" type="submit" name="huydon">Hủy đơn hàng </button>
                                 </div>
                         </td>
                                 ';
+        if (isset($_POST['huydon'])) {
+            if ($row['status'] == 1 || $row['status'] == 2) {
+                $sql = "UPDATE orders SET status = 5 where orders.id= order_detail.order_id";
+            } else {
+                echo "Không thể hủy !";
+            }
+        }
     }
 }

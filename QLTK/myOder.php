@@ -104,6 +104,23 @@
                             xhttp.send();
                         }
                     </script>
+                    <script>
+                        function showCustomer(str) {
+                            var xhttp;
+                            if (str == "") {
+                                document.getElementById("txtHint").innerHTML = "";
+                                return;
+                            }
+                            xhttp = new XMLHttpRequest();
+                            xhttp.onreadystatechange = function() {
+                                if (this.readyState == 4 && this.status == 200) {
+                                    document.getElementById("txtHint").innerHTML = this.responseText;
+                                }
+                            };
+                            xhttp.open("GET", "oderData.php?q=" + Number(str), true);
+                            xhttp.send();
+                        }
+                    </script>
                 </div>
             </div>
             <table style="border: 1px solid #db7093" id="txtHint">
