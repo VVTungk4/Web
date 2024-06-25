@@ -45,7 +45,7 @@ if (isset($_POST['xacnhan'])) { //neu ton tai $_post['xacnhan']
                 'created_at' => $row['created_at'],
 
             );
-            header('location:../index.html');
+            header('location:../index.php');
             exit();
         }
         if (($row["email"] == $email) && $row['password'] == $password && $row['role_id'] == 2 && $row['password'] == $password && $row['deleted'] == 0) {

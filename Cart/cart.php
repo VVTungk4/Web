@@ -39,6 +39,12 @@ if (session_status() === PHP_SESSION_NONE) {
     $conn = connectDatabase();
     $total_price = 0;
 
+    $nums_product = 0;
+
+    foreach ($_SESSION['cart'] as $product_key => $item) {
+        $nums_product+=1;
+    }
+
     ?>
     <div class="main-body">
         <!--------------------------------------------HEADER----------------------------------------------------->
@@ -91,7 +97,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             </li>
                             <li class="active">
                                 <span>
-                                    <span>Giỏ hàng (0)</span>
+                                    <span>Giỏ hàng (<?php echo $nums_product ?>)</span>
                                 </span>
                                 <meta itemprop="position" content="2">
                             </li>
@@ -103,12 +109,14 @@ if (session_status() === PHP_SESSION_NONE) {
                         <div class="header-page">
                             <h1>Giỏ hàng của bạn</h1>
                             <p class="count-cart">
-                                Có <span>0 sản phẩm</span> trong giỏ hàng
+                                Có <span><?php echo $nums_product ?> sản phẩm</span> trong giỏ hàng
                             </p>
                         </div>
                     </div>
                     <div class="cart-content-wrap">
-                        <div class="notifications">
+                    <?php
+                        if ($nums_product == 0) {
+                            echo '<div class="notifications">
                             Giỏ hàng của bạn đang trống
                             <p class="link-continue">
                                 <a href="" class="button dark">
@@ -118,8 +126,9 @@ if (session_status() === PHP_SESSION_NONE) {
                                     </button>
                                 </a>
                             </p>
-
-                        </div>
+                        </div>';
+                        }
+                    ?>
                         <div class="cart-container">
                             <div class="main-content-cart">
                                 <form action="../php/get_bill_note.php" id="cartformpage" method="POST">
@@ -154,6 +163,45 @@ if (session_status() === PHP_SESSION_NONE) {
                                                                 echo '</td>';
                                                                 echo '<td class="item">';
                                                                 echo '<a href="./product.php?product_id=' . $row['id'] . '">' . $row['title'] . '</a>';
+                                                                echo '<p class="variant">';
+                                                                    echo '<span class="variant-title">';
+                                                                        $size_name = '';
+                                                                        switch ($size_id) {
+                                                                            case 1:
+                                                                                $size_name = 'S';
+                                                                                break;
+                                                                            case 2:
+                                                                                $size_name = 'M';
+                                                                                break;
+                                                                            case 3:
+                                                                                $size_name = 'L';
+                                                                                break;
+                                                                            case 4:
+                                                                                $size_name = 'XL';
+                                                                                break;
+                                                                            default:
+                                                                                $size_name = '';
+                                                                                break;
+                                                                        }
+                                                                        
+                                                                        $color_name = '';
+                                                                        switch ($color_id) {
+                                                                            case 1:
+                                                                                $color_name = 'Red';
+                                                                                break;
+                                                                            case 2:
+                                                                                $color_name = 'Blue';
+                                                                                break;
+                                                                            case 3:
+                                                                                $color_name = 'Black';
+                                                                                break;
+                                                                            default:
+                                                                                $color_name = '';
+                                                                                break;
+                                                                        }
+                                                                        echo $size_name . ' - ' . $color_name;
+                                                                    echo '</span>';
+                                                                echo '</p>';
                                                                 echo '<p>';
                                                                 echo '<span>' . number_format($row['price'], 0, ',', '.') . '₫</span>';
                                                                 echo '</p>';
@@ -229,12 +277,8 @@ if (session_status() === PHP_SESSION_NONE) {
                                                             TIẾP TỤC MUA HÀNG
                                                         </button>
                                                     </a>
-                                                    <button type="button" id="update-cart" class="btn-update" name="update">
-                                                        Cập nhật
-                                                    </button>
-                                                
                                                     <button type="submit" id="checkout" class="btn-checkout" name="checkout">
-                                                        Thanh toán
+                                                        THANH TOÁN
                                                     </button>
                                                     
                                                 </div>

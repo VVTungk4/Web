@@ -607,7 +607,7 @@
 				<button id="btn" onclick="showReport('report1')">Các Đơn Hàng Mới</button>
 				<button id="btn" onclick="showReport('report2')">Chi Tiết Đơn Hàng</button>	
 				<button id="btn" onclick="showReport('report3')">Sửa Đơn Hàng</button>
-			<div class="report" id="report1" ">
+			<div class="report" id="report1" >
 				<table id="bangdonhang">
    				 <thead>
        				<tr><th width="5%">Mã Đơn Hàng</th>
