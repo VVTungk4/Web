@@ -12,10 +12,17 @@
     <link rel="stylesheet" href="./themify-icons/themify-icons.css">
     <link rel="stylesheet" type="text/css" href="style-css.css" />
     <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- Latest compiled and minified JavaScript -->
@@ -70,7 +77,8 @@
         <form method="post" action="../SonicShop/demoSearch/view_search.php" class="form">
             <img src="Login/images/logo1.png" style="height: 90px; width: 110px;">
             <p><input type="text" placeholder=" Tìm kiếm sản phẩm " name="tt_timkiem"></p>
-            <button type="submit" class="btn btn-primary" data-mdb-ripple-init style="margin-top: 22px;" name="timkiem" id="search">
+            <button type="submit" class="btn btn-primary" data-mdb-ripple-init style="margin-top: 22px;" name="timkiem"
+                id="search">
                 <i class="fas fa-search"></i>
             </button>
         </form>
@@ -98,7 +106,8 @@
                     <div class="card-body">
                         <h6 class="card-title" style="font-weight: bold;">Váy đầm voan Midi màu hồng</h6>
 
-                        <button type="button" class="btn btn-primary" style="padding: 4px 60px 3px 70px" onclick="redirectToDetailPage(1)">Mua Ngay</button>
+                        <button type="button" class="btn btn-primary" style="padding: 4px 60px 3px 70px"
+                            onclick="redirectToDetailPage(1)">Mua Ngay</button>
                     </div>
                 </div>
             </div>
@@ -111,7 +120,8 @@
                     <div class="card-body">
                         <h6 class="card-title" style="font-weight: bold;">Black Leopard Midi Silk woman</h6>
 
-                        <button type="button" class="btn btn-primary" style="padding: 4px 60px 3px 70px" onclick="redirectToDetailPage(2)">Mua Ngay</button>
+                        <button type="button" class="btn btn-primary" style="padding: 4px 60px 3px 70px"
+                            onclick="redirectToDetailPage(2)">Mua Ngay</button>
                     </div>
 
                 </div>
@@ -123,7 +133,8 @@
                     <img src="image/10.jpg" alt="" class="card-img-top" style="width: 220px" height="260px">
                     <div class="card-body">
                         <h6 class="card-title" style="font-weight: bold;">Set Váy lụa màu bơ kiểu Pháp</h6>
-                        <button type="button" class="btn btn-primary" style="padding: 4px 60px 3px 70px" onclick="redirectToDetailPage(3)">Mua Ngay</button>
+                        <button type="button" class="btn btn-primary" style="padding: 4px 60px 3px 70px"
+                            onclick="redirectToDetailPage(3)">Mua Ngay</button>
                     </div>
 
                 </div>
@@ -136,7 +147,8 @@
                     <img src="image/4.jpg" alt="" class="card-img-top" style="width: 220px" height="260px">
                     <div class="card-body">
                         <h6 class="card-title" style="font-weight: bold;">Đầm cam SAUVAGE <br>&nbsp</h6>
-                        <button type="button" class="btn btn-primary" style="padding: 4px 60px 3px 70px" onclick="redirectToDetailPage(4)">Mua Ngay</button>
+                        <button type="button" class="btn btn-primary" style="padding: 4px 60px 3px 70px"
+                            onclick="redirectToDetailPage(4)">Mua Ngay</button>
                     </div>
 
                 </div>
@@ -167,7 +179,7 @@
     $productsPerPage = 16;
 
     // Lấy số trang hiện tại từ URL hoặc mặc định là 1 nếu không có
-    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 
     // Tính số sản phẩm bỏ qua dựa trên trang hiện tại
     $offset = ($page - 1) * $productsPerPage;
@@ -187,7 +199,7 @@
     $result = $stmt->get_result();
     ?>
     <style>
-        .page-link {
+        .active {
             display: inline-block;
             margin-right: 5px;
             padding: 5px 10px;
@@ -207,14 +219,15 @@
 
         /* CSS cho bảng sản phẩm */
     </style>
-    <table style="margin: 50px;width: auto;">
-        <?php if ($result->num_rows > 0) : ?>
+    <table style="margin-left: 120px; margin-top: 20px;width: auto;
+   ;margin-bottom: 20px; padding: auto;">
+        <?php if ($result->num_rows > 0): ?>
             <tr>
                 <?php
                 $count = 0; // Khởi tạo biến đếm
-                while ($row = $result->fetch_assoc()) :
+                while ($row = $result->fetch_assoc()):
                     $count++; // Tăng biến đếm với mỗi sản phẩm
-                ?>
+                    ?>
                     <td>
                         <img src="<?php echo $row['thumbnail'] ?>" alt="" style="border: 2px solid #f9d1d1;">
                         <p>
@@ -223,10 +236,11 @@
                         <p>Giá:
                             <?php echo $row["price"]; ?> VNĐ
                         </p>
-                        <button type="submit" class="btn-custom" onclick="redirectToDetailPage(<?php echo $row['id'] ?>)">Mua Ngay</button>
+                        <button type="submit" class="btn-custom" onclick="redirectToDetailPage(<?php echo $row['id'] ?>)">Mua
+                            Ngay</button>
                     </td>
-                <?php
-                    if ($count % 4 == 0) : // Nếu đếm đến 4 sản phẩm
+                    <?php
+                    if ($count % 4 == 0): // Nếu đếm đến 4 sản phẩm
                         echo '</tr><tr>'; // Kết thúc hàng hiện tại và bắt đầu hàng mới
                     endif;
                 endwhile;
@@ -241,23 +255,38 @@
         <?php endif; ?>
     </table>
     <!-- Hiển thị liên kết đến các trang -->
-    <div class="pagination" style="width: 200px;">
-        <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
-            <a href="?page=<?php echo $i; ?>">
+    <div id="pagination" class="pagination" style="width: 200px; margin-top:70px">
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+            <a id="btn"  href="?page=<?php echo $i; ?>">
                 <?php echo $i; ?>
             </a>
         <?php endfor; ?>
-        <a class="page-link <?php if ($page == $i) echo 'active'; ?>" href="?page=<?php echo $i; ?>">
+        <a id="btn" href="?page=<?php echo $i; ?>">
             <?php echo $i; ?>
         </a>
     </div>
+    <script>
+        const btn = document.getElementById("btn");
+
+        btn.addEventListener("click", function () {
+            // Xóa tất cả các lớp "active" khỏi các phần tử khác
+            const activeElements = document.querySelectorAll(".active");
+            activeElements.forEach(element => {
+                element.classList.remove("active");
+            });
+
+            // Thêm lớp "active" cho nút được nhấp
+            this.classList.add("active");
+        });
+    </script>
 
     <div class="tintuc">
         <h2>TIN TỨC</h2>
         <div class="news">
             <div class="news1">
                 <img src="image/news1.jpg" alt="">
-                <a href="https://thoitrang4.giaodienwebmau.com/4-kieu-vay-dam-di-dam-cuoi-xinh-lung-linh-cho-phai-dep.html">
+                <a
+                    href="https://thoitrang4.giaodienwebmau.com/4-kieu-vay-dam-di-dam-cuoi-xinh-lung-linh-cho-phai-dep.html">
                     <p>4 Kiểu váy đầm đi đám cưới xinh lung linh cho phái đẹp</p>
                 </a>
                 <div class="line"></div>
@@ -268,7 +297,8 @@
             </div>
             <div class="news1">
                 <img src="image/news2.jpg" alt="">
-                <a href="https://thoitrang4.giaodienwebmau.com/4-kieu-vay-dam-di-dam-cuoi-xinh-lung-linh-cho-phai-dep.html">
+                <a
+                    href="https://thoitrang4.giaodienwebmau.com/4-kieu-vay-dam-di-dam-cuoi-xinh-lung-linh-cho-phai-dep.html">
                     <p>5 công thức phối “áo sơ mi + chân váy” xinh cho nàng</p>
                 </a>
                 <div class="line"></div>
@@ -279,7 +309,8 @@
             </div>
             <div class="news1">
                 <img src="image/chuyen5.jpg" alt="">
-                <a href="https://thoitrang4.giaodienwebmau.com/bst-christmas-colors-bua-tiec-da-sac-mau-cho-mua-le-hoi.html">
+                <a
+                    href="https://thoitrang4.giaodienwebmau.com/bst-christmas-colors-bua-tiec-da-sac-mau-cho-mua-le-hoi.html">
                     <p>Christmas Colors – Bữa tiệc đa sắc màu cho mùa lễ hội</p>
                 </a>
                 <div class="line"></div>
@@ -296,8 +327,8 @@
 
     <!-- Footer -->
     <footer class="text-center text-lg-start bg-body-tertiary text-muted" style=" background: #ffdce3;
-		padding: 10px;
-		color: #000;">
+        padding: 10px;
+        color: #000;">
         <!-- Section: Social media -->
         <!-- Section: Social media -->
 
@@ -360,7 +391,8 @@
                     <!-- Grid column -->
 
                     <!-- Grid column -->
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4" style="text-align: justify; font-weight: bold;">
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4"
+                        style="text-align: justify; font-weight: bold;">
                         <!-- Links -->
                         <h6 class="text-uppercase fw-bold mb-4" style="font-size: 25px;">Contact</h6>
                         <p><i class="fas fa-home me-3"></i> 54, Triều Khúc, Thanh Xuân, Hà Nội</p>
@@ -386,21 +418,27 @@
                 <!-- Section: Social media -->
                 <section class="mb-4">
                     <!-- Facebook -->
-                    <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+                    <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #3b5998;"
+                        href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
 
                     <!-- Twitter -->
-                    <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #55acee;" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+                    <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #55acee;"
+                        href="#!" role="button"><i class="fab fa-twitter"></i></a>
 
                     <!-- Google -->
-                    <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button"><i class="fab fa-google"></i></a>
+                    <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #dd4b39;"
+                        href="#!" role="button"><i class="fab fa-google"></i></a>
 
                     <!-- Instagram -->
-                    <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+                    <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #ac2bac;"
+                        href="#!" role="button"><i class="fab fa-instagram"></i></a>
 
                     <!-- Linkedin -->
-                    <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #0082ca;" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+                    <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #0082ca;"
+                        href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
                     <!-- Github -->
-                    <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #333333;" href="#!" role="button"><i class="fab fa-github"></i></a>
+                    <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #333333;"
+                        href="#!" role="button"><i class="fab fa-github"></i></a>
                 </section>
                 <!-- Section: Social media -->
             </div>
