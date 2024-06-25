@@ -8,13 +8,16 @@
     $stmt->bind_param("i", $_GET['q']);
     $stmt->execute();
     $stmt->get_result();
-    if ($stmt->get_result()) {
-        echo '<script language="javascript">alert("Cập nhật thành công! Đơn Hàng Đang Chuẩn Bị");</script>';
-        exit();
-    } else {
-        echo '<script language="javascript">alert("Có lỗi xảy ra, vui lòng thử lại!");</script>';
-        exit();
-    }
-
-
+        $sql1 = "Select * From orders Where status = 0";
+				$result = $conn->query($sql1);
+			// Kiểm tra số lượng bản ghi trả về
+				if ($result->num_rows > 0) {
+ 			// Xuất dữ liệu của mỗi hàng
+ 			while($row = $result->fetch_assoc()) {
+				echo "<tr class=\"rowdonhang\"'><td data-product-id=\"" . $row["id"] . "\">" . $row["id"]. "</td><td>" . $row["fullname"]. "</td><td>" . $row["phone_number"]."</td><td>" .  $row["address"]."</td><td>" .  $row["order_date"].
+				 "</td><td id=\"xem\" ><button onclick='showchitiet(this)' id='btntable' ><i class='bx bx-low-vision'></i></button></td> 
+				 <td id=\"pencil\" ><button id='btntable' onclick='suadonhang(this)'><i class='bx bxs-pencil' style='color:#1cce55'  ></i></button></td>
+				 <td id=\"check\"><button onclick='xacnhansanpham(this)' id='btntable'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td>
+				 <td id=\"trash\"><button onclick='deleteRow(this)' id='btntable'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
+			}} else {echo "0 results";}
 ?>

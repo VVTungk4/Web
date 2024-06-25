@@ -7,17 +7,15 @@
 	<link rel="icon" href="img/icon.png" type="image/x-icon">
 	
 	<style>
+	 #btntable {
+            background-color: pink;
+            color: white;
+            padding: 20px 20px;
+            cursor: pointer;
 	
-		  .my-button {
-        border: 1px solid gray;
-        border-radius: 7%;
-        font-size: 0.875rem;
-        word-wrap: break-word;
-        width: 100%; /* Chỉ dùng cho IE8 */
-        max-width: 100%; /* Kích thước tối đa */
-		max-block-size: 100%;
-
-    }
+        }
+	
+		  
 	.dialog {
 		display: none;
 		width: 600px;
@@ -623,7 +621,7 @@
             			<th width="4%">Xóa</th>
         			</tr>
    				 </thead>	
-				<tbody>
+				<tbody id="txtHint">
 		
 	<?php
 	
@@ -638,16 +636,73 @@
  			// Xuất dữ liệu của mỗi hàng
  			while($row = $result->fetch_assoc()) {
 				echo "<tr class=\"rowdonhang\"'><td data-product-id=\"" . $row["id"] . "\">" . $row["id"]. "</td><td>" . $row["fullname"]. "</td><td>" . $row["phone_number"]."</td><td>" .  $row["address"]."</td><td>" .  $row["order_date"].
-				 "</td><td id=\"xem\" ><i class='bx bx-low-vision'></i></td> 
-				 <td id=\"pencil\" onclick=\"showReport('report3')\"><i class='bx bxs-pencil' style='color:#1cce55'  ></i></td>
-				 <td id=\"check\"><i class='bx bx-check' style='color:#189ad5'  ></i></td>
-				 <td id=\"trash\" type=\"submit\"><i class='bx bx-trash' style='color:#c63737'  ></i></td></tr>";
+				 "</td><td id=\"xem\" ><button onclick='showchitiet(this)' id='btntable' ><i class='bx bx-low-vision'></i></button></td> 
+				 <td id=\"pencil\"><button  onclick='suadonhang(this)' id='btntable'><i class='bx bxs-pencil' style='color:#1cce55'  ></i></button></td>
+				 <td id=\"check\"><button onclick='xacnhansanpham(this)' id='btntable'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td>
+				 <td id=\"trash\"><button onclick='deleteRow(this)' id='btntable'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
 			}} else {echo "0 results";}
 					$conn->close();?>
       
   		  		</tbody> 
 			</table>
+
+<script>
+        function deleteRow(button) {
+            const row = button.parentNode.parentNode;
+            const firstCellContent = row.cells[0].textContent; // Lấy nội dung ô đầu tiên
+            console.log("Nội dung ô đầu tiên:", firstCellContent);
+            row.parentNode.removeChild(row);
+        }
 		
+			function xacnhansanpham(button) {
+				const row = button.parentNode.parentNode;
+            	const firstCellContent = row.cells[0].textContent;
+  				var xhttp;    
+  				xhttp = new XMLHttpRequest();
+  				xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu đã gửi thành công');
+					alert("Đã xác nhận đơn hàng");
+					document.getElementById("txtHint").innerHTML = this.responseText;
+   			 }
+  			};
+  				xhttp.open("GET", "capnhattrangthai.php?q="+Number(firstCellContent, true));
+  				xhttp.send();
+			}
+			function showchitiet(button) {
+				const row = button.parentNode.parentNode;
+            	const firstCellContent = row.cells[0].textContent;
+  				var http;    
+  				http = new XMLHttpRequest();
+  				http.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu đã gửi thành công');
+					document.getElementById("chitietdon").innerHTML = this.responseText;
+   			 }
+  			};
+  				http.open("GET", "chitietdon.php?q="+Number(firstCellContent, true));
+  				http.send();
+				document.getElementById('btntable').onclick=showReport('report2');
+				
+			}
+			function suadonhang(button) {
+				const row = button.parentNode.parentNode;
+            	const firstCellContent = row.cells[0].textContent;
+  				var http;    
+  				http = new XMLHttpRequest();
+  				http.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu đã gửi thành công');
+					document.getElementById("suadonhang").innerHTML = this.responseText;
+   			 }
+  			};
+  				http.open("GET", "chinhsuadonhang.php?q="+Number(firstCellContent, true));
+  				http.send();
+				document.getElementById('btntable').onclick=showReport('report3');
+				
+			}
+			
+    </script>
 			  </div>
 <!-- Bảng chi tiết đơn hàng -->
 			<div class="report" id="report2" style="display:none">
@@ -659,16 +714,46 @@
 						<th width="10%">Màu Sắc</th>
 						<th width="10%">Size</th>
            		 		<th width="20%">Số Lượng</th>
+            			<th width="10%">Giá</th>
+						<th width="4%">Xóa</th>         			
+        			</tr>
+   				 </thead>
+    			<tbody id="chitietdon">
+		   <!-- fill từ chitietdon.php -->
+  		  		</tbody>
+			</table>
+			  </div>
+
+<!-- Bảng Chỉnh sửa Đơn Hàng -->
+			  <div class="report" id="report3" style="display:none">
+			  <table id="bangdonhang">
+			  <thead>
+       				<tr"><th width="5%">STT</th>
+            			<th width="15%">Mã Sản Phẩm</th>
+            			<th width="10%">Tên Sản Phẩm</th>
+						<th width="10%">Màu Sắc</th>
+						<th width="10%">Size</th>
+           		 		<th width="20%">Số Lượng</th>
             			<th width="10%">Giá</th>         			
         			</tr>
    				 </thead>
-    			<tbody>
-		<?php
-		include('chitietdon.php');
-		?>
-       
-  		  		</tbody>
-			</table>
+        <tbody id="suadonhang">
+            <tr>
+                <td>Bàn</td>
+                <td>500,000 VND</td>
+                <td><button onclick="deleteRow(this)">Xoá</button></td>
+            </tr>
+            <tr>
+                <td>Ghế</td>
+                <td>300,000 VND</td>
+                <td><button onclick="deleteRow(this)">Xoá</button></td>
+            </tr>
+            <!-- Thêm các hàng khác tại đây -->
+        </tbody>
+    </table>
+
+    
+
 			  </div>
 
 			
@@ -768,66 +853,6 @@
 }
 	</script>
 
-	<script>
-	document.addEventListener("DOMContentLoaded", function() {
-    const tableCells = document.querySelectorAll("td");
-	
-    tableCells.forEach(cell => {
-        cell.addEventListener("click", function() {
-            const row = this.parentElement;
-			const rowIndex = row.rowIndex; // Lấy số thứ tự của hàng
-            const productIdCell = row.querySelector("td[data-product-id]");
-           	const productId = productIdCell.getAttribute("data-product-id");
-//nút xem
-			const buttons = document.querySelectorAll('#xem');
-    		const Button = buttons[rowIndex-1]; // Lấy nút của hangf đấy		
-			Button.onclick = function() {
-			showCustomer();
-			function showCustomer() {
-  				var xhttp;    
-  				xhttp = new XMLHttpRequest();
-  				xhttp.onreadystatechange = function() {
-    			if (this.readyState == 4 && this.status == 200) {
-					console.log('Yêu cầu đã gửi thành công');
-   			 }
-  			};
-  				xhttp.open("GET", "chitietdon.php?q="+productId, true);
-  				xhttp.send();
-			}
-			showReport('report2');
-			}	
-//nút sửa
-			const pencils =document.querySelectorAll('#pencil');
-			const Pencil = pencils[rowIndex-1]; // Lấy nút của hangf
-			Pencil.onclick = function() {
-				
-			}
-//nút xác nhận
-			const checks =document.querySelectorAll('#check');
-			const check = checks[rowIndex-1]; // Lấy nút của hangf
-			check.onclick = function() {
-
-				var xhttp;    
-  				xhttp = new XMLHttpRequest();
-  				xhttp.onreadystatechange = function() {
-    			if (this.readyState == 4 && this.status == 200) {
-					alert("Đã xác nhận đơn hàng");
-   			 }
-  			};
-  				xhttp.open("GET", "capnhattrangthai.php?q="+productId, true);
-  				xhttp.send();
-				location.reload();
-				var link = document.getElementById('quanlycheck');
- 			 	link.click();
-//nút xóa
-
-
-			}
-
-		});
-	});
-});
-	</script>
 	
 	<!-- Hộp thoại -->
 	<div id="dialog" class="dialog">

@@ -144,14 +144,20 @@
                 </div>
             </div>
             <script>
-                function redirectToDetailPage(id) {
+                function redirectToDetailPage(productId) {
                     // Chuyển hướng sang trang chi tiết sản phẩm với ID sản phẩm
-                    window.location.href = 'web/product_detail.php?id=' + id;
+                    window.location.href = 'web/product_detail.php?id=' + productId;
                 }
             </script>
         </div>
 
     </div>
+    <script>
+        function redirectToDetailPage(productId) {
+            // Chuyển hướng sang trang chi tiết sản phẩm với ID sản phẩm
+            window.location.href = 'web/product_detail.php?id=' + productId;
+        }
+    </script>
     <?php
     // Kết nối database và lấy dữ liệu
     $conn = new mysqli('localhost', 'root', '', 'webhangban');
@@ -183,74 +189,27 @@
     $result = $stmt->get_result();
     ?>
     <style>
-        .dsTrang {
-            text-align: center;
-            margin: auto;
-            width: auto;
-            color: black;
-        }
-
-        .dsTrang a {
+        .page-link {
             display: inline-block;
             margin-right: 5px;
             padding: 5px 10px;
-            border: 2px solid #ddd;
-        }
-
-        .dsTrang a:hover,
-        .dsTrang a.active {
-            background: #f0cfcf;
-            background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
-            background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
-            background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
-            background: linear-gradient(bottom, #f0cfcf, #ffacc7);
-
-        }
-
-
-        .dsTrang a {
-            display: inline-block;
-            margin-right: 5px;
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            color: black;
-            text-align: center;
-        }
-
-        .dsTrang a:hover {
-            background: #f0cfcf;
-            background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
-            background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
-            background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
-            background: linear-gradient(bottom, #f0cfcf, #ffacc7);
-
-        }
-
-        table {
-            width: auto;
-            margin-bottom: 20px;
             border: 2px solid pink;
+
+            tr {
+                width: 310px;
+                height: px;
+            }
+
+            td {
+                width: 300px;
+                height: 500px;
+                margin-bottom: 30px;
+            }
         }
 
-        td {
-
-            padding: 20px;
-            text-align: center;
-            height: 500px;
-            width: 400px;
-        }
-
-        .thumbnail img {
-            height: 300px;
-            width: 250px;
-            transition-duration: 0.3s;
-        }
-
-        .thumbnail img:hover {
-            transform: scale(1.1);
-        }
+        /* CSS cho bảng sản phẩm */
     </style>
-    <table style="margin: 50px;width: auto;" class="thumbnail">
+    <table style="margin: 50px;width: auto;">
         <?php if ($result->num_rows > 0) : ?>
             <tr>
                 <?php
@@ -278,24 +237,21 @@
             <script>
                 function redirectToDetailPage(id) {
                     // Chuyển hướng sang trang chi tiết sản phẩm với ID sản phẩm
-                    window.location.href = '../sonicshop/web/product_detail.php?id=' + id;
+                    window.location.href = '../web/product_detail.php?id=' + id;
                 }
             </script>
         <?php endif; ?>
     </table>
     <!-- Hiển thị liên kết đến các trang -->
-    <div class="dsTrang">
-        <div>
-            <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
-                <a href="?page=<?php echo $i; ?>">
-                    <?php echo $i; ?>
-                </a>
-            <?php endfor; ?>
-            <a <?php if ($page == $i) echo 'active'; ?> href="?page=<?php echo $i; ?>">
+    <div class="pagination" style="width: 200px;">
+        <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+            <a href="?page=<?php echo $i; ?>">
                 <?php echo $i; ?>
             </a>
-        </div>
-
+        <?php endfor; ?>
+        <a class="page-link <?php if ($page == $i) echo 'active'; ?>" href="?page=<?php echo $i; ?>">
+            <?php echo $i; ?>
+        </a>
     </div>
 
     <div class="tintuc">
