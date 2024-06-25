@@ -101,15 +101,11 @@
         ";
                 $result = $conn->query($sql);
                 ?>
-                <?php if ($result->num_rows > 0) : ?>
                     <tr>
-
-
                         <?php
                         // Kết nối database và lấy dữ liệu
                         // Kết nối đến cơ sở dữ liệu
                         //
-                        if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
                                 if ($row['status'] == 1) {
                                     $st = "Đã giao";
@@ -136,7 +132,6 @@
                                 </div>
                         </td>
                                 ';
-                            }
                         }
                         ?>
                         </td>
@@ -193,42 +188,6 @@
 
         .myInfo input {
             border: 0px;
-        }
-
-        .navbar {
-            width: 900px;
-            justify-content: space-between;
-            display: flex;
-        }
-
-        .navbar h2 {
-            color: #58257b
-        }
-
-        .navbar ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #e9d8f4;
-        }
-
-        .navbar ul li {
-            float: left;
-        }
-
-        .navbar ul li a {
-            display: block;
-            color: black;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        .navbar ul li a:hover {
-            color: white;
-            background-color: #db7093;
-            font-weight: bold;
         }
 
         .lsdonhang {
