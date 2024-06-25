@@ -3,25 +3,28 @@ session_start();
 require_once "./database_function.php";
 $conn = connectDatabase();
 
-// Kiểm tra nếu sản phẩm_id được gửi từ Ajax request
-if(isset($_POST['product_id'])){
-    $product_id = $_POST['product_id'];
+// Kiểm tra nếu product_key được gửi từ Ajax request
+if (isset($_POST['product_key'])) {
+    $product_key = $_POST['product_key'];
 
     // Xóa sản phẩm khỏi giỏ hàng
-    unset($_SESSION['cart'][$product_id]);
+    unset($_SESSION['cart'][$product_key]);
 
     // Tính toán lại tổng tiền
     $total_price = 0;
-    foreach($_SESSION['cart'] as $product_id => $quantity) {
-        // Thực hiện truy vấn để lấy giá của sản phẩm từ cơ sở dữ liệu
-        // Sau đó tính toán tổng tiền mới
-        // $total_price += ...
-        $query = "SELECT * FROM Product WHERE id = '$product_id'";
-        $result = mysqli_query($conn, $query);
+    foreach ($_SESSION['cart'] as $key => $item) {
+        if (isset($item['product_id'], $item['quantity'])) {
+            $product_id = $item['product_id'];
+            $quantity = $item['quantity'];
 
-        if ($result) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $total_price += $row['price'];
+            // Thực hiện truy vấn để lấy giá của sản phẩm từ cơ sở dữ liệu
+            $query = "SELECT price FROM Product WHERE id = '$product_id'";
+            $result = mysqli_query($conn, $query);
+
+            if ($result) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $total_price += $row['price'] * $quantity;
+                }
             }
         }
     }

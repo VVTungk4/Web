@@ -1,34 +1,46 @@
 <?php
 session_start();
+require_once "./database_function.php";
+$conn = connectDatabase();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $product_id = $_POST['product_id'];
-    $quantity = $_POST['quantity'];
+    $size_id = $_POST['size_id'];
+    $color_id = $_POST['color_id'];
+    $quantity = $_POST['quantity']; // Chuyển đổi thành số nguyên để tránh lỗi định dạng
 
-    $_SESSION['cart'][$product_id] = $quantity;
+    // Tạo một key duy nhất cho từng sự kết hợp của product_id, size_id và color_id
+    $product_key = $product_id . '_' . $size_id . '_' . $color_id;
 
     if ($quantity == 0) {
         // Xóa sản phẩm khỏi giỏ hàng
-        unset($_SESSION['cart'][$product_id]);
-        exit(); // Dừng script để chuyển hướng ngay sau khi gửi header
-
+        unset($_SESSION['cart'][$product_key]);
     } else {
-        $_SESSION['cart'][$product_id] = $quantity;
+        // Thêm hoặc cập nhật sản phẩm trong giỏ hàng
+        $_SESSION['cart'][$product_key] = [
+            'product_id' => $product_id,
+            'size_id' => $size_id,
+            'color_id' => $color_id,
+            'quantity' => $quantity
+        ];
     }
 
-
+    // Tính lại tổng giá trị
     $total_price = calculateTotalPrice($_SESSION['cart']);
 
+    // Trả về phản hồi JSON với tổng giá trị đã cập nhật
     echo json_encode(['total_price' => $total_price]);
 } else {
     header("HTTP/1.1 405 Method Not Allowed");
     echo "Method Not Allowed";
 }
 
+$conn->close();
+
 function calculateTotalPrice($cart) {
     $total_price = 0;
-    foreach ($cart as $product_id => $quantity) {
-        $total_price += $quantity * getProductPrice($product_id);
+    foreach ($cart as $item) {
+        $total_price += $item['quantity'] * getProductPrice($item['product_id']);
     }
     return $total_price;
 }

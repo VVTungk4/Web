@@ -22,6 +22,6 @@
 
         // Chuyển hướng hoặc thực hiện các hành động khác sau khi lưu thông tin vào session
         // Ví dụ:
-        header("Location: ../checkout.php");
+        header("Location: ../Cart/checkout.php");
     }
 ?>

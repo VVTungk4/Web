@@ -16,7 +16,12 @@
                             }
                             else {
                                 if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
-                                    foreach ($_SESSION['cart'] as $product_id => $quantity) {
+                                    foreach ($_SESSION['cart'] as $product_key => $item) {
+
+                                        $product_id = @$item['product_id'];
+                                        $size_id = @$item['size_id'];
+                                        $color_id = @$item['color_id'];
+                                        $quantity = @$item['quantity'];
 
                                         $query = "SELECT * FROM Product WHERE id = '$product_id'";
                                         $result = mysqli_query($conn, $query);
