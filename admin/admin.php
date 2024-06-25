@@ -382,7 +382,7 @@
 				if ($result->num_rows > 0) {
  			// Xuất dữ liệu của mỗi hàng
  			while($row = $result->fetch_assoc()) {
-				echo "<li class=\"top1\"\<p>" . $row["p.id"] .":". $row["p.title"]. "    " . $row["od.total_money"]."</p></li>";
+				echo "<li class=\"top1\"\<p>" . $row["id"] .":". $row["title"]. " &nbsp;&nbsp;   " . $row["total_revenue"]."</p></li>";
 			}} else {echo "0 results";}
 					$conn->close();
 ?>										
@@ -666,7 +666,7 @@
 					document.getElementById("txtHint").innerHTML = this.responseText;
    			 }
   			};
-  				xhttp.open("GET", "capnhattrangthai.php?q="+Number(firstCellContent, true));
+  				xhttp.open("GET", "capnhattrangthai.php?q="+Number(firstCellContent), true);
   				xhttp.send();
 			}
 			function showchitiet(button) {
@@ -680,7 +680,7 @@
 					document.getElementById("chitietdon").innerHTML = this.responseText;
    			 }
   			};
-  				http.open("GET", "chitietdon.php?q="+Number(firstCellContent, true));
+  				http.open("GET", "chitietdon.php?q="+Number(firstCellContent), true);
   				http.send();
 				document.getElementById('btntable').onclick=showReport('report2');
 				
@@ -696,7 +696,7 @@
 					document.getElementById("suadonhang").innerHTML = this.responseText;
    			 }
   			};
-  				http.open("GET", "chinhsuadonhang.php?q="+Number(firstCellContent, true));
+  				http.open("GET", "chinhsuadonhang.php?q="+Number(firstCellContent), true);
   				http.send();
 				document.getElementById('btntable').onclick=showReport('report3');
 				
@@ -715,7 +715,7 @@
 						<th width="10%">Size</th>
            		 		<th width="20%">Số Lượng</th>
             			<th width="10%">Giá</th>
-						<th width="4%">Xóa</th>         			
+						       			
         			</tr>
    				 </thead>
     			<tbody id="chitietdon">
@@ -726,33 +726,39 @@
 
 <!-- Bảng Chỉnh sửa Đơn Hàng -->
 			  <div class="report" id="report3" style="display:none">
+			  <h3 style="text-align: center;">Bảng Sửa Đơn Hàng</h3>
 			  <table id="bangdonhang">
 			  <thead>
        				<tr"><th width="5%">STT</th>
-            			<th width="15%">Mã Sản Phẩm</th>
+            			<th width="10%">Mã Sản Phẩm</th>
             			<th width="10%">Tên Sản Phẩm</th>
 						<th width="10%">Màu Sắc</th>
 						<th width="10%">Size</th>
            		 		<th width="20%">Số Lượng</th>
-            			<th width="10%">Giá</th>         			
+            			<th width="10%">Giá</th> 
+						<th width="4%">Xóa</th>          			
         			</tr>
    				 </thead>
         <tbody id="suadonhang">
-            <tr>
-                <td>Bàn</td>
-                <td>500,000 VND</td>
-                <td><button onclick="deleteRow(this)">Xoá</button></td>
-            </tr>
-            <tr>
-                <td>Ghế</td>
-                <td>300,000 VND</td>
-                <td><button onclick="deleteRow(this)">Xoá</button></td>
-            </tr>
-            <!-- Thêm các hàng khác tại đây -->
+<!-- fill từ chỉnh sửa đơn hàng -->
+           
         </tbody>
     </table>
+<!-- kiểm tra input số lượng -->
+<script>
+    function validateInput(input) {
+        const value = parseInt(input.value);
+        const inputElement = input.getAttribute("max"); // Sử dụng getAttribute để lấy giá trị thuộc tính max
+        const errorText = input.nextElementSibling; // Lấy phần tử kế tiếp (p) để hiển thị thông báo lỗi
 
-    
+        if (value > inputElement) {
+            errorText.textContent = "Nhập quá số lượng trong kho";
+        } else {
+            errorText.textContent = "";
+        }
+    }
+</script>
+
 
 			  </div>
 
