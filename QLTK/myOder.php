@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
 
+
 </head>
 
 <body>
@@ -121,16 +122,36 @@
                             xhttp.send();
                         }
                     </script>
+                    <script>
+                        function huydon(button) {
+                            var data_id = button.value;
+                            var xhttp;
+                            xhttp = new XMLHttpRequest();
+                            xhttp.onreadystatechange = function() {
+                                if (this.readyState == 4 && this.status == 200) {
+                                    console.log('Yêu cầu đã gửi thành công');
+                                    alert("Đã hủy đơn hàng");
+                                    document.getElementById("txtHint").innerHTML = this.responseText;
+                                }
+                            }
+                            xhttp.open("GET", "huyDon.php?q=" + Number(data_id), true);
+                            xhttp.send();
+                        }
+                    </script>
+                    <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
                 </div>
             </div>
-            <table style="border: 1px solid #db7093" id="txtHint">
-              
+            <table style="border: 1px solid #db7093; background: #FFDCE3;" id="txtHint">
+
             </table>
         </div>
     </div>
 
 
     <style>
+        .ttct{
+            margin-top: 40px;
+        }
         table {
             width: 900px;
             margin-bottom: 20px;
@@ -169,7 +190,7 @@
             height: 250px;
             margin-left: 50px;
             width: 300px;
-            margin-top: 80px;
+            margin-top: 100px;
             border: 1px solid #000000;
             padding: 10px;
         }
