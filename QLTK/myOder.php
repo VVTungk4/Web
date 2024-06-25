@@ -75,72 +75,43 @@
         <div class="lsdonhang" style="width: 900px;">
             <div>
                 <h2>Lịch sử đơn hàng</h2>
-                <div class="navbar">
-                    <ul class="navbar">
-                        <li><a href="">Tất cả</a></li>
-                        <li><a href="">Chờ xác nhận</a></li>
-                        <li><a href="">Đang vận chuyển</a></li>
-                        <li><a href="">Đã giao</a></li>
-                        <li><a href="">Đã hủy</a></li>
-                    </ul>
+                <div>
+                    <form action="">
+                        <select name="customers" onchange="showCustomer(this.value)">
+                            <option value="5">Tất cả</option>
+                            <option value="0">Chờ xác nhận</option>
+                            <option value="1">Đang chuẩn bị hàng</option>
+                            <option value="2">Đang giao</option>
+                            <option value="3">Đã giao</option>
+                            <option value="4">Đã hủy</option>
+                        </select>
+                    </form>
+                    <br>
+                    <script>
+                        function showCustomer(str) {
+                            var xhttp;
+                            if (str == "") {
+                                document.getElementById("txtHint").innerHTML = "";
+                                return;
+                            }
+                            xhttp = new XMLHttpRequest();
+                            xhttp.onreadystatechange = function() {
+                                if (this.readyState == 4 && this.status == 200) {
+                                    document.getElementById("txtHint").innerHTML = this.responseText;
+                                }
+                            };
+                            xhttp.open("GET", "oderData.php?q=" + Number(str), true);
+                            xhttp.send();
+                        }
+                    </script>
                 </div>
             </div>
-            <table style="border: 1px solid #db7093">
-                <?php $conn = new mysqli('localhost', 'root', '', 'webhangban');
-                if ($conn->connect_error) {
-                    die("Kết nối thất bại: " . $conn->connect_error);
-                }
-                // Lấy dữ liệu từ nhiều bảng
-                $id = $_SESSION['user_info']['id'];
-                $sql = "SELECT *
-        FROM user
-         JOIN orders ON user.id = orders.user_id
-         JOIN order_details ON orders.id = order_details.order_id
-         JOIN product ON order_details.product_id = product.id
-         WHERE orders.user_id= $id
-        ";
-                $result = $conn->query($sql);
-                ?>
-                    <tr>
-                        <?php
-                        // Kết nối database và lấy dữ liệu
-                        // Kết nối đến cơ sở dữ liệu
-                        //
-                            while ($row = $result->fetch_assoc()) {
-                                if ($row['status'] == 1) {
-                                    $st = "Đã giao";
-                                } else {
-                                    $st = "Chưa giao";
-                                }
-                                echo
-                                '
-                         <td>
-                                <p>Mã người dùng: ' . $id . ' </p>
-                                <div style="display: grid; margin:0 20px 30px;">
-                                    <img src=" ' . $row['thumbnail'] . '" style="height: 300px; width: 250px">
-                                    <p>' . $row['title'] . '</p>
-                                </div>
-
-                                <div class="ttct">
-                                    <p>Màu sắc:' . $row['color'] . ' </p>
-                                    <p>Size: ' . $row['size'] . ' </p>
-                                    <p>Số lượng: ' . $row['num'] . '</p>
-                                    <p>Thành tiền: ' . $row['total_money'] . '</p>
-                                    <p>Trạng thái:
-                                        ' . $st . ' 
-                                    </p>
-                                </div>
-                        </td>
-                                ';
-                        }
-                        ?>
-                        </td>
-
-                    <?php endif; ?>
-                    </tr>
+            <table style="border: 1px solid #db7093" id="txtHint">
+              
             </table>
         </div>
     </div>
+
 
     <style>
         table {

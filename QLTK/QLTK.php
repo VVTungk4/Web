@@ -43,6 +43,7 @@
                     <ul class="MeNu">
                         <li style="font-weight: normal;"><a href="../Login/email_dangki.php">Tài khoản mới</a></li>
                         <li style="font-weight: normal;"><a href="../Login/logout.php">Đăng xuất</a></li>
+                        <li style="font-weight: normal;"><a href="../QLTK/myOder.php">QL đơn hàng</a></li>
                     </ul>
                 </div>
             </div>
