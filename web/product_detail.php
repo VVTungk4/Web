@@ -1,4 +1,10 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
+
+$is_logged_in = isset($_SESSION['user_info']);
+
 // Kết nối đến cơ sở dữ liệu
 $conn = new mysqli('localhost', 'root', '', 'webhangban');
 if ($conn->connect_error) {
@@ -202,6 +208,11 @@ $colors_result = $conn->query("SELECT * FROM colors");
 			}
 		});
 		$('#add-to-cart').click(function() {
+			var isLoggedIn = <?php echo json_encode($is_logged_in); ?>;
+			if (!isLoggedIn) {
+				alert('Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng.');
+				return;
+			}
 			var formData = $('#order-form').serialize();
 
 			$.ajax({
@@ -215,6 +226,15 @@ $colors_result = $conn->query("SELECT * FROM colors");
 			});
 		});
 		$('#buy-now').click(function() {
+			var isLoggedIn = <?php echo json_encode($is_logged_in); ?>;
+			if (!isLoggedIn) {
+
+				event.preventDefault();
+
+
+				alert('Bạn cần đăng nhập để mua sản phẩm.');
+				return;
+			}
 
 			var formData = $('#order-form').serialize();
 
@@ -223,9 +243,8 @@ $colors_result = $conn->query("SELECT * FROM colors");
 				method: 'POST',
 				data: formData,
 				success: function(response) {
-
-					var randomParam = new Date().getTime();
-					window.location.href = '../Cart/cart.php?refresh=' + randomParam;
+					// Thực hiện điều gì đó sau khi thêm vào giỏ hàng thành công
+					window.location.href = '../Cart/cart.php';
 				}
 			});
 
