@@ -29,47 +29,124 @@ if (!empty($result) && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         if ($row['status'] == 0) {
             $st = "Đang chờ xác nhận";
+            echo
+            '
+                             <td>
+                                    <p>Mã đơn hàng: ' . $row['id'] . ' </p>
+                                    <div style="display: grid; margin:0 20px 30px;">
+                                        <img src=" ' . $row['thumbnail'] . '" style="height: 300px; width: 250px  ;border: 1px solid red;">
+                                        <p>' . $row['title'] . '</p>
+                                    </div>
+    
+                                    <div class="ttct">
+                                        <p>Màu sắc: ' . $row['color'] . ' </p>
+                                        <p>Size: ' . $row['size'] . ' </p>
+                                        <p>Số lượng: ' . $row['num'] . '</p>
+                                        <p>Thành tiền: ' . $row['total_money'] . '</p>
+                                        <p>Trạng thái:
+                                            ' . $st . ' 
+                                        </p>
+                                        <p>Ngày đặt hàng: ' . $row['order_date'] . '</p>
+                                        <button class="btn-custom" name="huydon" value="' . $row['id'] . '" onClick="huydon(this)">Hủy đơn hàng </button>
+                                    </div>
+                            </td>
+                                    ';
         }
         if ($row["status"] == 1) {
             $st = "Đang xử lý";
+            echo
+            '
+                             <td>
+                                    <p>Mã đơn hàng: ' . $row['id'] . ' </p>
+                                    <div style="display: grid; margin:0 20px 30px;">
+                                        <img src=" ' . $row['thumbnail'] . '" style="height: 300px; width: 250px;  border: 1px solid red;">
+                                        <p>' . $row['title'] . '</p>
+                                    </div>
+                                    <div class="ttct">
+                                        <p>Màu sắc: ' . $row['color'] . ' </p>
+                                        <p>Size: ' . $row['size'] . ' </p>
+                                        <p>Số lượng: ' . $row['num'] . '</p>
+                                        <p>Thành tiền: ' . $row['total_money'] . '</p>
+                                        <p>Trạng thái:
+                                            ' . $st . ' 
+                                        </p>
+                                        <p>Ngày đặt hàng: ' . $row['order_date'] . '</p>
+                                        <button class="btn-custom" name="huydon" value="' . $row['id'] . '" onClick="huydon(this)">Hủy đơn hàng </button>
+                                    </div>
+                            </td>
+                                    ';
         }
         if ($row["status"] == 2) {
             $st = "Đang giao";
+            echo
+            '
+                             <td>
+                                    <p>Mã đơn hàng: ' . $row['id'] . ' </p>
+                                    <div style="display: grid; margin:0 20px 30px;">
+                                        <img src=" ' . $row['thumbnail'] . '" style="height: 300px; width: 250px;border: 1px solid red;">
+                                        <p>' . $row['title'] . '</p>
+                                    </div>
+    
+                                    <div class="ttct">
+                                        <p>Màu sắc: ' . $row['color'] . ' </p>
+                                        <p>Size: ' . $row['size'] . ' </p>
+                                        <p>Số lượng: ' . $row['num'] . '</p>
+                                        <p>Thành tiền: ' . $row['total_money'] . '</p>
+                                        <p>Trạng thái:
+                                            ' . $st . ' 
+                                        </p>
+                                        <p>Ngày đặt hàng: ' . $row['order_date'] . '</p>
+                                       
+                                    </div>
+                            </td>
+                                    ';
         }
         if ($row["status"] == 3) {
             $st = "Đã giao";
+            echo
+            '
+                             <td>
+                                    <p>Mã đơn hàng: ' . $row['id'] . ' </p>
+                                    <div style="display: grid; margin:0 20px 30px;">
+                                        <img src=" ' . $row['thumbnail'] . '" style="height: 300px; width: 250px;border: 1px solid red;">
+                                        <p>' . $row['title'] . '</p>
+                                    </div>
+                                    <div class="ttct">
+                                        <p>Màu sắc: ' . $row['color'] . ' </p>
+                                        <p>Size: ' . $row['size'] . ' </p>
+                                        <p>Số lượng: ' . $row['num'] . '</p>
+                                        <p>Thành tiền: ' . $row['total_money'] . '</p>
+                                        <p>Trạng thái:
+                                            ' . $st . ' 
+                                        </p>
+                                        <p>Ngày đặt hàng: ' . $row['order_date'] . '</p>
+                                       
+                                    </div>
+                            </td>
+                                    ';
         }
         if ($row["status"] == 4) {
             $st = "Đã hủy";
-        }
-        echo
-        '
-                         <td>
-                                <p>Mã đơn hàng: ' . $row['id'] . ' </p>
-                                <div style="display: grid; margin:0 20px 30px;">
-                                    <img src=" ' . $row['thumbnail'] . '" style="height: 300px; width: 250px">
-                                    <p>' . $row['title'] . '</p>
-                                </div>
-
-                                <div class="ttct">
-                                    <p>Màu sắc: ' . $row['color'] . ' </p>
-                                    <p>Size: ' . $row['size'] . ' </p>
-                                    <p>Số lượng: ' . $row['num'] . '</p>
-                                    <p>Thành tiền: ' . $row['total_money'] . '</p>
-                                    <p>Trạng thái:
-                                        ' . $st . ' 
-                                    </p>
-                                    <p>Ngày đặt hàng: ' . $row['order_date'] . '</p>
-                                    <button class="btn-custom" type="submit" name="huydon">Hủy đơn hàng </button>
-                                </div>
-                        </td>
-                                ';
-        if (isset($_POST['huydon'])) {
-            if ($row['status'] == 1 || $row['status'] == 2) {
-                $sql = "UPDATE orders SET status = 5 where orders.id= order_detail.order_id";
-            } else {
-                echo "Không thể hủy !";
-            }
+            echo
+            '
+            <td>
+                <p>Mã đơn hàng: ' . $row['id'] . ' </p>
+                <div style="display: grid; margin:0 20px 30px;">
+                    <img src=" ' . $row['thumbnail'] . '" style="height: 300px; width: 250px;border: 1px solid red;">
+                     <p>' . $row['title'] . '</p>
+                 </div>
+                <div class="ttct">
+                     <p>Màu sắc: ' . $row['color'] . ' </p>
+                     <p>Size: ' . $row['size'] . ' </p>
+                     <p>Số lượng: ' . $row['num'] . '</p>
+                     <p>Thành tiền: ' . $row['total_money'] . '</p>
+                     <p>Trạng thái:
+                                ' . $st . ' 
+                     </p>
+                    <p>Ngày đặt hàng: ' . $row['order_date'] . '</p>
+                    </div>
+            </td>
+            ';
         }
     }
 }
