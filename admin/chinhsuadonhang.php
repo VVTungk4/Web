@@ -23,8 +23,7 @@
 				echo "<tr><td>" . $stt. "</td><td>" . $row['id']. "</td><td>" .
                 $row['title']. "</td><td>" . $row['color']. "</td><td>" .
                 $row['size']."</td><td><input type='number' id='nhapso".$stt."' name='numberInput' min='1' max='".$quantity."' oninput='validateInput(this)' value=".$row['num'].">
-    			<p id='errorText' style='color: red;'></p></td><td>" . $row['total_money'].
-                "<td id=\"trash\"><button onclick='deleteRow(this)' id='btntable'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
+    			<p id='errorText' style='color: red;'></p><td id=\"trash\"><button onclick='deleteRow(this)' id='btntable'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
 				 $stt++;
 			}} else {echo "0 results";
 				$conn->close();}         

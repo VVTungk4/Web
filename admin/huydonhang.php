@@ -2,7 +2,7 @@
     $conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
 
     mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
-    $sql = "UPDATE orders SET status = 1 WHERE id=?";
+    $sql = "UPDATE orders SET status = 4 WHERE id=?";
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $_GET['q']);

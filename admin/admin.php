@@ -15,9 +15,15 @@
 	
         }
 	
-		  
+		.myListbox {
+    width: 200px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
 	.dialog {
-		display: none;
+		display: block;
 		width: 600px;
   		height: 50px;
   		min-width: 500px;  			
@@ -140,7 +146,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="../index.html">
+				<a href="../index.php">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Cửa Hàng Của Tôi</span>
 				</a>
@@ -605,8 +611,9 @@
 	 	<!-- Đơn Hàng -->
 		<main class="main" id="report" > 
 				<button id="btn" onclick="showReport('report1')">Các Đơn Hàng Mới</button>
-				<button id="btn" onclick="showReport('report2')">Chi Tiết Đơn Hàng</button>	
-				<button id="btn" onclick="showReport('report3')">Sửa Đơn Hàng</button>
+				<button id="btn" onclick="showReport('report4')">Chuẩn Bị Đơn Hàng</button>	
+				<button id="btn" onclick="showReport('report5')">Vận Chuyển</button>
+				<button id="btn" onclick="showReport('report6')">Đơn Hàng Đã Hoàn Thành</button>
 			<div class="report" id="report1" >
 				<table id="bangdonhang">
    				 <thead>
@@ -635,11 +642,16 @@
 				if ($result->num_rows > 0) {
  			// Xuất dữ liệu của mỗi hàng
  			while($row = $result->fetch_assoc()) {
-				echo "<tr class=\"rowdonhang\"'><td data-product-id=\"" . $row["id"] . "\">" . $row["id"]. "</td><td>" . $row["fullname"]. "</td><td>" . $row["phone_number"]."</td><td>" .  $row["address"]."</td><td>" .  $row["order_date"].
-				 "</td><td id=\"xem\" ><button onclick='showchitiet(this)' id='btntable' ><i class='bx bx-low-vision'></i></button></td> 
-				 <td id=\"pencil\"><button  onclick='suadonhang(this)' id='btntable'><i class='bx bxs-pencil' style='color:#1cce55'  ></i></button></td>
-				 <td id=\"check\"><button onclick='xacnhansanpham(this)' id='btntable'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td>
-				 <td id=\"trash\"><button onclick='deleteRow(this)' id='btntable'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
+				echo "<tr><td>" .
+				$row["id"]. "</td><td>" .
+				$row["fullname"]. "</td><td>" . 
+				$row["phone_number"]."</td><td>" . 
+				$row["address"]."</td><td>" .  
+				$row["order_date"]."</td>
+				<td ><button onclick='showchitiet(this)' id='btntable' ><i class='bx bx-low-vision'></i></button></td> 
+				<td><button onclick='suadonhang(this)' id='btntable'><i class='bx bxs-pencil' style='color:#1cce55'  ></i></button></td>
+				<td><button onclick='xacnhansanpham(this)' id='btntable'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td>
+				<td><button onclick='deleteRow(this)' id='btntable'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
 			}} else {echo "0 results";}
 					$conn->close();?>
       
@@ -647,13 +659,25 @@
 			</table>
 
 <script>
+	//hủy đơn
         function deleteRow(button) {
             const row = button.parentNode.parentNode;
             const firstCellContent = row.cells[0].textContent; // Lấy nội dung ô đầu tiên
             console.log("Nội dung ô đầu tiên:", firstCellContent);
-            row.parentNode.removeChild(row);
-        }
-		
+			var xhttp;    
+  				xhttp = new XMLHttpRequest();
+  				xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu đã gửi thành công');
+					document.getElementById("txtHint").innerHTML = this.responseText;
+					alert("Đã hủy đơn hàng");
+   			 }
+  			};
+  				xhttp.open("GET", "huydonhang.php?q="+Number(firstCellContent), true);
+  				xhttp.send();
+			}
+        
+//xác nhận đơn
 			function xacnhansanpham(button) {
 				const row = button.parentNode.parentNode;
             	const firstCellContent = row.cells[0].textContent;
@@ -669,35 +693,38 @@
   				xhttp.open("GET", "capnhattrangthai.php?q="+Number(firstCellContent), true);
   				xhttp.send();
 			}
+
+//xem chi tiết sản phẩm			
 			function showchitiet(button) {
 				const row = button.parentNode.parentNode;
             	const firstCellContent = row.cells[0].textContent;
-  				var http;    
-  				http = new XMLHttpRequest();
-  				http.onreadystatechange = function() {
+  				var xhttp;    
+  				xhttp = new XMLHttpRequest();
+  				xhttp.onreadystatechange = function() {
     			if (this.readyState == 4 && this.status == 200) {
 					console.log('Yêu cầu đã gửi thành công');
 					document.getElementById("chitietdon").innerHTML = this.responseText;
    			 }
   			};
-  				http.open("GET", "chitietdon.php?q="+Number(firstCellContent), true);
-  				http.send();
+  				xhttp.open("GET", "chitietdon.php?q="+Number(firstCellContent), true);
+  				xhttp.send();
 				document.getElementById('btntable').onclick=showReport('report2');
 				
 			}
+//sua đơn hàng			
 			function suadonhang(button) {
 				const row = button.parentNode.parentNode;
             	const firstCellContent = row.cells[0].textContent;
-  				var http;    
-  				http = new XMLHttpRequest();
-  				http.onreadystatechange = function() {
+  				var xhttp;    
+  				xhttp = new XMLHttpRequest();
+  				xhttp.onreadystatechange = function() {
     			if (this.readyState == 4 && this.status == 200) {
 					console.log('Yêu cầu đã gửi thành công');
 					document.getElementById("suadonhang").innerHTML = this.responseText;
    			 }
   			};
-  				http.open("GET", "chinhsuadonhang.php?q="+Number(firstCellContent), true);
-  				http.send();
+  				xhttp.open("GET", "chinhsuadonhang.php?q="+Number(firstCellContent), true);
+  				xhttp.send();
 				document.getElementById('btntable').onclick=showReport('report3');
 				
 			}
@@ -714,7 +741,7 @@
 						<th width="10%">Màu Sắc</th>
 						<th width="10%">Size</th>
            		 		<th width="20%">Số Lượng</th>
-            			<th width="10%">Giá</th>
+            			<th width="10%">Tổng Tiền</th>
 						       			
         			</tr>
    				 </thead>
@@ -726,7 +753,7 @@
 
 <!-- Bảng Chỉnh sửa Đơn Hàng -->
 			  <div class="report" id="report3" style="display:none">
-			  <h3 style="text-align: center;">Bảng Sửa Đơn Hàng</h3>
+			  <h2 style="text-align: center;">Bảng Sửa Đơn Hàng</h2>
 			  <table id="bangdonhang">
 			  <thead>
        				<tr"><th width="5%">STT</th>
@@ -735,15 +762,16 @@
 						<th width="10%">Màu Sắc</th>
 						<th width="10%">Size</th>
            		 		<th width="20%">Số Lượng</th>
-            			<th width="10%">Giá</th> 
 						<th width="4%">Xóa</th>          			
         			</tr>
    				 </thead>
         <tbody id="suadonhang">
 <!-- fill từ chỉnh sửa đơn hàng -->
            
-        </tbody>
-    </table>
+<table id="bangdonhang" >
+	<tbody id="themdonhang">
+
+	</tbody>
 <!-- kiểm tra input số lượng -->
 <script>
     function validateInput(input) {
@@ -759,11 +787,38 @@
     }
 </script>
 
+<!-- listbox lấy ra danh sách đồ còn hàng để thêm vào đơn -->
+<h3 style="font:Arial">Thêm sản phẩm vào giỏ</h3>
+<select classs="myListbox" id="myListbox" onchange="themvaodon()">
+<?php 
+include('timkiem.php');
+?>
+</select>
+
+<!-- button thêm đồ hàng vào đơn hàng -->
+<div id="banghanghoaconlai"></div>
+<script>
+	
+			function themvaodon() {
+				const selectElement = document.getElementById("myListbox");
+   				 const selectedValue = selectElement.value;
+  				var xhttp;    
+  				xhttp = new XMLHttpRequest();
+  				xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu thêm đã gửi thành công');
+					document.getElementById("banghanghoaconlai").innerHTML = this.responseText;	
+   			 }
+  			};
+  				xhttp.open("GET", "themvaodon.php?s="+selectedValue, true);
+
+  				xhttp.send();
+			}
+</script>
 
 			  </div>
 
 			
-
 		</main>
 		<!-- Đơn Hàng -->
 	</section>
@@ -861,7 +916,7 @@
 
 	
 	<!-- Hộp thoại -->
-	<div id="dialog" class="dialog">
+	<div id="dialog" class="dialog" >
   			<button id="edit_btn" onclick="showContent('content3')">Sửa</button>
  			<button id="delete-btn">Xóa</button>
  			<button id="cancel-btn">Hủy bỏ</button>
