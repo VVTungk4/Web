@@ -153,7 +153,7 @@ $colors_result = $conn->query("SELECT * FROM colors");
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<scrip>
+	<script>
 		var maxQuantity = 0;
 
 		function updateQuantity() {
