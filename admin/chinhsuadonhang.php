@@ -4,11 +4,10 @@
 			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
 			// Truy vấn lấy dữ liệu
             $iddata=$_GET['q'];
-			$sql = "SELECT p.id, p.title, od.color, od.size, od.num, od.total_money
+			$sql = "SELECT p.id, p.title, od.color, od.size, od.num
 			FROM order_details od
 			INNER JOIN product p ON od.product_id = p.id
-			WHERE od.product_id = p.id AND od.order_id = $iddata
-			GROUP BY p.id, p.title, od.color, od.size, od.num";
+			WHERE od.product_id = p.id AND od.order_id = $iddata";
 			$result = mysqli_query($conn, $sql);
 			$stt=1;
    			 if ($result->num_rows > 0) {
@@ -23,8 +22,9 @@
 				echo "<tr><td>" . $stt. "</td><td>" . $row['id']. "</td><td>" .
                 $row['title']. "</td><td>" . $row['color']. "</td><td>" .
                 $row['size']."</td><td><input type='number' id='nhapso".$stt."' name='numberInput' min='1' max='".$quantity."' oninput='validateInput(this)' value=".$row['num'].">
-    			<p id='errorText' style='color: red;'></p><td id=\"trash\"><button onclick='deleteRow(this)' id='btntable'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
+    			<p id='errorText' style='color: red;'></p><td><button onclick='xoasanphamkhoidonhang(this)' id='btntable'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
 				 $stt++;
-			}} else {echo "0 results";
+			}echo "<div style='display=block' id='toimuoncainay' class='".$iddata."'>Mã Đơn Hàng:".$iddata."</div>";
+		} else {echo "0 results";
 				$conn->close();}         
 ?>

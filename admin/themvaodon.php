@@ -19,16 +19,16 @@ mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
             $sql1 = "SELECT quantity FROM product_size_color psc
             INNER JOIN colors c ON c.id = psc.color_id
             INNER JOIN sizes s ON s.id = psc.size_id
-            WHERE s.name = '{$row['sizename']}' AND c.name = '{$row['colorname']}' AND psc.product_id = '{$row['id']}'";
+            WHERE s.name = '{$row['sizename']}' AND c.name = '{$row['colorname']}' AND psc.product_id = {$row['id']}";
             $result1 = mysqli_query($conn, $sql1);
             $quantity = $result1->fetch_assoc()['quantity'];
-          echo "<table id='bangdonhang'>
-          
-                <tr><td><img src='../" .$row['thumbnail']. "' style='width:70px;height:50px'></td><td>" . $row['id']. "</td><td>" .
-                $row['title']. "</td><td>" . $row['colorname']. "</td><td>" .
-                $row['sizename']."</td><td><input type='number' id='nhapso".$stt."' name='numberInput' min='1' max='".$quantity."' oninput='validateInput(this)' value='1'>
-    			<p id='errorText' style='color: red;'></p><td>nút thêm vào </td></tr>";
+                echo "<table id='bangdonhang' class='table table-striped table-bordered'>
+                <tr><td width='10%'><img src='../" .$row['thumbnail']. "' style='width:70px;height:50px'></td><td width='7%'>" . $row['id']. "</td><td width='20%'>" .
+                $row['title']. "</td><td width='5%'>" . $row['colorname']. "</td><td width='5%'>" .
+                $row['sizename']."</td><td width='10%'>Còn: ".$quantity."</td><td width='10%'><button onclick='themsanphamvaodonhang(this)' id='btntable' style='color:var(--dark);'>Thêm Vào Đơn</button></td></tr>";
                 $stt++;
+             
+          
                }
            
         }

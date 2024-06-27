@@ -5,7 +5,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="img/icon.png" type="image/x-icon">
-	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	<link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<style>
 	 #btntable {
             background-color: pink;
@@ -14,7 +15,9 @@
             cursor: pointer;
 	
         }
-	
+	table {
+		font-family: Arial;
+	}
 		.myListbox {
     width: 200px;
     height: 30px;
@@ -42,85 +45,7 @@
 		text-align: left;
 		color: black;
 }
-.report-container {
-		max-width: 800px;
-		margin: auto;
-		background: #fff;
-		padding: 20px;
-		border-radius: 8px;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	  }
-	#report {
-		width: 100%;
-		border-collapse: collapse;
-		margin-top: 20px;
-	  }
-	 
-	#bangdonhang {
-  		width: 100%;
- 		border-collapse: collapse;
-  		font-family: Arial, sans-serif;
-	}
-	#bangdonhang td {
-  		background-color: pink;
-		
-	}
-	#bangdonhang td:hover {
-  		background-color: plum;
-		
-	}
-	.th td{
-		background-color: #f0f0f0;
-	}
-	.th td:hover{
-		background-color: #f0f0f0;
-	}
-	#bangdonhang th {
-  		background-color: var(--white);
-		color:var(--dark);
-	}
-	#bangdonhang th {
-  		border-bottom: 2px solid var(--dark);
-		border-right: 1px solid var(--dark);
-  		padding: 8px;
-  		text-align: left;
-	} 
-	#bangdonhang td {
-  		border: 1px solid #ddd;
-  		padding: 8px;
-  		text-align: left;
-	}
-	#users-tab,#bangdonhang {
-		border: 2px solid var(--dark);
-	}
-	#users-tab {
-		width: 100%;
-		border-collapse: collapse;
-		font-family: Arial, sans-serif;
-	}
-	#users-tab th	{
-		border-right: 1px solid var(--dark);
-		border-bottom: 2px solid var(--dark);
-		padding: 8px;
-		text-align: left;
-	}
-	#users-tab td {
-		border: 1px solid #ddd;
-		padding: 8px;
-		text-align: left;
-	}
-	#users-tab th {
-		background-color:var(--white);
-		color:var(--dark);
-	}
-	
-	#users-tab td {
-		background-color: pink;
-	}
-	#users-tab td:hover {
-		background-color: plum;
-	}
-	
+
 	
 	</style>
 	<!-- Boxicons -->
@@ -138,7 +63,7 @@
 			<i class='bx bxs-joystick bx-spin' ></i>
 			<span class="text">Trang Quản Trị</span>
 		</a>
-		<ul class="side-menu top">
+		<ul class="side-menu top" style="padding-left: 0px;">
 			<li class="active">
 				<a href="#tongquan">
 					<i class='bx bxs-dashboard' ></i>
@@ -177,7 +102,7 @@
 				</a>
 			</li>
 		</ul>
-		<ul class="side-menu">
+		<ul class="side-menu" style="padding-left: 0px;">
 			
 			<li>
 				<a href="../Login/logout.php" class="logout">
@@ -355,7 +280,7 @@
 				echo "<tr><td><img src=\"img/people.png\"><p>" . $row["fullname"] . "</p></td><td>" .
     		 $row["order_date"] . "</td><td><span class=\"$trangthai\">".$tt."</span></td><td>";
 			}}
-			 else {echo "0 results";}
+			 else {echo "Chưa Có Đơn Hàng Nào!";}
 					$conn->close();
 ?>		
 						</tbody>
@@ -389,7 +314,7 @@
  			// Xuất dữ liệu của mỗi hàng
  			while($row = $result->fetch_assoc()) {
 				echo "<li class=\"top1\"\<p>" . $row["id"] .":". $row["title"]. " &nbsp;&nbsp;   " . $row["total_revenue"]."</p></li>";
-			}} else {echo "0 results";}
+			}} else {echo "Không Có Mặt Hàng Nào Được Bán!";}
 					$conn->close();
 ?>										
 					</ul>
@@ -487,22 +412,22 @@
 				<!-- Các nút bấm -->
 				<button id="btn" onclick="showContent('content1')">Xem Danh Sách Tài Khoản</button>
 				<button id="btn" onclick="showContent('content2')">Thêm Tài Khoản</button>	
-				<button id="btn" onclick="showContent('content3')">Sửa</button>		
+				<!-- <button id="btn" onclick="showContent('content3')">Sửa</button>		 -->
 				<!-- Các phần nội dung -->
 			<div id="content1" class="content">
-				<table id="users-tab">
-					<thead>
+				<table style="margin-top:50px ;" id="users-tab" class="table table-hover">
+					<thead style="border-bottom: 1px solid var(--dark);" class="table-dark">
 						<tr>
-							<th width="1%">ID</th>
-							<th width="15%">Họ Tên</th>
-							<th width="18%">Email</th>
-							<th width="10%">Số Điện Thoại</th>
-							<th width="20%">Địa Chỉ</th>
-							<th width="10%">Mật Khẩu</th>
-							<th width="7%">ID Vai Trò</th>
-							<th width="5%">Ngày Tạo</th>
-							<th width="5%">Ngày Cập Nhật</th>
-							<th width="1%">TT</th>
+							<th width="3%" scope="col">ID</th>
+							<th width="15%" scope="col">Họ Tên</th>
+							<th width="18%" scope="col">Email</th>
+							<th width="10%" scope="col">Số Điện Thoại</th>
+							<th width="20%" scope="col">Địa Chỉ</th>
+							<th width="8%" scope="col">MK</th>
+							<th width="5%" scope="col">RID</th>
+							<th width="10%" scope="col">Date</th>
+							<th width="10%" scope="col">UDate</th>
+							<th width="3%" scope="col">TT</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -517,8 +442,8 @@
 				if ($result->num_rows > 0) {
  			// Xuất dữ liệu của mỗi hàng
  			while($row = $result->fetch_assoc()) {
-				echo "<tr class='data-row' ><td>" . $row["id"]. "</td><td>" . $row["fullname"]. "</td><td>" . $row["email"]. "</td><td>" . $row["phone_number"]."</td><td>" .  $row["address"]."</td><td>" .  $row["password"]. "</td><td>" . $row["role_id"]."</td><td>" .  $row["created_at"]."</td><td>" .  $row["updated_at"]. "</td><td>" . $row["deleted"]. "</td></tr>";
-			}} else {echo "0 results";}
+				echo "<tr class='data-row' style='height: 50px;'><td>" . $row["id"]. "</td><td>" . $row["fullname"]. "</td><td>" . $row["email"]. "</td><td>" . $row["phone_number"]."</td><td>" .  $row["address"]."</td><td>" .  $row["password"]. "</td><td>" . $row["role_id"]."</td><td>" .  $row["created_at"]."</td><td>" .  $row["updated_at"]. "</td><td>" . $row["deleted"]. "</td></tr>";
+			}} else {echo "Chưa có Tài Khoản Nào!";}
 					$conn->close();?>
 					</tbody>
 				</table>
@@ -555,9 +480,15 @@
 						<div class="form-group">
 							<label for="role_id">ID Vai Trò:</label>
 							<select id="role_id" name="role_id" required>
-							  <option value="1">Admin</option>
-							  <option value="2">Nhân Viên</option>
-							  <option value="3">Khách Hàng</option>
+							<?php 
+					$conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+					mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');			  
+					$sql = "SELECT id ,name FROM role";			  
+					$result = mysqli_query($conn, $sql);
+					while($row=$result->fetch_assoc()) {
+						echo "<option value='".$row['id']."'>".$row['name']."</option>";
+					}
+							  ?>
 						 	 </select>
 						</div> 				
 							<button  type="submit" id="btn1" name="themtaikhoan">Xác Nhận</button>					
@@ -596,9 +527,15 @@
 						<div class="form-group">
 							<label for="role_id1">ID Vai Trò:</label>
 							<select id="role_id1" name="role_id1" required>
-							  <option value="1">Admin</option>
-							  <option value="2">Khách Hàng</option>
-							  <option value="3">Nhân Viên</option>
+							<?php 
+					$conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+					mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');			  
+					$sql = "SELECT id ,name FROM role";			  
+					$result = mysqli_query($conn, $sql);
+					while($row=$result->fetch_assoc()) {
+						echo "<option value='".$row['id']."'>".$row['name']."</option>";
+					}
+							  ?>
 						  </select>
 						</div> 	
 						<button  type="submit" id="btn1" name="suataikhoan">Xác Nhận</button>		
@@ -610,14 +547,18 @@
 
 	 	<!-- Đơn Hàng -->
 		<main class="main" id="report" > 
-				<button id="btn" onclick="showReport('report1')">Các Đơn Hàng Mới</button>
-				<button id="btn" onclick="showReport('report4')">Chuẩn Bị Đơn Hàng</button>	
-				<button id="btn" onclick="showReport('report5')">Vận Chuyển</button>
-				<button id="btn" onclick="showReport('report6')">Đơn Hàng Đã Hoàn Thành</button>
+				<button id="btn3" onclick="showReport('report1')" aria-pressed="true" data-bs-toggle="button" class="btn btn-outline-danger btn-lg active" >Các Đơn Hàng Mới</button>
+				<button id="btn3" onclick="showReport('report4')" data-bs-toggle="button" class="btn btn-outline-warning btn-lg">Chuẩn Bị Đơn Hàng</button>	
+				<button id="btn3" onclick="showReport('report5')" data-bs-toggle="button" class="btn btn-outline-warning btn-lg">Vận Chuyển</button>
+				<button id="btn3" onclick="showReport('report6')" data-bs-toggle="button" class="btn btn-outline-success btn-lg ">Đơn Hàng Đã Hoàn Thành</button>
+				
+	
+
 			<div class="report" id="report1" >
-				<table id="bangdonhang">
-   				 <thead>
-       				<tr><th width="5%">Mã Đơn Hàng</th>
+				<table class="table table-striped caption-top" style="margin-top:25px ;">
+				<caption style="color:red">Các Đơn Hàng Mới Cần Duyệt</caption>
+   				 <thead style="border-bottom: 1px solid var(--dark);" class="table-primary">
+       				<tr><th width="5%">Mã</th>
             			<th width="15%">Họ Tên</th>
             			<th width="10%">Số Điện Thoại</th>
            		 		<th width="20%">Địa Chỉ</th>
@@ -652,12 +593,12 @@
 				<td><button onclick='suadonhang(this)' id='btntable'><i class='bx bxs-pencil' style='color:#1cce55'  ></i></button></td>
 				<td><button onclick='xacnhansanpham(this)' id='btntable'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td>
 				<td><button onclick='deleteRow(this)' id='btntable'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
-			}} else {echo "0 results";}
+			}} else {echo "Không Có Đơn Hàng Mới Nào!";}
 					$conn->close();?>
       
   		  		</tbody> 
 			</table>
-
+		</div>
 <script>
 	//hủy đơn
         function deleteRow(button) {
@@ -730,18 +671,19 @@
 			}
 			
     </script>
-			  </div>
+			 
 <!-- Bảng chi tiết đơn hàng -->
 			<div class="report" id="report2" style="display:none">
-			  <table id="bangdonhang">
-   				 <thead>
+			  <table class="table table-sm caption-top" style="margin-top:25px ;">
+			  <caption>Bảng Hóa Đơn Chi Tiết</caption>
+   				 <thead style="border-bottom: 1px solid var(--dark);" class="table-danger">
        				<tr"><th width="5%">STT</th>
-            			<th width="15%">Mã Sản Phẩm</th>
-            			<th width="10%">Tên Sản Phẩm</th>
-						<th width="10%">Màu Sắc</th>
-						<th width="10%">Size</th>
-           		 		<th width="20%">Số Lượng</th>
-            			<th width="10%">Tổng Tiền</th>
+            			<th width="10%">Mã Sản Phẩm</th>
+            			<th width="15%">Tên Sản Phẩm</th>
+						<th width="9%">Màu Sắc</th>
+						<th width="9%">Size</th>
+           		 		<th width="10%">Số Lượng</th>
+            			<th width="20%">Tổng Tiền</th>
 						       			
         			</tr>
    				 </thead>
@@ -752,10 +694,10 @@
 			  </div>
 
 <!-- Bảng Chỉnh sửa Đơn Hàng -->
-			  <div class="report" id="report3" style="display:none">
-			  <h2 style="text-align: center;">Bảng Sửa Đơn Hàng</h2>
-			  <table id="bangdonhang">
-			  <thead>
+	<div class="report" id="report3" style="display:none">
+		<h2 style="text-align: center;">Bảng Sửa Đơn Hàng</h2>
+			<table class="table table-striped" style="margin-top:25px ;">
+			  	<thead style="border-bottom: 1px solid var(--dark);" class="table-danger">
        				<tr"><th width="5%">STT</th>
             			<th width="10%">Mã Sản Phẩm</th>
             			<th width="10%">Tên Sản Phẩm</th>
@@ -764,25 +706,23 @@
            		 		<th width="20%">Số Lượng</th>
 						<th width="4%">Xóa</th>          			
         			</tr>
-   				 </thead>
-        <tbody id="suadonhang">
+   				</thead>
+        			<tbody id="suadonhang">
 <!-- fill từ chỉnh sửa đơn hàng -->
-           
-<table id="bangdonhang" >
-	<tbody id="themdonhang">
-
-	</tbody>
+       				 </tbody>
+			</table>
 <!-- kiểm tra input số lượng -->
 <script>
     function validateInput(input) {
         const value = parseInt(input.value);
         const inputElement = input.getAttribute("max"); // Sử dụng getAttribute để lấy giá trị thuộc tính max
         const errorText = input.nextElementSibling; // Lấy phần tử kế tiếp (p) để hiển thị thông báo lỗi
-
-        if (value > inputElement) {
+		 if (value > inputElement) {
+			input.value = inputElement;
             errorText.textContent = "Nhập quá số lượng trong kho";
-        } else {
-            errorText.textContent = "";
+			if(input.value==inputElement){
+				errorText.textContent = "";
+			}
         }
     }
 </script>
@@ -798,7 +738,46 @@ include('timkiem.php');
 <!-- button thêm đồ hàng vào đơn hàng -->
 <div id="banghanghoaconlai"></div>
 <script>
-	
+			function themsanphamvaodonhang(button) {
+				const row = button.parentNode.parentNode;
+            	const idsanpham = row.cells[1].textContent;
+				const mausanpham = row.cells[3].textContent;
+				const sizesanpham = row.cells[4].textContent;
+				const input = row.querySelector('.toimuonsonay');
+           		const soluong = 1;
+				const toimuoncainay=document.getElementById("toimuoncainay");
+				const dayroi =toimuoncainay.className;
+  				var xhttp;    
+  				xhttp = new XMLHttpRequest();
+  				xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu đã gửi thành công');
+					document.getElementById("suadonhang").innerHTML = this.responseText;
+   			 }
+  			};
+  				xhttp.open("GET", "themsanphamvaodon.php?idsanpham="+Number(idsanpham)+"&mausanpham=" + mausanpham + "&sizesanpham=" + sizesanpham + "&iddonhang=" + Number(dayroi)+"&soluong=" + Number(soluong), true);
+  				xhttp.send();
+			}
+			function xoasanphamkhoidonhang(button) {
+				const row = button.parentNode.parentNode;
+            	const idsanpham = row.cells[1].textContent;
+				const mausanpham = row.cells[3].textContent;
+				const sizesanpham = row.cells[4].textContent;
+				const toimuoncainay=document.getElementById("toimuoncainay");
+				const dayroi =toimuoncainay.className;
+  				var xhttp;    
+  				xhttp = new XMLHttpRequest();
+  				xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu đã gửi thành công');
+					alert("Đã xóa sản phẩm");
+					document.getElementById("suadonhang").innerHTML = this.responseText;
+   			 }
+  			};
+  				xhttp.open("GET", "xoasanphamkhoidonhang.php?idsanpham="+Number(idsanpham)+"&mausanpham=" + mausanpham + "&sizesanpham=" + sizesanpham + "&iddonhang=" + Number(dayroi), true);
+  				xhttp.send();
+			}
+			
 			function themvaodon() {
 				const selectElement = document.getElementById("myListbox");
    				 const selectedValue = selectElement.value;
@@ -818,7 +797,183 @@ include('timkiem.php');
 
 			  </div>
 
-			
+<!-- Bảng chuẩn bị đơn hàng -->
+
+	<div class="report" id="report4" style="display:none;">
+				<table class="table table-striped caption-top" style="margin-top:25px ;">
+				<caption>Bảng Chuẩn Bị Đơn Hàng</caption>
+   				 <thead style="border-bottom: 1px solid var(--dark);" class="table-warning">
+       				<tr><th width="5%">Mã</th>
+            			<th width="15%">Họ Tên</th>
+            			<th width="10%">Số Điện Thoại</th>
+           		 		<th width="20%">Địa Chỉ</th>
+            			<th width="10%">Ngày Đặt</th>
+            			<th width="6%">Xem chi tiết</th>
+						<th width="8%">Đã Xong</th>
+        			</tr>
+		<script>
+		function chuyensanggiaohang(button) {
+				const row = button.parentNode.parentNode;
+            	const firstCellContent = row.cells[0].textContent;
+  				var xhttp;    
+  				xhttp = new XMLHttpRequest();
+  				xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu đã gửi thành công');
+					alert("Đã Xong Và Chuyển Cho Bên Giao Hàng");
+					document.getElementById("txtHint1").innerHTML = this.responseText;
+   			 }
+  			};
+  				xhttp.open("GET", "chuyensanggiaohang.php?q="+Number(firstCellContent), true);
+  				xhttp.send();
+			}
+		</script>
+   				 </thead>	
+				<tbody id="txtHint1">
+		
+	<?php
+	
+			// Kết nối cơ sở dữ liệu
+			$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+			// Truy vấn lấy dữ liệu
+				$sql = "Select * From orders Where status = 1";
+				$result = $conn->query($sql);
+			// Kiểm tra số lượng bản ghi trả về
+				if ($result->num_rows > 0) {
+ 			// Xuất dữ liệu của mỗi hàng
+ 			while($row = $result->fetch_assoc()) {
+				echo "<tr><td>" .
+				$row["id"]. "</td><td>" .
+				$row["fullname"]. "</td><td>" . 
+				$row["phone_number"]."</td><td>" . 
+				$row["address"]."</td><td>" .  
+				$row["order_date"]."</td>
+				<td ><button onclick='showchitiet(this)' id='btntable' ><i class='bx bx-low-vision'></i></button></td>
+				<td><button onclick='chuyensanggiaohang(this)' id='btntable'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td></tr>";
+			}} else {echo "Hiện Tại Không Có Đơn!";}
+					$conn->close();?>
+      
+  		  		</tbody> 
+			</table>
+		</div>
+
+<!-- Bảng Giao Hàng -->
+		<div class="report" id="report5" style="display:none;">
+				<table class="table table-striped caption-top" style="margin-top:25px ;">
+				<caption>Các Đơn Hàng Đang Giao</caption>
+   				 <thead style="border-bottom: 1px solid var(--dark);" class="table-warning">
+       				<tr><th width="5%">Mã</th>
+            			<th width="15%">Họ Tên</th>
+            			<th width="10%">Số Điện Thoại</th>
+           		 		<th width="20%">Địa Chỉ</th>
+            			<th width="10%">Ngày Đặt</th>
+            			<th width="6%">Xem chi tiết</th>
+						<th width="8%">Đã Xong</th>
+        			</tr>
+		<script>
+		function Thanhcong(button) {
+				const row = button.parentNode.parentNode;
+            	const firstCellContent = row.cells[0].textContent;
+  				var xhttp;    
+  				xhttp = new XMLHttpRequest();
+  				xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu đã gửi thành công');
+					alert("Chúc Mừng Đơn Hàng Đã Hoàn Tất !");
+					document.getElementById("txtHint2").innerHTML = this.responseText;
+   			 }
+  			};
+  				xhttp.open("GET", "Thanhcong.php?q="+Number(firstCellContent), true);
+  				xhttp.send();
+			}
+		</script>
+   				 </thead>	
+				<tbody id="txtHint2">
+		
+	<?php
+	
+			// Kết nối cơ sở dữ liệu
+			$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+			// Truy vấn lấy dữ liệu
+				$sql = "Select * From orders Where status = 2";
+				$result = $conn->query($sql);
+			// Kiểm tra số lượng bản ghi trả về
+				if ($result->num_rows > 0) {
+ 			// Xuất dữ liệu của mỗi hàng
+ 			while($row = $result->fetch_assoc()) {
+				echo "<tr><td>" .
+				$row["id"]. "</td><td>" .
+				$row["fullname"]. "</td><td>" . 
+				$row["phone_number"]."</td><td>" . 
+				$row["address"]."</td><td>" .  
+				$row["order_date"]."</td>
+				<td ><button onclick='showchitiet(this)' id='btntable' ><i class='bx bx-low-vision'></i></button></td>
+				<td><button onclick='Thanhcong(this)' id='btntable'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td></tr>";
+			}} else {echo "Hiện Không Có Đơn Hàng Nào";}
+					$conn->close();?>
+      
+  		  		</tbody> 
+			</table>
+		</div>
+<!-- Bảng Đơn Hàng Thành Công-->
+<div class="report" id="report6" style="display:none;">
+				<table class="table table-striped caption-top" style="margin-top:25px ;">
+				<caption>Các Đơn Hàng Thành Công</caption>
+   				 <thead style="border-bottom: 1px solid var(--dark);" class="table-success">
+       				<tr><th width="5%">Mã</th>
+            			<th width="15%">Họ Tên</th>
+            			<th width="10%">Số Điện Thoại</th>
+           		 		<th width="20%">Địa Chỉ</th>
+            			<th width="10%">Ngày Đặt</th>
+            			<th width="6%">Xem chi tiết</th>
+						<th width="8%">In Hóa Đơn</th>
+        			</tr>
+		<script>
+		function Inhoadon(button) {
+				const row = button.parentNode.parentNode;
+            	const firstCellContent = row.cells[0].textContent;
+  				var xhttp;    
+  				xhttp = new XMLHttpRequest();
+  				xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu đã gửi thành công');
+   			 }
+  			};
+  				xhttp.open("GET", "Inhoadon.php?q="+Number(firstCellContent), true);
+  				xhttp.send();
+			}
+		</script>
+   				 </thead>	
+				<tbody id="txtHint3">
+		
+	<?php
+	
+			// Kết nối cơ sở dữ liệu
+			$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+			// Truy vấn lấy dữ liệu
+				$sql = "Select * From orders Where status = 3";
+				$result = $conn->query($sql);
+			// Kiểm tra số lượng bản ghi trả về
+				if ($result->num_rows > 0) {
+ 			// Xuất dữ liệu của mỗi hàng
+ 			while($row = $result->fetch_assoc()) {
+				echo "<tr><td>" .
+				$row["id"]. "</td><td>" .
+				$row["fullname"]. "</td><td>" . 
+				$row["phone_number"]."</td><td>" . 
+				$row["address"]."</td><td>" .  
+				$row["order_date"]."</td>
+				<td ><button onclick='showchitiet(this)' id='btntable' ><i class='bx bx-low-vision'></i></button></td>
+				<td><button onclick='Inhoadon(this)' id='btntable'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td></tr>";
+			}} else {echo "Chưa ai mua đồ của Shop cả (.-_-.)!";}
+					$conn->close();?>
+      
+  		  		</tbody> 
+			</table>
+		</div>
 		</main>
 		<!-- Đơn Hàng -->
 	</section>
@@ -918,7 +1073,7 @@ include('timkiem.php');
 	<!-- Hộp thoại -->
 	<div id="dialog" class="dialog" >
   			<button id="edit_btn" onclick="showContent('content3')">Sửa</button>
- 			<button id="delete-btn">Xóa</button>
+			<button id="delete-btn">Xóa</button>
  			<button id="cancel-btn">Hủy bỏ</button>
 	</div>
 	<!-- Hộp thoại -->
