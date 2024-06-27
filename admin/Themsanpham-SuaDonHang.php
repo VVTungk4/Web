@@ -1,4 +1,5 @@
 <?php
+$so=0;
     $conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
     mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
     $sql3 = "SELECT id FROM order_details WHERE product_id = {$_GET['idsanpham']} AND color = '{$_GET['mausanpham']}' AND size = '{$_GET['sizesanpham']}' AND order_id = {$_GET['iddonhang']}";
@@ -14,7 +15,7 @@
     else{$sql = "INSERT INTO order_details (product_id, color, size, num, order_id)
         VALUES (?, ?,?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("issii", $_GET['idsanpham'],$_GET['mausanpham'],$_GET['sizesanpham'],$_GET['soluong'],$_GET['iddonhang']);
+        $stmt->bind_param("issii", $_GET['idsanpham'],$_GET['mausanpham'],$_GET['sizesanpham'],$so,$_GET['iddonhang']);
         $stmt->execute();
         $stmt->get_result(); }
     
@@ -37,8 +38,8 @@
         $quantity = $result1->fetch_assoc()['quantity'];
         echo "<tr><td>" . $stt. "</td><td>" . $row['id']. "</td><td>" .
         $row['title']. "</td><td>" . $row['color']. "</td><td>" .
-        $row['size']."</td><td><input type='number' id='nhapso".$stt."' name='numberInput' min='1' max='".$quantity."' oninput='validateInput(this)' value=".$row['num'].">
-        <p id='errorText' style='color: red;'></p><td id=\"trash\"><button onclick='xoasanphamkhoidonhang(this)' id='btntable'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
+        $row['size']."</td><td><input type='number' id='nhapso".$stt."' name='numberInput' min='0' max='".$quantity."' oninput='validateInput(this)' value=".$row['num'].">
+        <p id='errorText' style='color: red;'></p><td id=\"trash\"><button onclick='xoasanphamkhoidonhang(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
          $stt++;
     }echo "<div style='display=block' id='toimuoncainay' class='".$iddata."'>Mã Đơn Hàng:".$iddata."</div>";
 }

@@ -1,4 +1,5 @@
-<?php		
+<?php	
+//chitiet đơn hàng	
 			// Kết nối cơ sở dữ liệu
 			$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
 			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');

@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://cdn.ckeditor.com/4.24.0-lts/standard/ckeditor.js"></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="img/icon.png" type="image/x-icon">
@@ -9,8 +10,8 @@
 	<link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<style>
 	 #btntable {
-            background-color: pink;
-            color: white;
+   
+   
             padding: 20px 20px;
             cursor: pointer;
 	
@@ -21,8 +22,7 @@
 		.myListbox {
     width: 200px;
     height: 30px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+
 }
 
 	.dialog {
@@ -201,7 +201,7 @@
 		<?php
 			$conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
 			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
-			$sql = "SELECT COUNT(*) AS total_accounts FROM user WHERE role_id = 2";
+			$sql = "SELECT COUNT(*) AS total_accounts FROM orders GROUP BY fullname=fullname";
 			$result = $conn->query($sql);
 
 			if ($result->num_rows > 0) {
@@ -210,7 +210,7 @@
   		      	echo "<h3>$totalAccounts</h3>";
    			 	}
 			} else {
-    			echo "Không có dữ liệu.";}
+    			echo "0";}
 				$conn->close();?>
 						<p>Số lượng Khách Hàng</p>
 					</span>
@@ -272,10 +272,18 @@
 				}
 				else if($status==1){
 					$trangthai='status process';
+					$tt='Đang Xử Lý';
+				}
+				else if($status==2){
+					$trangthai='status ongoing';
 					$tt='Đang Giao';
 				}
-				else {$trangthai='status completed';
-					$tt='Thành Công';}
+				else if($status==3){
+					$trangthai='status completed';
+					$tt='Thành Công';;
+				}
+				else {$trangthai='status error';
+					$tt='Đã Hủy';}
 				
 				echo "<tr><td><img src=\"img/people.png\"><p>" . $row["fullname"] . "</p></td><td>" .
     		 $row["order_date"] . "</td><td><span class=\"$trangthai\">".$tt."</span></td><td>";
@@ -415,7 +423,7 @@
 				<!-- <button id="btn" onclick="showContent('content3')">Sửa</button>		 -->
 				<!-- Các phần nội dung -->
 			<div id="content1" class="content">
-				<table style="margin-top:50px ;" id="users-tab" class="table table-hover">
+				<table style="margin-top:50px ;" id="users-tab" class="table table-hover table-striped">
 					<thead style="border-bottom: 1px solid var(--dark);" class="table-dark">
 						<tr>
 							<th width="3%" scope="col">ID</th>
@@ -450,7 +458,7 @@
 			</div>
 
 			<div id="content2" class="content" style="display:none;" >
-				<form method="post" action="Taikhoan.php">
+				<form method="post" action="ThemTaiKhoan.php">
 					<div class="user-container">
 						<h2 style="font-family:Arial">Thông Tin Người Dùng</h2>
 						<div class="form-group">
@@ -496,7 +504,7 @@
 				</form>			
 			</div>
 			<div id="content3" class="content" style="display:none;">
-				<form method="post" action="update.php">
+				<form method="post" action="CapNhatTaiKhoan.php">
 					<div class="user-container">
 						<h2>Thông Tin Người Dùng</h2>
 						<div class="form-group">
@@ -547,17 +555,64 @@
 
 	 	<!-- Đơn Hàng -->
 		<main class="main" id="report" > 
-				<button id="btn3" onclick="showReport('report1')" aria-pressed="true" data-bs-toggle="button" class="btn btn-outline-danger btn-lg active" >Các Đơn Hàng Mới</button>
-				<button id="btn3" onclick="showReport('report4')" data-bs-toggle="button" class="btn btn-outline-warning btn-lg">Chuẩn Bị Đơn Hàng</button>	
-				<button id="btn3" onclick="showReport('report5')" data-bs-toggle="button" class="btn btn-outline-warning btn-lg">Vận Chuyển</button>
-				<button id="btn3" onclick="showReport('report6')" data-bs-toggle="button" class="btn btn-outline-success btn-lg ">Đơn Hàng Đã Hoàn Thành</button>
-				
-	
+				<button id="btn3" onclick="loadlaiform(this)" onclick="showReport('report1')" class="btn btn-outline-danger btn-lg" value="0">Các Đơn Hàng Mới</button>
+				<button id="btn3" onclick="loadlaiform(this)" onclick="showReport('report4')" class="btn btn-outline-warning btn-lg" value="1">Chuẩn Bị Đơn Hàng</button>	
+				<button id="btn3" onclick="loadlaiform(this)" onclick="showReport('report5')" class="btn btn-outline-success btn-lg" value="2">Vận Chuyển</button>
+				<button id="btn3" onclick="loadlaiform(this)" onclick="showReport('report6')" class="btn btn-outline-info btn-lg" value ="3">Đơn Hàng Đã Hoàn Thành</button>
+				<button id="btn3" onclick="loadlaiform(this)" onclick="showReport('report7')" class="btn btn-outline-secondary btn-lg" value ="4">Đơn Hàng Đã Hủy</button>		
+		<script>
+		function loadlaiform(button) {
+  			const value = button.value;
+   			const xhttp = new XMLHttpRequest();
 
+    	if (value == 0) {
+        showReport('report1');
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                document.getElementById("txtHint").innerHTML = this.responseText;
+            }
+        };
+    } else if (value == 1) {
+        showReport('report4');    
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                document.getElementById("txtHint1").innerHTML = this.responseText;
+            }
+        };
+    } else if (value == 2) {
+        showReport('report5');
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                document.getElementById("txtHint2").innerHTML = this.responseText;
+            }
+        };
+    } else if (value == 3) {
+        showReport('report6');
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                document.getElementById("txtHint3").innerHTML = this.responseText;
+            }
+        };
+    }
+	else if (value == 4) {
+		showReport('report7');
+		xhttp.onreadystatechange = function() {
+			if (this.readyState === 4 && this.status === 200) {
+				document.getElementById("txtHint4").innerHTML = this.responseText;
+				}
+			};
+    }
+    // Thay đổi URL của "Lammoitrangkhibam-btn3.php" thành đúng đường dẫn của bạn
+    xhttp.open("GET", "Lammoitrangkhibam-btn3.php?q=" + value, true);
+    xhttp.send();
+}
+
+		</script>		
 			<div class="report" id="report1" >
+			<h2 style="text-align: center;margin-top: 20px ;color:var(--dark)" >CÁC ĐƠN HÀNG MỚI</h2>
 				<table class="table table-striped caption-top" style="margin-top:25px ;">
 				<caption style="color:red">Các Đơn Hàng Mới Cần Duyệt</caption>
-   				 <thead style="border-bottom: 1px solid var(--dark);" class="table-primary">
+   				 <thead style="border-bottom: 1px solid var(--dark);" class="table-danger">
        				<tr><th width="5%">Mã</th>
             			<th width="15%">Họ Tên</th>
             			<th width="10%">Số Điện Thoại</th>
@@ -582,6 +637,7 @@
 			// Kiểm tra số lượng bản ghi trả về
 				if ($result->num_rows > 0) {
  			// Xuất dữ liệu của mỗi hàng
+			 
  			while($row = $result->fetch_assoc()) {
 				echo "<tr><td>" .
 				$row["id"]. "</td><td>" .
@@ -589,11 +645,11 @@
 				$row["phone_number"]."</td><td>" . 
 				$row["address"]."</td><td>" .  
 				$row["order_date"]."</td>
-				<td ><button onclick='showchitiet(this)' id='btntable' ><i class='bx bx-low-vision'></i></button></td> 
-				<td><button onclick='suadonhang(this)' id='btntable'><i class='bx bxs-pencil' style='color:#1cce55'  ></i></button></td>
-				<td><button onclick='xacnhansanpham(this)' id='btntable'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td>
-				<td><button onclick='deleteRow(this)' id='btntable'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
-			}} else {echo "Không Có Đơn Hàng Mới Nào!";}
+				<td ><button onclick='showchitiet(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-low-vision'></i></button></td> 
+				<td><button onclick='suadonhang(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bxs-pencil' style='color:#1cce55'  ></i></button></td>
+				<td><button onclick='xacnhansanpham(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td>
+				<td><button onclick='deleteRow(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
+			}} 
 					$conn->close();?>
       
   		  		</tbody> 
@@ -614,7 +670,7 @@
 					alert("Đã hủy đơn hàng");
    			 }
   			};
-  				xhttp.open("GET", "huydonhang.php?q="+Number(firstCellContent), true);
+  				xhttp.open("GET", "Huydon-Donghangmoi.php?q="+Number(firstCellContent), true);
   				xhttp.send();
 			}
         
@@ -631,7 +687,7 @@
 					document.getElementById("txtHint").innerHTML = this.responseText;
    			 }
   			};
-  				xhttp.open("GET", "capnhattrangthai.php?q="+Number(firstCellContent), true);
+  				xhttp.open("GET", "Xacnhan-Donhangmoi.php?q="+Number(firstCellContent), true);
   				xhttp.send();
 			}
 
@@ -647,7 +703,7 @@
 					document.getElementById("chitietdon").innerHTML = this.responseText;
    			 }
   			};
-  				xhttp.open("GET", "chitietdon.php?q="+Number(firstCellContent), true);
+  				xhttp.open("GET", "Xemdonhangchitiet.php?q="+Number(firstCellContent), true);
   				xhttp.send();
 				document.getElementById('btntable').onclick=showReport('report2');
 				
@@ -674,8 +730,9 @@
 			 
 <!-- Bảng chi tiết đơn hàng -->
 			<div class="report" id="report2" style="display:none">
+			<h3 style="text-align: center;margin-top: 20px;" >CHI TIẾT ĐƠN</h3>
 			  <table class="table table-sm caption-top" style="margin-top:25px ;">
-			  <caption>Bảng Hóa Đơn Chi Tiết</caption>
+			  <caption style="color:var(--dark)">Bảng Hóa Đơn Chi Tiết</caption>
    				 <thead style="border-bottom: 1px solid var(--dark);" class="table-danger">
        				<tr"><th width="5%">STT</th>
             			<th width="10%">Mã Sản Phẩm</th>
@@ -688,14 +745,14 @@
         			</tr>
    				 </thead>
     			<tbody id="chitietdon">
-		   <!-- fill từ chitietdon.php -->
+		   <!-- fill từ Xemdonhangchitiet.php -->
   		  		</tbody>
 			</table>
 			  </div>
 
 <!-- Bảng Chỉnh sửa Đơn Hàng -->
 	<div class="report" id="report3" style="display:none">
-		<h2 style="text-align: center;">Bảng Sửa Đơn Hàng</h2>
+	<h2 style="text-align: center;margin-top: 20px;color:var(--dark)" >THAY ĐỔI ĐƠN HÀNG</h2>
 			<table class="table table-striped" style="margin-top:25px ;">
 			  	<thead style="border-bottom: 1px solid var(--dark);" class="table-danger">
        				<tr"><th width="5%">STT</th>
@@ -755,7 +812,7 @@ include('timkiem.php');
 					document.getElementById("suadonhang").innerHTML = this.responseText;
    			 }
   			};
-  				xhttp.open("GET", "themsanphamvaodon.php?idsanpham="+Number(idsanpham)+"&mausanpham=" + mausanpham + "&sizesanpham=" + sizesanpham + "&iddonhang=" + Number(dayroi)+"&soluong=" + Number(soluong), true);
+  				xhttp.open("GET", "Themsanpham-SuaDonHang.php?idsanpham="+Number(idsanpham)+"&mausanpham=" + mausanpham + "&sizesanpham=" + sizesanpham + "&iddonhang=" + Number(dayroi)+"&soluong=" + Number(soluong), true);
   				xhttp.send();
 			}
 			function xoasanphamkhoidonhang(button) {
@@ -774,7 +831,7 @@ include('timkiem.php');
 					document.getElementById("suadonhang").innerHTML = this.responseText;
    			 }
   			};
-  				xhttp.open("GET", "xoasanphamkhoidonhang.php?idsanpham="+Number(idsanpham)+"&mausanpham=" + mausanpham + "&sizesanpham=" + sizesanpham + "&iddonhang=" + Number(dayroi), true);
+  				xhttp.open("GET", "Xoasanpham-SuaDonHang.php?idsanpham="+Number(idsanpham)+"&mausanpham=" + mausanpham + "&sizesanpham=" + sizesanpham + "&iddonhang=" + Number(dayroi), true);
   				xhttp.send();
 			}
 			
@@ -789,19 +846,46 @@ include('timkiem.php');
 					document.getElementById("banghanghoaconlai").innerHTML = this.responseText;	
    			 }
   			};
-  				xhttp.open("GET", "themvaodon.php?s="+selectedValue, true);
+  				xhttp.open("GET", "ThemVaoLISTBOX.php?s="+selectedValue, true);
 
   				xhttp.send();
 			}
 </script>
+<script>
+	 function sendData(rowId) {
+		var data = {
+  				'iddonhang':Number(productId),
+				'productID':productID,
+				'productSize':productSize,
+				'productColor':productColor,
+				'productQuantity':productQuantity,
+				
+};
+				const xhr = new XMLHttpRequest();
+				
+                xhr.open("POST", "Capnhatchinhsuadonhang.php", true);
+				xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+				xhr.onreadystatechange = function() {
+   				if (xhr.readyState === 4 && xhr.status === 200) {
+        // Yêu cầu đã gửi thành công
+       			console.log('Yêu cầu đã gửi thành công');
+			
+				 window.location.href = 'Capnhatchinhsuadonhang.php';
+    }
+};
+                xhr.send(JSON.stringify(data));
+				
+			}
 
+</script>
 			  </div>
 
 <!-- Bảng chuẩn bị đơn hàng -->
 
 	<div class="report" id="report4" style="display:none;">
+	<h2 style="text-align: center;margin-top: 20px;color:var(--dark)" >CHUẨN BỊ HÀNG</h2>
 				<table class="table table-striped caption-top" style="margin-top:25px ;">
-				<caption>Bảng Chuẩn Bị Đơn Hàng</caption>
+				<caption style="color:var(--dark)">Bảng Chuẩn Bị Đơn Hàng</caption>
    				 <thead style="border-bottom: 1px solid var(--dark);" class="table-warning">
        				<tr><th width="5%">Mã</th>
             			<th width="15%">Họ Tên</th>
@@ -824,7 +908,7 @@ include('timkiem.php');
 					document.getElementById("txtHint1").innerHTML = this.responseText;
    			 }
   			};
-  				xhttp.open("GET", "chuyensanggiaohang.php?q="+Number(firstCellContent), true);
+  				xhttp.open("GET", "Chuanbidon-Chuyenquagiaohang.php?q="+Number(firstCellContent), true);
   				xhttp.send();
 			}
 		</script>
@@ -849,9 +933,9 @@ include('timkiem.php');
 				$row["phone_number"]."</td><td>" . 
 				$row["address"]."</td><td>" .  
 				$row["order_date"]."</td>
-				<td ><button onclick='showchitiet(this)' id='btntable' ><i class='bx bx-low-vision'></i></button></td>
-				<td><button onclick='chuyensanggiaohang(this)' id='btntable'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td></tr>";
-			}} else {echo "Hiện Tại Không Có Đơn!";}
+				<td ><button onclick='showchitiet(this)' id='btntable' class='btn btn-outline-warning'><i class='bx bx-low-vision'></i></button></td>
+				<td><button onclick='chuyensanggiaohang(this)' id='btntable' class='btn btn-outline-warning'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td></tr>";
+			}}
 					$conn->close();?>
       
   		  		</tbody> 
@@ -860,9 +944,10 @@ include('timkiem.php');
 
 <!-- Bảng Giao Hàng -->
 		<div class="report" id="report5" style="display:none;">
+		<h2 style="text-align: center;margin-top: 20px;color:var(--dark)" >ĐANG VẬN CHUYỂN</h2>
 				<table class="table table-striped caption-top" style="margin-top:25px ;">
-				<caption>Các Đơn Hàng Đang Giao</caption>
-   				 <thead style="border-bottom: 1px solid var(--dark);" class="table-warning">
+				<caption style="color:var(--dark)">Các Đơn Hàng Đang Giao</caption>
+   				 <thead style="border-bottom: 1px solid var(--dark);" class="table-success">
        				<tr><th width="5%">Mã</th>
             			<th width="15%">Họ Tên</th>
             			<th width="10%">Số Điện Thoại</th>
@@ -884,7 +969,7 @@ include('timkiem.php');
 					document.getElementById("txtHint2").innerHTML = this.responseText;
    			 }
   			};
-  				xhttp.open("GET", "Thanhcong.php?q="+Number(firstCellContent), true);
+  				xhttp.open("GET", "Vanchuyen-Donhangthanhcong.php?q="+Number(firstCellContent), true);
   				xhttp.send();
 			}
 		</script>
@@ -909,9 +994,9 @@ include('timkiem.php');
 				$row["phone_number"]."</td><td>" . 
 				$row["address"]."</td><td>" .  
 				$row["order_date"]."</td>
-				<td ><button onclick='showchitiet(this)' id='btntable' ><i class='bx bx-low-vision'></i></button></td>
-				<td><button onclick='Thanhcong(this)' id='btntable'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td></tr>";
-			}} else {echo "Hiện Không Có Đơn Hàng Nào";}
+				<td ><button onclick='showchitiet(this)' id='btntable' class='btn btn-outline-success'><i class='bx bx-low-vision'></i></button></td>
+				<td><button onclick='Thanhcong(this)' id='btntable' class='btn btn-outline-success'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td></tr>";
+			}}
 					$conn->close();?>
       
   		  		</tbody> 
@@ -919,9 +1004,10 @@ include('timkiem.php');
 		</div>
 <!-- Bảng Đơn Hàng Thành Công-->
 <div class="report" id="report6" style="display:none;">
+	<h2 style="text-align: center;margin-top: 20px;color:var(--dark)" >CÁC ĐƠN HÀNG THÀNH CÔNG</h2>
 				<table class="table table-striped caption-top" style="margin-top:25px ;">
-				<caption>Các Đơn Hàng Thành Công</caption>
-   				 <thead style="border-bottom: 1px solid var(--dark);" class="table-success">
+				<caption style="color:var(--dark)">Các Đơn Hàng Thành Công</caption>
+   				 <thead style="border-bottom: 1px solid var(--dark);" class="table-info">
        				<tr><th width="5%">Mã</th>
             			<th width="15%">Họ Tên</th>
             			<th width="10%">Số Điện Thoại</th>
@@ -966,9 +1052,9 @@ include('timkiem.php');
 				$row["phone_number"]."</td><td>" . 
 				$row["address"]."</td><td>" .  
 				$row["order_date"]."</td>
-				<td ><button onclick='showchitiet(this)' id='btntable' ><i class='bx bx-low-vision'></i></button></td>
-				<td><button onclick='Inhoadon(this)' id='btntable'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td></tr>";
-			}} else {echo "Chưa ai mua đồ của Shop cả (.-_-.)!";}
+				<td ><button onclick='showchitiet(this)' id='btntable' class='btn btn-outline-info'><i class='bx bx-low-vision'></i></button></td>
+				<td><button onclick='Inhoadon(this)' id='btntable' class='btn btn-outline-info'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td></tr>";
+			}}
 					$conn->close();?>
       
   		  		</tbody> 
@@ -1001,6 +1087,9 @@ include('timkiem.php');
 		<!-- Sự kiện khi click vào hàng -->
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
+			<?php 
+			include('xoahetyeuthuong.php');
+				?>
   		var rows = document.querySelectorAll('#users-tab .data-row');
 		
   		var dialog = document.getElementById('dialog');

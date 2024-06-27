@@ -486,6 +486,13 @@ body {
 #content main .table-data .order table tr td .status.pending {
 	background: var(--orange);
 }
+#content main .table-data .order table tr td .status.error {
+	background: var(--red);
+}
+#content main .table-data .order table tr td .status.ongoing {
+	background: green;
+}
+
 
 
 #content main .table-data .banchay {
