@@ -4,7 +4,10 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['user_info'])) {
-    echo "Bạn cần đăng nhập để sử dụng chức năng giỏ hàng.";
+    echo "<h2>Bạn cần đăng nhập để sử dụng chức năng giỏ hàng.</h2>";
+    echo "<a href='../index.php'><ins>Trở lại trang chủ</ins> </a>";
+    echo "<br><br>";
+    echo "<a href='../login/Login.php'><ins>Đến trang đăng nhập</ins> </a>";
     exit();
 }
 
@@ -54,7 +57,7 @@ $user_id = $_SESSION['user_info']['id'];
     $cart_result = $conn->query($cart_query);
 
     $nums_product = $cart_result->num_rows;
-    $cart_query = "SELECT carts.id AS cart_id, cart_items.*, product.title, product.price, product.thumbnail, sizes.name AS size_name, colors.name AS color_name
+    $cart_query = "SELECT carts.id AS cart_id, cart_items.*, product.title, product.after_discount, product.price, product.thumbnail, sizes.name AS size_name, colors.name AS color_name
                FROM carts
                JOIN cart_items ON carts.id = cart_items.cart_id
                JOIN product ON cart_items.product_id = product.id
@@ -112,7 +115,7 @@ $user_id = $_SESSION['user_info']['id'];
                             <?php
                             if ($nums_product > 0) {
                                 while ($row = $cart_result->fetch_assoc()) {
-                                    $total_price += $row['price'] * $row['quantity'];
+                                    $total_price += $row['after_discount'] * $row['quantity'];
                             ?>
                                     <div class="cart-item">
                                         <div class="row">
@@ -123,10 +126,11 @@ $user_id = $_SESSION['user_info']['id'];
                                                 <h4><?php echo $row['title']; ?></h4>
                                                 <p>Size: <?php echo $row['size_name']; ?></p>
                                                 <p>Color: <?php echo $row['color_name']; ?></p>
-                                                <p>Giá: <?php echo number_format($row['price'], 0, ',', '.'); ?> VND</p>
+                                                <p>Giá cũ: <del><?php echo number_format($row['price'], 0, ',', '.'); ?> VND </del></p>
+                                                <p>Giá mới: <?php echo number_format($row['after_discount'], 0, ',', '.'); ?> VND</p>
                                                 <p>Số lượng: <?php echo $row['quantity']; ?></p>
-                                                <p>Thành tiền: 
-                                                    <?php  echo number_format($row['price'] * $row['quantity'], 0, ',', '.');
+                                                <p>Thành tiền:
+                                                    <?php echo number_format($row['after_discount'] * $row['quantity'], 0, ',', '.');
                                                     ?> VNĐ
                                                 </p>
                                                 <button class="btn btn-danger remove-item" data-item-id="<?php echo $row['id']; ?>">Xóa</button>

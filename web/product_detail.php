@@ -94,12 +94,17 @@ $colors_result = $conn->query("SELECT * FROM colors");
 	<div id="main-content" class="container-fluid">
 		<div class="product-detail">
 			<div class="image-container">
-				<img src="<?php echo $product['thumbnail']; ?>" alt="<?php echo $product['title']; ?>" class="img-fluid">
+				<div class="discout">
+					<img src="<?php echo $product['thumbnail'] ?>" alt="Ảnh váy" style="border: 2px solid pink;" class="img-fluid">
+					<div class="discount-tag"> OFF <?php echo $product['discount'] ?> %</div>
+					
+				</div>
 			</div>
 
 			<div class="product-info">
 				<h1><?php echo $product['title']; ?></h1>
-				<p class="price">Giá: <?php echo number_format($product['price']); ?> VND</p>
+				<p style="font-size: 20px;" class="price"><del>Giá cũ: <?php echo number_format($product['price']); ?> VND </del></p>
+				<p class="price">Giá mới: <?php echo number_format($product['after_discount']); ?> VND</p>
 
 
 				<form id="order-form" action="../Cart/cart.php" method="POST">
@@ -152,224 +157,234 @@ $colors_result = $conn->query("SELECT * FROM colors");
 		var maxQuantity = 0;
 
 		function updateQuantity() {
-			var productId = <?php echo $product['id']; ?>;
-			var sizeId = $('#size').val();
-			var colorId = $('#color').val();
+		var productId = <?php echo $product['id']; ?>;
+		var sizeId = $('#size').val();
+		var colorId = $('#color').val();
 
-			$.ajax({
-				url: 'get_quantity.php',
-				method: 'GET',
-				data: {
-					product_id: productId,
-					size_id: sizeId,
-					color_id: colorId
-				},
-				success: function(data) {
-					maxQuantity = parseInt(data);
-					if (maxQuantity > 0) {
-						$('#quantity').text(maxQuantity + ' sản phẩm có sẵn');
-						$('#buy-now, #add-to-cart').prop('disabled', false);
-						$('#quantity-input').prop('disabled', false).val(1).attr('max', maxQuantity);
-						$('#increment').prop('disabled', false);
-						$('#decrement').prop('disabled', false);
-					} else {
-						$('#quantity').text('Hết hàng');
-						$('#buy-now, #add-to-cart').prop('disabled', true);
-						$('#quantity-input').prop('disabled', true).val(0);
-						$('#increment').prop('disabled', true);
-						$('#decrement').prop('disabled', true);
-					}
-				}
-			});
+		$.ajax({
+		url: 'get_quantity.php',
+		method: 'GET',
+		data: {
+		product_id: productId,
+		size_id: sizeId,
+		color_id: colorId
+		},
+		success: function(data) {
+		maxQuantity = parseInt(data);
+		if (maxQuantity > 0) {
+		$('#quantity').text(maxQuantity + ' sản phẩm có sẵn');
+		$('#buy-now, #add-to-cart').prop('disabled', false);
+		$('#quantity-input').prop('disabled', false).val(1).attr('max', maxQuantity);
+		$('#increment').prop('disabled', false);
+		$('#decrement').prop('disabled', false);
+		} else {
+		$('#quantity').text('Hết hàng');
+		$('#buy-now, #add-to-cart').prop('disabled', true);
+		$('#quantity-input').prop('disabled', true).val(0);
+		$('#increment').prop('disabled', true);
+		$('#decrement').prop('disabled', true);
+		}
+		}
+		});
 		}
 
 		$('#size, #color').change(updateQuantity);
 
 		$('#increment').click(function() {
-			var quantity = parseInt($('#quantity-input').val());
-			if (quantity < maxQuantity) {
-				$('#quantity-input').val(quantity + 1);
+		var quantity = parseInt($('#quantity-input').val());
+		if (quantity < maxQuantity) { $('#quantity-input').val(quantity + 1); } }); $('#decrement').click(function() { var quantity=parseInt($('#quantity-input').val()); if (quantity> 1) {
+			$('#quantity-input').val(quantity - 1);
 			}
-		});
+			});
 
-		$('#decrement').click(function() {
-			var quantity = parseInt($('#quantity-input').val());
-			if (quantity > 1) {
-				$('#quantity-input').val(quantity - 1);
-			}
-		});
-
-		$('#quantity-input').change(function() {
+			$('#quantity-input').change(function() {
 			var quantity = parseInt($(this).val());
-			if (quantity < 1) {
-				$(this).val(1);
-			} else if (quantity > maxQuantity) {
+			if (quantity < 1) { $(this).val(1); } else if (quantity> maxQuantity) {
 				$(this).val(maxQuantity);
-			}
-		});
-		$('#add-to-cart').click(function() {
-			var isLoggedIn = <?php echo json_encode($is_logged_in); ?>;
-			if (!isLoggedIn) {
+				}
+				});
+				$('#add-to-cart').click(function() {
+				var isLoggedIn = <?php echo json_encode($is_logged_in); ?>;
+				if (!isLoggedIn) {
 				alert('Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng.');
 				return;
-			}
-			var formData = $('#order-form').serialize();
+				}
+				var formData = $('#order-form').serialize();
 
-			$.ajax({
+				$.ajax({
 				url: '../php/addtocart.php',
 				method: 'POST',
 				data: formData,
 				success: function(response) {
-					// Hiển thị thông báo thành công
-					alert('Sản phẩm đã được thêm vào giỏ hàng thành công!');
+				// Hiển thị thông báo thành công
+				alert('Sản phẩm đã được thêm vào giỏ hàng thành công!');
 				}
-			});
-		});
-		$('#buy-now').click(function() {
-			var isLoggedIn = <?php echo json_encode($is_logged_in); ?>;
-			if (!isLoggedIn) {
+				});
+				});
+				$('#buy-now').click(function() {
+				var isLoggedIn = <?php echo json_encode($is_logged_in); ?>;
+				if (!isLoggedIn) {
 
 				event.preventDefault();
 
 
 				alert('Bạn cần đăng nhập để mua sản phẩm.');
 				return;
-			}
+				}
 
-			var formData = $('#order-form').serialize();
+				var formData = $('#order-form').serialize();
 
-			$.ajax({
+				$.ajax({
 				url: '../php/addtocart.php',
 				method: 'POST',
 				data: formData,
 				success: function(response) {
-					// Thực hiện điều gì đó sau khi thêm vào giỏ hàng thành công
-					window.location.href = '../Cart/cart.php';
+				// Thực hiện điều gì đó sau khi thêm vào giỏ hàng thành công
+				window.location.href = '../Cart/cart.php';
 				}
-			});
+				});
 
-		});
-		$(document).ready(function() {
-			updateQuantity();
-		});
-	</script>
-	<!--footer----------------------------------------------------------->
-	<!-- Footer -->
-	<footer class="text-center text-lg-start bg-body-tertiary text-muted" style=" background: #ffdce3;
+				});
+				$(document).ready(function() {
+				updateQuantity();
+				});
+				</script>
+				<!--footer----------------------------------------------------------->
+				<!-- Footer -->
+				<footer class="text-center text-lg-start bg-body-tertiary text-muted" style=" background: #ffdce3;
 		padding: 10px;
 		color: #000;">
-		<!-- Section: Social media -->
-		<!-- Section: Social media -->
+					<!-- Section: Social media -->
+					<!-- Section: Social media -->
 
-		<!-- Section: Links  -->
-		<section class="" style="margin-top: 0px; height: 240px;">
-			<div class="container text-center text-md-start mt-5" style="margin-top: 1rem !important ;">
-				<!-- Grid row -->
-				<div class="row mt-3">
-					<!-- Grid column -->
-					<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-						<!-- Content -->
-						<h6 class="text-uppercase fw-bold mb-4" style="font-size: 25px;">
-							<i class="fas fa-gem me-3"></i>&nbsp;SONIC SHOP
-						</h6>
-						<p style="text-align: justify; font-weight: bold;">
-							Website này được thiết kế và vận hành bởi nhóm admin: </br>
-							1. Dương Đức Khôi </br>
-							2. Mai Đình Dũng</br>
-							3. Nguyễn Ngọc Sơn</br>
-							4. Vũ Văn Tùng</br>
-							5. Tăng Văn Tuấn</br>
-						</p>
+					<!-- Section: Links  -->
+					<section class="" style="margin-top: 0px; height: 240px;">
+						<div class="container text-center text-md-start mt-5" style="margin-top: 1rem !important ;">
+							<!-- Grid row -->
+							<div class="row mt-3">
+								<!-- Grid column -->
+								<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+									<!-- Content -->
+									<h6 class="text-uppercase fw-bold mb-4" style="font-size: 25px;">
+										<i class="fas fa-gem me-3"></i>&nbsp;SONIC SHOP
+									</h6>
+									<p style="text-align: justify; font-weight: bold;">
+										Website này được thiết kế và vận hành bởi nhóm admin: </br>
+										1. Dương Đức Khôi </br>
+										2. Mai Đình Dũng</br>
+										3. Nguyễn Ngọc Sơn</br>
+										4. Vũ Văn Tùng</br>
+										5. Tăng Văn Tuấn</br>
+									</p>
+								</div>
+								<!-- Grid column -->
+
+								<!-- Grid column -->
+								<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4" style=" font-weight: bold;">
+									<!-- Links -->
+									<h6 class="text-uppercase fw-bold mb-4" style="font-size: 25px;">
+										SẢN PHẨM
+									</h6>
+									<p>
+										<a href="#!" class="text-reset">Váy nữ xinh </a>
+									</p>
+									<p>
+										<a href="#!" class="text-reset">Đầm nữ xinh</a>
+									</p>
+								</div>
+								<!-- Grid column -->
+
+								<!-- Grid column -->
+								<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+									<!-- Links -->
+									<h6 class="text-uppercase fw-bold mb-4" style="font-size: 25px;">
+										ĐƯỜNG DẪN
+									</h6>
+									<p>
+										<a href="#!" class="text-reset">Trang chủ</a>
+									</p>
+									<p>
+										<a href="#!" class="text-reset">Sản phẩm</a>
+									</p>
+									<p>
+										<a href="#!" class="text-reset">Giới thiệu</a>
+									</p>
+									<p>
+										<a href="#!" class="text-reset">Tài khoản cá nhân</a>
+									</p>
+								</div>
+								<!-- Grid column -->
+
+								<!-- Grid column -->
+								<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4" style="text-align: justify; font-weight: bold;">
+									<!-- Links -->
+									<h6 class="text-uppercase fw-bold mb-4" style="font-size: 25px;">Contact</h6>
+									<p><i class="fas fa-home me-3"></i> 54, Triều Khúc, Thanh Xuân, Hà Nội</p>
+									<p>
+										<i class="fas fa-envelope me-3"></i>
+										sonicshopxinh@gmail.com
+									</p>
+									<p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+									<p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+								</div>
+								<!-- Grid column -->
+							</div>
+							<!-- Grid row -->
+						</div>
+					</section>
+					<!-- Section: Links  -->
+
+					<!-- Copyright -->
+					<!-- Right -->
+					<div class="bg-body-tertiary text-center" style="padding: 0;">
+						<!-- Grid container -->
+						<div class="container p-4 pb-0" style="padding: 0;">
+							<!-- Section: Social media -->
+							<section class="mb-4">
+								<!-- Facebook -->
+								<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+
+								<!-- Twitter -->
+								<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #55acee;" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+
+								<!-- Google -->
+								<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button"><i class="fab fa-google"></i></a>
+
+								<!-- Instagram -->
+								<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+
+								<!-- Linkedin -->
+								<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #0082ca;" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+								<!-- Github -->
+								<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #333333;" href="#!" role="button"><i class="fab fa-github"></i></a>
+							</section>
+							<!-- Section: Social media -->
+						</div>
+						<!-- Grid container -->
+						<!-- Right -->
+						<!-- Copyright -->
 					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4" style=" font-weight: bold;">
-						<!-- Links -->
-						<h6 class="text-uppercase fw-bold mb-4" style="font-size: 25px;">
-							SẢN PHẨM
-						</h6>
-						<p>
-							<a href="#!" class="text-reset">Váy nữ xinh </a>
-						</p>
-						<p>
-							<a href="#!" class="text-reset">Đầm nữ xinh</a>
-						</p>
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-						<!-- Links -->
-						<h6 class="text-uppercase fw-bold mb-4" style="font-size: 25px;">
-							ĐƯỜNG DẪN
-						</h6>
-						<p>
-							<a href="#!" class="text-reset">Trang chủ</a>
-						</p>
-						<p>
-							<a href="#!" class="text-reset">Sản phẩm</a>
-						</p>
-						<p>
-							<a href="#!" class="text-reset">Giới thiệu</a>
-						</p>
-						<p>
-							<a href="#!" class="text-reset">Tài khoản cá nhân</a>
-						</p>
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4" style="text-align: justify; font-weight: bold;">
-						<!-- Links -->
-						<h6 class="text-uppercase fw-bold mb-4" style="font-size: 25px;">Contact</h6>
-						<p><i class="fas fa-home me-3"></i> 54, Triều Khúc, Thanh Xuân, Hà Nội</p>
-						<p>
-							<i class="fas fa-envelope me-3"></i>
-							sonicshopxinh@gmail.com
-						</p>
-						<p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-						<p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
-					</div>
-					<!-- Grid column -->
-				</div>
-				<!-- Grid row -->
-			</div>
-		</section>
-		<!-- Section: Links  -->
-
-		<!-- Copyright -->
-		<!-- Right -->
-		<div class="bg-body-tertiary text-center" style="padding: 0;">
-			<!-- Grid container -->
-			<div class="container p-4 pb-0" style="padding: 0;">
-				<!-- Section: Social media -->
-				<section class="mb-4">
-					<!-- Facebook -->
-					<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
-
-					<!-- Twitter -->
-					<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #55acee;" href="#!" role="button"><i class="fab fa-twitter"></i></a>
-
-					<!-- Google -->
-					<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button"><i class="fab fa-google"></i></a>
-
-					<!-- Instagram -->
-					<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram"></i></a>
-
-					<!-- Linkedin -->
-					<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #0082ca;" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
-					<!-- Github -->
-					<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #333333;" href="#!" role="button"><i class="fab fa-github"></i></a>
-				</section>
-				<!-- Section: Social media -->
-			</div>
-			<!-- Grid container -->
-			<!-- Right -->
-			<!-- Copyright -->
-		</div>
-	</footer>
+				</footer>
 </body>
+<style>
+	.discout {
+		position: relative;
+		display: inline-block;
+	}
+
+	.discount-tag {
+		position: absolute;
+		top: 10px;
+		/* Điều chỉnh theo cần thiết */
+		right: 10px;
+		/* Điều chỉnh theo cần thiết */
+		background-color: #FF3366;
+		color: white;
+		padding: 5px;
+		font-size: 13px;
+		/* Điều chỉnh theo cần thiết */
+	}
+</style>
 
 </html>
 
