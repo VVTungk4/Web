@@ -30,18 +30,18 @@
             <div style="margin-left: 100px; width: 250px;" class="DanhMuc">
                 <p><i class="DanhMuc ti-menu-alt"></i>DANH SÁCH</p>
                 <ul class="MeNu">
-                    <li><a href="web/Áo-Nữ.html">TRANG PHỤC NỮ-ÁO</a></li>
-                    <li><a href="web/Đầm-Nữ.html">TRANG PHỤC NỮ-VÁY</a></li>
+                    <li><a href="web/Áo-Nữ.php">TRANG PHỤC NỮ-ÁO</a></li>
+                    <li><a href="web/Đầm-Nữ.php">TRANG PHỤC NỮ-VÁY</a></li>
 
                 </ul>
             </div>
-            <div><a href="web/Sản-phẩm.html" style="text-decoration:none; color:#000;">
+            <div><a href="web/Sản-phẩm.php" style="text-decoration:none; color:#000;">
                     <p>SẢN PHẨM </p>
             </div>
-            <div><a href="index.html" style="text-decoration:none; color:#000;">
+            <div><a href="index.php" style="text-decoration:none; color:#000;">
                     <p>TRANG CHỦ</p>
                 </a></div>
-            <div><a href="web/Giới-Thiệu.html" style="text-decoration:none; color:#000;">
+            <div><a href="web/Giới-Thiệu.php" style="text-decoration:none; color:#000;">
                     <p>GIỚI THIỆU</p>
                 </a></div>
             <div><a href="https://sixdo.vn/san-pham" style="text-decoration:none; color:#000;">
@@ -50,8 +50,8 @@
             <div id="TaiKhoan">
                 <p>TÀI KHOẢN</p>
                 <ul class="MeNu">
-                    <li><a href="web/Đăng-Nhập.html">Đăng Nhập</a></li>
-                    <li><a href="web/Đăng-ký.html">Đăng Ký</a></li>
+                    <li><a href="web/Đăng-Nhập.php">Đăng Nhập</a></li>
+                    <li><a href="web/Đăng-ký.php">Đăng Ký</a></li>
                 </ul>
             </div>
         </div>
@@ -225,10 +225,10 @@
                 <h2>Đường Dẫn</h2>
                 <ul>
                     <li><a href="#">Trang Chủ</a></li>
-                    <li><a href="./Giới-Thiệu.html">Về Chúng Tôi</a></li>
-                    <li><a href="./Đăng-Nhập.html">Tài khoản</a></li>
-                    <li><a href="./Sản-phẩm.html">Sản phẩm</a></li>
-                    <li><a href="./Đầm-Nữ.html">Cửa hàng</a></li>
+                    <li><a href="./Giới-Thiệu.php">Về Chúng Tôi</a></li>
+                    <li><a href="./Đăng-Nhập.php">Tài khoản</a></li>
+                    <li><a href="./Sản-phẩm.php">Sản phẩm</a></li>
+                    <li><a href="./Đầm-Nữ.php">Cửa hàng</a></li>
                 </ul>
             </div>
             <!--Kết Thúc Nội Dung Đường Dẫn-->

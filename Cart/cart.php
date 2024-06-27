@@ -70,20 +70,20 @@ $user_id = $_SESSION['user_info']['id'];
                 <div style="width: 250px;" id="TaiKhoan">
                     <p style="margin-bottom: 0;"><i class="bi bi-list-task"></i>&nbsp; DANH MỤC</p>
                     <ul class="MeNu">
-                        <li style="font-weight: normal;"><a href="../sanpham/Áo-Nữ.html ">Sản phẩm Nữ: Áo</a></li>
-                        <li style="font-weight: normal;"><a href="../sanpham/Đầm-Nữ.html ">Sản phẩm Nữ: Đầm</a></li>
+                        <li style="font-weight: normal;"><a href="../sanpham/Áo-Nữ.php ">Sản phẩm Nữ: Áo</a></li>
+                        <li style="font-weight: normal;"><a href="../sanpham/Đầm-Nữ.php ">Sản phẩm Nữ: Đầm</a></li>
                     </ul>
                 </div>
-                <div><a href="../sanpham/Sản-Phẩm.html" style="text-decoration:none; color:#000;">
+                <div><a href="../sanpham/Sản-Phẩm.php" style="text-decoration:none; color:#000;">
                         <p>SẢN PHẨM </p>
                 </div>
-                <div><a href="../index.html" style="text-decoration:none; color:#000;">
+                <div><a href="../index.php" style="text-decoration:none; color:#000;">
                         <p>TRANG CHỦ</p>
                     </a></div>
-                <div><a href="../sanpham/Giới-Thiệu.html" style="text-decoration:none; color:#000;">
+                <div><a href="../sanpham/Giới-Thiệu.php" style="text-decoration:none; color:#000;">
                         <p>GIỚI THIỆU</p>
                     </a></div>
-                <div><a href="../Cart/cart.html" style="text-decoration:none; color:#000;">
+                <div><a href="../Cart/cart.php" style="text-decoration:none; color:#000;">
                         <p>GIỎ HÀNG</p>
                     </a></div>
                 <div id="TaiKhoan">

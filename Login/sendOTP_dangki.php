@@ -72,7 +72,7 @@ if (isset($_POST['oki'])) {
             echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         }
     } else {
-        header("Location: ../Login/Login.html?error=Email đã được sử dụng!");
+        header("Location: ../Login/Login.php?error=Email đã được sử dụng!");
         exit;
     }
     $conn->close();

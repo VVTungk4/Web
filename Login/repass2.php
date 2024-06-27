@@ -16,11 +16,11 @@ if (isset($_POST['oce'])) {
         //
         if ($password != $repass) {
 
-            echo '<script language="javascript">alert("Không trùng password!" echo $otp;); window.location="../Login/repass.html";</script>';
+            echo '<script language="javascript">alert("Không trùng password!" echo $otp;); window.location="../Login/repass.php";</script>';
             die();
         } else {
             if ($otp_n != $otp) {
-                echo '<script language="javascript">alert("Không trùng password!" echo $otp;); window.location="../Login/repass.html";</script>';
+                echo '<script language="javascript">alert("Không trùng password!" echo $otp;); window.location="../Login/repass.php";</script>';
                 die();
             } else {
                 $conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");

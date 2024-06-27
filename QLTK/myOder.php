@@ -22,20 +22,20 @@
             <div style="width: 250px;" id="TaiKhoan">
                 <p style="margin-bottom: 0;"><i class="bi bi-list-task"></i>&nbsp; DANH MỤC</p>
                 <ul class="MeNu">
-                    <li style="font-weight: normal;"><a href="../web/Áo-Nữ.html ">Sản phẩm Nữ: Áo</a></li>
-                    <li style="font-weight: normal;"><a href="../web/Đầm-Nữ.html ">Sản phẩm Nữ: Đầm</a></li>
+                    <li style="font-weight: normal;"><a href="../web/Áo-Nữ.php ">Sản phẩm Nữ: Áo</a></li>
+                    <li style="font-weight: normal;"><a href="../web/Đầm-Nữ.php ">Sản phẩm Nữ: Đầm</a></li>
                 </ul>
             </div>
-            <div><a href="../web/product.html" style="text-decoration:none; color:#000;">
+            <div><a href="../web/product.php" style="text-decoration:none; color:#000;">
                     <p>SẢN PHẨM </p>
             </div>
             <div><a href="../index.php" style="text-decoration:none; color:#000;">
                     <p>TRANG CHỦ</p>
                 </a></div>
-            <div><a href="../web/Giới-Thiệu.html" style="text-decoration:none; color:#000;">
+            <div><a href="../web/Giới-Thiệu.php" style="text-decoration:none; color:#000;">
                     <p>GIỚI THIỆU</p>
                 </a></div>
-            <div><a href="../Cart/cart.html" style="text-decoration:none; color:#000;">
+            <div><a href="../Cart/cart.php" style="text-decoration:none; color:#000;">
                     <p>GIỎ HÀNG</p>
                 </a></div>
             <div id="TaiKhoan">
@@ -56,13 +56,13 @@
     <div class="container">
         <div class="myInfo">
             <label for="fullname">Khách hàng:</label>
-            <input type="text" id="fullname" name="fullname">
+            <input type="text" id="fullname" name="fullname" readonly>
             <br>
             <label for="fullname">Số điện thoại:</label>
-            <input type="text" id="phone" name="phone">
+            <input type="text" id="phone" name="phone" readonly>
             <br>
             <label for="fullname">Địa chỉ:</label>
-            <input type="text" id="address" name="address">
+            <input type="text" id="address" name="address" readonly >
         </div>
         <?php if (isset($_SESSION['user_info'])) : ?>
             <script type="text/javascript">

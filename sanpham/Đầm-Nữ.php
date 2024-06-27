@@ -6,8 +6,8 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>ÁO NỮ</title>
-	<link rel="icon" type="image/png" href="../sanpham/image/ao.ico" />
+	<title>ĐẦM NỮ</title>
+	<link rel="icon" type="image/png" href="image/ao.ico" />
 	<a href="https://hocban.vn/web-development/hoc-html-co-ban"></a>
 	<link rel="stylesheet" href="./themify-icons/themify-icons.css">
 	<link rel="stylesheet" type="text/css" href="../sanpham/style-css.css" />
@@ -43,22 +43,22 @@
 			<div style="margin-left: 100px; width: 250px;" class="DanhMuc">
 				<p style="margin-bottom: 0;"><i class="DanhMuc ti-menu-alt"></i>DANH SÁCH</p>
 				<ul class="MeNu">
-					<li><a href="../sanpham/Áo-Nữ .html">TRANG PHỤC NỮ-ÁO</a></li>
-					<li><a href="../sanpham/Đầm-Nữ.html">TRANG PHỤC NỮ-ĐẦM
+					<li><a href="../sanpham/Áo-Nữ .php">TRANG PHỤC NỮ-ÁO</a></li>
+					<li><a href="../sanpham/Đầm-Nữ.php">TRANG PHỤC NỮ-ĐẦM
 						</a></li>
 
 				</ul>
 			</div>
-			<div style="height: 50px;"><a href="../sanpham/Sản-Phẩm.html" style="text-decoration:none; color:#000;">
+			<div style="height: 50px;"><a href="../sanpham/Sản-Phẩm.php" style="text-decoration:none; color:#000;">
 					<p>SẢN PHẨM </p>
 			</div>
 			<div><a href="../index.php" style="text-decoration:none; color:#000;">
 					<p>TRANG CHỦ</p>
 				</a></div>
-			<div><a href="../sanpham/Giới-Thiệu.html" style="text-decoration:none; color:#000;">
+			<div><a href="../sanpham/Giới-Thiệu.php" style="text-decoration:none; color:#000;">
 					<p>GIỚI THIỆU</p>
 				</a></div>
-			<div><a href="../Cart/cart.html" style="text-decoration:none; color:#000;">
+			<div><a href="../Cart/cart.php" style="text-decoration:none; color:#000;">
 					<p>GIỎ HÀNG</p>
 				</a></div>
 			<div id="TaiKhoan">
@@ -86,7 +86,7 @@
 	</div>
 
 
-	<div class="container" style="background-color: antiquewhite; height: 550px; width: 1080px; margin-top: 30px;">
+	<div class="container" style="background-color: antiquewhite; height: 550px; width: 1080px">
 		<h5 style="padding-top: 10px;">SẢN PHẨM TIÊU BIỂU</h5>
 		<div class="row">
 			<div class="col">
@@ -131,7 +131,7 @@
 
 
 			<div class="col">
-				<div class="card" style="width: 240px; ">
+				<div class="card" style="width: 240px;">
 
 					<img src="image/4.jpg" alt="" class="card-img-top" style="width: 220px" height="260px">
 					<div class="card-body">
@@ -146,7 +146,7 @@
 			<script>
 				function redirectToDetailPage(productId) {
 					// Chuyển hướng sang trang chi tiết sản phẩm với ID sản phẩm
-					window.location.href = '../web/product_detail.php?id=' + productId;
+					window.location.href = 'web/product_detail.php?id=' + productId;
 				}
 			</script>
 		</div>

@@ -72,7 +72,7 @@ if (isset($_POST['repass'])) {
             echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         }
     } else {
-        header("Location: ../Login/resetpassword.html?error=Không tìm thấy tài khoản!");
+        header("Location: ../Login/resetpassword.php?error=Không tìm thấy tài khoản!");
         exit;
     }
     $conn->close();

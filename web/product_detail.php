@@ -59,19 +59,19 @@ $colors_result = $conn->query("SELECT * FROM colors");
 			<div style="margin-left: 100px; width: 250px;" id="TaiKhoan">
 				<p style="margin-bottom: 0;"><i class="ti-menu-alt"></i>&nbsp;DANH SÁCH</p>
 				<ul class="MeNu">
-					<li><a href="../sanpham/Áo-Nữ .html">TRANG PHỤC NỮ-ÁO</a></li>
-					<li><a href="../sanpham/Đầm-Nữ.html">TRANG PHỤC NỮ-ĐẦM
+					<li><a href="../sanpham/Áo-Nữ .php">TRANG PHỤC NỮ-ÁO</a></li>
+					<li><a href="../sanpham/Đầm-Nữ.php">TRANG PHỤC NỮ-ĐẦM
 						</a></li>
 
 				</ul>
 			</div>
-			<div style="height: 50px;"><a href="../sanpham/Sản-phẩm.html" style="text-decoration:none; color:#000;">
+			<div style="height: 50px;"><a href="../sanpham/Sản-phẩm.php" style="text-decoration:none; color:#000;">
 					<p>SẢN PHẨM </p>
 			</div>
-			<div><a href="../index.html" style="text-decoration:none; color:#000;">
+			<div><a href="../index.php" style="text-decoration:none; color:#000;">
 					<p>TRANG CHỦ</p>
 				</a></div>
-			<div><a href="../sanpham/Giới-Thiệu.html" style="text-decoration:none; color:#000;">
+			<div><a href="../sanpham/Giới-Thiệu.php" style="text-decoration:none; color:#000;">
 					<p>GIỚI THIỆU</p>
 				</a></div>
 			<div><a href="../Cart/cart.php" style="text-decoration:none; color:#000;">
