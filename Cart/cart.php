@@ -126,8 +126,7 @@ $user_id = $_SESSION['user_info']['id'];
                                                 <p>Giá: <?php echo number_format($row['price'], 0, ',', '.'); ?> VND</p>
                                                 <p>Số lượng: <?php echo $row['quantity']; ?></p>
                                                 <p>Thành tiền: 
-                                                    <?php  
-                                                    echo $row['price'] * $row['quantity']; 
+                                                    <?php  echo number_format($row['price'] * $row['quantity'], 0, ',', '.');
                                                     ?> VNĐ
                                                 </p>
                                                 <button class="btn btn-danger remove-item" data-item-id="<?php echo $row['id']; ?>">Xóa</button>
