@@ -6,7 +6,6 @@
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("issi", $_GET['idsanpham'], $_GET['mausanpham'], $_GET['sizesanpham'], $_GET['iddonhang']);
     $stmt->execute();
-    
     $iddata=$_GET['iddonhang'];
     //tra lai du lieu
     $sql2 = "SELECT p.id, p.title, od.color, od.size, od.num

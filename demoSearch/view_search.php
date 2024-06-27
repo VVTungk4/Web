@@ -112,7 +112,10 @@
                             $count++; // Tăng biến đếm với mỗi sản phẩm
                         ?>
                             <td>
-                                <img src="<?php echo $row['thumbnail'] ?>" alt="" style="border: 2px solid #f9d1d1;">
+                                <div class="discout">
+                                    <img src="<?php echo $row['thumbnail'] ?>" alt="Ảnh váy" style="width:250px; height: 300px;border: 2px solid pink;">
+                                    <div class="discount-tag"> OFF <?php echo $row['discount'] ?> %</div>
+                                </div>
                                 <p>
                                     <?php echo $row["title"]; ?>
                                 </p>
@@ -594,7 +597,24 @@
         clear: both;
     }
 
-    /* Footer */
+    /* discount */
+    .discout {
+        position: relative;
+        display: inline-block;
+    }
+
+    .discount-tag {
+        position: absolute;
+        top: 50px;
+        /* Điều chỉnh theo cần thiết */
+        right: 50px;
+        /* Điều chỉnh theo cần thiết */
+        background-color: #FF3366;
+        color: white;
+        padding: 5px;
+        font-size: 13px;
+        /* Điều chỉnh theo cần thiết */
+    }
 
     /* CSS cho chi tiết sản phẩm */
     .container-fluid {

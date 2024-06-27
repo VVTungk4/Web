@@ -25,7 +25,7 @@ mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
                 echo "<table id='bangdonhang' class='table table-striped table-bordered'>
                 <tr><td width='10%'><img src='../" .$row['thumbnail']. "' style='width:70px;height:50px'></td><td width='7%'>" . $row['id']. "</td><td width='20%'>" .
                 $row['title']. "</td><td width='5%'>" . $row['colorname']. "</td><td width='5%'>" .
-                $row['sizename']."</td><td width='10%'>Còn: ".$quantity."</td><td width='10%'><button onclick='themsanphamvaodonhang(this)' id='btntable' style='color:var(--dark);'>Thêm Vào Đơn</button></td></tr>";
+                $row['sizename']."</td><td width='10%'>Còn: ".$quantity."</td><td width='10%'><button onclick='themsanphamvaodonhang(this)' id='btntable' class='btn btn-outline-danger' style='color:var(--dark);'>Thêm Vào Đơn</button></td></tr>";
                 $stt++;
              
           
