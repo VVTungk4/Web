@@ -62,6 +62,8 @@
                     <li><a href="../SonicShop/Login/email_dangki.php">Đăng Ký</a></li>
                     <li><a href="../SonicShop/QLTK/QLTK.php">QL Tài Khoản</a></li>
                     <li><a href="../SonicShop/QLTK/myOder.php">Đơn hàng của tôi</a></li>
+                    <li><a href="../SonicShop/Login/logout.php">Đăng xuất</a></li>
+
                 </ul>
             </div>
         </div>
@@ -228,7 +230,7 @@
         table {
             width: auto;
             margin-bottom: 20px;
-            border: 2px solid pink;
+            
         }
 
         td {
@@ -248,6 +250,24 @@
         .thumbnail img:hover {
             transform: scale(1.1);
         }
+
+        .discout {
+            position: relative;
+            display: inline-block;
+        }
+
+        .discount-tag {
+            position: absolute;
+            top: 50px;
+            /* Điều chỉnh theo cần thiết */
+            right: 30px;
+            /* Điều chỉnh theo cần thiết */
+            background-color: #FF3366;
+            color: white;
+            padding: 5px;
+            font-size: 13px;
+            /* Điều chỉnh theo cần thiết */
+        }
     </style>
     <table style="margin: 50px;width: auto;" class="thumbnail">
         <?php if ($result->num_rows > 0) : ?>
@@ -258,7 +278,10 @@
                     $count++; // Tăng biến đếm với mỗi sản phẩm
                 ?>
                     <td>
-                        <img src="<?php echo $row['thumbnail'] ?>" alt="" style="border: 2px solid #f9d1d1;">
+                        <div class="discout">
+                            <img src="<?php echo $row['thumbnail'] ?>" alt="Ảnh váy" style="width:250px; height: 300px;border: 2px solid pink;">
+                            <div class="discount-tag"> OFF <?php echo $row['discount'] ?> %</div>
+                        </div>
                         <p>
                             <?php echo $row["title"]; ?>
                         </p>
