@@ -129,7 +129,7 @@ $colors_result = $conn->query("SELECT * FROM colors");
 						<label for="quantity-input" id="soluong-label">Số lượng:</label>
 						<div class="quantity-control">
 							<button type="button" id="decrement" class="btn btn-primary" disabled>-</button>
-							<input type="number" id="quantity-input" name="quantity" min="1" class="form-control" disabled>
+							<input type="number" id="quantity-input" name="quantity" min="1" class="form-control" disabled style="width: 60px;">
 							<button type="button" id="increment" class="btn btn-primary" disabled>+</button>
 						</div>
 					</div>
