@@ -103,12 +103,14 @@ $user_id = $_SESSION['user_info']['id'];
         <div id="logo">
             <img src="../image/logo1.png" style="height: 90px; width: 110px;">
             <label for="TaiKhoan" class="ttcn"> Giỏ hàng của bạn</label>
+
+
         </div>
 
         <!--------------------------------------------LAYOUT-CART----------------------------------------------------->
         <div class="layout-cart">
             <div class="container mt-5">
-                <h2 style="margin-bottom: 30px;">Giỏ hàng của bạn</h2>
+                <h2 style="margin-bottom: 30px;">Giỏ hàng của bạn (<?php echo $nums_product; ?> sản phẩm)</h2>
                 <div class="row">
                     <div class="col-md-8">
                         <div class="cart">
@@ -128,7 +130,11 @@ $user_id = $_SESSION['user_info']['id'];
                                                 <p>Color: <?php echo $row['color_name']; ?></p>
                                                 <p>Giá cũ: <del><?php echo number_format($row['price'], 0, ',', '.'); ?> VND </del></p>
                                                 <p>Giá mới: <?php echo number_format($row['after_discount'], 0, ',', '.'); ?> VND</p>
-                                                <p>Số lượng: <?php echo $row['quantity']; ?></p>
+                                                <p> Số lượng:
+                                                    <button class="btn btn-sm btn-secondary change-quantity" data-item-id="<?php echo $row['id']; ?>" data-change="decrease">-</button>
+                                                    <span class="quantity"><?php echo $row['quantity']; ?></span>
+                                                    <button class="btn btn-sm btn-secondary change-quantity" data-item-id="<?php echo $row['id']; ?>" data-change="increase">+</button>
+                                                </p>
                                                 <p>Thành tiền:
                                                     <?php echo number_format($row['after_discount'] * $row['quantity'], 0, ',', '.');
                                                     ?> VNĐ
@@ -152,7 +158,7 @@ $user_id = $_SESSION['user_info']['id'];
                         <div class="summary">
                             <h3>Tổng cộng</h3>
                             <p>Tổng số tiền: <?php echo number_format($total_price, 0, ',', '.'); ?> VND</p>
-                            <button class="btn btn-primary btn-block">Thanh toán</button>
+                            <a href="orderinfo.php" class="btn btn-primary">Thanh toán</a>
                         </div>
                     </div>
                 </div>
@@ -301,6 +307,43 @@ $user_id = $_SESSION['user_info']['id'];
             });
         });
     </script>
+    <script>
+        document.querySelectorAll('.change-quantity').forEach(button => {
+            button.addEventListener('click', function() {
+                const itemId = this.getAttribute('data-item-id');
+                const changeType = this.getAttribute('data-change');
+                const userId = '<?php echo $user_id; ?>';
+
+                fetch('../php/update_quantity.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: `user_id=${userId}&item_id=${itemId}&change_type=${changeType}`,
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Update quantity in the UI
+                            const quantityElement = this.parentElement.querySelector('.quantity');
+                            if (changeType === 'increase') {
+                                quantityElement.textContent = parseInt(quantityElement.textContent) + 1;
+                            } else if (changeType === 'decrease' && parseInt(quantityElement.textContent) > 1) {
+                                quantityElement.textContent = parseInt(quantityElement.textContent) - 1;
+                            }
+
+                            // Calculate and update total price if needed
+                            // You might want to handle this based on your UI and requirements
+
+                        } else {
+                            console.error(data.message);
+                        }
+                    })
+                    .catch(error => console.error('Lỗi:', error));
+            });
+        });
+    </script>
+
 </body>
 
 </html>
