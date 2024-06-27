@@ -90,7 +90,7 @@
 			</li>
 			
 			<li>
-				<a href="#hihi">
+				<a href="#Products">
 					<i class='bx bxs-cog' ></i>
 					<span class="text">Quản Lý Sản Phẩm</span>
 				</a>
@@ -117,7 +117,7 @@
 
 
 	<!-- CONTENT -->
-	<section id="content" >
+	<section id="content">
 		
 		<!-- NAVBAR -->
 		<nav>
@@ -157,7 +157,7 @@
 		</nav>
 		<!-- NAVBAR -->
 
-		<!-- MAIN -->
+			<!-- Trang Chủ -->
 		<main class="main" id ="tongquan">
 			<!-- Trang Chủ -->
 			<div class="head-title">
@@ -332,7 +332,7 @@
 			<!-- Trang Chủ -->
 
 			<!-- Sản Phẩm -->
-		<main class="main" id ="hihi">
+		<main class="main" id ="Products">
 			<button id="btn" onclick="showSanpham('sanpham1')">Xem Danh Sach Sản Phẩm</button>
 			<button id="btn" onclick="showSanpham('sanpham2')">Thêm Sản Phẩm</button>
 			<button id="btn" onclick="showSanpham('sanpham3')">Sửa Sản Phẩm</button>
@@ -390,7 +390,7 @@
 			<!-- Sản Phẩm -->
 
 			<!-- Tin Nhắn -->
-		<main id="Messangers" class="main">
+		<main class="main" id="Messangers">
 			<div class="message-container">
 				<div class="message-header">Người gửi: Sơn Sẽ</div>
 				<div class="message-content">
@@ -416,7 +416,7 @@
 			<!-- Tin Nhắn -->
 
 			<!-- Tai Khoan -->
-		<main id="TaiKhoan" class="main">
+		<main class="main" id="TaiKhoan">
 				<!-- Các nút bấm -->
 				<button id="btn" onclick="showContent('content1')">Xem Danh Sách Tài Khoản</button>
 				<button id="btn" onclick="showContent('content2')">Thêm Tài Khoản</button>	
@@ -551,16 +551,17 @@
 				</form>
 			</div>	
 		</main>
-		<!-- Tài Khoản -->
+			<!-- Tài Khoản -->
 
-	 	<!-- Đơn Hàng -->
+	 		<!-- Đơn Hàng -->
 		<main class="main" id="report" > 
 				<button id="btn3" onclick="loadlaiform(this)" onclick="showReport('report1')" class="btn btn-outline-danger btn-lg" value="0">Các Đơn Hàng Mới</button>
 				<button id="btn3" onclick="loadlaiform(this)" onclick="showReport('report4')" class="btn btn-outline-warning btn-lg" value="1">Chuẩn Bị Đơn Hàng</button>	
 				<button id="btn3" onclick="loadlaiform(this)" onclick="showReport('report5')" class="btn btn-outline-success btn-lg" value="2">Vận Chuyển</button>
 				<button id="btn3" onclick="loadlaiform(this)" onclick="showReport('report6')" class="btn btn-outline-info btn-lg" value ="3">Đơn Hàng Đã Hoàn Thành</button>
 				<button id="btn3" onclick="loadlaiform(this)" onclick="showReport('report7')" class="btn btn-outline-secondary btn-lg" value ="4">Đơn Hàng Đã Hủy</button>		
-		<script>
+<!-- loadlaidulieukhibamdoinut	 -->
+	<script>
 		function loadlaiform(button) {
   			const value = button.value;
    			const xhttp = new XMLHttpRequest();
@@ -607,7 +608,10 @@
     xhttp.send();
 }
 
-		</script>		
+	</script>
+<!-- loadlaidulieukhibamdoinut	 -->
+
+<!-- Bảng Đơn Hàng Mới Cần Duyệt -->
 			<div class="report" id="report1" >
 			<h2 style="text-align: center;margin-top: 20px ;color:var(--dark)" >CÁC ĐƠN HÀNG MỚI</h2>
 				<table class="table table-striped caption-top" style="margin-top:25px ;">
@@ -655,6 +659,9 @@
   		  		</tbody> 
 			</table>
 		</div>
+<!-- Bảng Đơn Hàng Mới Cần Duyệt -->
+
+<!-- Xóa ,Xác Nhận,Show,Sửa Đơn Hàng -->
 <script>
 	//hủy đơn
         function deleteRow(button) {
@@ -727,7 +734,9 @@
 			}
 			
     </script>
-			 
+<!-- Xóa ,Xác Nhận,Show,Sửa Đơn Hàng -->	
+
+
 <!-- Bảng chi tiết đơn hàng -->
 			<div class="report" id="report2" style="display:none">
 			<h3 style="text-align: center;margin-top: 20px;" >CHI TIẾT ĐƠN</h3>
@@ -749,6 +758,8 @@
   		  		</tbody>
 			</table>
 			  </div>
+<!-- Bảng chi tiết đơn hàng -->
+
 
 <!-- Bảng Chỉnh sửa Đơn Hàng -->
 	<div class="report" id="report3" style="display:none">
@@ -783,6 +794,7 @@
         }
     }
 </script>
+<!-- kiểm tra input số lượng -->
 
 <!-- listbox lấy ra danh sách đồ còn hàng để thêm vào đơn -->
 <h3 style="font:Arial">Thêm sản phẩm vào giỏ</h3>
@@ -791,9 +803,12 @@
 include('timkiem.php');
 ?>
 </select>
+<!-- listbox lấy ra danh sách đồ còn hàng để thêm vào đơn -->
 
 <!-- button thêm đồ hàng vào đơn hàng -->
 <div id="banghanghoaconlai"></div>
+
+<!-- Thêm Xóa Sản PHẩm Khỏi SỬa ĐƠn Hàng -->
 <script>
 			function themsanphamvaodonhang(button) {
 				const row = button.parentNode.parentNode;
@@ -851,6 +866,9 @@ include('timkiem.php');
   				xhttp.send();
 			}
 </script>
+<!-- Thêm Xóa Sản PHẩm Khỏi SỬa ĐƠn Hàng -->
+
+<!-- Update dữ liệu sau khi đã sửa đơn hàng -->
 <script>
 	 function sendData(rowId) {
 		var data = {
@@ -878,10 +896,12 @@ include('timkiem.php');
 			}
 
 </script>
-			  </div>
+<!-- Update dữ liệu sau khi đã sửa đơn hàng -->
+			</div>
+<!-- Bảng Chỉnh sửa Đơn Hàng -->
+
 
 <!-- Bảng chuẩn bị đơn hàng -->
-
 	<div class="report" id="report4" style="display:none;">
 	<h2 style="text-align: center;margin-top: 20px;color:var(--dark)" >CHUẨN BỊ HÀNG</h2>
 				<table class="table table-striped caption-top" style="margin-top:25px ;">
@@ -941,6 +961,8 @@ include('timkiem.php');
   		  		</tbody> 
 			</table>
 		</div>
+<!-- Bảng chuẩn bị đơn hàng -->
+
 
 <!-- Bảng Giao Hàng -->
 		<div class="report" id="report5" style="display:none;">
@@ -1002,6 +1024,9 @@ include('timkiem.php');
   		  		</tbody> 
 			</table>
 		</div>
+<!-- Bảng Giao Hàng -->
+
+
 <!-- Bảng Đơn Hàng Thành Công-->
 <div class="report" id="report6" style="display:none;">
 	<h2 style="text-align: center;margin-top: 20px;color:var(--dark)" >CÁC ĐƠN HÀNG THÀNH CÔNG</h2>
@@ -1060,8 +1085,9 @@ include('timkiem.php');
   		  		</tbody> 
 			</table>
 		</div>
+<!-- Bảng Đơn Hàng Thành Công-->	
 		</main>
-		<!-- Đơn Hàng -->
+			<!-- Đơn Hàng -->
 	</section>
 	<!-- CONTENT -->
 	
