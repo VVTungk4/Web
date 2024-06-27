@@ -1,10 +1,10 @@
 <?php
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-    require_once "../php/database_function.php";
-    $conn = connectDatabase();
+require_once "../php/database_function.php";
+$conn = connectDatabase();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,56 +15,63 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://kit.fontawesome.com/39b6b90061.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="checkout.css?v=<?php echo time();?>">
+    <link rel="stylesheet" href="checkout.css?v=<?php echo time(); ?>">
     <title>Thanh toán</title>
     <link rel="icon" type="image/x-icon" href="./img/footerLogo.webp">
-    <script src="./javascript/showCheckOutMethods.js?v=<?php echo time();?>" defer></script>
-    <script src="./javascript/orderinfo.js?v=<?php echo time();?>" defer></script>
+    <script src="./javascript/showCheckOutMethods.js?v=<?php echo time(); ?>" defer></script>
+    <script src="./javascript/orderinfo.js?v=<?php echo time(); ?>" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css">
 </head>
 
 <body>
     <!-- header -->
-    <div id="header">
+    <div id="header" style="font-weight: bold;">
         <div id="khungdau">
-            <div style="margin-left: 100px; width: 250px;" class="DanhMuc">
-                <p><i class="DanhMuc ti-menu-alt"></i>DANH SÁCH</p>
+            <div style="width: 250px;" id="TaiKhoan">
+                <p style="margin-bottom: 0;"><i class="bi bi-list-task"></i>&nbsp; DANH MỤC</p>
                 <ul class="MeNu">
-                    <li><a href="web/Áo-Nữ.html">TRANG PHỤC NỮ-ÁO</a></li>
-                    <li><a href="web/Đầm-Nữ.html">TRANG PHỤC NỮ-VÁY</a></li>
-
+                    <li><a href="../sanpham/Áo-Nữ.php ">Sản phẩm Nữ: Áo</a></li>
+                    <li><a href="../sanpham/Đầm-Nữ.php ">Sản phẩm Nữ: Đầm</a></li>
                 </ul>
             </div>
-            <div><a href="web/Sản-phẩm.html" style="text-decoration:none; color:#000;">
+            <div><a href="../sanpham/Sản-Phẩm.php" style="text-decoration:none; color:#000;">
                     <p>SẢN PHẨM </p>
             </div>
-            <div><a href="index.html" style="text-decoration:none; color:#000;">
+            <div><a href="../index.php" style="text-decoration:none; color:#000;">
                     <p>TRANG CHỦ</p>
                 </a></div>
-            <div><a href="web/Giới-Thiệu.html" style="text-decoration:none; color:#000;">
+            <div><a href="../sanpham/Giới-Thiệu.php" style="text-decoration:none; color:#000;">
                     <p>GIỚI THIỆU</p>
                 </a></div>
-            <div><a href="https://sixdo.vn/san-pham" style="text-decoration:none; color:#000;">
-                    <p>CỬA HÀNG</p>
+            <div><a href="../Cart/cart.php" style="text-decoration:none; color:#000;">
+                    <p>GIỎ HÀNG</p>
                 </a></div>
             <div id="TaiKhoan">
-                <p>TÀI KHOẢN</p>
+                <p style="margin-bottom: 0;">TÀI KHOẢN</p>
                 <ul class="MeNu">
-                    <li><a href="web/Đăng-Nhập.html">Đăng Nhập</a></li>
-                    <li><a href="web/Đăng-ký.html">Đăng Ký</a></li>
+                    <li><a href="../Login/Login.php">Đăng Nhập</a></li>
+                    <li><a href="../Login/email_dangki.php">Đăng Ký</a></li>
+                    <li><a href="../QLTK/QLTK.php">QL Tài Khoản</a></li>
+                    <li><a href="../QLTK/myOder.php">QL đơn hàng</a></li>
                 </ul>
             </div>
         </div>
     </div>
-
-
-
     <div id="logo">
-        <img src="image/logo.png">
-        <p><input type="text" placeholder=" Tìm kiếm sản phẩm "></p>
-        <div class="ti-arrow-right">
-        </div>
-
+        <img src="../image/logo1.png" style="height: 90px; width: 110px;">
+        <label for="TaiKhoan" class="ttcn">Thanh Toán</label>
     </div>
 
 
@@ -200,70 +207,290 @@
 
     </div>
     <!-- footer -->
-    <footer>
-        <div class="container">
-            <!--Bắt Đầu Nội Dung Giới Thiệu-->
-            <div class="noi-dung about">
-                <h2>Về Chúng Tôi</h2>
-                <p>Website này được thiết kế và vận hành bởi nhóm admin: </br>
-                    1. Mai Đình Dũng</br>
-                    2. Dương Đức Khôi</br>
-                    3. Nguyễn Ngọc Sơn</br>
-                    4. Vũ Văn Tùng</br>
-                    5. Tăng Văn Tuấn</br>
-                </p>
-                <ul class="social-icon">
-                    <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                    <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                    <li><a href=""><i class="fa fa-instagram"></i></a></li>
-                    <li><a href=""><i class="fa fa-youtube"></i></a></li>
-                </ul>
-            </div>
-            <!--Kết Thúc Nội Dung Giới Thiệu-->
-            <!--Bắt Đầu Nội Dung Đường Dẫn-->
-            <div class="noi-dung links">
-                <h2>Đường Dẫn</h2>
-                <ul>
-                    <li><a href="#">Trang Chủ</a></li>
-                    <li><a href="./Giới-Thiệu.html">Về Chúng Tôi</a></li>
-                    <li><a href="./Đăng-Nhập.html">Tài khoản</a></li>
-                    <li><a href="./Sản-phẩm.html">Sản phẩm</a></li>
-                    <li><a href="./Đầm-Nữ.html">Cửa hàng</a></li>
-                </ul>
-            </div>
-            <!--Kết Thúc Nội Dung Đường Dẫn-->
-            <!--Bắt Đâu Nội Dung Liên Hệ-->
-            <div class="noi-dung contact">
-                <h2>Thông Tin Liên Hệ</h2>
-                <ul class="info">
-                    <li>
-                        <span><i class="fa fa-map-marker"></i></span>
-                        <span>52 Triều Khúc<br />
-                            Quận Thanh Xuân, TP Hà Nội<br />
-                            Việt Nam</span>
-                    </li>
-                    <li>
-                        <span><i class="fa fa-phone"></i></span>
-                        <p><a href="">0373999999</a>
-                            <br />
-                            <a href="">0373888888</a>
+    <footer class="text-center text-lg-start bg-body-tertiary text-muted" style=" background: #ffdce3;
+		padding: 10px;margin-top: 150px;
+		color: #000;">
+        <!-- Section: Social media -->
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="" style="margin-top: 0px; height: 240px;">
+            <div class="container text-center text-md-start mt-5" style="margin-top: 1rem !important ;">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold mb-4" style="font-size: 25px;">
+                            <i class="fas fa-gem me-3"></i>&nbsp;SONIC SHOP
+                        </h6>
+                        <p style="text-align: justify; font-weight: bold;">
+                            Website này được thiết kế và vận hành bởi nhóm admin: </br>
+                            1. Dương Đức Khôi </br>
+                            2. Mai Đình Dũng</br>
+                            3. Nguyễn Ngọc Sơn</br>
+                            4. Vũ Văn Tùng</br>
+                            5. Tăng Văn Tuấn</br>
                         </p>
-                    </li>
-                    <li>
-                        <span><i class="fa fa-envelope"></i></span>
-                        <p><a href="">sale@sonic.vn</a></p>
-                    </li>
-                    <li>
-                        <form class="form">
-                            <input type="email" class="form__field" placeholder="Đăng Ký Subscribe Email" />
-                            <button type="button" class="btn btn--primary  uppercase">Gửi</button>
-                        </form>
-                    </li>
-                </ul>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4" style=" font-weight: bold;">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4" style="font-size: 25px;">
+                            SẢN PHẨM
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Váy nữ xinh </a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Đầm nữ xinh</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4" style="font-size: 25px;">
+                            ĐƯỜNG DẪN
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Trang chủ</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Sản phẩm</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Giới thiệu</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Tài khoản cá nhân</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4" style="text-align: justify; font-weight: bold;">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4" style="font-size: 25px;">Contact</h6>
+                        <p><i class="fas fa-home me-3"></i> 54, Triều Khúc, Thanh Xuân, Hà Nội</p>
+                        <p>
+                            <i class="fas fa-envelope me-3"></i>
+                            sonicshopxinh@gmail.com
+                        </p>
+                        <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+                        <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
             </div>
-            <!--Kết Thúc Nội Dung Liên Hệ-->
+        </section>
+        <!-- Section: Links  -->
+
+        <!-- Copyright -->
+        <!-- Right -->
+        <div class="bg-body-tertiary text-center" style="padding: 0;">
+            <!-- Grid container -->
+            <div class="container p-4 pb-0" style="padding: 0;">
+                <!-- Section: Social media -->
+                <section class="mb-4">
+                    <!-- Facebook -->
+                    <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+
+                    <!-- Twitter -->
+                    <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #55acee;" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+
+                    <!-- Google -->
+                    <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button"><i class="fab fa-google"></i></a>
+
+                    <!-- Instagram -->
+                    <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+
+                    <!-- Linkedin -->
+                    <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #0082ca;" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+                    <!-- Github -->
+                    <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #333333;" href="#!" role="button"><i class="fab fa-github"></i></a>
+                </section>
+                <!-- Section: Social media -->
+            </div>
+            <!-- Grid container -->
+            <!-- Right -->
+            <!-- Copyright -->
         </div>
     </footer>
+    <!-------------------STYLES---------------------->
+    <style>
+        .ttcn {
+            text-align: center;
+            background-color: #ffffff;
+            width: 400px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 25px;
+            margin-left: 500px;
+            border-radius: 30px;
+        }
+
+        @font-face {
+            font-family: quicksand;
+            src: url('font/quicksand/Quicksand-Regular.ttf');
+        }
+
+        * {
+            padding: 0;
+            box-sizing: border-box;
+            font-family: quicksand;
+        }
+
+        #logo {
+            height: 100px;
+            margin-top: 50px;
+            background: #f0cfcf;
+            background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+            background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+            background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+            background: linear-gradient(bottom, #f0cfcf, #ffacc7);
+        }
+
+        #logo img {
+            margin: 5px 5px 5px 0;
+            height: 90px;
+            float: right;
+            position: absolute;
+            right: 0;
+        }
+
+        #logo p {
+            float: left;
+            line-height: 88px;
+            padding-left: 200px;
+        }
+
+        #logo p input {
+            height: 50px;
+            width: 350px;
+        }
+
+        #logo div {
+            height: 49px;
+            width: 53px;
+            float: left;
+            font-size: 20px;
+            margin-top: 20px;
+            background-color: darkgray;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            text-align: center;
+            font-size: 20px;
+            color: white;
+            line-height: 50px;
+        }
+
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background-color: #FFDCE3;
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+
+        }
+
+        #khungdau div {
+            float: left;
+            line-height: 50px;
+            width: 160px;
+            text-align: center;
+            height: 50px;
+        }
+
+        #khungdau div:hover {
+            background: #f0cfcf;
+            background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+            background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+            background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+            background: linear-gradient(bottom, #f0cfcf, #ffacc7);
+            cursor: pointer;
+            display: inline;
+        }
+
+        .MeNu {
+            height: auto;
+            background: #f0cfcf;
+            background: -webkit-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+            background: -o-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+            background: -moz-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+            background: linear-gradient(bottom right, #e6d4ec, #ffacc7);
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .MeNu ul {
+            margin-top: 0;
+        }
+
+        .MeNu li {
+            width: 100%;
+        }
+
+        #khungdau ul li {
+            height: 45px;
+            display: none;
+            float: none;
+            clear: both;
+            text-decoration: none;
+            text-align: left;
+            padding-left: 20px;
+            line-height: 40px;
+            box-shadow: black;
+
+        }
+
+        .MeNu ul {
+            margin-top: 0;
+            background: 0%;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .MeNu li:hover {
+            background: white;
+            margin-bottom: 5px;
+
+        }
+
+        #TaiKhoan:hover ul li {
+            display: block;
+        }
+
+        #TaiKhoan ul li:hover {
+            background: rgb(255, 254, 254);
+            margin-left: 5px;
+            font-weight: bold;
+
+        }
+
+        #TaiKhoan ul {
+            background: #f0cfcf;
+            background: -webkit-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+            background: -o-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+            background: -moz-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+            background: linear-gradient(bottom right, #e6d4ec, #ffacc7);
+            margin-left: 0;
+            margin-top: 0;
+        }
+    </style>
 </body>
 
 </html>

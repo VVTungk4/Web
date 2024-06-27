@@ -97,7 +97,7 @@
 
 
 						<div class="text-center p-t-90">
-							<a class="txt1" href="Login.html">
+							<a class="txt1" href="Login.php">
 								Đăng nhập
 							</a>
 						</div>

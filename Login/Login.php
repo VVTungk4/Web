@@ -100,10 +100,10 @@
 
 
 						<div class="text-center p-t-90">
-							<a class="txt1" href="resetpassword.html" style=" color:#0f3030;">
+							<a class="txt1" href="resetpassword.php" style=" color:#0f3030;">
 								Quên mật khẩu?
 							</a>
-							<a class="txt1" href="email_dangki.html" style=" color:#0f3030;">
+							<a class="txt1" href="email_dangki.php" style=" color:#0f3030;">
 								&nbsp;&nbsp;&nbsp;Đăng kí?
 							</a>
 						</div>

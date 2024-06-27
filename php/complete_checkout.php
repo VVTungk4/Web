@@ -17,9 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $status = 0;
         $total_amount = $_SESSION['total_price'];
     
-        $query_insert_bill = "INSERT INTO Orders (fullname, phone_number, address, note, order_date, status, total_money
-        )
-        VALUES ('$fullname', '$phone', '$address', '$note', '$order_date', '$status', '$total_amount')";
+        $query_insert_bill = "INSERT INTO Orders (user_id, fullname, phone_number, address, note, order_date, status, total_money)
+        VALUES ('$user_id', '$fullname', '$phone', '$address', '$note', '$order_date', '$status', '$total_amount')";
     
         if (mysqli_query($conn, $query_insert_bill)) {
     

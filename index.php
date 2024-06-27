@@ -37,19 +37,19 @@
             <div style="margin-left: 100px; width: 250px;" class="DanhMuc">
                 <p style="margin-bottom: 0;"><i class="DanhMuc ti-menu-alt"></i>DANH SÁCH</p>
                 <ul class="MeNu">
-                    <li><a href="../SonicShop/sanpham/Áo-Nữ .html">TRANG PHỤC NỮ-ÁO</a></li>
-                    <li><a href="../SonicShop/sanpham/Đầm-Nữ.html">TRANG PHỤC NỮ-ĐẦM
+                    <li><a href="../SonicShop/sanpham/Áo-Nữ .php">TRANG PHỤC NỮ-ÁO</a></li>
+                    <li><a href="../SonicShop/sanpham/Đầm-Nữ.php">TRANG PHỤC NỮ-ĐẦM
                         </a></li>
 
                 </ul>
             </div>
-            <div style="height: 50px;"><a href="sanpham/Sản-phẩm.html" style="text-decoration:none; color:#000;">
+            <div style="height: 50px;"><a href="sanpham/Sản-phẩm.php" style="text-decoration:none; color:#000;">
                     <p>SẢN PHẨM </p>
             </div>
             <div><a href="index.php" style="text-decoration:none; color:#000;">
                     <p>TRANG CHỦ</p>
                 </a></div>
-            <div><a href="../SonicShop/sanpham/Giới-Thiệu.html" style="text-decoration:none; color:#000;">
+            <div><a href="../SonicShop/sanpham/Giới-Thiệu.php" style="text-decoration:none; color:#000;">
                     <p>GIỚI THIỆU</p>
                 </a></div>
             <div><a href="../SonicShop/Cart/cart.php" style="text-decoration:none; color:#000;">
@@ -58,10 +58,10 @@
             <div id="TaiKhoan">
                 <p style="margin-bottom: 0;">TÀI KHOẢN</p>
                 <ul class="MeNu">
-                    <li><a href="Login/Login.php">Đăng Nhập</a></li>
-                    <li><a href="Login/email_dangki.php">Đăng Ký</a></li>
-                    <li><a href="QLTK/QLTK.php">QL Tài Khoản</a></li>
-                    <li><a href="QLTK/myOder.php">Đơn hàng của tôi</a></li>
+                    <li><a href="../SonicShop/Login/Login.php">Đăng Nhập</a></li>
+                    <li><a href="../SonicShop/Login/email_dangki.php">Đăng Ký</a></li>
+                    <li><a href="../SonicShop/QLTK/QLTK.php">QL Tài Khoản</a></li>
+                    <li><a href="../SonicShop/QLTK/myOder.php">Đơn hàng của tôi</a></li>
                 </ul>
             </div>
         </div>
@@ -302,7 +302,7 @@
         <div class="news">
             <div class="news1">
                 <img src="image/news1.jpg" alt="">
-                <a href="https://thoitrang4.giaodienwebmau.com/4-kieu-vay-dam-di-dam-cuoi-xinh-lung-linh-cho-phai-dep.html">
+                <a href="https://thoitrang4.giaodienwebmau.com/4-kieu-vay-dam-di-dam-cuoi-xinh-lung-linh-cho-phai-dep.php">
                     <p>4 Kiểu váy đầm đi đám cưới xinh lung linh cho phái đẹp</p>
                 </a>
                 <div class="line"></div>
@@ -313,7 +313,7 @@
             </div>
             <div class="news1">
                 <img src="image/news2.jpg" alt="">
-                <a href="https://thoitrang4.giaodienwebmau.com/4-kieu-vay-dam-di-dam-cuoi-xinh-lung-linh-cho-phai-dep.html">
+                <a href="https://thoitrang4.giaodienwebmau.com/4-kieu-vay-dam-di-dam-cuoi-xinh-lung-linh-cho-phai-dep.php">
                     <p>5 công thức phối “áo sơ mi + chân váy” xinh cho nàng</p>
                 </a>
                 <div class="line"></div>
@@ -324,7 +324,7 @@
             </div>
             <div class="news1">
                 <img src="image/chuyen5.jpg" alt="">
-                <a href="https://thoitrang4.giaodienwebmau.com/bst-christmas-colors-bua-tiec-da-sac-mau-cho-mua-le-hoi.html">
+                <a href="https://thoitrang4.giaodienwebmau.com/bst-christmas-colors-bua-tiec-da-sac-mau-cho-mua-le-hoi.php">
                     <p>Christmas Colors – Bữa tiệc đa sắc màu cho mùa lễ hội</p>
                 </a>
                 <div class="line"></div>

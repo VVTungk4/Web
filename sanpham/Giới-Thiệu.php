@@ -11,19 +11,11 @@
 	<link rel="stylesheet" href="./themify-icons/themify-icons.css">
 	<link rel="stylesheet" type="text/css" href="../sanpham/gioithieu-css.css" />
 	<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css" />
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-		integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-		crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-		integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-		crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-		crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -45,21 +37,21 @@
 			<div style="margin-left: 100px; width: 250px; height: auto;" class="DanhMuc">
 				<p><i class="DanhMuc ti-menu-alt"></i>DANH SÁCH</p>
 				<ul class="MeNu">
-					<li><a href="../sanpham/Áo-Nữ .html">TRANG PHỤC NỮ-ÁO</a></li>
-					<li><a href="../sanpham/Đầm-Nữ.html">TRANG PHỤC NỮ-ĐẦM</a></li>
+					<li><a href="../sanpham/Áo-Nữ .php">TRANG PHỤC NỮ-ÁO</a></li>
+					<li><a href="../sanpham/Đầm-Nữ.php">TRANG PHỤC NỮ-ĐẦM</a></li>
 
 				</ul>
 			</div>
-			<div style="height: 50px;"><a href="../sanpham/Sản-Phẩm.html" style="text-decoration:none; color:#000;">
+			<div style="height: 50px;"><a href="../sanpham/Sản-Phẩm.php" style="text-decoration:none; color:#000;">
 					<p>SẢN PHẨM </p>
 			</div>
 			<div style="height: 50px;"><a href="../index.php" style="text-decoration:none; color:#000;">
 					<p>TRANG CHỦ</p>
 				</a></div>
-			<div style="height: 50px;"><a href="../sanpham/Giới-Thiệu.html" style="text-decoration:none; color:#000;">
+			<div style="height: 50px;"><a href="../sanpham/Giới-Thiệu.php" style="text-decoration:none; color:#000;">
 					<p>GIỚI THIỆU</p>
 				</a></div>
-			<div style="height: 50px;"><a href="../Cart/cart.html" style="text-decoration:none; color:#000;">
+			<div style="height: 50px;"><a href="../Cart/cart.php" style="text-decoration:none; color:#000;">
 					<p>GIỎ HÀNG</p>
 				</a></div>
 			<div id="TaiKhoan">
@@ -67,6 +59,8 @@
 				<ul class="MeNu">
 					<li><a href="../Login/Login.php">Đăng Nhập</a></li>
 					<li><a href="../Login/email_dangki.php">Đăng Ký</a></li>
+					<li><a href="../QLTK/QLTK.php">QL Tài Khoản</a></li>
+					<li><a href="../QLTK/myOder.php">QL đơn hàng</a></li>
 				</ul>
 			</div>
 		</div>
@@ -166,10 +160,12 @@
 				var KichThuoc = document.getElementsByClassName("slide")[0].clientWidth;
 				var ChuyenSlide = document.getElementsByClassName("chuyen-slide")[0];
 				var chuyen = 0;
+
 				function Next() {
 					chuyen += KichThuoc;
 					ChuyenSlide.style.marginLeft = '-' + chuyen + 'px';
 				}
+
 				function Back() {
 					chuyen -= KichThuoc;
 					ChuyenSlide.style.marginLeft = '-' + chuyen + 'px';
@@ -211,8 +207,7 @@
 			<div class="row">
 				<div class="col">
 					<div class="card" style="width: 240px;">
-						<a href=""><img src="image/12.jpg" alt="" class="card-img-top" style="width: 220px"
-								height="260px">
+						<a href=""><img src="image/12.jpg" alt="" class="card-img-top" style="width: 220px" height="260px">
 							<div class="card-body">
 								<h6 class="card-title" style="font-weight: bold;">Váy đầm voan Midi màu hồng da báo</h6>
 
@@ -340,8 +335,7 @@
 					<!-- Grid column -->
 
 					<!-- Grid column -->
-					<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4"
-						style="text-align: justify; font-weight: bold;">
+					<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4" style="text-align: justify; font-weight: bold;">
 						<!-- Links -->
 						<h6 class="text-uppercase fw-bold mb-4" style="font-size: 25px;">Contact</h6>
 						<p><i class="fas fa-home me-3"></i> 54, Triều Khúc, Thanh Xuân, Hà Nội</p>
@@ -367,27 +361,21 @@
 				<!-- Section: Social media -->
 				<section class="mb-4">
 					<!-- Facebook -->
-					<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #3b5998;"
-						href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+					<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
 
 					<!-- Twitter -->
-					<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #55acee;"
-						href="#!" role="button"><i class="fab fa-twitter"></i></a>
+					<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #55acee;" href="#!" role="button"><i class="fab fa-twitter"></i></a>
 
 					<!-- Google -->
-					<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #dd4b39;"
-						href="#!" role="button"><i class="fab fa-google"></i></a>
+					<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button"><i class="fab fa-google"></i></a>
 
 					<!-- Instagram -->
-					<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #ac2bac;"
-						href="#!" role="button"><i class="fab fa-instagram"></i></a>
+					<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram"></i></a>
 
 					<!-- Linkedin -->
-					<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #0082ca;"
-						href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+					<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #0082ca;" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
 					<!-- Github -->
-					<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #333333;"
-						href="#!" role="button"><i class="fab fa-github"></i></a>
+					<a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #333333;" href="#!" role="button"><i class="fab fa-github"></i></a>
 				</section>
 				<!-- Section: Social media -->
 			</div>

@@ -1,4 +1,10 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
+
+$is_logged_in = isset($_SESSION['user_info']);
+
 // Kết nối đến cơ sở dữ liệu
 $conn = new mysqli('localhost', 'root', '', 'webhangban');
 if ($conn->connect_error) {
@@ -53,19 +59,19 @@ $colors_result = $conn->query("SELECT * FROM colors");
 			<div style="margin-left: 100px; width: 250px;" id="TaiKhoan">
 				<p style="margin-bottom: 0;"><i class="ti-menu-alt"></i>&nbsp;DANH SÁCH</p>
 				<ul class="MeNu">
-					<li><a href="../sanpham/Áo-Nữ .html">TRANG PHỤC NỮ-ÁO</a></li>
-					<li><a href="../sanpham/Đầm-Nữ.html">TRANG PHỤC NỮ-ĐẦM
+					<li><a href="../sanpham/Áo-Nữ .php">TRANG PHỤC NỮ-ÁO</a></li>
+					<li><a href="../sanpham/Đầm-Nữ.php">TRANG PHỤC NỮ-ĐẦM
 						</a></li>
 
 				</ul>
 			</div>
-			<div style="height: 50px;"><a href="../sanpham/Sản-phẩm.html" style="text-decoration:none; color:#000;">
+			<div style="height: 50px;"><a href="../sanpham/Sản-phẩm.php" style="text-decoration:none; color:#000;">
 					<p>SẢN PHẨM </p>
 			</div>
-			<div><a href="../index.html" style="text-decoration:none; color:#000;">
+			<div><a href="../index.php" style="text-decoration:none; color:#000;">
 					<p>TRANG CHỦ</p>
 				</a></div>
-			<div><a href="../sanpham/Giới-Thiệu.html" style="text-decoration:none; color:#000;">
+			<div><a href="../sanpham/Giới-Thiệu.php" style="text-decoration:none; color:#000;">
 					<p>GIỚI THIỆU</p>
 				</a></div>
 			<div><a href="../Cart/cart.php" style="text-decoration:none; color:#000;">
@@ -123,7 +129,7 @@ $colors_result = $conn->query("SELECT * FROM colors");
 						<label for="quantity-input" id="soluong-label">Số lượng:</label>
 						<div class="quantity-control">
 							<button type="button" id="decrement" class="btn btn-primary" disabled>-</button>
-							<input type="number" id="quantity-input" name="quantity" min="1" class="form-control" disabled>
+							<input type="number" id="quantity-input" name="quantity" min="1" class="form-control" disabled style="width: 60px;">
 							<button type="button" id="increment" class="btn btn-primary" disabled>+</button>
 						</div>
 					</div>
@@ -202,6 +208,11 @@ $colors_result = $conn->query("SELECT * FROM colors");
 			}
 		});
 		$('#add-to-cart').click(function() {
+			var isLoggedIn = <?php echo json_encode($is_logged_in); ?>;
+			if (!isLoggedIn) {
+				alert('Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng.');
+				return;
+			}
 			var formData = $('#order-form').serialize();
 
 			$.ajax({
@@ -215,6 +226,15 @@ $colors_result = $conn->query("SELECT * FROM colors");
 			});
 		});
 		$('#buy-now').click(function() {
+			var isLoggedIn = <?php echo json_encode($is_logged_in); ?>;
+			if (!isLoggedIn) {
+
+				event.preventDefault();
+
+
+				alert('Bạn cần đăng nhập để mua sản phẩm.');
+				return;
+			}
 
 			var formData = $('#order-form').serialize();
 
@@ -223,9 +243,8 @@ $colors_result = $conn->query("SELECT * FROM colors");
 				method: 'POST',
 				data: formData,
 				success: function(response) {
-
-					var randomParam = new Date().getTime();
-					window.location.href = '../Cart/cart.php?refresh=' + randomParam;
+					// Thực hiện điều gì đó sau khi thêm vào giỏ hàng thành công
+					window.location.href = '../Cart/cart.php';
 				}
 			});
 
