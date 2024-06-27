@@ -78,5 +78,29 @@
 				<td><button onclick='Thanhcong(this)' id='btntable' class='btn btn-outline-success'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td></tr>";
 			}}
             }
+			if($q==4)	{
+				
+	
+			// Kết nối cơ sở dữ liệu
+			$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+			// Truy vấn lấy dữ liệu
+				$sql = "Select * From orders Where status = 4";
+				$result = $conn->query($sql);
+			// Kiểm tra số lượng bản ghi trả về
+				if ($result->num_rows > 0) {
+ 			// Xuất dữ liệu của mỗi hàng
+ 			while($row = $result->fetch_assoc()) {
+				echo "<tr><td>" .
+				$row["id"]. "</td><td>" .
+				$row["fullname"]. "</td><td>" . 
+				$row["phone_number"]."</td><td>" . 
+				$row["address"]."</td><td>" .  
+				$row["order_date"]."</td>
+				<td ><button onclick='showchitiet(this,\"4\")' id='btntable' class='btn btn-outline-secondary'><i class='bx bx-low-vision'></i></button></td>
+				</tr>";
+			}}
+					
+			}
             $conn->close();
 ?>

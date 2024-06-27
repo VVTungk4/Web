@@ -555,11 +555,11 @@
 
 	 		<!-- Đơn Hàng -->
 		<main class="main" id="report" > 
-				<button id="btn3" onclick="loadlaiform(this)" onclick="showReport('report1')" class="btn btn-outline-danger btn-lg" value="0">Các Đơn Hàng Mới</button>
-				<button id="btn3" onclick="loadlaiform(this)" onclick="showReport('report4')" class="btn btn-outline-warning btn-lg" value="1">Chuẩn Bị Đơn Hàng</button>	
-				<button id="btn3" onclick="loadlaiform(this)" onclick="showReport('report5')" class="btn btn-outline-success btn-lg" value="2">Vận Chuyển</button>
-				<button id="btn3" onclick="loadlaiform(this)" onclick="showReport('report6')" class="btn btn-outline-info btn-lg" value ="3">Đơn Hàng Đã Hoàn Thành</button>
-				<button id="btn3" onclick="loadlaiform(this)" onclick="showReport('report7')" class="btn btn-outline-secondary btn-lg" value ="4">Đơn Hàng Đã Hủy</button>		
+				<button id="btn3" onclick="loadlaiform(this)" class="btn btn-outline-danger btn-lg" value="0">Các Đơn Hàng Mới</button>
+				<button id="btn3" onclick="loadlaiform(this)" class="btn btn-outline-warning btn-lg" value="1">Chuẩn Bị Đơn Hàng</button>	
+				<button id="btn3" onclick="loadlaiform(this)" class="btn btn-outline-success btn-lg" value="2">Vận Chuyển</button>
+				<button id="btn3" onclick="loadlaiform(this)" class="btn btn-outline-info btn-lg" value ="3">Đơn Hàng Đã Hoàn Thành</button>
+				<button id="btn3" onclick="loadlaiform(this)" class="btn btn-outline-secondary btn-lg" value ="4">Đơn Hàng Đã Hủy</button>		
 <!-- loadlaidulieukhibamdoinut	 -->
 	<script>
 		function loadlaiform(button) {
@@ -614,16 +614,16 @@
 <!-- Bảng Đơn Hàng Mới Cần Duyệt -->
 			<div class="report" id="report1" >
 			<h2 style="text-align: center;margin-top: 20px ;color:var(--dark)" >CÁC ĐƠN HÀNG MỚI</h2>
-				<table class="table table-striped caption-top" style="margin-top:25px ;">
-				<caption style="color:red">Các Đơn Hàng Mới Cần Duyệt</caption>
+				<table class="table table-striped table-hover caption-top" style="margin-top:25px ;">
+				<caption class="text-danger">Các Đơn Hàng Mới Cần Duyệt</caption>
    				 <thead style="border-bottom: 1px solid var(--dark);" class="table-danger">
        				<tr><th width="5%">Mã</th>
             			<th width="15%">Họ Tên</th>
             			<th width="10%">Số Điện Thoại</th>
            		 		<th width="20%">Địa Chỉ</th>
             			<th width="10%">Ngày Đặt</th>
-            			<th width="6%">Xem chi tiết</th>
-            			<th width="6%">Chỉnh sửa</th>
+            			<th width="6%">Chi tiết</th>
+            			<th width="6%">Sửa</th>
             			<th width="4%">Duyệt</th>
             			<th width="4%">Xóa</th>
         			</tr>
@@ -712,7 +712,7 @@
   			};
   				xhttp.open("GET", "Xemdonhangchitiet.php?q="+Number(firstCellContent)+"&giatri="+Number(giatri), true);
   				xhttp.send();
-				document.getElementById('btntable').onclick=showReport('report2');
+				showReport('report2');
 				
 			}
 //sua đơn hàng			
@@ -729,7 +729,7 @@
   			};
   				xhttp.open("GET", "chinhsuadonhang.php?q="+Number(firstCellContent), true);
   				xhttp.send();
-				document.getElementById('btntable').onclick=showReport('report3');
+				showReport('report3');
 				
 			}
 			
@@ -738,33 +738,19 @@
 
 
 <!-- Bảng chi tiết đơn hàng -->
-			<div class="report" id="report2" style="display:none">
-			<h3 style="text-align: center;margin-top: 20px;" >CHI TIẾT ĐƠN</h3>
-			  <table class="table table-sm caption-top" style="margin-top:25px ;" id="chitietdon">
-   				 
-			</table>
+			<div class="report"  id="report2" style="display:none">
+			<div id="chitietdon">
+				
+			</div>
 			  </div>
 <!-- Bảng chi tiết đơn hàng -->
 
 
 <!-- Bảng Chỉnh sửa Đơn Hàng -->
 	<div class="report" id="report3" style="display:none">
-	<h2 style="text-align: center;margin-top: 20px;color:var(--dark)" >THAY ĐỔI ĐƠN HÀNG</h2>
-			<table class="table table-striped" style="margin-top:25px ;">
-			  	<thead style="border-bottom: 1px solid var(--dark);" class="table-danger">
-       				<tr"><th width="5%">STT</th>
-            			<th width="10%">Mã Sản Phẩm</th>
-            			<th width="10%">Tên Sản Phẩm</th>
-						<th width="10%">Màu Sắc</th>
-						<th width="10%">Size</th>
-           		 		<th width="20%">Số Lượng</th>
-						<th width="4%">Xóa</th>          			
-        			</tr>
-   				</thead>
-        			<tbody id="suadonhang">
-<!-- fill từ chỉnh sửa đơn hàng -->
-       				 </tbody>
-			</table>
+			<div id="suadonhang">
+			<!-- fill từ chỉnh sửa đơn hàng -->
+			</div>
 <!-- kiểm tra input số lượng -->
 <script>
     function validateInput(input) {
@@ -784,7 +770,8 @@
 
 <!-- listbox lấy ra danh sách đồ còn hàng để thêm vào đơn -->
 <h3 style="font:Arial">Thêm sản phẩm vào giỏ</h3>
-<select classs="myListbox" id="myListbox" onchange="themvaodon()">
+<select class="form-select form-select-sm" aria-label="Chọn Sản Phẩm Để Thêm Vào" id="myListbox" onchange="themvaodon()">
+<option value="0">Chọn Sản Phẩm Để Thêm Vào</option>
 <?php 
 include('timkiem.php');
 ?>
@@ -890,15 +877,15 @@ include('timkiem.php');
 <!-- Bảng chuẩn bị đơn hàng -->
 	<div class="report" id="report4" style="display:none;">
 	<h2 style="text-align: center;margin-top: 20px;color:var(--dark)" >CHUẨN BỊ HÀNG</h2>
-				<table class="table table-striped caption-top" style="margin-top:25px ;">
-				<caption style="color:var(--dark)">Bảng Chuẩn Bị Đơn Hàng</caption>
+				<table class="table table-striped caption-top table-hover" style="margin-top:25px ;">
+				<caption class="text-warning">Bảng Chuẩn Bị Đơn Hàng</caption>
    				 <thead style="border-bottom: 1px solid var(--dark);" class="table-warning">
        				<tr><th width="5%">Mã</th>
             			<th width="15%">Họ Tên</th>
             			<th width="10%">Số Điện Thoại</th>
            		 		<th width="20%">Địa Chỉ</th>
             			<th width="10%">Ngày Đặt</th>
-            			<th width="6%">Xem chi tiết</th>
+            			<th width="6%">Chi tiết</th>
 						<th width="8%">Đã Xong</th>
         			</tr>
 		<script>
@@ -953,15 +940,15 @@ include('timkiem.php');
 <!-- Bảng Giao Hàng -->
 		<div class="report" id="report5" style="display:none;">
 		<h2 style="text-align: center;margin-top: 20px;color:var(--dark)" >ĐANG VẬN CHUYỂN</h2>
-				<table class="table table-striped caption-top" style="margin-top:25px ;">
-				<caption style="color:var(--dark)">Các Đơn Hàng Đang Giao</caption>
+				<table class="table table-striped caption-top table-hover" style="margin-top:25px ;">
+				<caption class="text-success">Các Đơn Hàng Đang Giao</caption>
    				 <thead style="border-bottom: 1px solid var(--dark);" class="table-success">
        				<tr><th width="5%">Mã</th>
             			<th width="15%">Họ Tên</th>
             			<th width="10%">Số Điện Thoại</th>
            		 		<th width="20%">Địa Chỉ</th>
             			<th width="10%">Ngày Đặt</th>
-            			<th width="6%">Xem chi tiết</th>
+            			<th width="6%">Chi tiết</th>
 						<th width="8%">Đã Xong</th>
         			</tr>
 		<script>
@@ -1016,15 +1003,15 @@ include('timkiem.php');
 <!-- Bảng Đơn Hàng Thành Công-->
 <div class="report" id="report6" style="display:none;">
 	<h2 style="text-align: center;margin-top: 20px;color:var(--dark)" >CÁC ĐƠN HÀNG THÀNH CÔNG</h2>
-				<table class="table table-striped caption-top" style="margin-top:25px ;">
-				<caption style="color:var(--dark)">Các Đơn Hàng Thành Công</caption>
+				<table class="table table-striped caption-top table-hover" style="margin-top:25px ;">
+				<caption class="text-info">Các Đơn Hàng Thành Công</caption>
    				 <thead style="border-bottom: 1px solid var(--dark);" class="table-info">
        				<tr><th width="5%">Mã</th>
             			<th width="15%">Họ Tên</th>
             			<th width="10%">Số Điện Thoại</th>
            		 		<th width="20%">Địa Chỉ</th>
             			<th width="10%">Ngày Đặt</th>
-            			<th width="6%">Xem chi tiết</th>
+            			<th width="6%">Chi tiết</th>
 						<th width="8%">In Hóa Đơn</th>
         			</tr>
 		<script>
@@ -1072,6 +1059,52 @@ include('timkiem.php');
 			</table>
 		</div>
 <!-- Bảng Đơn Hàng Thành Công-->	
+
+
+<!-- Bảng Đơn Hàng Bị Hủy -->
+		<div class="report" id="report7" style="display:none;">
+	<h2 style="text-align: center;margin-top: 20px;color:var(--dark)" >CÁC ĐƠN HÀNG ĐÃ HỦY</h2>
+				<table class="table table-striped caption-top table-hover" style="margin-top:25px ;">
+				<caption class="text-secondary">Các Đơn Hàng Đã Hủy</caption>
+   				 <thead style="border-bottom: 1px solid var(--dark);" class="table-secondary">
+       				<tr><th width="5%">Mã</th>
+            			<th width="15%">Họ Tên</th>
+            			<th width="10%">Số Điện Thoại</th>
+           		 		<th width="20%">Địa Chỉ</th>
+            			<th width="10%">Ngày Đặt</th>
+            			<th width="6%">Chi tiết</th>
+						<!-- <th width="8%">In Hóa Đơn</th> -->
+        			</tr>
+   				 </thead>	
+				<tbody id="txtHint4">
+		
+	<?php
+	
+			// Kết nối cơ sở dữ liệu
+			$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+			// Truy vấn lấy dữ liệu
+				$sql = "Select * From orders Where status = 4";
+				$result = $conn->query($sql);
+			// Kiểm tra số lượng bản ghi trả về
+				if ($result->num_rows > 0) {
+ 			// Xuất dữ liệu của mỗi hàng
+ 			while($row = $result->fetch_assoc()) {
+				echo "<tr><td>" .
+				$row["id"]. "</td><td>" .
+				$row["fullname"]. "</td><td>" . 
+				$row["phone_number"]."</td><td>" . 
+				$row["address"]."</td><td>" .  
+				$row["order_date"]."</td>
+				<td ><button onclick='showchitiet(this,\"4\")' id='btntable' class='btn btn-outline-secondary'><i class='bx bx-low-vision'></i></button></td>
+				</tr>";
+			}}
+					$conn->close();?>
+      
+  		  		</tbody> 
+			</table>
+		</div>
+<!-- Bảng Đơn Hàng Bị Hủy -->
 		</main>
 			<!-- Đơn Hàng -->
 	</section>
@@ -1170,6 +1203,12 @@ include('timkiem.php');
 }
 	</script>
 
+	<!-- <script>
+        function deleteRow(button) {
+            const row = button.parentNode.parentNode;
+            row.remove();
+        }
+    </script> -->
 	
 	<!-- Hộp thoại -->
 	<div id="dialog" class="dialog" >
