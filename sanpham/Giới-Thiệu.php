@@ -70,9 +70,6 @@
 
 	<div id="logo">
 		<img src="image/logo1.png" style="height: 90px; width: 110px;">
-		<p><input type="text" placeholder=" Tìm kiếm sản phẩm "></p>
-		<div class="ti-arrow-right"></div>
-
 	</div>
 
 	<div style="margin:20px auto; padding:40px;">
