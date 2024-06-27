@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user_id']) || !isset($_POST['item_id'])) {
+if (!isset($_SESSION['user_info']['id']) || !isset($_POST['item_id'])) {
     echo "Dữ liệu không hợp lệ.";
     exit();
 }
 
-$user_id = $_SESSION['user_id'];
+$user_id = $_SESSION['user_info']['id'];
 $item_id = $_POST['item_id'];
 
 $conn = new mysqli('localhost', 'root', '', 'webhangban');
