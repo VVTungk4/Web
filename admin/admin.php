@@ -649,7 +649,7 @@
 				$row["phone_number"]."</td><td>" . 
 				$row["address"]."</td><td>" .  
 				$row["order_date"]."</td>
-				<td ><button onclick='showchitiet(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-low-vision'></i></button></td> 
+				<td ><button onclick='showchitiet(this,\"0\")' id='btntable' class='btn btn-outline-danger'><i class='bx bx-low-vision'></i></button></td> 
 				<td><button onclick='suadonhang(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bxs-pencil' style='color:#1cce55'  ></i></button></td>
 				<td><button onclick='xacnhansanpham(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td>
 				<td><button onclick='deleteRow(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
@@ -699,7 +699,7 @@
 			}
 
 //xem chi tiết sản phẩm			
-			function showchitiet(button) {
+			function showchitiet(button,giatri) {
 				const row = button.parentNode.parentNode;
             	const firstCellContent = row.cells[0].textContent;
   				var xhttp;    
@@ -710,7 +710,7 @@
 					document.getElementById("chitietdon").innerHTML = this.responseText;
    			 }
   			};
-  				xhttp.open("GET", "Xemdonhangchitiet.php?q="+Number(firstCellContent), true);
+  				xhttp.open("GET", "Xemdonhangchitiet.php?q="+Number(firstCellContent)+"&giatri="+Number(giatri), true);
   				xhttp.send();
 				document.getElementById('btntable').onclick=showReport('report2');
 				
@@ -740,22 +740,8 @@
 <!-- Bảng chi tiết đơn hàng -->
 			<div class="report" id="report2" style="display:none">
 			<h3 style="text-align: center;margin-top: 20px;" >CHI TIẾT ĐƠN</h3>
-			  <table class="table table-sm caption-top" style="margin-top:25px ;">
-			  <caption style="color:var(--dark)">Bảng Hóa Đơn Chi Tiết</caption>
-   				 <thead style="border-bottom: 1px solid var(--dark);" class="table-danger">
-       				<tr"><th width="5%">STT</th>
-            			<th width="10%">Mã Sản Phẩm</th>
-            			<th width="15%">Tên Sản Phẩm</th>
-						<th width="9%">Màu Sắc</th>
-						<th width="9%">Size</th>
-           		 		<th width="10%">Số Lượng</th>
-            			<th width="20%">Tổng Tiền</th>
-						       			
-        			</tr>
-   				 </thead>
-    			<tbody id="chitietdon">
-		   <!-- fill từ Xemdonhangchitiet.php -->
-  		  		</tbody>
+			  <table class="table table-sm caption-top" style="margin-top:25px ;" id="chitietdon">
+   				 
 			</table>
 			  </div>
 <!-- Bảng chi tiết đơn hàng -->
@@ -953,7 +939,7 @@ include('timkiem.php');
 				$row["phone_number"]."</td><td>" . 
 				$row["address"]."</td><td>" .  
 				$row["order_date"]."</td>
-				<td ><button onclick='showchitiet(this)' id='btntable' class='btn btn-outline-warning'><i class='bx bx-low-vision'></i></button></td>
+				<td ><button onclick='showchitiet(this,\"1\")' id='btntable' class='btn btn-outline-warning'><i class='bx bx-low-vision'></i></button></td>
 				<td><button onclick='chuyensanggiaohang(this)' id='btntable' class='btn btn-outline-warning'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td></tr>";
 			}}
 					$conn->close();?>
@@ -1016,7 +1002,7 @@ include('timkiem.php');
 				$row["phone_number"]."</td><td>" . 
 				$row["address"]."</td><td>" .  
 				$row["order_date"]."</td>
-				<td ><button onclick='showchitiet(this)' id='btntable' class='btn btn-outline-success'><i class='bx bx-low-vision'></i></button></td>
+				<td ><button onclick='showchitiet(this,\"2\")' id='btntable' class='btn btn-outline-success'><i class='bx bx-low-vision'></i></button></td>
 				<td><button onclick='Thanhcong(this)' id='btntable' class='btn btn-outline-success'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td></tr>";
 			}}
 					$conn->close();?>
@@ -1077,7 +1063,7 @@ include('timkiem.php');
 				$row["phone_number"]."</td><td>" . 
 				$row["address"]."</td><td>" .  
 				$row["order_date"]."</td>
-				<td ><button onclick='showchitiet(this)' id='btntable' class='btn btn-outline-info'><i class='bx bx-low-vision'></i></button></td>
+				<td ><button onclick='showchitiet(this,\"3\")' id='btntable' class='btn btn-outline-info'><i class='bx bx-low-vision'></i></button></td>
 				<td><button onclick='Inhoadon(this)' id='btntable' class='btn btn-outline-info'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td></tr>";
 			}}
 					$conn->close();?>

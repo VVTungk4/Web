@@ -20,7 +20,7 @@
 	$row["phone_number"]."</td><td>" . 
 	$row["address"]."</td><td>" .  
 	$row["order_date"]."</td>
-	<td ><button onclick='showchitiet(this)' id='btntable' class='btn btn-outline-success'><i class='bx bx-low-vision'></i></button></td>
+	<td ><button onclick='showchitiet(this,\"2\")' id='btntable' class='btn btn-outline-success'><i class='bx bx-low-vision'></i></button></td>
 	<td><button onclick='Thanhcong(this)' id='btntable' class='btn btn-outline-success'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td></tr>";
 }}
 

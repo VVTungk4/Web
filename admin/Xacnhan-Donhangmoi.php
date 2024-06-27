@@ -21,7 +21,7 @@
 				$row["phone_number"]."</td><td>" . 
 				$row["address"]."</td><td>" .  
 				$row["order_date"]."</td>
-				<td ><button onclick='showchitiet(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-low-vision'></i></button></td> 
+				<td ><button onclick='showchitiet(this,\"0\")' id='btntable' class='btn btn-outline-danger'><i class='bx bx-low-vision'></i></button></td> 
 				<td><button onclick='suadonhang(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bxs-pencil' style='color:#1cce55'  ></i></button></td>	
 				<td><button onclick='xacnhansanpham(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-check' style='color:#189ad5'  ></i></button></td>
 				<td><button onclick='deleteRow(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
