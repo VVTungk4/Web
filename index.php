@@ -58,10 +58,10 @@
             <div id="TaiKhoan">
                 <p style="margin-bottom: 0;">TÀI KHOẢN</p>
                 <ul class="MeNu">
-                    <li><a href="Login/Login.php">Đăng Nhập</a></li>
-                    <li><a href="Login/email_dangki.php">Đăng Ký</a></li>
-                    <li><a href="QLTK/QLTK.php">QL Tài Khoản</a></li>
-                    <li><a href="QLTK/myOder.php">Đơn hàng của tôi</a></li>
+                    <li><a href="../SonicShop/Login/Login.php">Đăng Nhập</a></li>
+                    <li><a href="../SonicShop/Login/email_dangki.php">Đăng Ký</a></li>
+                    <li><a href="../SonicShop/QLTK/QLTK.php">QL Tài Khoản</a></li>
+                    <li><a href="../SonicShop/QLTK/myOder.php">Đơn hàng của tôi</a></li>
                 </ul>
             </div>
         </div>

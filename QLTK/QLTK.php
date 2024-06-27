@@ -41,9 +41,10 @@
                 <div id="TaiKhoan">
                     <p style="margin-bottom: 0;">TÀI KHOẢN</p>
                     <ul class="MeNu">
-                        <li style="font-weight: normal;"><a href="../Login/email_dangki.php">Tài khoản mới</a></li>
-                        <li style="font-weight: normal;"><a href="../Login/logout.php">Đăng xuất</a></li>
-                        <li style="font-weight: normal;"><a href="../QLTK/myOder.php">QL đơn hàng</a></li>
+                        <li><a href="../Login/Login.php">Đăng Nhập</a></li>
+                        <li><a href="../Login/email_dangki.php">Đăng Ký</a></li>
+                        <li><a href="../QLTK/QLTK.php">QL Tài Khoản</a></li>
+                        <li><a href="../QLTK/myOder.php">QL đơn hàng</a></li>
                     </ul>
                 </div>
             </div>
@@ -51,7 +52,7 @@
 
         <div id="logo">
             <img src="images/logo1.png" style="height: 90px; width: 110px;">
-            
+
             <label for="TaiKhoan" class="ttcn"> THÔNG TIN CÁ NHÂN</label>
         </div>
 

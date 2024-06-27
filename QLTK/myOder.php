@@ -26,13 +26,13 @@
                     <li style="font-weight: normal;"><a href="../web/Đầm-Nữ.php ">Sản phẩm Nữ: Đầm</a></li>
                 </ul>
             </div>
-            <div><a href="../web/product.php" style="text-decoration:none; color:#000;">
+            <div><a href="../sanpham/Sản-Phẩm.php" style="text-decoration:none; color:#000;">
                     <p>SẢN PHẨM </p>
             </div>
             <div><a href="../index.php" style="text-decoration:none; color:#000;">
                     <p>TRANG CHỦ</p>
                 </a></div>
-            <div><a href="../web/Giới-Thiệu.php" style="text-decoration:none; color:#000;">
+            <div><a href="../sanpham/Giới-Thiệu.php" style="text-decoration:none; color:#000;">
                     <p>GIỚI THIỆU</p>
                 </a></div>
             <div><a href="../Cart/cart.php" style="text-decoration:none; color:#000;">
@@ -41,8 +41,10 @@
             <div id="TaiKhoan">
                 <p style="margin-bottom: 0;">TÀI KHOẢN</p>
                 <ul class="MeNu">
-                    <li style="font-weight: normal;"><a href="../Login/email_dangki.php">Tài khoản mới</a></li>
-                    <li style="font-weight: normal;"><a href="../Login/logout.php">Đăng xuất</a></li>
+                    <li><a href="../Login/Login.php">Đăng Nhập</a></li>
+                    <li><a href="../Login/email_dangki.php">Đăng Ký</a></li>
+                    <li><a href="../QLTK/QLTK.php">QL Tài Khoản</a></li>
+                    <li><a href="../QLTK/myOder.php">QL đơn hàng</a></li>
                 </ul>
             </div>
         </div>
@@ -62,7 +64,7 @@
             <input type="text" id="phone" name="phone" readonly>
             <br>
             <label for="fullname">Địa chỉ:</label>
-            <input type="text" id="address" name="address" readonly >
+            <input type="text" id="address" name="address" readonly>
         </div>
         <?php if (isset($_SESSION['user_info'])) : ?>
             <script type="text/javascript">
@@ -149,9 +151,10 @@
 
 
     <style>
-        .ttct{
+        .ttct {
             margin-top: 40px;
         }
+
         table {
             width: 900px;
             margin-bottom: 20px;
