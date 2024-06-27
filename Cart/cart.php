@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['user_info'])) {
-    echo "Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng.";
+    echo "Bạn cần đăng nhập để sử dụng chức năng giỏ hàng.";
     exit();
 }
 
