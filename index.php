@@ -37,7 +37,7 @@
             <div style="margin-left: 100px; width: 250px;" class="DanhMuc">
                 <p style="margin-bottom: 0;"><i class="DanhMuc ti-menu-alt"></i>DANH SÁCH</p>
                 <ul class="MeNu">
-                    <li><a href="../SonicShop/sanpham/AoNu .php">TRANG PHỤC NỮ-ÁO</a></li>
+                    <li><a href="../SonicShop/sanpham/AoNu.php">TRANG PHỤC NỮ-ÁO</a></li>
                     <li><a href="../SonicShop/sanpham/DamNu.php">TRANG PHỤC NỮ-ĐẦM
                         </a></li>
 
@@ -97,11 +97,11 @@
         <div class="row">
             <div class="col">
                 <div class="card" style="width: 240px;">
-                    <img src="image/8.jpg" alt="" class="card-img-top" style="width: 220px" height="260px">
+                    <img src="image/ao13.jpeg" alt="" class="card-img-top" style="width: 220px" height="260px">
                     <div class="card-body">
-                        <h6 class="card-title" style="font-weight: bold;">Váy đầm voan Midi màu hồng</h6>
+                        <h6 class="card-title" style="font-weight: bold;">Set đồ nữ phối màu cá tính<br>&nbsp</h6>
 
-                        <button type="button" class="btn btn-primary" style="padding: 4px 60px 3px 70px" onclick="redirectToDetailPage(1)">Mua Ngay</button>
+                        <button type="button" class="btn btn-primary" style="padding: 4px 60px 3px 70px" onclick="redirectToDetailPage(31)">Mua Ngay</button>
                     </div>
                 </div>
             </div>
@@ -110,11 +110,11 @@
             <div class="col">
                 <div class="card" style="width: 240px;">
 
-                    <img src="image/9.jpg" alt="" class="card-img-top" style="width: 220px" height="260px">
+                    <img src="image/ao8.jpeg" alt="" class="card-img-top" style="width: 220px" height="260px">
                     <div class="card-body">
-                        <h6 class="card-title" style="font-weight: bold;">Black Leopard Midi Silk woman</h6>
+                        <h6 class="card-title" style="font-weight: bold;">Áo bánh bèo trễ vai<br>&nbsp</h6>
 
-                        <button type="button" class="btn btn-primary" style="padding: 4px 60px 3px 70px" onclick="redirectToDetailPage(2)">Mua Ngay</button>
+                        <button type="button" class="btn btn-primary" style="padding: 4px 60px 3px 70px" onclick="redirectToDetailPage(36)">Mua Ngay</button>
                     </div>
 
                 </div>

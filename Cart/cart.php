@@ -131,9 +131,9 @@ $user_id = $_SESSION['user_info']['id'];
                                                 <p>Giá cũ: <del><?php echo number_format($row['price'], 0, ',', '.'); ?> VND </del></p>
                                                 <p>Giá mới: <?php echo number_format($row['after_discount'], 0, ',', '.'); ?> VND</p>
                                                 <p> Số lượng:
-                                                    <button class="btn btn-sm btn-secondary change-quantity" data-item-id="<?php echo $row['id']; ?>" data-change="decrease">-</button>
+                                                    <button class="btn btn-sm btn-primary change-quantity" data-item-id="<?php echo $row['id']; ?>" data-change="decrease">-</button>
                                                     <span class="quantity"><?php echo $row['quantity']; ?></span>
-                                                    <button class="btn btn-sm btn-secondary change-quantity" data-item-id="<?php echo $row['id']; ?>" data-change="increase">+</button>
+                                                    <button class="btn btn-sm btn-primary change-quantity" data-item-id="<?php echo $row['id']; ?>" data-change="increase">+</button>
                                                 </p>
                                                 <p>Thành tiền:
                                                     <?php echo number_format($row['after_discount'] * $row['quantity'], 0, ',', '.');

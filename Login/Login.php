@@ -86,7 +86,6 @@
 									const errorMessageDiv = document.getElementById('error-message');
 									errorMessageDiv.textContent = error;
 									errorMessageDiv.style.display = 'block'; // Hiển thị thông báo
-
 									// Tự động tắt thông báo sau 5 giây
 									setTimeout(function() {
 										errorMessageDiv.style.display = 'none';
