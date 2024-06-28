@@ -309,19 +309,35 @@
 			$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
 			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
 			// Truy vấn lấy dữ liệu
-				$sql = "SELECT p.id, p.title, SUM(od.num) AS total_quantity, SUM(od.total_money) AS total_revenue
-				FROM order_details od
-				INNER JOIN product p ON od.product_id = p.id
-				
-				GROUP BY p.id, p.title
-				ORDER BY total_revenue DESC, total_quantity DESC
-				LIMIT 5;";
+				$sql = "SELECT
+				ROW_NUMBER() OVER (ORDER BY total_revenue DESC, total_quantity DESC) AS stt,
+				p.thumbnail,
+				p.id,
+				p.title,
+				SUM(od.num) AS total_quantity,
+				SUM(od.total_money) AS total_revenue
+			FROM order_details od
+			INNER JOIN product p ON od.product_id = p.id
+			GROUP BY p.id, p.title
+			ORDER BY total_revenue DESC, total_quantity DESC
+			LIMIT 5;
+			";
 				$result = $conn->query($sql);
 			// Kiểm tra số lượng bản ghi trả về
 				if ($result->num_rows > 0) {
  			// Xuất dữ liệu của mỗi hàng
+					
  			while($row = $result->fetch_assoc()) {
-				echo "<li class=\"top1\"\<p>" . $row["id"] .":". $row["title"]. " &nbsp;&nbsp;   " . $row["total_revenue"]."</p></li>";
+				if($row['stt']==1){
+					$top='top1';
+				}
+				else if($row['stt']==2||$row['stt']==3){
+					$top='top2';
+				}
+				else if($row['stt']==4||$row['stt']==5){
+					$top='top3';
+					};
+				echo "<li class=\"".$top."\"><p style='margin:0px;'><img src='../".$row["thumbnail"] ."' style='width:50px;height:50px'>". " &nbsp;&nbsp;" . $row["id"] ."  :  ". $row["title"]. "</p></li>";
 			}} else {echo "Không Có Mặt Hàng Nào Được Bán!";}
 					$conn->close();
 ?>										
@@ -773,7 +789,7 @@
 <select class="form-select form-select-sm" aria-label="Chọn Sản Phẩm Để Thêm Vào" id="myListbox" onchange="themvaodon()">
 <option value="0">Chọn Sản Phẩm Để Thêm Vào</option>
 <?php 
-include('timkiem.php');
+	include('timkiem.php');
 ?>
 </select>
 <!-- listbox lấy ra danh sách đồ còn hàng để thêm vào đơn -->
@@ -788,6 +804,7 @@ include('timkiem.php');
             	const idsanpham = row.cells[1].textContent;
 				const mausanpham = row.cells[3].textContent;
 				const sizesanpham = row.cells[4].textContent;
+				const dongia = row.cells[6].textContent;
 				const input = row.querySelector('.toimuonsonay');
            		const soluong = 1;
 				const toimuoncainay=document.getElementById("toimuoncainay");
@@ -800,28 +817,29 @@ include('timkiem.php');
 					document.getElementById("suadonhang").innerHTML = this.responseText;
    			 }
   			};
-  				xhttp.open("GET", "Themsanpham-SuaDonHang.php?idsanpham="+Number(idsanpham)+"&mausanpham=" + mausanpham + "&sizesanpham=" + sizesanpham + "&iddonhang=" + Number(dayroi)+"&soluong=" + Number(soluong), true);
+  				xhttp.open("GET", "Themsanpham-SuaDonHang.php?idsanpham="+Number(idsanpham)+"&mausanpham=" + mausanpham + "&sizesanpham=" + sizesanpham + "&iddonhang=" + Number(dayroi)+"&soluong=" + Number(soluong)+"&dongia=" + Number(dongia), true);
   				xhttp.send();
 			}
-			function xoasanphamkhoidonhang(button) {
-				const row = button.parentNode.parentNode;
-            	const idsanpham = row.cells[1].textContent;
-				const mausanpham = row.cells[3].textContent;
-				const sizesanpham = row.cells[4].textContent;
-				const toimuoncainay=document.getElementById("toimuoncainay");
-				const dayroi =toimuoncainay.className;
-  				var xhttp;    
-  				xhttp = new XMLHttpRequest();
-  				xhttp.onreadystatechange = function() {
-    			if (this.readyState == 4 && this.status == 200) {
-					console.log('Yêu cầu đã gửi thành công');
-					alert("Đã xóa sản phẩm");
-					document.getElementById("suadonhang").innerHTML = this.responseText;
-   			 }
-  			};
-  				xhttp.open("GET", "Xoasanpham-SuaDonHang.php?idsanpham="+Number(idsanpham)+"&mausanpham=" + mausanpham + "&sizesanpham=" + sizesanpham + "&iddonhang=" + Number(dayroi), true);
-  				xhttp.send();
-			}
+	
+//dahuy			// function xoasanphamkhoidonhang(button) {
+			// 	const row = button.parentNode.parentNode;
+            // 	const idsanpham = row.cells[1].textContent;
+			// 	const mausanpham = row.cells[3].textContent;
+			// 	const sizesanpham = row.cells[4].textContent;
+			// 	const toimuoncainay=document.getElementById("toimuoncainay");
+			// 	const dayroi =toimuoncainay.className;
+  			// 	var xhttp;    
+  			// 	xhttp = new XMLHttpRequest();
+  			// 	xhttp.onreadystatechange = function() {
+    		// 	if (this.readyState == 4 && this.status == 200) {
+			// 		console.log('Yêu cầu đã gửi thành công');
+			// 		alert("Đã xóa sản phẩm");
+			// 		document.getElementById("suadonhang").innerHTML = this.responseText;
+   			//  }
+  			// };
+  			// 	xhttp.open("GET", "Xoasanpham-SuaDonHang.php?idsanpham="+Number(idsanpham)+"&mausanpham=" + mausanpham + "&sizesanpham=" + sizesanpham + "&iddonhang=" + Number(dayroi), true);
+  			// 	xhttp.send();
+			// }
 			
 			function themvaodon() {
 				const selectElement = document.getElementById("myListbox");
@@ -843,29 +861,46 @@ include('timkiem.php');
 
 <!-- Update dữ liệu sau khi đã sửa đơn hàng -->
 <script>
-	 function sendData(rowId) {
-		var data = {
-  				'iddonhang':Number(productId),
-				'productID':productID,
+	 function sendData() {
+				const userChoice = confirm("Xác Nhận Chỉnh Sửa Đơn Hàng ? Hãy Kiểm Tra Trước Khi Đồng Ý!!");
+				if (userChoice) {
+					const toimuoncainay=document.getElementById("toimuoncainay");
+				const dayroi =toimuoncainay.className;
+				const products = [];
+				const table = document.getElementById("productTable");
+				for (const row of table.rows) {
+       			
+       			const cells = row.cells;
+				// const stt = cells[0].textContent;
+       		 	const productID = cells[1].textContent;
+				const productSize = cells[4].textContent;
+				const productColor = cells[3].textContent;
+				const productQuantity = cells[5].querySelector("input").value
+				const newProduct = {
+				'iddonhang':Number(dayroi),
+				'productID':Number(productID),
 				'productSize':productSize,
 				'productColor':productColor,
-				'productQuantity':productQuantity,
-				
-};
+				'productQuantity':Number(productQuantity),};
+
+       			products.push(newProduct);
+        		// console.log(newProduct);
+    }
+		// console.log(products);
 				const xhr = new XMLHttpRequest();
 				
                 xhr.open("POST", "Capnhatchinhsuadonhang.php", true);
 				xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
 				xhr.onreadystatechange = function() {
    				if (xhr.readyState === 4 && xhr.status === 200) {
-        // Yêu cầu đã gửi thành công
-       			console.log('Yêu cầu đã gửi thành công');
-			
-				 window.location.href = 'Capnhatchinhsuadonhang.php';
+      				  // Yêu cầu đã gửi thành công
+					alert('Đơn Hàng Đã Được Cập Nhật!!');
+       				console.log('sửa thành công');
     }
 };
-                xhr.send(JSON.stringify(data));
+                xhr.send(JSON.stringify(products));
 				
+} 			
 			}
 
 </script>
@@ -1016,18 +1051,10 @@ include('timkiem.php');
         			</tr>
 		<script>
 		function Inhoadon(button) {
-				const row = button.parentNode.parentNode;
-            	const firstCellContent = row.cells[0].textContent;
-  				var xhttp;    
-  				xhttp = new XMLHttpRequest();
-  				xhttp.onreadystatechange = function() {
-    			if (this.readyState == 4 && this.status == 200) {
-					console.log('Yêu cầu đã gửi thành công');
-   			 }
-  			};
-  				xhttp.open("GET", "Inhoadon.php?q="+Number(firstCellContent), true);
-  				xhttp.send();
-			}
+    const row = button.parentNode.parentNode;
+    const firstCellContent = row.cells[0].textContent;
+    window.open('Inhoadon.php?q=' + Number(firstCellContent), '_blank');
+}
 		</script>
    				 </thead>	
 				<tbody id="txtHint3">
@@ -1170,7 +1197,23 @@ include('timkiem.php');
 				password.value = row.cells[5].textContent;
 				role_id.value = row.cells[6].textContent;
 				id.value =row.cells[0].textContent;
-//nút hủy			
+//nút hủy		
+				
+				deleteBtn.onclick =function(){
+					const iduser = row.cells[0].textContent;
+  					var xhttp;    
+  					xhttp = new XMLHttpRequest();
+  					xhttp.onreadystatechange = function() {
+    				if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu đã gửi thành công');
+					alert("Xóa Thành Công!");
+					window.location.reload();
+   			 }
+  			};
+  				xhttp.open("GET", "Xoataikhoan.php?q="+Number(iduser), true);
+  				xhttp.send();
+			}
+				
       			cancelBtn.onclick = function() {
        		 	dialog.style.display = 'none';
         		row.style.backgroundColor = ''; // Xóa nổi bật khi hủy
@@ -1203,12 +1246,12 @@ include('timkiem.php');
 }
 	</script>
 
-	<!-- <script>
-        function deleteRow(button) {
+	<script>
+        function deleteRow1(button) {
             const row = button.parentNode.parentNode;
             row.remove();
         }
-    </script> -->
+    </script>
 	
 	<!-- Hộp thoại -->
 	<div id="dialog" class="dialog" >

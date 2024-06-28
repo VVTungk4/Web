@@ -1,11 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="img/icon.png" type="image/x-icon">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	<link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<title>IN HÓA ĐƠN</title>
+</head>
+<body >
 <?php	
-//chitiet đơn hàng	
+//Hóa Đơn
 			// Kết nối cơ sở dữ liệu
 			$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
 			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
 			// Truy vấn lấy dữ liệu
 			$iddata=$_GET['q'];
-			$s=$_GET['giatri'];
 			$sql = "SELECT p.id, p.title, od.color, od.size, od.num, od.total_money
 			FROM order_details od
 			INNER JOIN product p ON od.product_id = p.id
@@ -23,32 +33,10 @@
 				$sdt =$row['phone_number'];
 			}
            
-
-			if($s==0){
-				$table='danger';
-				$tt='Đang Chờ Xác Nhận';
-			}
-			else if($s==1){
-				$table='warning';
-				$tt='Đang Chuẩn Bị';
-			}
-			else if($s==2){
-				$table='success';
-				$tt='Đang Giao Hàng';	
-				
-				}
-				else if($s==3){
-					$table='info';
-					$tt= 'Đã Hoàn Tất';
-			}	else if ($s==4){
-				$table='secondary';
-					$tt= 'Đã Hủy';
-			}
-			;
 			echo '<h3 style="text-align: center;margin-top: 20px; color:var(--dark);"  >CHI TIẾT ĐƠN HÀNG:#'.$iddata.'</h3>
-			<p class="fst-italic text-decoration-underline text-center text-'.$table.'">Trạng Thái Đơn : '.$tt.'<br>Họ Tên:'.$ten.'<br>Địa Chỉ :'.$diachi.'  SĐT :'.$sdt.'</p>
+			<p class="fst-italic text-decoration-underline text-center text-info">Họ Tên:'.$ten.'<br>Địa Chỉ :'.$diachi.'  SĐT :'.$sdt.'</p>
 			<table class="table table-sm caption-top" style="margin-top:25px ;">
-		 			<thead style="border-bottom: 1px solid var(--dark);" class="table-'.$table.'">
+		 			<thead style="border-bottom: 1px solid var(--dark);" class="table-info">
 						<tr><th width="5%">STT</th>
 			 				<th width="10%">Mã Sản Phẩm</th>
 			 				<th width="20%">Tên Sản Phẩm</th>
@@ -62,10 +50,6 @@
 			';
    			 if ($result->num_rows > 0) {
 				
-                //lưu biến
-			// Kiểm tra số lượng bản ghi trả về
-				
- 			// Xuất dữ liệu của mỗi hàng
  			while($row=$result->fetch_assoc()) {
 				$tongtien=$tongtien+$row['total_money'];
 				
@@ -82,3 +66,4 @@
         
 	
 ?>
+</body>
