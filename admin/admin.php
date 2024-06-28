@@ -309,19 +309,35 @@
 			$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
 			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
 			// Truy vấn lấy dữ liệu
-				$sql = "SELECT p.id, p.title, SUM(od.num) AS total_quantity, SUM(od.total_money) AS total_revenue
-				FROM order_details od
-				INNER JOIN product p ON od.product_id = p.id
-				
-				GROUP BY p.id, p.title
-				ORDER BY total_revenue DESC, total_quantity DESC
-				LIMIT 5;";
+				$sql = "SELECT
+				ROW_NUMBER() OVER (ORDER BY total_revenue DESC, total_quantity DESC) AS stt,
+				p.thumbnail,
+				p.id,
+				p.title,
+				SUM(od.num) AS total_quantity,
+				SUM(od.total_money) AS total_revenue
+			FROM order_details od
+			INNER JOIN product p ON od.product_id = p.id
+			GROUP BY p.id, p.title
+			ORDER BY total_revenue DESC, total_quantity DESC
+			LIMIT 5;
+			";
 				$result = $conn->query($sql);
 			// Kiểm tra số lượng bản ghi trả về
 				if ($result->num_rows > 0) {
  			// Xuất dữ liệu của mỗi hàng
+					
  			while($row = $result->fetch_assoc()) {
-				echo "<li class=\"top1\"\<p>" . $row["id"] .":". $row["title"]. " &nbsp;&nbsp;   " . $row["total_revenue"]."</p></li>";
+				if($row['stt']==1){
+					$top='top1';
+				}
+				else if($row['stt']==2||$row['stt']==3){
+					$top='top2';
+				}
+				else if($row['stt']==4||$row['stt']==5){
+					$top='top3';
+					};
+				echo "<li class=\"".$top."\"><p style='margin:0px;'><img src='../".$row["thumbnail"] ."' style='width:50px;height:50px'>". " &nbsp;&nbsp;" . $row["id"] ."  :  ". $row["title"]. " &nbsp;&nbsp;" . $row["total_revenue"]."</p></li>";
 			}} else {echo "Không Có Mặt Hàng Nào Được Bán!";}
 					$conn->close();
 ?>										

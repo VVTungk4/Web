@@ -29,7 +29,11 @@
 				else if($s==3){
 					$table='info';
 					$tt= 'Đã Hoàn Tất';
-			};
+			}	else if ($s==4){
+				$table='secondary';
+					$tt= 'Đã Hủy';
+			}
+			;
 			echo '<h3 style="text-align: center;margin-top: 20px; color:var(--dark);"  >CHI TIẾT ĐƠN HÀNG:#'.$iddata.'</h3>
 			<p class="fst-italic text-decoration-underline text-center text-'.$table.'">Trạng Thái Đơn : '.$tt.'</p>
 			<table class="table table-sm caption-top" style="margin-top:25px ;">
