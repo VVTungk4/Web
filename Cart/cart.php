@@ -122,7 +122,7 @@ $user_id = $_SESSION['user_info']['id'];
                                     <div class="cart-item">
                                         <div class="row">
                                             <div class="col-md-4" style="margin-bottom: 20px;">
-                                                <img src="../<?php echo $row['thumbnail']; ?>" class="img-fluid" alt="Product Image" style="border: 1px solid pink;">
+                                                <img src="../<?php echo $row['thumbnail']; ?>" class="img-fluid" alt="Product Image" style="border: 1px solid pink; height:275px; width: 185px;">
                                             </div>
                                             <div class="col-md-8">
                                                 <h4><?php echo $row['title']; ?></h4>

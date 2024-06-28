@@ -141,276 +141,176 @@
 		</div>
 
 	</div>
-	<table>
-		<tr>
-			<td>
-				<img src="image/1.jpg" /></a>
-			</td>
-			<td>
-				<img src="image/2.jpg" /></a>
-			</td>
-			<td>
-				<img src="image/3.jpg" /></a>
-			</td>
-			<td>
-				<img src="image/4.jpg" /></a>
-			</td>
-		</tr>
+	<!---------------Đổ dữ liệu-------------------->
+	<?php
+	// Kết nối database và lấy dữ liệu
+	$conn = new mysqli('localhost', 'root', '', 'webhangban');
+	if ($conn->connect_error) {
+		die("Kết nối thất bại: " . $conn->connect_error);
+	}
 
-		<tr>
-			<td>
-				<p>Cream Leopard Midi Silk Dress</p>
-				<p>THÀNH GIÁ: 2.496.000đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(5)"> ĐẶT HÀNG</button>
-			</td>
+	// Xác định số lượng sản phẩm trên mỗi trang
+	$productsPerPage = 16;
 
-			<td>
-				<p>Chân váy phối nơ CV09-11</p>
-				<p>THÀNH GIÁ: 1.696.000đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(6)">ĐẶT HÀNG</button>
-			</td>
+	// Lấy số trang hiện tại từ URL hoặc mặc định là 1 nếu không có
+	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-			<td>
+	// Tính số sản phẩm bỏ qua dựa trên trang hiện tại
+	$offset = ($page - 1) * $productsPerPage;
 
-				<p>Short Sleeves</p>
-				<p>THÀNH GIÁ: 996.000 đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(7)">ĐẶT HÀNG</button>
-			</td>
+	// Lấy tổng số sản phẩm
+	$result = $conn->query("SELECT COUNT(*) AS total FROM product where category_id = 1");
+	$row = $result->fetch_assoc();
+	$totalProducts = $row['total'];
 
-			<td>
+	// Tính tổng số trang
+	$totalPages = ceil(($totalProducts / $productsPerPage) - 1);
 
-				<p>Đầm công sở dáng suông tay phồng</p>
-				<p>THÀNH GIÁ: 596.000 đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(8)">ĐẶT HÀNG</button>
-			</td>
-		</tr>
+	// Lấy sản phẩm cho trang hiện tại
+	$stmt = $conn->prepare("SELECT * FROM product where category_id = 1 LIMIT ? OFFSET ? ");
+	$stmt->bind_param("ss", $productsPerPage, $offset);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	?>
+	<style>
+		.dsTrang {
+			text-align: center;
+			margin: auto;
+			width: auto;
+			color: black;
+		}
 
-		<tr>
-			<td>
-				<img src="image/5.jpg" />
-			</td>
-			<td>
-				<img src="image/6a.jpg">
-			</td>
-			<td>
-				<img src="image/7a.jpg" />
-			</td>
-			<td>
-				<img src="image/13.jpeg" />
-			</td>
+		.dsTrang a {
+			display: inline-block;
+			margin-right: 5px;
+			padding: 5px 10px;
+			border: 2px solid #ddd;
+		}
 
-		</tr>
+		.dsTrang a:hover,
+		.dsTrang a.active {
+			background: #f0cfcf;
+			background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+			background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+			background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+			background: linear-gradient(bottom, #f0cfcf, #ffacc7);
 
-		<tr>
-			<td>
+		}
 
-				<p>Đầm đen</p>
-				<p>THÀNH GIÁ: 2.296.000 đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(9)">ĐẶT HÀNG</button>
-			</td>
 
-			<td>
+		.dsTrang a {
+			display: inline-block;
+			margin-right: 5px;
+			padding: 5px 10px;
+			border: 1px solid #ddd;
+			color: black;
+			text-align: center;
+		}
 
-				<p>Đầm hồng</p>
-				<p>THÀNH GIÁ: 196.000 đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(10)">ĐẶT HÀNG</button>
-			</td>
+		.dsTrang a:hover {
+			background: #f0cfcf;
+			background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+			background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+			background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+			background: linear-gradient(bottom, #f0cfcf, #ffacc7);
 
-			<td>
+		}
 
-				<p>Đầm hồng đen</p>
-				<p>THÀNH GIÁ: 400.000 đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(11)">ĐẶT HÀNG</button>
-			</td>
+		table {
+			width: auto;
+			margin-bottom: 20px;
 
-			<td>
+		}
 
-				<p>Atticus Blue Stripe </p>
-				<p>THÀNH GIÁ: 423.000 đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(12)">ĐẶT HÀNG</button>
-			</td>
-		</tr>
+		td {
 
-		<tr>
-			<td>
-				<img src="image/1a.jpg" />
-			</td>
-			<td>
-				<img src="image/2.jpg" />
-			</td>
-			<td>
-				<img src="image/3c.jpg" />
-			</td>
-			<td>
-				<img src="image/4a.jpg" />
-			</td>
-		</tr>
+			padding: 20px;
+			text-align: center;
+			height: 500px;
+			width: 400px;
+		}
 
-		<tr>
-			<td>
-				<p>Cream Leopard Midi Silk Dress</p>
-				<p>THÀNH GIÁ: 2.496.000đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(13)">ĐẶT HÀNG</button>
-			</td>
+		.thumbnail img {
+			height: 300px;
+			width: 250px;
+			transition-duration: 0.3s;
+		}
 
-			<td>
-				<p>Đầm đỏ</p>
-				<p>THÀNH GIÁ:1.696.000đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(14)">ĐẶT HÀNG</button>
-			</td>
+		.thumbnail img:hover {
+			transform: scale(1.1);
+		}
 
-			<td>
+		.discout {
+			position: relative;
+			display: inline-block;
+		}
 
-				<p>Đầm đen teen</p>
-				<p>THÀNH GIÁ: 996.000 đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(15)">ĐẶT HÀNG</button>
-			</td>
-
-			<td>
-
-				<p>Đầm đen</p>
-				<p>THÀNH GIÁ: 596.000 đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(16)">ĐẶT HÀNG</button>
-			</td>
-		</tr>
-
-		<tr>
-			<td>
-				<img src="image/12.jpg" />
-			</td>
-			<td>
-				<img src="image/11.jpg">
-			</td>
-			<td>
-				<img src="image/7.jpg" />
-			</td>
-			<td>
-				<img src="image/13.jpeg" />
-			</td>
-
-		</tr>
-
-		<tr>
-			<td>
-
-				<p>Đầm hồng 2</p>
-				<p>THÀNH GIÁ: 2.296.000 đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(17)">ĐẶT HÀNG</button>
-			</td>
-
-			<td>
-
-				<p>Đầm hồng 3</p>
-				<p>THÀNH GIÁ: 196.000 đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(18)">ĐẶT HÀNG</button>
-			</td>
-
-			<td>
-
-				<p>Đầm hồng 4</p>
-				<p>THÀNH GIÁ: 400.000 đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(19)">ĐẶT HÀNG</button>
-			</td>
-
-			<td>
-
-				<p>Atticus Blue Stripe </p>
-				<p>THÀNH GIÁ: 423.000 đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(20)">ĐẶT HÀNG</button>
-			</td>
-		</tr>
-
-		<tr>
-			<td>
-				<img src="image/1c.jpg" />
-			</td>
-			<td>
-				<img src="image/2b.jpg" />
-			</td>
-			<td>
-				<img src="image/3.jpg" />
-			</td>
-			<td>
-				<img src="image/4.jpg" />
-			</td>
-		</tr>
-
-		<tr>
-			<td>
-				<p>Cream Leopard Midi Silk Dress</p>
-				<p>THÀNH GIÁ: 2.496.000đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(21)">ĐẶT HÀNG</button>
-			</td>
-
-			<td>
-				<p>Chân váy phối nơ CV09-11</p>
-				<p>THÀNH GIÁ:1.696.000đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(22)">ĐẶT HÀNG</button>
-			</td>
-
-			<td>
-
-				<p>Đầm cam 2</p>
-				<p>THÀNH GIÁ: 996.000 đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(23)">ĐẶT HÀNG</button>
-			</td>
-
-			<td>
-
-				<p>Đầm cam 3</p>
-				<p>THÀNH GIÁ: 596.000 đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(24)">ĐẶT HÀNG</button>
-			</td>
-		</tr>
-
-		<tr>
-			<td>
-				<img src="image/5.jpg" />
-			</td>
-			<td>
-				<img src="image/6.jpg"></a>
-			</td>
-			<td>
-				<img src="image/7.jpg" />
-			</td>
-			<td>
-				<img src="image/13.jpeg" />
-			</td>
-
-		</tr>
-
-		<tr>
-			<td>
-
-				<p>Đầm đen </p>
-				<p>THÀNH GIÁ: 2.296.000 đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(25)">ĐẶT HÀNG</button>
-			</td>
-
-			<td>
-
-				<p>Đầm trắng 1</p>
-				<p>THÀNH GIÁ: 196.000 đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(26)">ĐẶT HÀNG</button>
-			</td>
-
-			<td>
-
-				<p>Đầm trắng 2</p>
-				<p>THÀNH GIÁ: 400.000 đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(27)">ĐẶT HÀNG</button>
-			</td>
-
-			<td>
-
-				<p>Atticus Blue Stripe</p>
-				<p>THÀNH GIÁ: 423.000 đ</p>
-				<button class="btn-custom" onclick="redirectToDetailPage(28)">ĐẶT HÀNG</button>
-			</td>
-		</tr>
-
+		.discount-tag {
+			position: absolute;
+			top: 50px;
+			/* Điều chỉnh theo cần thiết */
+			right: 30px;
+			/* Điều chỉnh theo cần thiết */
+			background-color: #FF3366;
+			color: white;
+			padding: 5px;
+			font-size: 13px;
+			/* Điều chỉnh theo cần thiết */
+		}
+	</style>
+	<table style="margin: 50px;width: auto;" class="thumbnail">
+		<?php if ($result->num_rows > 0) : ?>
+			<tr>
+				<?php
+				$count = 0; // Khởi tạo biến đếm
+				while ($row = $result->fetch_assoc()) :
+					$count++; // Tăng biến đếm với mỗi sản phẩm
+				?>
+					<td>
+						<div class="discout">
+							<img src="../<?php echo $row['thumbnail'] ?>" alt="Ảnh váy" style="width:250px; height: 300px;border: 2px solid pink;">
+							<div class="discount-tag"> OFF <?php echo $row['discount'] ?> %</div>
+						</div>
+						<p>
+							<?php echo $row["title"]; ?>
+						</p>
+						<p>Giá:
+							<?php echo $row["price"]; ?> VNĐ
+						</p>
+						<button type="submit" class="btn-custom" onclick="redirectToDetailPage(<?php echo $row['id'] ?>)">Mua Ngay</button>
+					</td>
+				<?php
+					if ($count % 4 == 0) : // Nếu đếm đến 4 sản phẩm
+						echo '</tr><tr>'; // Kết thúc hàng hiện tại và bắt đầu hàng mới
+					endif;
+				endwhile;
+				?>
+			</tr>
+			<script>
+				function redirectToDetailPage(id) {
+					// Chuyển hướng sang trang chi tiết sản phẩm với ID sản phẩm
+					window.location.href = '../web/product_detail.php?id=' + id;
+				}
+			</script>
+		<?php endif; ?>
 	</table>
+	<div style="margin:auto; text-align:center">
+		<p> Có <?php echo $totalProducts ?> sản phẩm</p>
+	</div>
+	<!-- Hiển thị liên kết đến các trang -->
+	<div class="dsTrang">
+		<div>
+			<?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+				<a href="?page=<?php echo $i; ?>">
+					<?php echo $i; ?>
+				</a>
+			<?php endfor; ?>
+			<a <?php if ($page == $i) echo 'active'; ?> href="?page=<?php echo $i; ?>">
+				<?php echo $i; ?>
+			</a>
+		</div>
 
+	</div>
 
 
 	<br /><br /><br />
