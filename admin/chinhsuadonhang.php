@@ -13,7 +13,7 @@
 			$tt='Đang Chỉnh Sửa';
 			echo'<h3 style="text-align: center;margin-top: 20px;color:var(--dark)" >CHỈNH SỬA ĐƠN HÀNG : #'.$iddata.'</h3>
 			<p class="fst-italic text-decoration-underline text-center text-danger">Trạng Thái Đơn : '.$tt.'</p>
-			<table class="table table-striped" style="margin-top:25px ;">
+			<table class="table table-striped" style="margin-top:25px ;" >
 			  	<thead style="border-bottom: 1px solid var(--dark);" class="table-danger">
        				<tr"><th width="5%">STT</th>
             			<th width="10%">Mã Sản Phẩm</th>
@@ -24,7 +24,7 @@
 						<th width="4%">Xóa</th>          			
         			</tr>
    				</thead>
-        			<tbody >
+        			<tbody id="productTable">
 
        			';
    			 if ($result->num_rows > 0) {
@@ -39,10 +39,10 @@
 				echo "<tr><td>" . $stt. "</td><td>" . $row['id']. "</td><td>" .
                 $row['title']. "</td><td>" . $row['color']. "</td><td>" .
                 $row['size']."</td><td><input type='number' id='nhapso".$stt."' name='numberInput' min='0' max='".$quantity."' oninput='validateInput(this)' value=".$row['num'].">
-    			<p id='errorText' style='color: red;'></p><td><button onclick='xoasanphamkhoidonhang(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
+    			<p id='errorText' style='color: red;'></p><td><button onclick='deleteRow(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
 				 $stt++;
 			}
 		} echo "	 </tbody>
-			</table><div style='display=block' id='toimuoncainay' class='".$iddata."'>Mã Đơn Hàng:".$iddata."</div>";
+			</table><div style='display=block' id='toimuoncainay' class='".$iddata."'>Mã Đơn Hàng:".$iddata."</div><button onclick='sendData(this)' id='btntable' class='btn btn-outline-danger'></button>";
 				$conn->close();      
 ?>

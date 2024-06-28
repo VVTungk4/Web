@@ -789,7 +789,7 @@
 <select class="form-select form-select-sm" aria-label="Chọn Sản Phẩm Để Thêm Vào" id="myListbox" onchange="themvaodon()">
 <option value="0">Chọn Sản Phẩm Để Thêm Vào</option>
 <?php 
-include('timkiem.php');
+	include('timkiem.php');
 ?>
 </select>
 <!-- listbox lấy ra danh sách đồ còn hàng để thêm vào đơn -->
@@ -820,25 +820,26 @@ include('timkiem.php');
   				xhttp.open("GET", "Themsanpham-SuaDonHang.php?idsanpham="+Number(idsanpham)+"&mausanpham=" + mausanpham + "&sizesanpham=" + sizesanpham + "&iddonhang=" + Number(dayroi)+"&soluong=" + Number(soluong)+"&dongia=" + Number(dongia), true);
   				xhttp.send();
 			}
-			function xoasanphamkhoidonhang(button) {
-				const row = button.parentNode.parentNode;
-            	const idsanpham = row.cells[1].textContent;
-				const mausanpham = row.cells[3].textContent;
-				const sizesanpham = row.cells[4].textContent;
-				const toimuoncainay=document.getElementById("toimuoncainay");
-				const dayroi =toimuoncainay.className;
-  				var xhttp;    
-  				xhttp = new XMLHttpRequest();
-  				xhttp.onreadystatechange = function() {
-    			if (this.readyState == 4 && this.status == 200) {
-					console.log('Yêu cầu đã gửi thành công');
-					alert("Đã xóa sản phẩm");
-					document.getElementById("suadonhang").innerHTML = this.responseText;
-   			 }
-  			};
-  				xhttp.open("GET", "Xoasanpham-SuaDonHang.php?idsanpham="+Number(idsanpham)+"&mausanpham=" + mausanpham + "&sizesanpham=" + sizesanpham + "&iddonhang=" + Number(dayroi), true);
-  				xhttp.send();
-			}
+	
+//dahuy			// function xoasanphamkhoidonhang(button) {
+			// 	const row = button.parentNode.parentNode;
+            // 	const idsanpham = row.cells[1].textContent;
+			// 	const mausanpham = row.cells[3].textContent;
+			// 	const sizesanpham = row.cells[4].textContent;
+			// 	const toimuoncainay=document.getElementById("toimuoncainay");
+			// 	const dayroi =toimuoncainay.className;
+  			// 	var xhttp;    
+  			// 	xhttp = new XMLHttpRequest();
+  			// 	xhttp.onreadystatechange = function() {
+    		// 	if (this.readyState == 4 && this.status == 200) {
+			// 		console.log('Yêu cầu đã gửi thành công');
+			// 		alert("Đã xóa sản phẩm");
+			// 		document.getElementById("suadonhang").innerHTML = this.responseText;
+   			//  }
+  			// };
+  			// 	xhttp.open("GET", "Xoasanpham-SuaDonHang.php?idsanpham="+Number(idsanpham)+"&mausanpham=" + mausanpham + "&sizesanpham=" + sizesanpham + "&iddonhang=" + Number(dayroi), true);
+  			// 	xhttp.send();
+			// }
 			
 			function themvaodon() {
 				const selectElement = document.getElementById("myListbox");
@@ -860,15 +861,33 @@ include('timkiem.php');
 
 <!-- Update dữ liệu sau khi đã sửa đơn hàng -->
 <script>
-	 function sendData(rowId) {
-		var data = {
-  				'iddonhang':Number(productId),
-				'productID':productID,
+	 function sendData() {
+		
+				const toimuoncainay=document.getElementById("toimuoncainay");
+				const dayroi =toimuoncainay.className;
+				const products = [];
+				const table = document.getElementById("productTable");
+				for (const row of table.rows) {
+       			
+       			const cells = row.cells;
+				// const stt = cells[0].textContent;
+       		 	const productID = cells[1].textContent;
+				const productSize = cells[4].textContent;
+				const productColor = cells[3].textContent;
+				const productQuantity = cells[5].querySelector("input").value
+				const newProduct = {
+				'iddonhang':Number(dayroi),
+				'productID':Number(productID),
 				'productSize':productSize,
 				'productColor':productColor,
-				'productQuantity':productQuantity,
-				
-};
+				'productQuantity':Number(productQuantity),};
+
+       			products.push(newProduct);
+
+        // Thực hiện xử lý với giá trị color1 và color2
+        // console.log(newProduct);
+    }
+		// console.log(products);
 				const xhr = new XMLHttpRequest();
 				
                 xhr.open("POST", "Capnhatchinhsuadonhang.php", true);
@@ -877,11 +896,9 @@ include('timkiem.php');
    				if (xhr.readyState === 4 && xhr.status === 200) {
         // Yêu cầu đã gửi thành công
        			console.log('Yêu cầu đã gửi thành công');
-			
-				 window.location.href = 'Capnhatchinhsuadonhang.php';
     }
 };
-                xhr.send(JSON.stringify(data));
+                xhr.send(JSON.stringify(products));
 				
 			}
 
@@ -1236,12 +1253,12 @@ include('timkiem.php');
 }
 	</script>
 
-	<!-- <script>
-        function deleteRow(button) {
+	<script>
+        function deleteRow1(button) {
             const row = button.parentNode.parentNode;
             row.remove();
         }
-    </script> -->
+    </script>
 	
 	<!-- Hộp thoại -->
 	<div id="dialog" class="dialog" >
