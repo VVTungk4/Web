@@ -36,8 +36,8 @@
 			<div style="margin-left: 100px; width: 250px;" class="DanhMuc">
 				<p style="margin-bottom: 0;"><i class="DanhMuc ti-menu-alt"></i>DANH SÁCH</p>
 				<ul class="MeNu">
-					<li><a href="../sanpham/Áo-Nữ .php">TRANG PHỤC NỮ-ÁO</a></li>
-					<li><a href="../sanpham/Đầm-Nữ.php">TRANG PHỤC NỮ-ĐẦM
+					<li><a href="../sanpham/AoNu .php">TRANG PHỤC NỮ-ÁO</a></li>
+					<li><a href="../sanpham/DamNu.php">TRANG PHỤC NỮ-ĐẦM
 						</a></li>
 
 				</ul>

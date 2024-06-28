@@ -42,8 +42,8 @@ $conn = connectDatabase();
             <div style="width: 250px;" id="TaiKhoan">
                 <p style="margin-bottom: 0;"><i class="bi bi-list-task"></i>&nbsp; DANH MỤC</p>
                 <ul class="MeNu">
-                    <li><a href="../sanpham/Áo-Nữ.php ">Sản phẩm Nữ: Áo</a></li>
-                    <li><a href="../sanpham/Đầm-Nữ.php ">Sản phẩm Nữ: Đầm</a></li>
+                    <li><a href="../sanpham/AoNu.php ">Sản phẩm Nữ: Áo</a></li>
+                    <li><a href="../sanpham/DamNu.php ">Sản phẩm Nữ: Đầm</a></li>
                 </ul>
             </div>
             <div><a href="../sanpham/Sản-Phẩm.php" style="text-decoration:none; color:#000;">
