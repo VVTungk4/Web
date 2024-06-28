@@ -67,15 +67,13 @@ if (isset($_POST['product_id']) && isset($_POST['size_id']) && isset($_POST['col
                         echo "Error updating record: " . $conn->error;
                     }
                 } else {
+                    // Cập nhật số lượng trong giỏ hàng với số lượng tối đa có thể thêm được
                     $update_query = "UPDATE cart_items SET quantity = quantity + '$quantity_extra' WHERE cart_id = '$cart_id' AND product_id = '$product_id' AND size_id = '$size_id' AND color_id = '$color_id'";
                     if ($conn->query($update_query) === TRUE) {
-                        echo "success";
+                        echo "Bạn đã thêm quá số lượng trong giỏ hàng, hãy kiểm tra giỏ hàng của bạn.";
                     } else {
                         echo "Error updating record: " . $conn->error;
                     }
-
-
-                    echo "Bạn đã thêm quá số lượng trong giỏ hàng, hãy kiểm tra giỏ hàng của bạn.";
                 }
             } else {
                 echo "Không tìm thấy thông tin sản phẩm.";
