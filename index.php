@@ -16,6 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- Latest compiled and minified JavaScript -->
@@ -29,13 +30,14 @@
     <!-- Material Design Bootstrap -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css">
 
+
 </head>
 
 <body>
-    <div id="header">
+    <div id="header" style="display: flex;">
         <div id="khungdau">
             <div style="margin-left: 100px; width: 250px;" class="DanhMuc">
-                <p style="margin-bottom: 0;"><i class="DanhMuc ti-menu-alt"></i>DANH SÁCH</p>
+                <p style="margin-bottom: 0;"><i class="DanhMuc bi bi-list-task"></i>&nbsp;DANH SÁCH</p>
                 <ul class="MeNu">
                     <li><a href="../SonicShop/sanpham/AoNu.php">TRANG PHỤC NỮ-ÁO</a></li>
                     <li><a href="../SonicShop/sanpham/DamNu.php">TRANG PHỤC NỮ-ĐẦM
@@ -47,7 +49,7 @@
                     <p>SẢN PHẨM </p>
             </div>
             <div><a href="index.php" style="text-decoration:none; color:#000;">
-                    <p>TRANG CHỦ</p>
+                    <p><i class="bi bi-house-door"></i>&nbsp;TRANG CHỦ</p>
                 </a></div>
             <div><a href="../SonicShop/sanpham/Giới-Thiệu.php" style="text-decoration:none; color:#000;">
                     <p>GIỚI THIỆU</p>
@@ -56,7 +58,7 @@
                     <p>GIỎ HÀNG</p>
                 </a></div>
             <div id="TaiKhoan">
-                <p style="margin-bottom: 0;">TÀI KHOẢN</p>
+                <p style="margin-bottom: 0;"><i class="bi bi-person-circle"></i>&nbsp;TÀI KHOẢN</p>
                 <ul class="MeNu">
                     <li><a href="../SonicShop/Login/Login.php">Đăng Nhập</a></li>
                     <li><a href="../SonicShop/Login/email_dangki.php">Đăng Ký</a></li>
@@ -178,7 +180,16 @@
     $totalPages = ceil(($totalProducts / $productsPerPage) - 1);
 
     // Lấy sản phẩm cho trang hiện tại
-    $stmt = $conn->prepare("SELECT * FROM product LIMIT ? OFFSET ?");
+    $stmt = $conn->prepare("SELECT * FROM product ORDER BY
+    CASE
+        WHEN id = 31 THEN 1
+        WHEN id = 34 THEN 2
+        WHEN id = 36 THEN 3
+        WHEN id = 32 THEN 4
+        ELSE 5
+    END,
+    id LIMIT ? OFFSET ?;
+");
     $stmt->bind_param("ss", $productsPerPage, $offset);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -280,7 +291,9 @@
                     <td>
                         <div class="discout">
                             <img src="<?php echo $row['thumbnail'] ?>" alt="Ảnh váy" style="width:250px; height: 300px;border: 2px solid pink;">
-                            <div class="discount-tag"> OFF <?php echo $row['discount'] ?> %</div>
+                            <div class="discount-tag"> OFF
+                                <?php echo $row['discount'] ?> %
+                            </div>
                         </div>
                         <p>
                             <?php echo $row["title"]; ?>
@@ -288,7 +301,8 @@
                         <p>Giá:
                             <?php echo $row["price"]; ?> VNĐ
                         </p>
-                        <button type="submit" class="btn-custom" onclick="redirectToDetailPage(<?php echo $row['id'] ?>)">Mua Ngay</button>
+                        <button type="submit" class="btn-custom" onclick="redirectToDetailPage(<?php echo $row['id'] ?>)">
+                            <i class="bi bi-cart2"></i>&nbsp;Mua Ngay</button>
                     </td>
                 <?php
                     if ($count % 4 == 0) : // Nếu đếm đến 4 sản phẩm
@@ -306,7 +320,9 @@
         <?php endif; ?>
     </table>
     <div style="margin:auto; text-align:center">
-        <p> Có <?php echo $totalProducts ?> sản phẩm</p>
+        <p> Có
+            <?php echo $totalProducts ?> sản phẩm
+        </p>
     </div>
     <!-- Hiển thị liên kết đến các trang -->
     <div class="dsTrang">
@@ -316,7 +332,8 @@
                     <?php echo $i; ?>
                 </a>
             <?php endfor; ?>
-            <a <?php if ($page == $i) echo 'active'; ?> href="?page=<?php echo $i; ?>">
+            <a <?php if ($page == $i) echo 'active'; ?> href="?page=
+                <?php echo $i; ?>">
                 <?php echo $i; ?>
             </a>
         </div>
@@ -324,7 +341,7 @@
     </div>
 
     <div class="tintuc">
-        <h2>TIN TỨC</h2>
+        <h2><i class="bi bi-newspaper"></i>&nbsp;TIN TỨC</h2>
         <div class="news">
             <div class="news1">
                 <img src="image/news1.jpg" alt="">

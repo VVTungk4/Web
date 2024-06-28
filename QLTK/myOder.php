@@ -53,7 +53,7 @@
     <div id="logo">
         <img src="images/logo1.png" style="height: 90px; width: 110px;">
 
-        <label for="TaiKhoan" class="ttcn">THÔNG TIN ĐƠN HÀNG</label>
+        <label for="TaiKhoan" class="ttcn">LỊCH SỬ MUA HÀNG</label>
     </div>
     <div class="container">
         <div class="myInfo">
@@ -106,25 +106,7 @@
                             xhttp.open("GET", "oderData.php?q=" + Number(str), true);
                             xhttp.send();
                         }
-                    </script>
-                    <script>
-                        function showCustomer(str) {
-                            var xhttp;
-                            if (str == "") {
-                                document.getElementById("txtHint").innerHTML = "";
-                                return;
-                            }
-                            xhttp = new XMLHttpRequest();
-                            xhttp.onreadystatechange = function() {
-                                if (this.readyState == 4 && this.status == 200) {
-                                    document.getElementById("txtHint").innerHTML = this.responseText;
-                                }
-                            };
-                            xhttp.open("GET", "oderData.php?q=" + Number(str), true);
-                            xhttp.send();
-                        }
-                    </script>
-                    <script>
+                        //huy đơn
                         function huydon(button) {
                             var data_id = button.value;
                             var xhttp;
@@ -139,6 +121,11 @@
                             xhttp.open("GET", "huyDon.php?q=" + Number(data_id), true);
                             xhttp.send();
                         }
+                        //onLoad table all
+                        window.onload = function() {
+                            // Load dữ liệu từ selection và hiển thị lựa chọn đầu tiên
+                            showCustomer(5);
+                        };
                     </script>
                     <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
                 </div>
@@ -147,6 +134,7 @@
 
             </table>
         </div>
+
     </div>
 
 
