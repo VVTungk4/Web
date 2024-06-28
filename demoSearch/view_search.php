@@ -113,7 +113,7 @@
                         ?>
                             <td>
                                 <div class="discout">
-                                    <img src="<?php echo $row['thumbnail'] ?>" alt="Ảnh váy" style="width:250px; height: 300px;border: 2px solid pink;">
+                                    <img src="../<?php echo $row['thumbnail'] ?>" alt="Ảnh váy" style="width:250px; height: 300px;border: 2px solid pink;">
                                     <div class="discount-tag"> OFF <?php echo $row['discount'] ?> %</div>
                                 </div>
                                 <p>
