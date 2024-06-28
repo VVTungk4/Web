@@ -29,13 +29,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $dongia = $result1->fetch_assoc()['after_discount'];
         $tongtien=$dongia*$productQuantity;
         //sql để cập nhật lại tt 
-        $sql2 = "INSERT INTO order_details (product_id,price ,color, size, num, order_id,total_money)
+        if($productQuantity!=0){
+             $sql2 = "INSERT INTO order_details (product_id,price ,color, size, num, order_id,total_money)
         VALUES (?, ?,?,?, ?, ?,?)";
         $stmt = $conn->prepare($sql2);
         $stmt->bind_param("iissiii", $productID,$dongia,$productColor,$productSize,$productQuantity,$iddonhang,$tongtien);
         $stmt->execute();
         $stmt->get_result();
-
+        //cập nhật lại tổng tiền bên orders
         $sql3="UPDATE orders
         SET total_money = (
             SELECT SUM(od.total_money)
@@ -44,6 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         )
         WHERE id = $iddonhang";
         $result3 = mysqli_query($conn, $sql3);
+        }
+       
+
+        
         // Tăng biến đếm
         $i++;
     }}

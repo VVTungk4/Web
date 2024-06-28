@@ -862,8 +862,9 @@
 <!-- Update dữ liệu sau khi đã sửa đơn hàng -->
 <script>
 	 function sendData() {
-		
-				const toimuoncainay=document.getElementById("toimuoncainay");
+				const userChoice = confirm("Xác Nhận Chỉnh Sửa Đơn Hàng ? Hãy Kiểm Tra Trước Khi Đồng Ý!!");
+				if (userChoice) {
+					const toimuoncainay=document.getElementById("toimuoncainay");
 				const dayroi =toimuoncainay.className;
 				const products = [];
 				const table = document.getElementById("productTable");
@@ -883,9 +884,7 @@
 				'productQuantity':Number(productQuantity),};
 
        			products.push(newProduct);
-
-        // Thực hiện xử lý với giá trị color1 và color2
-        // console.log(newProduct);
+        		// console.log(newProduct);
     }
 		// console.log(products);
 				const xhr = new XMLHttpRequest();
@@ -894,12 +893,14 @@
 				xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
 				xhr.onreadystatechange = function() {
    				if (xhr.readyState === 4 && xhr.status === 200) {
-        // Yêu cầu đã gửi thành công
-       			console.log('Yêu cầu đã gửi thành công');
+      				  // Yêu cầu đã gửi thành công
+					alert('Đơn Hàng Đã Được Cập Nhật!!');
+       				console.log('sửa thành công');
     }
 };
                 xhr.send(JSON.stringify(products));
 				
+} 			
 			}
 
 </script>
@@ -1050,18 +1051,10 @@
         			</tr>
 		<script>
 		function Inhoadon(button) {
-				const row = button.parentNode.parentNode;
-            	const firstCellContent = row.cells[0].textContent;
-  				var xhttp;    
-  				xhttp = new XMLHttpRequest();
-  				xhttp.onreadystatechange = function() {
-    			if (this.readyState == 4 && this.status == 200) {
-					console.log('Yêu cầu đã gửi thành công');
-   			 }
-  			};
-  				xhttp.open("GET", "Inhoadon.php?q="+Number(firstCellContent), true);
-  				xhttp.send();
-			}
+    const row = button.parentNode.parentNode;
+    const firstCellContent = row.cells[0].textContent;
+    window.open('Inhoadon.php?q=' + Number(firstCellContent), '_blank');
+}
 		</script>
    				 </thead>	
 				<tbody id="txtHint3">

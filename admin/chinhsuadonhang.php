@@ -43,6 +43,6 @@
 				 $stt++;
 			}
 		} echo "	 </tbody>
-			</table><div style='display=block' id='toimuoncainay' class='".$iddata."'>Mã Đơn Hàng:".$iddata."</div><button onclick='sendData(this)' id='btntable' class='btn btn-outline-danger'></button>";
+			</table><div style='display=block' id='toimuoncainay' class='".$iddata."'>Mã Đơn Hàng:".$iddata."</div><button onclick='sendData(this)' id='btntable' class='btn btn-outline-danger'><p style='color:var(--orange);'>Xác Nhận</p></button>";
 				$conn->close();      
 ?>
