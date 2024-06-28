@@ -574,7 +574,7 @@
 				<button id="btn3" onclick="loadlaiform(this)" class="btn btn-outline-danger btn-lg" value="0">Các Đơn Hàng Mới</button>
 				<button id="btn3" onclick="loadlaiform(this)" class="btn btn-outline-warning btn-lg" value="1">Chuẩn Bị Đơn Hàng</button>	
 				<button id="btn3" onclick="loadlaiform(this)" class="btn btn-outline-success btn-lg" value="2">Vận Chuyển</button>
-				<button id="btn3" onclick="loadlaiform(this)" class="btn btn-outline-info btn-lg" value ="3">Đơn Hàng Đã Hoàn Thành</button>
+				<button id="btn3" onclick="loadlaiform(this)" class="btn btn-outline-info btn-lg" value ="3">Hoàn Thành</button>
 				<button id="btn3" onclick="loadlaiform(this)" class="btn btn-outline-secondary btn-lg" value ="4">Đơn Hàng Đã Hủy</button>		
 <!-- loadlaidulieukhibamdoinut	 -->
 	<script>
@@ -896,6 +896,7 @@
       				  // Yêu cầu đã gửi thành công
 					alert('Đơn Hàng Đã Được Cập Nhật!!');
        				console.log('sửa thành công');
+					window.location.reload();
     }
 };
                 xhr.send(JSON.stringify(products));

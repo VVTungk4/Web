@@ -39,7 +39,7 @@
 				echo "<tr><td>" . $stt. "</td><td>" . $row['id']. "</td><td>" .
                 $row['title']. "</td><td>" . $row['color']. "</td><td>" .
                 $row['size']."</td><td><input type='number' id='nhapso".$stt."' name='numberInput' min='0' max='".$quantity."' oninput='validateInput(this)' value=".$row['num'].">
-    			<p id='errorText' style='color: red;'></p><td><button onclick='deleteRow(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
+    			<p id='errorText' style='color: red;'></p><td><button onclick='deleteRow1(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
 				 $stt++;
 			}
 		} echo "	 </tbody>
