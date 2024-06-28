@@ -49,25 +49,20 @@ $user_id = $_SESSION['user_info']['id'];
     $conn = connectDatabase();
     $total_price = 0;
 
-    $cart_query = "SELECT carts.id AS cart_id, cart_items.*, product.title, product.price, product.thumbnail
+    $cart_query = "SELECT carts.id AS cart_id, cart_items.*, product.title, product.after_discount, product.price, product.thumbnail, sizes.name AS size_name, colors.name AS color_name, product_size_color.quantity AS quantity_available
                    FROM carts
                    JOIN cart_items ON carts.id = cart_items.cart_id
                    JOIN product ON cart_items.product_id = product.id
+                   JOIN sizes ON cart_items.size_id = sizes.id
+                   JOIN colors ON cart_items.color_id = colors.id
+                   JOIN product_size_color ON product.id = product_size_color.product_id AND sizes.id = product_size_color.size_id AND colors.id = product_size_color.color_id
                    WHERE carts.user_id = '$user_id'";
     $cart_result = $conn->query($cart_query);
 
     $nums_product = $cart_result->num_rows;
-    $cart_query = "SELECT carts.id AS cart_id, cart_items.*, product.title, product.after_discount, product.price, product.thumbnail, sizes.name AS size_name, colors.name AS color_name
-               FROM carts
-               JOIN cart_items ON carts.id = cart_items.cart_id
-               JOIN product ON cart_items.product_id = product.id
-               JOIN sizes ON cart_items.size_id = sizes.id
-               JOIN colors ON cart_items.color_id = colors.id
-               WHERE carts.user_id = '$user_id'";
-    $cart_result = $conn->query($cart_query);
     ?>
+
     <div class="main-body">
-        <!--------------------------------------------HEADER----------------------------------------------------->
         <div id="header" style="font-weight: bold;">
             <div id="khungdau">
                 <div style="width: 250px;" id="TaiKhoan">
@@ -103,11 +98,8 @@ $user_id = $_SESSION['user_info']['id'];
         <div id="logo">
             <img src="../image/logo1.png" style="height: 90px; width: 110px;">
             <label for="TaiKhoan" class="ttcn"> Giỏ hàng của bạn</label>
-
-
         </div>
 
-        <!--------------------------------------------LAYOUT-CART----------------------------------------------------->
         <div class="layout-cart">
             <div class="container mt-5">
                 <h2 style="margin-bottom: 30px;">Giỏ hàng của bạn (<?php echo $nums_product; ?> sản phẩm)</h2>
@@ -119,10 +111,10 @@ $user_id = $_SESSION['user_info']['id'];
                                 while ($row = $cart_result->fetch_assoc()) {
                                     $total_price += $row['after_discount'] * $row['quantity'];
                             ?>
-                                    <div class="cart-item">
+                                    <div class="cart-item" style=" border-bottom: 3px solid pink; padding-bottom: 20px; margin-bottom: 20px;">
                                         <div class="row">
                                             <div class="col-md-4" style="margin-bottom: 20px;">
-                                                <img src="../<?php echo $row['thumbnail']; ?>" class="img-fluid" alt="Product Image" style="border: 1px solid pink; height:275px; width: 185px;">
+                                                <img src="../<?php echo $row['thumbnail']; ?>" class="img-fluid" alt="Product Image" style="border: 1px solid pink;">
                                             </div>
                                             <div class="col-md-8">
                                                 <h4><?php echo $row['title']; ?></h4>
@@ -130,19 +122,13 @@ $user_id = $_SESSION['user_info']['id'];
                                                 <p>Color: <?php echo $row['color_name']; ?></p>
                                                 <p>Giá cũ: <del><?php echo number_format($row['price'], 0, ',', '.'); ?> VND </del></p>
                                                 <p>Giá mới: <?php echo number_format($row['after_discount'], 0, ',', '.'); ?> VND</p>
-                                                <p> Số lượng:
+                                                <p>Số lượng:
                                                     <button class="btn btn-sm btn-primary change-quantity" data-item-id="<?php echo $row['id']; ?>" data-change="decrease">-</button>
-                                                    <span class="quantity"><?php echo $row['quantity']; ?></span>
+                                                    <input type="number" class="quantity-input" value="<?php echo $row['quantity']; ?>" min="1" max="<?php echo $row['quantity_available']; ?>" style="width: 60px;">
                                                     <button class="btn btn-sm btn-primary change-quantity" data-item-id="<?php echo $row['id']; ?>" data-change="increase">+</button>
                                                 </p>
-                                                <p>Thành tiền:
-                                                    <?php echo number_format($row['after_discount'] * $row['quantity'], 0, ',', '.');
-                                                    ?> VNĐ
-                                                </p>
+                                                <p>Thành tiền: <?php echo number_format($row['after_discount'] * $row['quantity'], 0, ',', '.'); ?> VNĐ</p>
                                                 <button class="btn btn-danger remove-item" data-item-id="<?php echo $row['id']; ?>">Xóa</button>
-                                            </div>
-                                            <div>
-                                                <p style="border: 1px solid pink;"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -164,8 +150,6 @@ $user_id = $_SESSION['user_info']['id'];
                 </div>
             </div>
         </div>
-        <!--------------------------------------------FOOTER----------------------------------------------------->
-        <!-- Footer -->
         <footer class="text-center text-lg-start bg-body-tertiary text-muted" style=" background: #ffdce3;
 		padding: 10px;margin-top: 150px;
 		color: #000;">
@@ -286,7 +270,7 @@ $user_id = $_SESSION['user_info']['id'];
         document.querySelectorAll('.remove-item').forEach(button => {
             button.addEventListener('click', function() {
                 const itemId = this.getAttribute('data-item-id');
-                const userId = '<?php echo $user_id; ?>'; // Lấy user_id từ PHP
+                const userId = '<?php echo $user_id; ?>';
 
                 fetch('../php/remove_item.php', {
                         method: 'POST',
@@ -298,7 +282,7 @@ $user_id = $_SESSION['user_info']['id'];
                     .then(response => response.text())
                     .then(response => {
                         if (response === 'success') {
-                            location.reload(); // Tải lại trang để cập nhật giỏ hàng
+                            location.reload();
                         } else {
                             console.error(response);
                         }
@@ -306,44 +290,72 @@ $user_id = $_SESSION['user_info']['id'];
                     .catch(error => console.error('Lỗi:', error));
             });
         });
-    </script>
-    <script>
-        document.querySelectorAll('.change-quantity').forEach(button => {
-            button.addEventListener('click', function() {
-                const itemId = this.getAttribute('data-item-id');
-                const changeType = this.getAttribute('data-change');
-                const userId = '<?php echo $user_id; ?>';
 
-                fetch('../php/update_quantity.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: `user_id=${userId}&item_id=${itemId}&change_type=${changeType}`,
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            // Update quantity in the UI
-                            const quantityElement = this.parentElement.querySelector('.quantity');
-                            if (changeType === 'increase') {
-                                quantityElement.textContent = parseInt(quantityElement.textContent) + 1;
-                            } else if (changeType === 'decrease' && parseInt(quantityElement.textContent) > 1) {
-                                quantityElement.textContent = parseInt(quantityElement.textContent) - 1;
-                            }
+        document.querySelectorAll('.quantity-input').forEach(input => {
+            input.addEventListener('change', function() {
+                const maxQuantity = parseInt(input.getAttribute('max'));
+                let newQuantity = parseInt(input.value);
 
-                            // Calculate and update total price if needed
-                            // You might want to handle this based on your UI and requirements
+                if (newQuantity > maxQuantity) {
+                    newQuantity = maxQuantity;
+                    alert(`Số lượng sản phẩm chỉ còn ${maxQuantity} sản phẩm!`);
+                } else if (newQuantity < 1) {
+                    newQuantity = 1;
+                }
 
-                        } else {
-                            console.error(data.message);
-                        }
-                    })
-                    .catch(error => console.error('Lỗi:', error));
+                input.value = newQuantity;
+                updateQuantity(input);
             });
         });
-    </script>
 
+        document.querySelectorAll('.change-quantity').forEach(button => {
+            button.addEventListener('click', function() {
+                const changeType = this.getAttribute('data-change');
+                const inputElement = this.parentElement.querySelector('.quantity-input');
+                let newQuantity = parseInt(inputElement.value);
+                const maxQuantity = parseInt(inputElement.getAttribute('max'));
+
+                if (changeType === 'increase') {
+                    newQuantity++;
+                } else if (changeType === 'decrease' && newQuantity > 1) {
+                    newQuantity--;
+                }
+
+                if (newQuantity > maxQuantity) {
+                    newQuantity = maxQuantity;
+                    alert(`Số lượng sản phẩm chỉ còn ${maxQuantity} sản phẩm!`);
+                } else if (newQuantity < 1) {
+                    newQuantity = 1;
+                }
+
+                inputElement.value = newQuantity;
+                updateQuantity(inputElement);
+            });
+        });
+
+        function updateQuantity(inputElement) {
+            const itemId = inputElement.parentElement.querySelector('.change-quantity').getAttribute('data-item-id');
+            const newQuantity = parseInt(inputElement.value);
+            const userId = '<?php echo $user_id; ?>';
+
+            fetch('../php/update_quantity.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `user_id=${userId}&item_id=${itemId}&new_quantity=${newQuantity}`,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+
+                    } else {
+                        alert(data.message);;
+                    }
+                })
+                .catch(error => console.error('Lỗi:', error));
+        }
+    </script>
 </body>
 
 </html>
