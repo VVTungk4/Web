@@ -9,7 +9,7 @@ if (isset($_GET['q'])) { // Nếu tồn tại $_POST['suataikhoan']
     $conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
 
     mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
-    $sql = "UPDATE user SET deleted = 0 WHERE id = $id";
+    $sql = "UPDATE user SET deleted = 2 WHERE id = $id";
     $conn->query($sql);
 }
 ?>

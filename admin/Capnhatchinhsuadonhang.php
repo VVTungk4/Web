@@ -8,9 +8,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Thực hiện xử lý với $currentElement
     //xóa đơn hàng cũ để cập nhật lại
     $iddon= $id['iddonhang'];
+    $tralai = "SELECT * FROM order_details WHERE order_id = $iddon";
+    $ketqua = mysqli_query($conn, $tralai);
+    if ($ketqua->num_rows > 0) {
+				
+        while($row=$ketqua->fetch_assoc()) {
+                $proid = $row['product_id'];
+                $soluong = $row['num'];
+                $size= $row['size'];
+                $color= $row['color'];
+                $tralaisoluong="UPDATE product_size_color
+                SET quantity = quantity + $soluong
+                WHERE color_id = (SELECT id FROM colors WHERE name = '$color')
+                AND size_id = (SELECT id FROM sizes WHERE name = '$size')
+                AND product_id = $proid;";
+                $ketquatrulai = mysqli_query($conn, $tralaisoluong);
+
+
+        }
+    }
+
+
+    
     $sql = "DELETE FROM order_details
     WHERE order_id = $iddon";
     $result = mysqli_query($conn, $sql);
+
+    
     $length = count($receivedData); // Hoặc có thể dùng sizeof($receivedData)
 
     // Sử dụng vòng lặp while để duyệt qua các phần tử
@@ -45,6 +69,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         )
         WHERE id = $iddonhang";
         $result3 = mysqli_query($conn, $sql3);
+
+        $sql4="UPDATE product_size_color
+        SET quantity = quantity-$productQuantity 
+        WHERE color_id = (SELECT id FROM colors WHERE name = '$productColor')
+          AND size_id = (SELECT id FROM sizes WHERE name = '$productSize')
+          AND product_id = $productID;";
+          $result4 = mysqli_query($conn, $sql4);
         }
        
 
