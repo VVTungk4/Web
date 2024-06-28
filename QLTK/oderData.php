@@ -34,7 +34,7 @@ if (!empty($result) && $result->num_rows > 0) {
                              <td>
                                     <p>Mã đơn hàng: ' . $row['id'] . ' </p>
                                     <div style="display: grid; margin:0 20px 30px;">
-                                        <img src=" ' . $row['thumbnail'] . '" style="height: 300px; width: 250px  ;border: 1px solid red;">
+                                        <img src="../ ' . $row['thumbnail'] . '" style="height: 300px; width: 250px  ;border: 1px solid red;">
                                         <p>' . $row['title'] . '</p>
                                     </div>
     

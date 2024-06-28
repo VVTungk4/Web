@@ -95,7 +95,7 @@ $colors_result = $conn->query("SELECT * FROM colors");
 		<div class="product-detail">
 			<div class="image-container">
 				<div class="discout">
-					<img src="<?php echo $product['thumbnail'] ?>" alt="Ảnh váy" style="border: 2px solid pink;" class="img-fluid">
+					<img src="../<?php echo $product['thumbnail'] ?>" alt="Ảnh váy" style="border: 2px solid pink;" class="img-fluid">
 					<div class="discount-tag"> OFF <?php echo $product['discount'] ?> %</div>
 					
 				</div>

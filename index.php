@@ -230,7 +230,7 @@
         table {
             width: auto;
             margin-bottom: 20px;
-            
+
         }
 
         td {
@@ -305,6 +305,9 @@
             </script>
         <?php endif; ?>
     </table>
+    <div style="margin:auto; text-align:center">
+        <p> Có <?php echo $totalProducts ?> sản phẩm</p>
+    </div>
     <!-- Hiển thị liên kết đến các trang -->
     <div class="dsTrang">
         <div>

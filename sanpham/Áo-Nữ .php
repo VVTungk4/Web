@@ -141,7 +141,176 @@
 		</div>
 
 	</div>
+	<!---------------Đổ dữ liệu-------------------->
+	<?php
+	// Kết nối database và lấy dữ liệu
+	$conn = new mysqli('localhost', 'root', '', 'webhangban');
+	if ($conn->connect_error) {
+		die("Kết nối thất bại: " . $conn->connect_error);
+	}
 
+	// Xác định số lượng sản phẩm trên mỗi trang
+	$productsPerPage = 16;
+
+	// Lấy số trang hiện tại từ URL hoặc mặc định là 1 nếu không có
+	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+	// Tính số sản phẩm bỏ qua dựa trên trang hiện tại
+	$offset = ($page - 1) * $productsPerPage;
+
+	// Lấy tổng số sản phẩm
+	$result = $conn->query("SELECT COUNT(*) AS total FROM product where category_id = 1");
+	$row = $result->fetch_assoc();
+	$totalProducts = $row['total'];
+
+	// Tính tổng số trang
+	$totalPages = ceil(($totalProducts / $productsPerPage) - 1);
+
+	// Lấy sản phẩm cho trang hiện tại
+	$stmt = $conn->prepare("SELECT * FROM product where category_id = 1 LIMIT ? OFFSET ? ");
+	$stmt->bind_param("ss", $productsPerPage, $offset);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	?>
+	<style>
+		.dsTrang {
+			text-align: center;
+			margin: auto;
+			width: auto;
+			color: black;
+		}
+
+		.dsTrang a {
+			display: inline-block;
+			margin-right: 5px;
+			padding: 5px 10px;
+			border: 2px solid #ddd;
+		}
+
+		.dsTrang a:hover,
+		.dsTrang a.active {
+			background: #f0cfcf;
+			background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+			background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+			background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+			background: linear-gradient(bottom, #f0cfcf, #ffacc7);
+
+		}
+
+
+		.dsTrang a {
+			display: inline-block;
+			margin-right: 5px;
+			padding: 5px 10px;
+			border: 1px solid #ddd;
+			color: black;
+			text-align: center;
+		}
+
+		.dsTrang a:hover {
+			background: #f0cfcf;
+			background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+			background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+			background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+			background: linear-gradient(bottom, #f0cfcf, #ffacc7);
+
+		}
+
+		table {
+			width: auto;
+			margin-bottom: 20px;
+
+		}
+
+		td {
+
+			padding: 20px;
+			text-align: center;
+			height: 500px;
+			width: 400px;
+		}
+
+		.thumbnail img {
+			height: 300px;
+			width: 250px;
+			transition-duration: 0.3s;
+		}
+
+		.thumbnail img:hover {
+			transform: scale(1.1);
+		}
+
+		.discout {
+			position: relative;
+			display: inline-block;
+		}
+
+		.discount-tag {
+			position: absolute;
+			top: 50px;
+			/* Điều chỉnh theo cần thiết */
+			right: 30px;
+			/* Điều chỉnh theo cần thiết */
+			background-color: #FF3366;
+			color: white;
+			padding: 5px;
+			font-size: 13px;
+			/* Điều chỉnh theo cần thiết */
+		}
+	</style>
+	<table style="margin: 50px;width: auto;" class="thumbnail">
+		<?php if ($result->num_rows > 0) : ?>
+			<tr>
+				<?php
+				$count = 0; // Khởi tạo biến đếm
+				while ($row = $result->fetch_assoc()) :
+					$count++; // Tăng biến đếm với mỗi sản phẩm
+				?>
+					<td>
+						<div class="discout">
+							<img src="../<?php echo $row['thumbnail'] ?>" alt="Ảnh váy" style="width:250px; height: 300px;border: 2px solid pink;">
+							<div class="discount-tag"> OFF <?php echo $row['discount'] ?> %</div>
+						</div>
+						<p>
+							<?php echo $row["title"]; ?>
+						</p>
+						<p>Giá:
+							<?php echo $row["price"]; ?> VNĐ
+						</p>
+						<button type="submit" class="btn-custom" onclick="redirectToDetailPage(<?php echo $row['id'] ?>)">Mua Ngay</button>
+					</td>
+				<?php
+					if ($count % 4 == 0) : // Nếu đếm đến 4 sản phẩm
+						echo '</tr><tr>'; // Kết thúc hàng hiện tại và bắt đầu hàng mới
+					endif;
+				endwhile;
+				?>
+			</tr>
+			<script>
+				function redirectToDetailPage(id) {
+					// Chuyển hướng sang trang chi tiết sản phẩm với ID sản phẩm
+					window.location.href = '../web/product_detail.php?id=' + id;
+				}
+			</script>
+		<?php endif; ?>
+	</table>
+	<div style="margin:auto; text-align:center">
+		<p> Có <?php echo $totalProducts ?> sản phẩm</p>
+	</div>
+	<!-- Hiển thị liên kết đến các trang -->
+	<div class="dsTrang">
+		<div>
+			<?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+				<a href="?page=<?php echo $i; ?>">
+					<?php echo $i; ?>
+				</a>
+			<?php endfor; ?>
+			<a <?php if ($page == $i) echo 'active'; ?> href="?page=<?php echo $i; ?>">
+				<?php echo $i; ?>
+			</a>
+		</div>
+
+	</div>
 
 
 	<br /><br /><br />
