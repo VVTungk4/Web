@@ -224,18 +224,18 @@ $colors_result = $conn->query("SELECT * FROM colors");
 				method: 'POST',
 				data: formData,
 				success: function(response) {
-					// Hiển thị thông báo thành công
-					alert('Sản phẩm đã được thêm vào giỏ hàng thành công!');
+					if (response.trim() === 'success') {
+						alert('Sản phẩm đã được thêm vào giỏ hàng thành công!');
+					} else {
+						alert(response.trim()); // Hiển thị thông báo lỗi từ addtocart.php
+					}
 				}
 			});
 		});
-		$('#buy-now').click(function() {
+		$('#buy-now').click(function(event) {
 			var isLoggedIn = <?php echo json_encode($is_logged_in); ?>;
 			if (!isLoggedIn) {
-
 				event.preventDefault();
-
-
 				alert('Bạn cần đăng nhập để mua sản phẩm.');
 				return;
 			}
@@ -247,12 +247,17 @@ $colors_result = $conn->query("SELECT * FROM colors");
 				method: 'POST',
 				data: formData,
 				success: function(response) {
-					// Thực hiện điều gì đó sau khi thêm vào giỏ hàng thành công
-					window.location.href = '../Cart/cart.php';
-				}
-			});
+					if (response.trim() === 'success') {
+						location.href = '../Cart/cart.php';
+					} else {
 
+						alert(response.trim());
+					}
+				},
+
+			});
 		});
+
 		$(document).ready(function() {
 			updateQuantity();
 		});

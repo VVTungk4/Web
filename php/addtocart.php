@@ -21,7 +21,7 @@ if (isset($_POST['product_id']) && isset($_POST['size_id']) && isset($_POST['col
     $size_id = $_POST['size_id'];
     $color_id = $_POST['color_id'];
 
-    // Kiểm tra xem số lượng sản phẩm được chọn
+    // Kiểm tra số lượng sản phẩm được chọn
     if (isset($_POST['quantity']) && is_numeric($_POST['quantity']) && $_POST['quantity'] > 0) {
         // Lấy số lượng sản phẩm từ form
         $quantity = intval($_POST['quantity']); // Chuyển đổi thành số nguyên
@@ -43,15 +43,45 @@ if (isset($_POST['product_id']) && isset($_POST['size_id']) && isset($_POST['col
         $item_result = $conn->query($item_query);
 
         if ($item_result->num_rows > 0) {
-            // Nếu sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
-            $update_query = "UPDATE cart_items SET quantity = quantity + '$quantity' WHERE cart_id = '$cart_id' AND product_id = '$product_id' AND size_id = '$size_id' AND color_id = '$color_id'";
-            if ($conn->query($update_query) === TRUE) {
-                echo "success";
+            // Sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
+            $item_row = $item_result->fetch_assoc();
+            $current_quantity_in_cart = $item_row['quantity'];
+
+            // Lấy số lượng còn lại của sản phẩm từ bảng product_size_color
+            $quantity_available_query = "SELECT quantity FROM product_size_color WHERE product_id = '$product_id' AND size_id = '$size_id' AND color_id = '$color_id'";
+            $quantity_available_result = $conn->query($quantity_available_query);
+
+            if ($quantity_available_result && $quantity_available_result->num_rows > 0) {
+                $quantity_available_row = $quantity_available_result->fetch_assoc();
+                $quantity_available = $quantity_available_row['quantity'];
+
+                $quantity_extra = $quantity_available - $current_quantity_in_cart;
+
+                // Kiểm tra tổng số lượng trong giỏ hàng và số lượng người dùng muốn thêm vào
+                if ($quantity + $current_quantity_in_cart <= $quantity_available) {
+                    // Cập nhật số lượng trong giỏ hàng
+                    $update_query = "UPDATE cart_items SET quantity = quantity + '$quantity' WHERE cart_id = '$cart_id' AND product_id = '$product_id' AND size_id = '$size_id' AND color_id = '$color_id'";
+                    if ($conn->query($update_query) === TRUE) {
+                        echo "success";
+                    } else {
+                        echo "Error updating record: " . $conn->error;
+                    }
+                } else {
+                    $update_query = "UPDATE cart_items SET quantity = quantity + '$quantity_extra' WHERE cart_id = '$cart_id' AND product_id = '$product_id' AND size_id = '$size_id' AND color_id = '$color_id'";
+                    if ($conn->query($update_query) === TRUE) {
+                        echo "success";
+                    } else {
+                        echo "Error updating record: " . $conn->error;
+                    }
+
+
+                    echo "Bạn đã thêm quá số lượng trong giỏ hàng, hãy kiểm tra giỏ hàng của bạn.";
+                }
             } else {
-                echo "Error updating record: " . $conn->error;
+                echo "Không tìm thấy thông tin sản phẩm.";
             }
         } else {
-            // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm sản phẩm mới vào giỏ hàng
+            // Sản phẩm chưa tồn tại trong giỏ hàng, thêm mới vào
             $insert_query = "INSERT INTO cart_items (cart_id, product_id, size_id, color_id, quantity) VALUES ('$cart_id', '$product_id', '$size_id', '$color_id', '$quantity')";
             if ($conn->query($insert_query) === TRUE) {
                 echo "success";
