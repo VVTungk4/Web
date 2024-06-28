@@ -39,7 +39,7 @@ $user_id = $_SESSION['user_info']['id'];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <!-- Material Design Bootstrap -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css">
-    <script src="./javascript/cart_function.js?v=<?php echo time() ?>"></script>
+
 </head>
 
 <body>
@@ -127,7 +127,7 @@ $user_id = $_SESSION['user_info']['id'];
                                                     <input type="number" class="quantity-input" value="<?php echo $row['quantity']; ?>" min="1" max="<?php echo $row['quantity_available']; ?>" style="width: 60px;">
                                                     <button class="btn btn-sm btn-primary change-quantity" data-item-id="<?php echo $row['id']; ?>" data-change="increase">+</button>
                                                 </p>
-                                                <p>Thành tiền: <?php echo number_format($row['after_discount'] * $row['quantity'], 0, ',', '.'); ?> VNĐ</p>
+                                                <p>Thành tiền: <span class="item-total"><?php echo number_format($row['after_discount'] * $row['quantity'], 0, ',', '.'); ?> VNĐ</span></p>
                                                 <button class="btn btn-danger remove-item" data-item-id="<?php echo $row['id']; ?>">Xóa</button>
                                             </div>
                                         </div>
@@ -143,7 +143,7 @@ $user_id = $_SESSION['user_info']['id'];
                     <div class="col-md-4">
                         <div class="summary">
                             <h3>Tổng cộng</h3>
-                            <p>Tổng số tiền: <?php echo number_format($total_price, 0, ',', '.'); ?> VND</p>
+                            <p>Tổng tiền: <span id="total-price"><?php echo number_format($total_price, 0, ',', '.'); ?> VNĐ</span></p>
                             <a href="orderinfo.php" class="btn btn-primary">Thanh toán</a>
                         </div>
                     </div>
@@ -348,13 +348,31 @@ $user_id = $_SESSION['user_info']['id'];
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
+                        // Update item total price
+                        const itemTotalElement = inputElement.parentElement.parentElement.querySelector('.item-total');
+                        itemTotalElement.textContent = new Intl.NumberFormat('de-DE').format(data.new_total) + ' VNĐ';
 
+                        // Update total price
+                        updateTotalPrice();
                     } else {
-                        alert(data.message);;
+                        alert(data.message);
                     }
                 })
                 .catch(error => console.error('Lỗi:', error));
         }
+
+        function updateTotalPrice() {
+            const itemTotals = document.querySelectorAll('.item-total');
+            let totalPrice = 0;
+            itemTotals.forEach(itemTotal => {
+                totalPrice += parseFloat(itemTotal.textContent.replace(' VNĐ', '').replace(/\./g, '').replace(',', '.'));
+            });
+
+            document.getElementById('total-price').textContent = new Intl.NumberFormat('de-DE').format(totalPrice) + ' VNĐ';
+        }
+
+        // Call updateTotalPrice() once initially to calculate and display the initial total price
+        updateTotalPrice();
     </script>
 </body>
 
