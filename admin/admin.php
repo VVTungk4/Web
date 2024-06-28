@@ -570,7 +570,7 @@
 			<!-- Tài Khoản -->
 
 	 		<!-- Đơn Hàng -->
-		<main class="main" id="report" > 
+		<main class="main" id="report"> 
 				<button id="btn3" onclick="loadlaiform(this)" class="btn btn-outline-danger btn-lg" value="0">Các Đơn Hàng Mới</button>
 				<button id="btn3" onclick="loadlaiform(this)" class="btn btn-outline-warning btn-lg" value="1">Chuẩn Bị Đơn Hàng</button>	
 				<button id="btn3" onclick="loadlaiform(this)" class="btn btn-outline-success btn-lg" value="2">Vận Chuyển</button>

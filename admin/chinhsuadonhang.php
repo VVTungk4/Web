@@ -36,9 +36,17 @@
                 WHERE s.name = '{$row['size']}' AND c.name = '{$row['color']}' AND psc.product_id = '{$row['id']}'";
                 $result1 = mysqli_query($conn, $sql1);
                 $quantity = $result1->fetch_assoc()['quantity'];
+
+
+				$sql2 = "SELECT num FROM order_details
+                
+                WHERE size = '{$row['size']}' AND color = '{$row['color']}' AND product_id = '{$row['id']}'";
+				$result2 = mysqli_query($conn, $sql2);
+				$num = $result2->fetch_assoc()['num'];
+
 				echo "<tr><td>" . $stt. "</td><td>" . $row['id']. "</td><td>" .
                 $row['title']. "</td><td>" . $row['color']. "</td><td>" .
-                $row['size']."</td><td><input type='number' id='nhapso".$stt."' name='numberInput' min='0' max='".$quantity."' oninput='validateInput(this)' value=".$row['num'].">
+                $row['size']."</td><td><input type='number' id='nhapso".$stt."' name='numberInput' min='0' max='".$quantity+$num."' oninput='validateInput(this)' value=".$row['num'].">
     			<p id='errorText' style='color: red;'></p><td><button onclick='deleteRow1(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
 				 $stt++;
 			}
