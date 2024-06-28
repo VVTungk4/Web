@@ -1,21 +1,21 @@
 <?php
-$so=0;
+    $so=0;
     $conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
     mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
     $sql3 = "SELECT id FROM order_details WHERE product_id = {$_GET['idsanpham']} AND color = '{$_GET['mausanpham']}' AND size = '{$_GET['sizesanpham']}' AND order_id = {$_GET['iddonhang']}";
     $result3 = mysqli_query($conn, $sql3);
     $row = $result3->fetch_assoc();
     if(isset($row['id'])){
-        $sql = "UPDATE order_details SET num = num WHERE product_id = ? AND color = ? AND size = ? AND order_id = ?";
+        $sql = "UPDATE order_details SET num = num,price = ? WHERE product_id = ? AND color = ? AND size = ? AND order_id = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("issi", $_GET['idsanpham'], $_GET['mausanpham'], $_GET['sizesanpham'], $_GET['iddonhang']);
+        $stmt->bind_param("iissi",$_GET['dongia'] ,$_GET['idsanpham'], $_GET['mausanpham'], $_GET['sizesanpham'], $_GET['iddonhang']);
         $stmt->execute();
     }
 
-    else{$sql = "INSERT INTO order_details (product_id, color, size, num, order_id)
-        VALUES (?, ?,?, ?, ?)";
+    else{$sql = "INSERT INTO order_details (product_id,price ,color, size, num, order_id)
+        VALUES (?, ?,?,?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("issii", $_GET['idsanpham'],$_GET['mausanpham'],$_GET['sizesanpham'],$so,$_GET['iddonhang']);
+        $stmt->bind_param("iissii", $_GET['idsanpham'],$_GET['dongia'],$_GET['mausanpham'],$_GET['sizesanpham'],$so,$_GET['iddonhang']);
         $stmt->execute();
         $stmt->get_result(); }
     
@@ -27,6 +27,23 @@ $so=0;
     WHERE od.product_id = p.id AND od.order_id = $iddata";
     $result = mysqli_query($conn, $sql2);
     $stt=1;
+    $tt='Đang Chỉnh Sửa';
+    echo'<h3 style="text-align: center;margin-top: 20px;color:var(--dark)" >CHỈNH SỬA ĐƠN HÀNG : #'.$iddata.'</h3>
+    <p class="fst-italic text-decoration-underline text-center text-danger">Trạng Thái Đơn : '.$tt.'</p>
+    <table class="table table-striped" style="margin-top:25px ;">
+          <thead style="border-bottom: 1px solid var(--dark);" class="table-danger">
+               <tr"><th width="5%">STT</th>
+                <th width="10%">Mã Sản Phẩm</th>
+                <th width="10%">Tên Sản Phẩm</th>
+                <th width="10%">Màu Sắc</th>
+                <th width="10%">Size</th>
+                <th width="20%">Số Lượng</th>
+                <th width="4%">Xóa</th>          			
+            </tr>
+           </thead>
+            <tbody >
+
+           ';
         if ($result->num_rows > 0) {
      // Xuất dữ liệu của mỗi hàng
      while($row=$result->fetch_assoc()) {
@@ -39,8 +56,10 @@ $so=0;
         echo "<tr><td>" . $stt. "</td><td>" . $row['id']. "</td><td>" .
         $row['title']. "</td><td>" . $row['color']. "</td><td>" .
         $row['size']."</td><td><input type='number' id='nhapso".$stt."' name='numberInput' min='0' max='".$quantity."' oninput='validateInput(this)' value=".$row['num'].">
-        <p id='errorText' style='color: red;'></p><td id=\"trash\"><button onclick='xoasanphamkhoidonhang(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
+        <p id='errorText' style='color: red;'></p><td><button onclick='xoasanphamkhoidonhang(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
          $stt++;
-    }echo "<div style='display=block' id='toimuoncainay' class='".$iddata."'>Mã Đơn Hàng:".$iddata."</div>";
-}
+    }
+} echo "	 </tbody>
+    </table><div style='display=block' id='toimuoncainay' class='".$iddata."'>Mã Đơn Hàng:".$iddata."</div>";
+        $conn->close(); 
 ?>

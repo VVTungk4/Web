@@ -337,7 +337,7 @@
 				else if($row['stt']==4||$row['stt']==5){
 					$top='top3';
 					};
-				echo "<li class=\"".$top."\"><p style='margin:0px;'><img src='../".$row["thumbnail"] ."' style='width:50px;height:50px'>". " &nbsp;&nbsp;" . $row["id"] ."  :  ". $row["title"]. " &nbsp;&nbsp;" . $row["total_revenue"]."</p></li>";
+				echo "<li class=\"".$top."\"><p style='margin:0px;'><img src='../".$row["thumbnail"] ."' style='width:50px;height:50px'>". " &nbsp;&nbsp;" . $row["id"] ."  :  ". $row["title"]. "</p></li>";
 			}} else {echo "Không Có Mặt Hàng Nào Được Bán!";}
 					$conn->close();
 ?>										
@@ -804,6 +804,7 @@ include('timkiem.php');
             	const idsanpham = row.cells[1].textContent;
 				const mausanpham = row.cells[3].textContent;
 				const sizesanpham = row.cells[4].textContent;
+				const dongia = row.cells[6].textContent;
 				const input = row.querySelector('.toimuonsonay');
            		const soluong = 1;
 				const toimuoncainay=document.getElementById("toimuoncainay");
@@ -816,7 +817,7 @@ include('timkiem.php');
 					document.getElementById("suadonhang").innerHTML = this.responseText;
    			 }
   			};
-  				xhttp.open("GET", "Themsanpham-SuaDonHang.php?idsanpham="+Number(idsanpham)+"&mausanpham=" + mausanpham + "&sizesanpham=" + sizesanpham + "&iddonhang=" + Number(dayroi)+"&soluong=" + Number(soluong), true);
+  				xhttp.open("GET", "Themsanpham-SuaDonHang.php?idsanpham="+Number(idsanpham)+"&mausanpham=" + mausanpham + "&sizesanpham=" + sizesanpham + "&iddonhang=" + Number(dayroi)+"&soluong=" + Number(soluong)+"&dongia=" + Number(dongia), true);
   				xhttp.send();
 			}
 			function xoasanphamkhoidonhang(button) {
@@ -1186,7 +1187,23 @@ include('timkiem.php');
 				password.value = row.cells[5].textContent;
 				role_id.value = row.cells[6].textContent;
 				id.value =row.cells[0].textContent;
-//nút hủy			
+//nút hủy		
+				
+				deleteBtn.onclick =function(){
+					const iduser = row.cells[0].textContent;
+  					var xhttp;    
+  					xhttp = new XMLHttpRequest();
+  					xhttp.onreadystatechange = function() {
+    				if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu đã gửi thành công');
+					alert("Xóa Thành Công!");
+					window.location.reload();
+   			 }
+  			};
+  				xhttp.open("GET", "Xoataikhoan.php?q="+Number(iduser), true);
+  				xhttp.send();
+			}
+				
       			cancelBtn.onclick = function() {
        		 	dialog.style.display = 'none';
         		row.style.backgroundColor = ''; // Xóa nổi bật khi hủy

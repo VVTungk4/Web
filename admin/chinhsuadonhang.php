@@ -41,8 +41,8 @@
                 $row['size']."</td><td><input type='number' id='nhapso".$stt."' name='numberInput' min='0' max='".$quantity."' oninput='validateInput(this)' value=".$row['num'].">
     			<p id='errorText' style='color: red;'></p><td><button onclick='xoasanphamkhoidonhang(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-trash' style='color:#c63737'  ></i></button></td></tr>";
 				 $stt++;
-			}echo "	 </tbody>
-			</table><div style='display=none' id='toimuoncainay' class='".$iddata."'>Mã Đơn Hàng:".$iddata."</div>";
-		} else {echo "0 results";
-				$conn->close();}         
+			}
+		} echo "	 </tbody>
+			</table><div style='display=block' id='toimuoncainay' class='".$iddata."'>Mã Đơn Hàng:".$iddata."</div>";
+				$conn->close();      
 ?>
