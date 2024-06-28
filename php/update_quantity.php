@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['user_info'])) {
-    echo json_encode(array('success' => false, 'message' => 'Bạn cần đăng nhập để sử dụng chức năng giỏ hàng.'));
+    echo json_encode(array('success' => false, 'message' => 'Bạn cần đăng nhập'));
     exit();
 }
 
@@ -12,26 +12,21 @@ require_once 'database_function.php';
 
 $user_id = $_SESSION['user_info']['id'];
 $item_id = $_POST['item_id'];
-$change_type = $_POST['change_type']; // 'increase' or 'decrease'
+$newQuantity = $_POST['new_quantity'];
 
 $conn = connectDatabase();
 
-// Fetch current item quantity from database
-$query = "SELECT quantity FROM cart_items WHERE id = '$item_id' AND cart_id IN (SELECT id FROM carts WHERE user_id = '$user_id')";
+// Fetch current item details
+$query = "SELECT ci.quantity, ci.size_id, ci.color_id
+          FROM cart_items ci
+          WHERE ci.id = '$item_id' AND ci.cart_id IN (SELECT id FROM carts WHERE user_id = '$user_id')";
 $result = $conn->query($query);
 
 if ($result->num_rows == 1) {
     $row = $result->fetch_assoc();
-    $currentQuantity = $row['quantity'];
 
-    if ($change_type === 'increase') {
-        $newQuantity = $currentQuantity + 1;
-    } elseif ($change_type === 'decrease' && $currentQuantity > 1) {
-        $newQuantity = $currentQuantity - 1;
-    } else {
-        echo json_encode(array('success' => false, 'message' => 'Không thể giảm số lượng.'));
-        exit();
-    }
+
+
 
     // Update quantity in the database
     $update_query = "UPDATE cart_items SET quantity = '$newQuantity' WHERE id = '$item_id'";

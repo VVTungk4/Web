@@ -103,7 +103,7 @@
             $stmt->execute();
             $result = $stmt->get_result();
     ?>
-            <table style="margin: 50px; border: 2px solid pink; width: auto;">
+            <table style="margin: 50px; width: auto;">
                 <?php if ($result->num_rows > 0) : ?>
                     <tr>
                         <?php
