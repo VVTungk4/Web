@@ -26,13 +26,13 @@
                         <li style="font-weight: normal;"><a href="../web/DamNu.php ">Sản phẩm Nữ: Đầm</a></li>
                     </ul>
                 </div>
-                <div><a href="../web/product.php" style="text-decoration:none; color:#000;">
+                <div><a href="../sanpham/Sản-Phẩm.php" style="text-decoration:none; color:#000;">
                         <p>SẢN PHẨM </p>
                 </div>
                 <div><a href="../index.php" style="text-decoration:none; color:#000;">
                         <p>TRANG CHỦ</p>
                     </a></div>
-                <div><a href="../web/Giới-Thiệu.php" style="text-decoration:none; color:#000;">
+                <div><a href="../sanpham/Giới-Thiệu.php" style="text-decoration:none; color:#000;">
                         <p>GIỚI THIỆU</p>
                     </a></div>
                 <div><a href="../Cart/cart.php" style="text-decoration:none; color:#000;">
@@ -114,7 +114,15 @@
                 <img src="images/anh.jpg" alt="" style="height: 500px; width: 400px;">
             </div>
         </div>
-
+        <style>
+            .btn-custom {
+                background: #f0cfcf;
+                background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+                background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+                background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+                background: linear-gradient(bottom, #f0cfcf, #ffacc7);
+            }
+        </style>
 
 </body>
 

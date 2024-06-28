@@ -144,7 +144,6 @@ h6 {
     width: 160px;
     text-align: center;
     height: 50px;
-    <<<<<<< HEAD=======<<<<<<< HEAD=======>>>>>>>95418862838f86ffb88c00878d2d48af5e285460>>>>>>>197381142fec8d89f1d08d901c289e48811cc5b9
 }
 
 #khungdau div:hover {
@@ -163,10 +162,10 @@ h6 {
     background: -o-linear-gradient(bottom right, #e6d4ec, #ffacc7);
     background: -moz-linear-gradient(bottom right, #e6d4ec, #ffacc7);
     background: linear-gradient(bottom right, #e6d4ec, #ffacc7);
-  
+
     padding-left: 10px;
     padding-right: 10px;
-    
+
 }
 
 
@@ -186,7 +185,7 @@ h6 {
     box-shadow: black;
 }
 
-<<<<<<< HEAD .MeNu li {
+.MeNu li {
     width: 100%;
 
 }
@@ -196,7 +195,7 @@ h6 {
     background: 0%;
 }
 
-=======>>>>>>>197381142fec8d89f1d08d901c289e48811cc5b9 .MeNu ul {
+.MeNu ul {
     margin-top: 0;
 }
 
@@ -259,7 +258,7 @@ li:hover .MeNu2 {
 
 
 
- table img {
+table img {
     height: 300px;
     width: 250px;
     float: left;
@@ -560,12 +559,11 @@ footer .noi-dung.about p {
 
 .MeNu li {
     width: 100%;
-    <<<<<<< HEAD margin-top: -20px;
-    =======
+    margin-top: -20px;
+
 }
 
 .MeNu ul {
     margin-top: 0;
     background: 0%;
-    >>>>>>>95418862838f86ffb88c00878d2d48af5e285460
 }

@@ -60,11 +60,11 @@
             <div id="TaiKhoan">
                 <p style="margin-bottom: 0;"><i class="bi bi-person-circle"></i>&nbsp;TÀI KHOẢN</p>
                 <ul class="MeNu">
-                    <li><a href="../SonicShop/Login/Login.php">Đăng Nhập</a></li>
-                    <li><a href="../SonicShop/Login/email_dangki.php">Đăng Ký</a></li>
-                    <li><a href="../SonicShop/QLTK/QLTK.php">QL Tài Khoản</a></li>
-                    <li><a href="../SonicShop/QLTK/myOder.php">Đơn hàng của tôi</a></li>
-                    <li><a href="../SonicShop/Login/logout.php">Đăng xuất</a></li>
+                    <li><a href="../Login/Login.php">Đăng Nhập</a></li>
+                    <li><a href="../Login/email_dangki.php">Đăng Ký</a></li>
+                    <li><a href="../QLTK/QLTK.php">QL Tài Khoản</a></li>
+                    <li><a href="../QLTK/myOder.php">Đơn hàng của tôi</a></li>
+                    <li><a href="../Login/logout.php">Đăng xuất</a></li>
 
                 </ul>
             </div>
@@ -149,7 +149,7 @@
             <script>
                 function redirectToDetailPage(id) {
                     // Chuyển hướng sang trang chi tiết sản phẩm với ID sản phẩm
-                    window.location.href = 'web/product_detail.php?id=' + id;
+                    window.location.href = '../web/product_detail.php?id=' + id;
                 }
             </script>
         </div>
@@ -278,6 +278,10 @@
             padding: 5px;
             font-size: 13px;
             /* Điều chỉnh theo cần thiết */
+        }
+
+        footer {
+            border-top: 5px solid #FFCCFF;
         }
     </style>
     <table style="margin: 50px;width: auto;" class="thumbnail">

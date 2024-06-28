@@ -103,7 +103,7 @@
             $stmt->execute();
             $result = $stmt->get_result();
     ?>
-            <table style="margin: 50px; width: auto;">
+            <table style="margin:0 50px 50px 50px; width: auto;">
                 <?php if ($result->num_rows > 0) : ?>
                     <tr>
                         <?php
@@ -389,7 +389,10 @@
         border: 2px solid pink;
         font-weight: normal;
         transition: font-weight 0.2s ease;
-        background: whitesmoke;
+        background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+        background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+        background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+        background: linear-gradient(bottom, #f0cfcf, #ffacc7);
         margin: 10px;
 
 
@@ -397,10 +400,7 @@
 
     .btn-custom:hover {
         font-weight: 500;
-        background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
-        background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
-        background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
-        background: linear-gradient(bottom, #f0cfcf, #ffacc7);
+        background: pink;
     }
 
     html,

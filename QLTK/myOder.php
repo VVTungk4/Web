@@ -9,14 +9,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-
-
-
 </head>
 
 <body>
     <?php session_start(); // Bắt đầu phiên làm việc 
+    if (!isset($_SESSION['user_info'])) {
+        echo "<br/><h3>&nbsp;&nbsp;&nbsp;&nbsp;Bạn cần đăng nhập để sử dụng chức năng này.</h3><br/>";
+        echo "<a href='../index.php'> <ins>Trở lại trang chủ</ins> </a>";
+        echo "<br><br>";
+        echo "<a href='../login/Login.php'><ins>Đến trang đăng nhập</ins> </a>";
+        exit();
+    }
     ?>
+
     <div id="header" style="font-weight: bold;">
         <div id="khungdau">
             <div style="width: 250px;" id="TaiKhoan">
