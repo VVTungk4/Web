@@ -63,7 +63,7 @@
                     <li><a href="../SonicShop/Login/Login.php">Đăng Nhập</a></li>
                     <li><a href="../SonicShop/Login/email_dangki.php">Đăng Ký</a></li>
                     <li><a href="../SonicShop/QLTK/QLTK.php">QL Tài Khoản</a></li>
-                    <li><a href="../SonicShop/QLTK/myOder.php">Đơn hàng của tôi</a></li>
+                    <li><a href="../SonicShop/QLTK/LS_muahang.php">Đơn hàng của tôi</a></li>
                     <li><a href="../SonicShop/Login/logout.php">Đăng xuất</a></li>
 
                 </ul>

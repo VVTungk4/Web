@@ -90,7 +90,7 @@ $user_id = $_SESSION['user_info']['id'];
                         <li><a href="../Login/Login.php">Đăng Nhập</a></li>
                         <li><a href="../Login/email_dangki.php">Đăng Ký</a></li>
                         <li><a href="../QLTK/QLTK.php">QL Tài Khoản</a></li>
-                        <li><a href="../QLTK/myOder.php">QL đơn hàng</a></li>
+                        <li><a href="../QLTK/LS_muahang.php">QL đơn hàng</a></li>
                     </ul>
                 </div>
             </div>

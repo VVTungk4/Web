@@ -49,7 +49,7 @@
                     <li><a href="../Login/Login.php">Đăng Nhập</a></li>
                     <li><a href="../Login/email_dangki.php">Đăng Ký</a></li>
                     <li><a href="../QLTK/QLTK.php">QL Tài Khoản</a></li>
-                    <li><a href="../QLTK/myOder.php">QL đơn hàng</a></li>
+                    <li><a href="../QLTK/LS_muahang.php">QL đơn hàng</a></li>
                 </ul>
             </div>
         </div>
@@ -81,67 +81,92 @@
 
 
         <div class="lsdonhang" style="width: 900px;">
-            <div>
-                <h2>Lịch sử đơn hàng</h2>
-                <div>
-                    <form action="">
-                        <select name="customers" onchange="showCustomer(this.value)">
-                            <option value="5">Tất cả</option>
-                            <option value="0">Chờ xác nhận</option>
-                            <option value="1">Đang chuẩn bị hàng</option>
-                            <option value="2">Đang giao</option>
-                            <option value="3">Đã giao</option>
-                            <option value="4">Đã hủy</option>
-                        </select>
-                    </form>
-                    <br>
-                    <script>
-                        function showCustomer(str) {
-                            var xhttp;
-                            if (str == "") {
-                                document.getElementById("txtHint").innerHTML = "";
-                                return;
-                            }
-                            xhttp = new XMLHttpRequest();
-                            xhttp.onreadystatechange = function() {
-                                if (this.readyState == 4 && this.status == 200) {
-                                    document.getElementById("txtHint").innerHTML = this.responseText;
-                                }
-                            };
-                            xhttp.open("GET", "oderData.php?q=" + Number(str), true);
-                            xhttp.send();
+            <h2>Lịch sử đơn hàng</h2>
+            <form action="" style="width: 200px;">
+                <select name="customers" onchange="showCustomer(this.value)">
+                    <option value="5">Tất cả</option>
+                    <option value="0">Chờ xác nhận</option>
+                    <option value="1">Đang chuẩn bị hàng</option>
+                    <option value="2">Đang giao</option>
+                    <option value="3">Đã giao</option>
+                    <option value="4">Đã hủy</option>
+                </select>
+            </form>
+            <button class="btn-custom" onclick="quaylai()" style="margin-left: 780px; margin-bottom:10px;">Quay lại</button>
+            <br>
+            <script>
+                function quaylai(button) {
+                    location.assign('LS_muahang.php');
+                }
+
+                function showCustomer(str) {
+                    var xhttp;
+                    if (str == "") {
+                        document.getElementById("txtHint").innerHTML = "";
+                        return;
+                    }
+                    xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            document.getElementById("txtHint").innerHTML = this.responseText;
                         }
-                        //huy đơn
-                        function huydon(button) {
-                            var data_id = button.value;
-                            var xhttp;
-                            xhttp = new XMLHttpRequest();
-                            xhttp.onreadystatechange = function() {
-                                if (this.readyState == 4 && this.status == 200) {
-                                    console.log('Yêu cầu đã gửi thành công');
-                                    alert("Đã hủy đơn hàng");
-                                    document.getElementById("txtHint").innerHTML = this.responseText;
-                                }
-                            }
-                            xhttp.open("GET", "huyDon.php?q=" + Number(data_id), true);
-                            xhttp.send();
+                    };
+                    xhttp.open("GET", "muahang_data.php?q=" + Number(str), true);
+                    xhttp.send();
+                }
+                //
+                // mo chitietdata
+                function xemchitiet(button) {
+                    //showCustomer(5);
+                    var id_donhang = button.value;
+                    var xhttp;
+                    xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            document.getElementById("txtHint").innerHTML = this.responseText;
                         }
-                        //onLoad table all
-                        window.onload = function() {
-                            // Load dữ liệu từ selection và hiển thị lựa chọn đầu tiên
-                            showCustomer(5);
-                        };
-                    </script>
-                    <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
-                </div>
-            </div>
+                    }
+                    xhttp.open("GET", "chitiet_data.php?i=" + Number(id_donhang), true);
+                    xhttp.send();
+                    //
+                    //  location.assign('LS_chitiet.php');
+                }
+                //huy đơn
+                function huydon(button) {
+                    // Hiển thị thông báo xác nhận
+                    var isConfirmed = confirm("Bạn có chắc chắn muốn tiếp tục?");
+                    //Kiem tra xac nhan 
+                    if (isConfirmed){
+                    var data_id = button.value;
+                    var xhttp;
+                    xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            console.log('Yêu cầu đã gửi thành công');
+                            alert("Đã hủy đơn hàng");
+                            document.getElementById("txtHint").innerHTML = this.responseText;
+                        }
+                    }
+                    xhttp.open("GET", "huyDon.php?q=" + Number(data_id), true);
+                    xhttp.send();
+                }else{
+                    
+                }
+            }
+                //onLoad table all
+                window.onload = function() {
+                    // Load dữ liệu từ selection và hiển thị lựa chọn đầu tiên
+                    showCustomer(5);
+                }; //
+            </script>
+            <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
+
             <table style="border: 1px solid #db7093; background: #FFDCE3;" id="txtHint">
 
             </table>
         </div>
 
     </div>
-
 
     <style>
         .ttct {
@@ -184,7 +209,7 @@
             display: grid;
             margin: 10px;
             height: 250px;
-            margin-left: 50px;
+            margin-left: 20px;
             width: 300px;
             margin-top: 100px;
             border: 1px solid #000000;
@@ -418,6 +443,7 @@
             border-radius: 30px;
         }
     </style>
+
 
 </body>
 

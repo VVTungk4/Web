@@ -9,5 +9,4 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $_GET['q']);
 $stmt->execute();
 $stmt->get_result();
-echo 'Thành công !';
 ?>
