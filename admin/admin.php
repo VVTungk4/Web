@@ -303,7 +303,7 @@
 						<i class='bx bx-plus' ></i>
 						<i class='bx bx-filter' ></i>
 					</div>
-					<ul class="banchay-list">
+					<ul class="banchay-list" style="padding:0px">
 							<?php
 			// Kết nối cơ sở dữ liệu
 			$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
@@ -358,20 +358,112 @@
 				
 				
 					<div class="form-input">
-						<input type="search" list ="topics" placeholder="Search..." id ="topicInput">
-						<datalist id = "topics">
-							<option value ="Cửa Hàng Của Tôi">
-							<option value ="Thống Kê Báo Cáo">
-							<option value ="Tin Nhắn">
-							<option value ="Quản Lý Tài Khoản">
-							<option value ="Quản Lý Sản Phẩm">
-						</datalist>
-						<button type="submit" class="search-btn">
+						<input type="search"  placeholder="Nhập từ khóa..." id="timkiemsanpham">
+						<button onclick="Timkiem_SANPHAM()" class="search-btn">
 							<i class='bx bx-search' ></i>
 							 </button>
 					</div>
-				
+				<table class="table table-bordered">	
+					<thead class="table-primary">
+            <tr>
+                <th>Mã</th>
+                <th>Ảnh</th>
+                <th>Tên SP</th>
+				<th>Loại</th>
+                <th>Size</th>
+                <th>Màu</th>
+                <th>Giá</th>
+                <th>Giảm Giá</th>
+                <th>Số Lượng</th>
+                <th>Trạng Thái</th>
+                <th>Sửa</th>
+                <th>Xóa</th>
+            </tr>
+        </thead>
+        <tbody id="bangsanpham">
+            <!-- Thêm dữ liệu sản phẩm vào đây -->
+	<?php
+	
+	// Kết nối cơ sở dữ liệu
+	$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+	mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+	// Truy vấn lấy dữ liệu
+		$sql = "SELECT
+		p.id,
+		p.title,
+		p.thumbnail,
+		cate.name as cate,
+		p.price,
+		p.discount,
+		p.deleted,
+		psc.quantity,
+		s.name as size,
+		c.name as color
+	FROM
+		product AS p
+	JOIN
+		product_size_color AS psc ON p.id = psc.product_id
+	JOIN
+		colors AS c ON psc.color_id = c.id
+	JOIN
+		sizes AS s ON psc.size_id = s.id
+	JOIN 
+		category AS cate ON cate.id =p.category_id
+	Order by p.id ASC	 ;";
+		$result = $conn->query($sql);
+	// Kiểm tra số lượng bản ghi trả về
+		if ($result->num_rows > 0) {
+	 // Xuất dữ liệu của mỗi hàng
+	 
+	 while($row = $result->fetch_assoc()) {
+		if($row["deleted"]==0&&$row["quantity"]>0){
+			$status="<td style='color:var(--blue);'>Còn Hàng</td>";
+		}
+		else if($row["deleted"]==0||$row["quantity"]==0){
+			$status="<td style='color:var(--red);'>Hết Hàng</td>";
+		}
+		else{
+			$status="<td style='color:var(--grey);'>Đã Dừng Bán</td>";
+			}
+		echo "<tr>
+		<td>".$row["id"]."</td>
+		<td><img src='../".$row["thumbnail"]. "' style='width:60px;height:60px;'></td>
+		<td>".$row["title"]."</td>
+		<td>".$row["cate"]."</td>
+		<td>".$row["size"]."</td>
+		<td>".$row["color"]."</td>
+		<td>".$row["price"]."đ</td> 
+		<td>".$row["discount"]."%</td>
+		<td>".$row["quantity"]."</td>
+		".$status."
+		<td><a href='#' >Sửa</a></td>
+        <td><a href='#' >Xóa</a></td></tr>";
+	}} 
+			$conn->close();?>	
+           
+            <!-- Thêm dữ liệu sản phẩm khác tương tự -->
+        </tbody>
+    </table>					
 			</div>
+		<!-- TÌm kiếm San Phẩm 	 -->
+	<script>
+		 function Timkiem_SANPHAM() {
+			const tukhoa = document.getElementById('timkiemsanpham').value;
+			var xhttp;    
+  				xhttp = new XMLHttpRequest();
+  				xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu đã gửi thành công');
+					document.getElementById("bangsanpham").innerHTML = this.responseText;
+					alert("Tìm kiếm thành công");
+   			 }
+  			};
+  				xhttp.open("GET", "Timkiem-SANPHAM.php?tukhoa="+tukhoa, true);
+  				xhttp.send();
+			}
+	</script>
+
+
 			<div id="sanpham2" class="sanpham" style="display:none;">
 						
 				<div id="productForm">
@@ -384,8 +476,12 @@
 					<label for="discount"><i class='bx bxs-discount'></i>Giảm giá (%):</label>
 					<input type="number" id="discount" name="discount" min="0" max="100"><br><br>
 				  
-					<label for="thumbnail"><i class='bx bx-image-add' ></i>URL Ảnh:</label>
-					<input type="text" id="thumbnail" name="thumbnail" maxlength="500"><br><br>
+					
+					<form id="upForm" onsubmit="return up();">
+  					<input type="file" accept="image/*" name="upFile" required>
+  					<input type="submit" value="Tải Ảnh" required>
+					</form>
+    				
 				  
 					<label for="description"> <i class='bx bxs-comment-detail'></i>Mô tả:</label>
 					<textarea id="description" name="description"></textarea><br><br>
@@ -396,6 +492,19 @@
 					<input type="submit" value="Xác Nhận" id="btn1">
 				</div>
 			</div>
+	<script>
+       function up () {
+  // (A) GET SELECTED IMAGE
+  		var data = new FormData(document.getElementById("upForm"));
+ 
+  // (B) AJAX UPLOAD
+  		fetch("UploadAnh.php", { method:"POST", body:data })
+  		.then(res => res.text())
+  		.then(txt => alert(txt))
+ 		 .catch(err => console.error(err));
+  		return false;
+};
+    </script>
 		
 			<div id="sanpham3" class="sanpham" style="display:none;">
 				<div>
