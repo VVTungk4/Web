@@ -8,6 +8,7 @@ if (isset($_POST['update'])) { //neu ton tai $_post['xacnhan']
     $phone = $_POST['phone'];
     $address = $_POST['address'];
     $email = $_POST['email'];
+    $password = $_POST['pass'];
 
     //
     //
@@ -15,12 +16,12 @@ if (isset($_POST['update'])) { //neu ton tai $_post['xacnhan']
 
     mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
     //
-    if (!empty($fullname) && !empty($email) && !empty($phone) && !empty($address)) {
-        $sql = "UPDATE user SET fullname=?, phone_number=?, address=? WHERE email=?";
+    if (!empty($fullname) && !empty($email) && !empty($phone) && !empty($address)  && !empty($password)) {
+        $sql = "UPDATE user SET fullname=?, phone_number=?, address=?, password=? WHERE email=?";
         $stmt = $conn->prepare($sql);
         //
         if ($stmt !== false) {
-            $stmt->bind_param("ssss", $fullname, $phone, $address, $email);
+            $stmt->bind_param("sssss", $fullname, $phone, $address, $password, $email);
             $stmt->execute();
         } else {
             // Xử lý lỗi
@@ -45,8 +46,11 @@ if (isset($_POST['update'])) { //neu ton tai $_post['xacnhan']
                     'address' => $row['address'],
                     'password' => $row['password'],
                     'created_at' => $row['created_at'],
+                    'pass' => $row['password'],
 
                 );
+                // Đặt thông báo thành công vào biến session
+                $_SESSION['success_message'] = 'Cập nhật thành công !';
                 header("location:QLTK.php");
                 exit();
             } else {

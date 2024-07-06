@@ -28,21 +28,20 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
 	<!-- Material Design Bootstrap -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
 
 <body>
-	<div id="header">
+	<div id="header" style="font-weight: bold;">
 		<div id="khungdau">
-			<div style="margin-left: 100px; width: 250px;" class="DanhMuc">
-				<p style="margin-bottom: 0;"><i class="DanhMuc ti-menu-alt"></i>DANH SÁCH</p>
+			<div style="width: 250px;" id="TaiKhoan">
+				<p style="margin-bottom: 0;"><i class="bi bi-list-task"></i>&nbsp; DANH MỤC</p>
 				<ul class="MeNu">
-					<li><a href="../sanpham/AoNu .php">TRANG PHỤC NỮ-ÁO</a></li>
-					<li><a href="../sanpham/DamNu.php">TRANG PHỤC NỮ-ĐẦM
-						</a></li>
-
+					<li style="font-weight: normal;"><a href="../web/AoNu.php ">Sản phẩm Nữ: Áo</a></li>
+					<li style="font-weight: normal;"><a href="../web/DamNu.php ">Sản phẩm Nữ: Đầm</a></li>
 				</ul>
 			</div>
-			<div style="height: 50px;"><a href="../sanpham/Sản-Phẩm.php" style="text-decoration:none; color:#000;">
+			<div><a href="../sanpham/Sản-Phẩm.php" style="text-decoration:none; color:#000;">
 					<p>SẢN PHẨM </p>
 			</div>
 			<div><a href="../index.php" style="text-decoration:none; color:#000;">
@@ -52,7 +51,7 @@
 					<p>GIỚI THIỆU</p>
 				</a></div>
 			<div><a href="../Cart/cart.php" style="text-decoration:none; color:#000;">
-					<p>GIỎ HÀNG</p>
+					<p><i class="bi bi-cart2"></i>&nbsp;GIỎ HÀNG</p>
 				</a></div>
 			<div id="TaiKhoan">
 				<p style="margin-bottom: 0;">TÀI KHOẢN</p>
@@ -256,6 +255,161 @@
 			padding: 5px;
 			font-size: 13px;
 			/* Điều chỉnh theo cần thiết */
+		}
+
+		@font-face {
+			font-family: quicksand;
+			src: url('../QLTK/font/quicksand/Quicksand-Regular.ttf');
+		}
+
+		* {
+			padding: 0;
+			box-sizing: border-box;
+			font-family: quicksand;
+		}
+
+		#logo {
+			height: 100px;
+			margin-top: 50px;
+			background: #f0cfcf;
+			background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+			background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+			background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+			background: linear-gradient(bottom, #f0cfcf, #ffacc7);
+		}
+
+		#logo img {
+			margin: 5px 5px 5px 0;
+			height: 90px;
+			float: right;
+			position: absolute;
+			right: 0;
+		}
+
+		#logo p {
+			float: left;
+			line-height: 88px;
+			padding-left: 200px;
+		}
+
+		#logo p input {
+			height: 50px;
+			width: 350px;
+		}
+
+		#logo div {
+			height: 49px;
+			width: 53px;
+			float: left;
+			font-size: 20px;
+			margin-top: 20px;
+			background-color: darkgray;
+			border-top-right-radius: 5px;
+			border-bottom-right-radius: 5px;
+			text-align: center;
+			font-size: 20px;
+			color: white;
+			line-height: 50px;
+		}
+
+		#header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 50px;
+			background-color: #FFDCE3;
+			z-index: 3;
+			display: flex;
+			justify-content: center;
+
+		}
+
+		#khungdau div {
+			float: left;
+			line-height: 50px;
+			width: 160px;
+			text-align: center;
+			height: 50px;
+		}
+
+		#khungdau div:hover {
+			background: #f0cfcf;
+			background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+			background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+			background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+			background: linear-gradient(bottom, #f0cfcf, #ffacc7);
+			cursor: pointer;
+			display: inline;
+		}
+
+		.MeNu {
+			height: auto;
+			background: #f0cfcf;
+			background: -webkit-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+			background: -o-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+			background: -moz-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+			background: linear-gradient(bottom right, #e6d4ec, #ffacc7);
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+
+		.MeNu ul {
+			margin-top: 0;
+		}
+
+		.MeNu li {
+			width: 100%;
+		}
+
+		#khungdau ul li {
+			height: 45px;
+			display: none;
+			float: none;
+			clear: both;
+			text-decoration: none;
+			text-align: left;
+			padding-left: 20px;
+			line-height: 40px;
+			box-shadow: black;
+
+		}
+
+		.MeNu ul {
+			margin-top: 0;
+			background: 0%;
+		}
+
+		ul li a {
+			text-decoration: none;
+			color: black;
+		}
+
+		.MeNu li:hover {
+			background: white;
+			margin-bottom: 5px;
+
+		}
+
+		#TaiKhoan:hover ul li {
+			display: block;
+		}
+
+		#TaiKhoan ul li:hover {
+			background: rgb(255, 254, 254);
+			margin-left: 5px;
+			font-weight: bold;
+
+		}
+
+		#TaiKhoan ul {
+			background: #f0cfcf;
+			background: -webkit-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+			background: -o-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+			background: -moz-linear-gradient(bottom right, #e6d4ec, #ffacc7);
+			background: linear-gradient(bottom right, #e6d4ec, #ffacc7);
+			margin-left: 0;
+			margin-top: 0;
 		}
 	</style>
 	<table style="margin: 50px;width: auto;" class="thumbnail">

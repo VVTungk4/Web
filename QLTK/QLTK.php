@@ -22,8 +22,8 @@
                 <div style="width: 250px;" id="TaiKhoan">
                     <p style="margin-bottom: 0;"><i class="bi bi-list-task"></i>&nbsp; DANH MỤC</p>
                     <ul class="MeNu">
-                        <li style="font-weight: normal;"><a href="../web/AoNu.php ">Sản phẩm Nữ: Áo</a></li>
-                        <li style="font-weight: normal;"><a href="../web/DamNu.php ">Sản phẩm Nữ: Đầm</a></li>
+                        <li style="font-weight: normal;"><a href="../sanpham/AoNu.php ">Sản phẩm Nữ: Áo</a></li>
+                        <li style="font-weight: normal;"><a href="../sanpham/DamNu.php ">Sản phẩm Nữ: Đầm</a></li>
                     </ul>
                 </div>
                 <div><a href="../sanpham/Sản-Phẩm.php" style="text-decoration:none; color:#000;">
@@ -52,7 +52,6 @@
 
         <div id="logo">
             <img src="images/logo1.png" style="height: 90px; width: 110px;">
-
             <label for="TaiKhoan" class="ttcn"> THÔNG TIN CÁ NHÂN</label>
         </div>
 
@@ -88,6 +87,22 @@
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" readonly>
                 </div>
+                <div class="infor">
+                    <label for="pass">Password</label>
+                    <input type="password" id="pass" name="pass" style="width: 260px;" required>
+                    <button class="btn btn-primary" type="button" id="btn_pass" style="border: #000; width: 40px;">
+                        <i class="bi bi-eye-fill"></i>
+                    </button>
+                </div>
+                <?php
+                // Kiểm tra xem có thông báo thành công không
+                if (isset($_SESSION['success_message'])) {
+                    echo '<div class="success-message" style="margin-left: 220px;">' . $_SESSION['success_message'] . '</div>';
+                    // Xóa thông báo sau khi hiển thị
+                    unset($_SESSION['success_message']);
+                }
+                ?>
+
                 <div>
                     <button type="submit" class="btn-custom" style="margin-left: 250px; margin-top: 40px;" name="update">
                         Cập nhật
@@ -105,6 +120,7 @@
                         document.getElementById('address').value = "<?php echo addslashes($_SESSION['user_info']['address']); ?>";
                         document.getElementById('email').value = "<?php echo addslashes($_SESSION['user_info']['email']); ?>";
                         document.getElementById('dob').value = "<?php echo addslashes($_SESSION['user_info']['created_at']); ?>";
+                        document.getElementById('pass').value = "<?php echo addslashes($_SESSION['user_info']['password']); ?>";
                         // Thêm các dòng tương tự cho các text box khác
                     </script>
                 <?php endif; ?>
@@ -121,8 +137,31 @@
                 background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
                 background: linear-gradient(bottom, #f0cfcf, #ffacc7);
             }
-        </style>
 
+            .btn-primary {
+                background: #f0cfcf;
+                background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+                background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+                background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+                background: linear-gradient(bottom, #f0cfcf, #ffacc7);
+            }
+        </style>
+        <script>
+            // step 1
+            const ipnElement = document.querySelector('#pass')
+            const btnElement = document.querySelector('#btn_pass')
+
+            // step 2
+            btnElement.addEventListener('click', function() {
+                // step 3
+                const currentType = ipnElement.getAttribute('type')
+                // step 4
+                ipnElement.setAttribute(
+                    'type',
+                    currentType === 'password' ? 'text' : 'password'
+                )
+            })
+        </script>
 </body>
 
 </html>
