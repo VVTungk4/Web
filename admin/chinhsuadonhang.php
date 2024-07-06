@@ -15,7 +15,7 @@
 			<p class="fst-italic text-decoration-underline text-center text-danger">Trạng Thái Đơn : '.$tt.'</p>
 			<table class="table table-striped" style="margin-top:25px ;" >
 			  	<thead style="border-bottom: 1px solid var(--dark);" class="table-danger">
-       				<tr"><th width="5%">STT</th>
+       				<tr><th width="5%">STT</th>
             			<th width="10%">Mã Sản Phẩm</th>
             			<th width="10%">Tên Sản Phẩm</th>
 						<th width="10%">Màu Sắc</th>
