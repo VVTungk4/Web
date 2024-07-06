@@ -87,7 +87,6 @@
                 <div class="infor">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" readonly>
-
                 </div>
                 <div>
                     <button type="submit" class="btn-custom" style="margin-left: 250px; margin-top: 40px;" name="update">
