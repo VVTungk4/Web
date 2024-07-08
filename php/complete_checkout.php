@@ -12,13 +12,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fullname = $_SESSION['billing_address_full_name'];
         $phone = $_SESSION['billing_address_phone'];
         $address = $_SESSION['billing_address_address'];
-        $note = $_SESSION['bill_note'];
+        $note = isset($_SESSION['note']) ? $_SESSION['note'] : '';
         $order_date = date("Y-m-d");
         $status = 0;
-        $total_amount = $_SESSION['total_price'];
+        $total_money = isset($_SESSION['total_money']) ? $_SESSION['total_money'] : 0;
     
         $query_insert_bill = "INSERT INTO Orders (user_id, fullname, phone_number, address, note, order_date, status, total_money)
-        VALUES ('$user_id', '$fullname', '$phone', '$address', '$note', '$order_date', '$status', '$total_amount')";
+        VALUES ('$user_id', '$fullname', '$phone', '$address', '$note', '$order_date', '$status', '$total_money')";
     
         if (mysqli_query($conn, $query_insert_bill)) {
     
@@ -71,8 +71,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Chèn dữ liệu vào bảng Order-Detail
                     $price = @$item['price'];
                     $total_money = $price * $quantity;
-                    $insert_query = "INSERT INTO `Order_Details` (order_id, product_id, price, num, total_money) 
-                                     VALUES ('$order_id', '$product_id', '$price', '$quantity', '$total_money')";
+                    $insert_query = "INSERT INTO `Order_Details` (order_id, product_id, price, num, total_money, size, color) 
+                                     VALUES ('$order_id', '$product_id', '$price', '$quantity', '$total_money', '$size', '$color')";
                     mysqli_query($conn, $insert_query);
                 }
             
@@ -97,14 +97,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fullname = $_SESSION['billing_address_full_name'];
         $phone = $_SESSION['billing_address_phone'];
         $address = $_SESSION['billing_address_address'];
-        $note = $_SESSION['bill_note'];
+        $note = isset($_SESSION['note']) ? $_SESSION['note'] : '';
         $order_date = date("Y-m-d");
         $status = 0;
-        $total_amount = $_SESSION['total_price'];
+        $total_money = isset($_SESSION['total_money']) ? $_SESSION['total_money'] : 0;
     
         $query_insert_bill = "INSERT INTO Orders (fullname, phone_number, address, note, order_date, status, total_money
         )
-        VALUES ('$fullname', '$phone', '$address', '$note', '$order_date', '$status', '$total_amount')";
+        VALUES ('$fullname', '$phone', '$address', '$note', '$order_date', '$status', '$total_money')";
     
         if (mysqli_query($conn, $query_insert_bill)) {
     
@@ -157,8 +157,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Chèn dữ liệu vào bảng Order-Detail
                     $price = @$item['price'];
                     $total_money = $price * $quantity;
-                    $insert_query = "INSERT INTO `Order_Details` (order_id, product_id, price, num, total_money) 
-                                     VALUES ('$order_id', '$product_id', '$price', '$quantity', '$total_money')";
+                    $insert_query = "INSERT INTO `Order_Details` (order_id, product_id, price, num, total_money, size, color) 
+                                     VALUES ('$order_id', '$product_id', '$price', '$quantity', '$total_money', '$size', '$color')";
                     mysqli_query($conn, $insert_query);
                 }
             
