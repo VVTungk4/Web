@@ -42,14 +42,14 @@ if (isset($_POST['oki'])) {
             $mail->Port = 587;
 
             //Người nhận
-            $mail->setFrom('tuantang3433@gmail.com', 'SONIC');
+            $mail->setFrom('tuantang3433@gmail.com', 'SONIC-SHOP');
             $mail->addAddress($email, 'Khách hàng');
 
             //Nội dung email
             $otp = rand(10000, 99999); // Tạo mã OTP ngẫu nhiên
             $mail->isHTML(true);
             $mail->Subject = 'Your OTP Code';
-            $mail->Body    = 'Your OTP code is: ' . $otp;
+            $mail->Body    = 'Mã OTP của bạn là: ' . $otp;
 
             //Gửi email
             $mail->send();

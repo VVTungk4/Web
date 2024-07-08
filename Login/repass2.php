@@ -20,7 +20,7 @@ if (isset($_POST['oce'])) {
             die();
         } else {
             if ($otp_n != $otp) {
-                echo '<script language="javascript">alert("Không trùng password!" echo $otp;); window.location="../Login/repass.php";</script>';
+                echo '<script language="javascript">alert("Không đúng OTP!" echo $otp;); window.location="../Login/repass.php";</script>';
                 die();
             } else {
                 $conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
@@ -37,6 +37,7 @@ if (isset($_POST['oce'])) {
                     $stmt->execute();
                     session_unset();
                     session_destroy();
+                    
                     header('location: ../Login/Login.php');
                     exit();
                 } else {

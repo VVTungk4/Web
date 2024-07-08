@@ -58,7 +58,6 @@ if (isset($_POST['xacnhan'])) { //neu ton tai $_post['xacnhan']
             exit();
         }
     } else {
-
         header("Location: ../Login/Login.php?error=Không tìm thấy tài khoản!");
         exit;
     }
