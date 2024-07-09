@@ -172,17 +172,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: ../index.html");
                 // Đóng kết nối CSDL
                 $conn->close();
-
-
             }
-    
-    
         }
     }
-
-    
-    
 } else {
     echo "Error: POST method required!";
 }
-?>
