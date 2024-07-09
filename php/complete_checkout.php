@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $insert_query = "INSERT INTO order_details (order_id, product_id, size, color, num, price, total_money)
                      VALUES ('$order_id','$product_id', '$size', '$color', '$quantity', '$price', '$total_money')";
                         if (mysqli_query($conn, $insert_query)) {
-                            header("location: ../index.php");
+                            header("location: ../QLTK/LS_muahang.php");
                         }
                     }
                 }

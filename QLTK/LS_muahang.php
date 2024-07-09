@@ -136,23 +136,23 @@
                     // Hiển thị thông báo xác nhận
                     var isConfirmed = confirm("Bạn có chắc chắn muốn tiếp tục?");
                     //Kiem tra xac nhan 
-                    if (isConfirmed){
-                    var data_id = button.value;
-                    var xhttp;
-                    xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                            console.log('Yêu cầu đã gửi thành công');
-                            alert("Đã hủy đơn hàng");
-                            document.getElementById("txtHint").innerHTML = this.responseText;
+                    if (isConfirmed) {
+                        var data_id = button.value;
+                        var xhttp;
+                        xhttp = new XMLHttpRequest();
+                        xhttp.onreadystatechange = function() {
+                            if (this.readyState == 4 && this.status == 200) {
+                                console.log('Yêu cầu đã gửi thành công');
+                                alert("Đã hủy đơn hàng");
+                                document.getElementById("txtHint").innerHTML = this.responseText;
+                            }
                         }
+                        xhttp.open("GET", "huyDon.php?q=" + Number(data_id), true);
+                        xhttp.send();
+                    } else {
+
                     }
-                    xhttp.open("GET", "huyDon.php?q=" + Number(data_id), true);
-                    xhttp.send();
-                }else{
-                    
                 }
-            }
                 //onLoad table all
                 window.onload = function() {
                     // Load dữ liệu từ selection và hiển thị lựa chọn đầu tiên
@@ -410,9 +410,32 @@
             cursor: pointer;
             padding: 10px 20px;
             border-radius: 50px;
-            background: #ffffff;
             border: 2px solid #f0cfcf;
+            background: #f0cfcf;
+            background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+            background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+            background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+            background: linear-gradient(bottom, #f0cfcf, #ffacc7);
+        }
 
+        table .btn-custom {
+            color: #2f2626;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 2px solid #f0cfcf;
+            background: whitesmoke;
+        }
+
+        table .btn-custom:hover {
+            font-weight: bold;
+            border: 2px solid pink;
+            transition: font-weight ease;
+            background: #f0cfcf;
+            background: -webkit-linear-gradient(bottom, #f0cfcf, #ffacc7);
+            background: -o-linear-gradient(bottom, #f0cfcf, #ffacc7);
+            background: -moz-linear-gradient(bottom, #f0cfcf, #ffacc7);
+            background: linear-gradient(bottom, #f0cfcf, #ffacc7);
         }
 
         .btn-custom:hover {
