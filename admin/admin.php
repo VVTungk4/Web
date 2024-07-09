@@ -349,9 +349,8 @@
 
 			<!-- Sản Phẩm -->
 		<main class="main" id ="Products">
-			<button  class="btn btn-primary btn-lg" onclick="showSanpham('sanpham1')">Xem Danh Sach Sản Phẩm</button>
-			<button  class="btn btn-primary btn-lg" onclick="showSanpham('sanpham2')">Thêm Sản Phẩm</button>
-			<button  class="btn btn-primary btn-lg" onclick="showSanpham('sanpham3')">Sửa Sản Phẩm</button>
+			<button  class="btn btn-outline-info btn-lg text-dark" onclick="showSanpham('sanpham1')">Xem Danh Sách Sản Phẩm</button>
+			<button  class="btn btn-outline-info btn-lg text-dark" onclick="showSanpham('sanpham2')">Thêm Sản Phẩm</button>
 			
 			<!-- Các phần nội dung -->
 			<div id="sanpham1" class="sanpham">
@@ -435,8 +434,8 @@
 					<td>".$row["discount"]."%</td>
 					<td>".$row["quantity"]."</td>
 					".$status."
-					<td><a href='#' >Sửa</a></td>
-        			<td><a href='#' >Xóa</a></td></tr>";
+					<td><button onclick='SuaSanPham(this)' id='btntable' class='btn btn-outline-warning'><i class='bx bxs-edit'></i></button></td>
+        			<td><button onclick='' id='btntable' class='btn btn-outline-danger'><i class='bx bx-message-square-x'></i></button></td></tr>";
 	}} 
 			$conn->close();?>	
         
@@ -522,7 +521,7 @@
 				</div>
 		</form>
 			</div>
-	<script>
+	<!-- <script>
        function up () {
   // (A) GET SELECTED IMAGE
   		var data = new FormData(document.getElementById("upForm"));
@@ -534,11 +533,50 @@
  		 .catch(err => console.error(err));
   		return false;
 };
-    </script>
-		
+    </script> -->
+
+	<script> function SuaSanPham(button) {
+            const row = button.parentNode.parentNode;
+            const firstCellContent = row.cells[0].textContent; // Lấy nội dung ô đầu tiên
+            console.log("Nội dung ô đầu tiên:", firstCellContent);
+			var xhttp;    
+  				xhttp = new XMLHttpRequest();
+  				xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu đã gửi thành công');
+					document.getElementById("SuaSanPham").innerHTML = this.responseText;
+					showSanpham('sanpham3');
+   			 }
+  			};
+  				xhttp.open("GET", "SuaSanPham.php?q="+Number(firstCellContent), true);
+  				xhttp.send();
+			}
+
+			function XoaSanPham(button) {
+            const row = button.parentNode.parentNode;
+            const firstCellContent = row.cells[0].textContent; // Lấy nội dung ô đầu tiên
+            console.log("Nội dung ô đầu tiên:", firstCellContent);
+			var xhttp;    
+  				xhttp = new XMLHttpRequest();
+  				xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu đã gửi thành công');
+					document.getElementById("XoaSanPham").innerHTML = this.responseText;
+					
+   			 }
+  			};
+  				xhttp.open("GET", "XoaSanPham.php?q="+Number(firstCellContent), true);
+  				xhttp.send();
+			}
+		</script>
+
+
+
+
+
 			<div id="sanpham3" class="sanpham" style="display:none;">
-				<div>
-					hhh
+				<div id="SuaSanPham">
+					
 				</div>
 			</div>	
 		</main>
