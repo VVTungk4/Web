@@ -439,9 +439,7 @@
         			<td><a href='#' >Xóa</a></td></tr>";
 	}} 
 			$conn->close();?>	
-			$conn->close();?>	
-           
-			$conn->close();?>	        
+        
            
             <!-- Thêm dữ liệu sản phẩm khác tương tự -->
         </tbody>
@@ -466,67 +464,63 @@
 	</script>
 		<!-- TÌm kiếm San Phẩm 	 -->
 
+
+
 			<div id="sanpham2" class="sanpham" style="display:none;">
-			<form method="post" action="ThemSanPham.php">			
+
+		<form method="post" action="ThemSanPham.php">			
 				<div id="productForm">
 					<label for="title">Tên Sản Phẩm:</label>
 					<input type="text" id="title" name="title" maxlength="250" required><br><br>
 					<label for="category_id"><i class='bx bxs-category' ></i>Danh mục:</label>
 					<select id="cate" name="category" required>
-					<?php
-			$conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
-			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
-			$sql = "SELECT id,name	FROM category ";
-			$result = $conn->query($sql);
+			<?php
+					$conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+					mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+					$sql = "SELECT id,name	FROM category ";
+					$result = $conn->query($sql);
 
-			while($row=$result->fetch_assoc()) {
-				echo "<option value='".$row['id']."'>".$row['name']."</option>";
-			}
-				$conn->close();?>	
-				
+					while($row=$result->fetch_assoc()) {
+						echo "<option value='".$row['id']."'>".$row['name']."</option>";
+					}
+						$conn->close();?>	
+					</select><br><br>
+
+
+					<label for="soluong"><i class='bx bxs-control' ></i>Số lượng:</label>
+			<?php
+					$conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+					mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+					$sql = "SELECT c.id as cid,s.id as sid,c.name as cname,s.name as sname	FROM colors c ,sizes s ";
+					$result = $conn->query($sql);
+					$stt=0;
+					echo "<div style='display:flex;'>";
+					while($row=$result->fetch_assoc()) {
+					echo "<div style='width:100px'>".$row['cname']."-".$row['sname']."<input type='number' name='".$row['cname']."-".$row['sname']."' min=0 style='width:80px' value='0' required></div>";
+					$stt++;
+					}
+					echo "</div>";
+					$conn->close();?>		
 				
 
-				</select><br><br>
-				<label for="soluong"><i class='bx bxs-number' ></i>Số lượng:</label>
-					<?php
-			$conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
-			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
-			$sql = "SELECT c.id as cid,s.id as sid,c.name as cname,s.name as sname	FROM colors c ,sizes s ";
-			$result = $conn->query($sql);
-			$stt=0;
-			echo "<div style='display:flex;'>";
-			while($row=$result->fetch_assoc()) {
-				
-				echo "<div style='width:100px'>".$row['cname']."-".$row['sname']."<input type='number' name='soluong' min=0 style='width:60px' value='0' required></div>";
-				$stt++;
-			}
-			echo "</div>";
-				$conn->close();?>		
-				</select><br><br>
 					<label for="price"><i class='bx bx-money' ></i></i>Giá:</label>
 					<input type="number" id="price" name="price" required><br><br>
 				  
 					<label for="discount"><i class='bx bxs-discount'></i>Giảm giá (%):</label>
 					<input type="number" id="discount" name="discount" min="0" max="100"><br><br>
 
-									
-					<form id="upForm" onsubmit="return up();">
+												
   					<input type="file" accept="image/*" name="upFile" required>
-  					<input type="submit" value="Tải Ảnh" required>
-					</form>
     				
 				  
 					<label for="description"><i class='bx bxs-comment-detail'></i>Mô tả:</label>
-					<textarea id="description" name="description">
-				
-					</textarea>
-				<script>CKEDITOR.replace( 'description' );</script><br><br>
+					<textarea id="description" name="description"></textarea>
+			
 
-					
-											
+									
 					<input type="submit" value="Xác Nhận" id="btn1">
 				</div>
-				</form>
+		</form>
 			</div>
 	<script>
        function up () {
@@ -1408,3 +1402,4 @@
 	<!-- Hộp thoại -->
 </body>
 </html>
+<!-- <script>CKEDITOR.replace( 'description' );</script><br><br> -->
