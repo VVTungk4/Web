@@ -83,9 +83,9 @@
 				</a>
 			</li>
 			<li>
-				<a href="#Messangers">
+				<a href="https://business.facebook.com/latest/inbox/messenger?asset_id=350477748148701">
 					<i class='bx bxs-message-dots' ></i>
-					<span class="text">Phản Hồi</span>
+					<span class="text">Chăm Sóc Khách Hàng</span>
 				</a>
 			</li>
 			
@@ -349,9 +349,9 @@
 
 			<!-- Sản Phẩm -->
 		<main class="main" id ="Products">
-			<button id="btn" onclick="showSanpham('sanpham1')">Xem Danh Sach Sản Phẩm</button>
-			<button id="btn" onclick="showSanpham('sanpham2')">Thêm Sản Phẩm</button>
-			<button id="btn" onclick="showSanpham('sanpham3')">Sửa Sản Phẩm</button>
+			<button  class="btn btn-primary btn-lg" onclick="showSanpham('sanpham1')">Xem Danh Sach Sản Phẩm</button>
+			<button  class="btn btn-primary btn-lg" onclick="showSanpham('sanpham2')">Thêm Sản Phẩm</button>
+			<button  class="btn btn-primary btn-lg" onclick="showSanpham('sanpham3')">Sửa Sản Phẩm</button>
 			
 			<!-- Các phần nội dung -->
 			<div id="sanpham1" class="sanpham">
@@ -383,63 +383,65 @@
         <tbody id="bangsanpham">
             <!-- Thêm dữ liệu sản phẩm vào đây -->
 	<?php
-	
 	// Kết nối cơ sở dữ liệu
-	$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
-	mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+		$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
 	// Truy vấn lấy dữ liệu
-		$sql = "SELECT
-		p.id,
-		p.title,
-		p.thumbnail,
-		cate.name as cate,
-		p.price,
-		p.discount,
-		p.deleted,
-		psc.quantity,
-		s.name as size,
-		c.name as color
-	FROM
-		product AS p
-	JOIN
-		product_size_color AS psc ON p.id = psc.product_id
-	JOIN
-		colors AS c ON psc.color_id = c.id
-	JOIN
-		sizes AS s ON psc.size_id = s.id
-	JOIN 
-		category AS cate ON cate.id =p.category_id
-	Order by p.id ASC	 ;";
-		$result = $conn->query($sql);
+			$sql = "SELECT
+					p.id,
+					p.title,
+					p.thumbnail,
+					cate.name as cate,
+					p.price,
+					p.discount,
+					p.deleted,
+					psc.quantity,
+					s.name as size,
+					c.name as color
+				FROM
+					product AS p
+				JOIN
+					product_size_color AS psc ON p.id = psc.product_id
+				JOIN
+					colors AS c ON psc.color_id = c.id
+				JOIN
+					sizes AS s ON psc.size_id = s.id
+				JOIN 
+					category AS cate ON cate.id =p.category_id
+				Order by p.id ASC	 ;";
+			$result = $conn->query($sql);
 	// Kiểm tra số lượng bản ghi trả về
-		if ($result->num_rows > 0) {
+			if ($result->num_rows > 0) {
 	 // Xuất dữ liệu của mỗi hàng
 	 
-	 while($row = $result->fetch_assoc()) {
-		if($row["deleted"]==0&&$row["quantity"]>0){
-			$status="<td style='color:var(--blue);'>Còn Hàng</td>";
+			 while($row = $result->fetch_assoc()) {
+				if($row["deleted"]==0&&$row["quantity"]>0){
+					$status="<td style='color:var(--blue);'>Còn Hàng</td>";
 		}
-		else if($row["deleted"]==0||$row["quantity"]==0){
-			$status="<td style='color:var(--red);'>Hết Hàng</td>";
+				else if($row["deleted"]==0||$row["quantity"]==0){
+					$status="<td style='color:var(--red);'>Hết Hàng</td>";
 		}
-		else{
-			$status="<td style='color:var(--grey);'>Đã Dừng Bán</td>";
+				else{
+					$status="<td style='color:var(--grey);'>Đã Dừng Bán</td>";
 			}
-		echo "<tr>
-		<td>".$row["id"]."</td>
-		<td><img src='../".$row["thumbnail"]. "' style='width:60px;height:60px;'></td>
-		<td>".$row["title"]."</td>
-		<td>".$row["cate"]."</td>
-		<td>".$row["size"]."</td>
-		<td>".$row["color"]."</td>
-		<td>".$row["price"]."đ</td> 
-		<td>".$row["discount"]."%</td>
-		<td>".$row["quantity"]."</td>
-		".$status."
-		<td><a href='#' >Sửa</a></td>
-        <td><a href='#' >Xóa</a></td></tr>";
+				echo "<tr>
+					<td>".$row["id"]."</td>
+					<td><img src='../".$row["thumbnail"]. "' style='width:60px;height:60px;'></td>
+					<td>".$row["title"]."</td>
+					<td>".$row["cate"]."</td>
+					<td>".$row["size"]."</td>
+					<td>".$row["color"]."</td>
+					<td>".$row["price"]."đ</td> 
+					<td>".$row["discount"]."%</td>
+					<td>".$row["quantity"]."</td>
+					".$status."
+					<td><a href='#' >Sửa</a></td>
+        			<td><a href='#' >Xóa</a></td></tr>";
 	}} 
 			$conn->close();?>	
+			$conn->close();?>	
+           
+			$conn->close();?>	        
            
             <!-- Thêm dữ liệu sản phẩm khác tương tự -->
         </tbody>
@@ -462,35 +464,69 @@
   				xhttp.send();
 			}
 	</script>
-
+		<!-- TÌm kiếm San Phẩm 	 -->
 
 			<div id="sanpham2" class="sanpham" style="display:none;">
-						
+			<form method="post" action="ThemSanPham.php">			
 				<div id="productForm">
 					<label for="title">Tên Sản Phẩm:</label>
 					<input type="text" id="title" name="title" maxlength="250" required><br><br>
-				  
+					<label for="category_id"><i class='bx bxs-category' ></i>Danh mục:</label>
+					<select id="cate" name="category" required>
+					<?php
+			$conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+			$sql = "SELECT id,name	FROM category ";
+			$result = $conn->query($sql);
+
+			while($row=$result->fetch_assoc()) {
+				echo "<option value='".$row['id']."'>".$row['name']."</option>";
+			}
+				$conn->close();?>	
+				
+				
+
+				</select><br><br>
+				<label for="soluong"><i class='bx bxs-number' ></i>Số lượng:</label>
+					<?php
+			$conn = mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
+			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
+			$sql = "SELECT c.id as cid,s.id as sid,c.name as cname,s.name as sname	FROM colors c ,sizes s ";
+			$result = $conn->query($sql);
+			$stt=0;
+			echo "<div style='display:flex;'>";
+			while($row=$result->fetch_assoc()) {
+				
+				echo "<div style='width:100px'>".$row['cname']."-".$row['sname']."<input type='number' name='soluong' min=0 style='width:60px' value='0' required></div>";
+				$stt++;
+			}
+			echo "</div>";
+				$conn->close();?>		
+				</select><br><br>
 					<label for="price"><i class='bx bx-money' ></i></i>Giá:</label>
 					<input type="number" id="price" name="price" required><br><br>
 				  
 					<label for="discount"><i class='bx bxs-discount'></i>Giảm giá (%):</label>
 					<input type="number" id="discount" name="discount" min="0" max="100"><br><br>
-				  
-					
+
+									
 					<form id="upForm" onsubmit="return up();">
   					<input type="file" accept="image/*" name="upFile" required>
   					<input type="submit" value="Tải Ảnh" required>
 					</form>
     				
 				  
-					<label for="description"> <i class='bx bxs-comment-detail'></i>Mô tả:</label>
-					<textarea id="description" name="description"></textarea><br><br>
-				  
-					<label for="category_id"><i class='bx bxs-category' ></i>ID Danh mục:</label>
-					<input type="number" id="category_id" name="category_id" required><br><br>
+					<label for="description"><i class='bx bxs-comment-detail'></i>Mô tả:</label>
+					<textarea id="description" name="description">
 				
+					</textarea>
+				<script>CKEDITOR.replace( 'description' );</script><br><br>
+
+					
+											
 					<input type="submit" value="Xác Nhận" id="btn1">
 				</div>
+				</form>
 			</div>
 	<script>
        function up () {
