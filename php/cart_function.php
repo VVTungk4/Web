@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'product_id' => $product_id,
             'size_id' => $size_id,
             'color_id' => $color_id,
-            'quantity' => $quantity
+            'quantity' => $quantity,
         ];
     }
 
@@ -48,12 +48,12 @@ function calculateTotalPrice($cart) {
 function getProductPrice($product_id) {
     require_once "./database_function.php";
     $conn = connectDatabase();
-    $query = "SELECT price FROM Product WHERE id = '$product_id'";
+    $query = "SELECT after_discount FROM Product WHERE id = '$product_id'";
     $result = mysqli_query($conn, $query);
     
     if ($result && mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
-        return $row['price'];
+        return $row['after_discount'];
     } else {
         // Trường hợp không tìm thấy giá của sản phẩm
         return 0;

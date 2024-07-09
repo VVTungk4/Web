@@ -219,7 +219,6 @@
 
         }
 
-
         .dsTrang a {
             display: inline-block;
             margin-right: 5px;
@@ -349,7 +348,7 @@
         <div class="news">
             <div class="news1">
                 <img src="image/news1.jpg" alt="">
-                <a href="https://thoitrang4.giaodienwebmau.com/4-kieu-vay-dam-di-dam-cuoi-xinh-lung-linh-cho-phai-dep.php">
+                <a href="https://thoitrang4.giaodienwebmau.com/4-kieu-vay-dam-di-dam-cuoi-xinh-lung-linh-cho-phai-dep.html">
                     <p>4 Kiểu váy đầm đi đám cưới xinh lung linh cho phái đẹp</p>
                 </a>
                 <div class="line"></div>
@@ -360,7 +359,7 @@
             </div>
             <div class="news1">
                 <img src="image/news2.jpg" alt="">
-                <a href="https://thoitrang4.giaodienwebmau.com/4-kieu-vay-dam-di-dam-cuoi-xinh-lung-linh-cho-phai-dep.php">
+                <a href="https://thoitrang4.giaodienwebmau.com/4-kieu-vay-dam-di-dam-cuoi-xinh-lung-linh-cho-phai-dep.html">
                     <p>5 công thức phối “áo sơ mi + chân váy” xinh cho nàng</p>
                 </a>
                 <div class="line"></div>
@@ -371,7 +370,7 @@
             </div>
             <div class="news1">
                 <img src="image/chuyen5.jpg" alt="">
-                <a href="https://thoitrang4.giaodienwebmau.com/bst-christmas-colors-bua-tiec-da-sac-mau-cho-mua-le-hoi.php">
+                <a href="https://thoitrang4.giaodienwebmau.com/bst-christmas-colors-bua-tiec-da-sac-mau-cho-mua-le-hoi.html">
                     <p>Christmas Colors – Bữa tiệc đa sắc màu cho mùa lễ hội</p>
                 </a>
                 <div class="line"></div>
