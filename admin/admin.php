@@ -468,7 +468,7 @@
 
 			<div id="sanpham2" class="sanpham" style="display:none;">
 
-		<form method="post" action="ThemSanPham.php">			
+		<form method="POST" action="ThemSanPham.php" enctype="multipart/form-data">			
 				<div id="productForm">
 					<label for="title">Tên Sản Phẩm:</label>
 					<input type="text" id="title" name="title" maxlength="250" required><br><br>
@@ -510,15 +510,15 @@
 					<input type="number" id="discount" name="discount" min="0" max="100"><br><br>
 
 												
-  					<input type="file" accept="image/*" name="upFile" required>
+  					<input type="file" id="image" name="image" required>
     				
 				  
 					<label for="description"><i class='bx bxs-comment-detail'></i>Mô tả:</label>
-					<textarea id="description" name="description"></textarea>
+					<textarea id="description" name="description">Bảng Size: S(35-45kg),M(45-50kg),L(50-55kg), XL(55-60kg)\r\n\r\nSHOP CAM KẾT \r\n\r\n✔️Về sản phẩm: Shop cam kết cả về CHẤT LIỆU cũng như HÌNH DÁNG ( đúng với những gì được nêu bật trong phần mô tả sản phẩm).\r\n\r\n✔️Về giá cả : Shop nhập/sản xuất với số lượng nhiều nên chi phí sẽ là RẺ NHẤT nhưng CHẤT LƯỢNG nhất\r\n\r\n✔️Về dịch vụ: Shop sẽ cố gắng trả lời hết những thắc mắc xoay quanh sản phẩm \r\n\r\n✔️Thời gian chuẩn bị hàng: Hàng có sẵn, thời gian chuẩn bị tối ưu nhất, linh hoạt giao hàng nhanh nội thành HCM với mức ship hỗ trợ cực rẻ nếu khách hàng có nhu cầu gấp\r\n\r\nQuyền Lợi của Khách Hàng\r\n\r\n.✪ Nếu có bất kì khiếu nại cần Shop hỗ trợ về sản phẩm, khi mở sản phẩm các Anh/Chị vui lòng quay lại video quá trình mở sản phẩm để được đảm bảo 100% đổi lại sản phẩm mới nếu Shop giao bị lỗi\r\n\r\nHướng dẫn giặt ủi :\r\n\r\nVới những sản phẩm chất liệu lụa, ren, có phụ kiện không nên giặt sản phẩm cùng với các sản phẩm cầu kì khác như: Có móc, có khóa cứng, có nhiều họa tiết …. \r\n\r\nsẽ làm ảnh hưởng đến chất liệu sản phẩm. (Sản phẩm lụa, ren và lưới hoặc vải mềm mỏng nên giặt bằng tay, nếu giặt máy vui lòng bỏ vào túi lưới để tránh làm hư sợi vải)</textarea>
 			
 
 									
-					<input type="submit" value="Xác Nhận" id="btn1">
+					<input type="submit" value="Thêm Mới" name="themsanpham" id="btn1">
 				</div>
 		</form>
 			</div>
