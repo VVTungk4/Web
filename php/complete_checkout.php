@@ -2,6 +2,21 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Thêm hàm này
+function updateProductQuantity($conn, $product_id, $size_id, $color_id, $quantity) {
+    $update_query = "UPDATE product_size_color 
+                     SET quantity = quantity - $quantity 
+                     WHERE product_id = $product_id 
+                     AND size_id = $size_id 
+                     AND color_id = $color_id";
+    return mysqli_query($conn, $update_query);
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     require_once "./database_function.php";
@@ -84,8 +99,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         // echo "----------------------";
                         // Lưu vào bảng order_details
                         $insert_query = "INSERT INTO order_details (order_id, product_id, size, color, num, price, total_money)
-                     VALUES ('$order_id','$product_id', '$size', '$color', '$quantity', '$price', '$total_money')";
+                        VALUES ('$order_id','$product_id', '$size', '$color', '$quantity', '$price', '$total_money')";
                         if (mysqli_query($conn, $insert_query)) {
+                            updateProductQuantity($conn, $product_id, $size_id, $color_id, $quantity);
                             header("location: ../QLTK/LS_muahang.php");
                         }
                     }
@@ -95,11 +111,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Error: POST method required!";
         }
         //Xóa giỏ hàng
-        // Xóa dữ liệu trong bảng carts
-        $delete_carts_query = "DELETE FROM carts where user_id = $user_id";
+        // Xóa giỏ hàng
+        $delete_carts_query = "DELETE FROM carts WHERE user_id = $user_id";
         mysqli_query($conn, $delete_carts_query);
-        // Xóa dữ liệu trong bảng cart_items
-        $delete_cart_items_query = "DELETE FROM cart_items";
+        $delete_cart_items_query = "DELETE FROM cart_items WHERE cart_id = $id_cart";
         mysqli_query($conn, $delete_cart_items_query);
         // Đóng kết nối
         mysqli_close($conn);

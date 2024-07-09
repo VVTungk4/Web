@@ -1,33 +1,28 @@
 document.addEventListener('DOMContentLoaded', function () {
-    let storedAddressesSelect = document.getElementById('stored_addresses');
-    let fullNameInput = document.getElementById('billing_address_full_name');
-    let phoneInput = document.getElementById('billing_address_phone');
-    let addressInput = document.getElementById('billing_address_address');
+    const storedAddresses = document.getElementById('stored_addresses');
+    const form = document.getElementById('checkout_complete');
+    const fullNameInput = document.getElementById('billing_address_full_name');
+    const phoneInput = document.getElementById('billing_address_phone');
+    const addressInput = document.getElementById('billing_address_address');
 
-    // Lắng nghe sự kiện khi người dùng thay đổi giá trị của select box
-    storedAddressesSelect.addEventListener('change', function () {
-        let selectedOption = storedAddressesSelect.options[storedAddressesSelect.selectedIndex];
-        if (selectedOption.value == 'add') {
-            // Nếu người dùng chọn Thêm địa chỉ mới, reset các trường input
-            fullNameInput.value = '';
-            phoneInput.value = '';
-            addressInput.value = '';
+    storedAddresses.addEventListener('change', function() {
+        if (this.value === 'add') {
+            form.reset();
         } else {
-            // Nếu người dùng chọn một địa chỉ trong cơ sở dữ liệu, gửi yêu cầu AJAX để lấy thông tin địa chỉ
-            let addressId = selectedOption.value;
-            getAddressInfo(addressId);
+            getUserInfo();
         }
     });
 
-    // Hàm để gửi yêu cầu AJAX để lấy thông tin địa chỉ từ máy chủ 
-    function getAddressInfo(addressId) {
-        let formData = new FormData();
-        formData.append('address_id', addressId);
+    fullNameInput.addEventListener('input', function() {
+        this.value = this.value.replace(/[^a-zA-ZÀ-ỹ\s]/g, '');
+    });
 
-        fetch('./function/get_address_info.php', {
-            method: 'POST',
-            body: formData
-        })
+    phoneInput.addEventListener('input', function() {
+        this.value = this.value.replace(/\D/g, '');
+    });
+
+    function getUserInfo() {
+        fetch('../php/get_user_info.php')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -35,59 +30,62 @@ document.addEventListener('DOMContentLoaded', function () {
                 return response.json();
             })
             .then(data => {
-                // Sau khi nhận được dữ liệu từ máy chủ, điền thông tin vào các trường input tương ứng
-                fullNameInput.value = data.adrs_fullname;
-                phoneInput.value = data.adrs_phone;
-                addressInput.value = data.adrs_address;
+                if (data.error) {
+                    console.error(data.error);
+                } else {
+                    fullNameInput.value = data.fullname || '';
+                    phoneInput.value = data.phone_number || '';
+                    addressInput.value = data.address || '';
+                }
             })
             .catch(error => {
                 console.error('There has been a problem with your fetch operation:', error);
             });
     }
-
 });
 
+// ... (phần còn lại của file giữ nguyên)
+
 function checkInput() {
-    var fullName = document.getElementById('billing_address_full_name').value;
-    var phone = document.getElementById('billing_address_phone').value;
-    var address = document.getElementById('billing_address_address').value;
-    var fullNameError = document.getElementById('fullname_error');
-    var phoneError = document.getElementById('phone_error');
-    var addressError = document.getElementById('address_error');
+    const fullName = document.getElementById('billing_address_full_name');
+    const phone = document.getElementById('billing_address_phone');
+    const address = document.getElementById('billing_address_address');
+    const fullNameError = document.getElementById('fullname_error');
+    const phoneError = document.getElementById('phone_error');
+    const addressError = document.getElementById('address_error');
 
-    // Reset thông báo lỗi trước khi kiểm tra lại
-    fullNameError.style.display = 'none';
-    phoneError.style.display = 'none';
-    addressError.style.display = 'none';
+    [fullNameError, phoneError, addressError].forEach(error => error.style.display = 'none');
+    [fullName, phone, address].forEach(input => input.style.borderColor = '');
 
-    var hasError = false;
+    let hasError = false;
 
-    // Kiểm tra từng trường input
-    if (fullName === '') {
-        fullNameError.style.display = 'block';
-        fullNameError.style.color = 'red';
-        document.getElementById('billing_address_full_name').style.borderColor = 'red';
+    if (fullName.value.trim() === '') {
+        showError(fullName, fullNameError, 'Vui lòng không bỏ trống Họ tên');
+        hasError = true;
+    } else if (!/^[a-zA-ZÀ-ỹ\s]+$/.test(fullName.value.trim())) {
+        showError(fullName, fullNameError, 'Họ tên chỉ được chứa chữ cái và khoảng trắng');
         hasError = true;
     }
 
-    if (phone === '') {
-        phoneError.style.display = 'block';
-        phoneError.style.color = 'red';
-        document.getElementById('billing_address_phone').style.borderColor = 'red';
+    if (phone.value.trim() === '') {
+        showError(phone, phoneError, 'Vui lòng không bỏ trống Số điện thoại');
+        hasError = true;
+    } else if (!/^\d{10,11}$/.test(phone.value.trim())) {
+        showError(phone, phoneError, 'Số điện thoại phải có 10 hoặc 11 chữ số');
         hasError = true;
     }
 
-    if (address === '') {
-        addressError.style.display = 'block';
-        addressError.style.color = 'red';
-        document.getElementById('billing_address_address').style.borderColor = 'red';
+    if (address.value.trim() === '') {
+        showError(address, addressError, 'Vui lòng không bỏ trống địa chỉ');
         hasError = true;
     }
 
-    // Nếu có lỗi, ngăn chặn sự kiện submit mặc định của form
-    if (hasError) {
-        return false;
-    }
-    return true;
+    return !hasError;
 }
 
+function showError(input, errorElement, message) {
+    errorElement.textContent = message;
+    errorElement.style.display = 'block';
+    errorElement.style.color = 'red';
+    input.style.borderColor = 'red';
+}

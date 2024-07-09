@@ -50,7 +50,7 @@ $conn = connectDatabase();
                             <div class="section-header">
                                 <h2 class="section-title">Thông tin giao hàng</h2>
                             </div>
-                            <div class="section-content section-content section-customer-information no-mb">
+                            <div class="section-content section-customer-information no-mb">
                                 <div class="logged-in-customer-information">
                                     <div class="logged-in-customer-information-avatar-wrapper">
                                         <div class="logged-in-customer-information-avatar gravatar" style="background-image: url(//www.gravatar.com/avatar/0b5f1cba1f77d746ad0f059ff7061a5e.jpg?s=100&d=blank);filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='//www.gravatar.com/avatar/0b5f1cba1f77d746ad0f059ff7061a5e.jpg?s=100&d=blank', sizingMethod='scale')"></div>
@@ -71,64 +71,46 @@ $conn = connectDatabase();
                                         <div class="field-input-wrapper field-input-wrapper-select">
                                             <select id="stored_addresses" class="field-input">
                                                 <option value="add" selected>Thêm địa chỉ mới ...</option>
-
                                                 <?php
-                                                /*if (isset($_SESSION['user_id'])) {
-                                                            $user_id = $_SESSION['user_id'];
-                                                            // Truy vấn để lấy thông tin địa chỉ từ bảng Address-List dựa trên user_id
-                                                            $query = "SELECT * FROM `User` WHERE id = $user_id";
-                                                            $result = mysqli_query($conn, $query);
+                                                if (isset($_SESSION['user_info']['id'])) {
+                                                    $user_id = $_SESSION['user_info']['id'];
+                                                    $query = "SELECT id, fullname, address FROM `user` WHERE id = ?";
+                                                    $stmt = $conn->prepare($query);
+                                                    $stmt->bind_param("i", $user_id);
+                                                    $stmt->execute();
+                                                    $result = $stmt->get_result();
 
-                                                            if (!$result) {
-                                                                echo json_encode(array('error' => 'Error fetching address information'));
-                                                                exit;
-                                                            }
-
-                                                            // Kiểm tra xem có địa chỉ nào được tìm thấy không
-                                                            if (mysqli_num_rows($result) == 0) {
-                                                                echo json_encode(array('error' => 'No address found for the user'));
-                                                                exit;
-                                                            }
-
-                                                            // Kiểm tra xem có địa chỉ nào được tìm thấy không
-                                                            if (mysqli_num_rows($result) == 0) {
-                                                                echo json_encode(array('error' => 'No address found for the user'));
-                                                                exit;
-                                                            }
-                                                            
-                                                            // Khởi tạo một mảng để lưu trữ thông tin địa chỉ
-                                                            $addresses = array();
-                                                            
-                                                            // Lặp qua các hàng kết quả và thêm thông tin địa chỉ vào mảng
-                                                            echo '<option value="" disabled >Địa chỉ đã lưu trữ</option>';
-                                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                                echo '<option value="'. $row['adrs_id'] .'">'. $row['adrs_address'] .'</option>';
-                                                            }
-                                                        }*/
+                                                    if ($result && $result->num_rows > 0) {
+                                                        while ($row = $result->fetch_assoc()) {
+                                                            echo '<option value="' . $row['id'] . '">' . $row['fullname'] . ' - ' . $row['address'] . '</option>';
+                                                        }
+                                                    }
+                                                    $stmt->close();
+                                                }
                                                 ?>
                                             </select>
                                         </div>
                                     </div>
                                     <form id="checkout_complete" action="../php/get_order_info.php" method="post" onsubmit="return checkInput()">
-                                        <div class="field field-required  field-show-floating-label">
+                                        <div class="field field-required field-show-floating-label">
                                             <div class="field-input-wrapper">
                                                 <label for="billing_address_full_name" class="field-label">Họ và Tên</label>
                                                 <input type="text" placeholder="Họ và tên" class="field-input" size="30" id="billing_address_full_name" name="billing_address_full_name">
-                                                <p id="fullname_error" class="error-show">Vui lòng không bỏ trống Họ tên </p>
+                                                <p id="fullname_error" class="error-show"></p>
                                             </div>
                                         </div>
-                                        <div class="field field-required   field-show-floating-label">
+                                        <div class="field field-required field-show-floating-label">
                                             <div class="field-input-wrapper">
                                                 <label for="billing_address_phone" class="field-label">Số điện thoại</label>
-                                                <input type="tel" placeholder="Số điện thoại" class="field-input" size="30" maxlength="15" id="billing_address_phone" name="billing_address_phone">
-                                                <p id="phone_error" class="error-show">Vui lòng không bỏ trống Số điện thoại</p>
+                                                <input type="tel" placeholder="Số điện thoại" class="field-input" size="30" maxlength="11" id="billing_address_phone" name="billing_address_phone">
+                                                <p id="phone_error" class="error-show"></p>
                                             </div>
                                         </div>
-                                        <div class="field field-required   field-show-floating-label">
+                                        <div class="field field-required field-show-floating-label">
                                             <div class="field-input-wrapper">
-                                                <label for="">Địa chỉ</label>
+                                                <label for="billing_address_address">Địa chỉ</label>
                                                 <input type="text" size="30" placeholder="Địa chỉ" id="billing_address_address" name="billing_address_address">
-                                                <p id="address_error" class="error-show">Vui lòng không bỏ trống địa chỉ</p>
+                                                <p id="address_error" class="error-show"></p>
                                             </div>
                                         </div>
                                         <div class="field field-required   field-show-floating-label">
@@ -141,7 +123,6 @@ $conn = connectDatabase();
                                             <button type="submit" class="step-footer-continue-btn btn">
                                                 <span class="btn-content">Tiếp tục đến phương thức thanh toán</span>
                                             </button>
-
                                             <a href="./cart.php" class="step-footer-previous-link">Giỏ hàng</a>
                                         </div>
                                     </form>
@@ -149,18 +130,13 @@ $conn = connectDatabase();
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div class="main-footer footer-powered-by">Powered by aesiunhan</div>
         </div>
         <div class="checkout-sidebar">
-            <?php
-            require_once './template/sidebar-content.php';
-            ?>
+            <?php require_once './template/sidebar-content.php'; ?>
         </div>
-
     </div>
 </body>
-
 </html>
