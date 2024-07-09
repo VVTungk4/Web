@@ -10,8 +10,9 @@ if(isset($_POST['themsanpham'])){
     $thumbnail =$_FILES['image']['name'];
     //ảnh 
     $delete=0;
-    $target_dir = "image/";
-    $target_file = $target_dir . basename($_FILES["image"]["name"]);
+    $target_dir = "../image/";
+    $target_file = $target_dir . basename($thumbnail);
+    $target_filethat ="image/".basename($thumbnail);
     if (file_exists($target_file)) {
         echo '<script language="javascript">alert("Xin lỗi, ảnh đã tồn tại."); window.location="admin.php";</script>';
       }
