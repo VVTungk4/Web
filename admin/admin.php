@@ -1513,6 +1513,12 @@
 			<button id="delete-btn">Xóa</button>
  			<button id="cancel-btn">Hủy bỏ</button>
 	</div>
+	<!-- <script>
+  function changeColor() {
+    const divElement = document.getElementById("myDiv");
+    divElement.style.backgroundColor = "yellow"; // Thay đổi màu nền thành màu vàng
+  } -->
+</script>
 	<!-- Hộp thoại -->
 </body>
 </html>
