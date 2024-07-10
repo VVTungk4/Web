@@ -17,7 +17,7 @@ if(isset($_POST['themsanpham'])){
         echo '<script language="javascript">alert("Xin lỗi, ảnh đã tồn tại."); window.location="admin.php";</script>';
       }
       else {
-        move_uploaded_file($_FILES['image']['tmp_name'],$target_file) ;
+        move_uploaded_file($_FILES['image']['tmp_name'],$target_filethat) ;
 
 
         $conn=  mysqli_connect('localhost','root','') or die("Lỗi kết nối");
