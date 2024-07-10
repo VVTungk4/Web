@@ -35,5 +35,6 @@ if(isset($_POST['nhaphang'])){
       }   
    
 
-
+      echo '<script language="javascript">alert("Thêm Mới thành công!"); window.location="admin.php";</script>';
+      exit();
 ?>
