@@ -9,7 +9,8 @@
     FROM product_size_color psc
     INNER JOIN colors c ON c.id = psc.color_id
     INNER JOIN sizes s ON s.id = psc.size_id
-    WHERE psc.product_id = $id AND c.name=$color,s.name=size;
+    WHERE psc.product_id = $id AND c.name = '$color' AND s.name = '$size';
+    ;
     
     ";
     $result = mysqli_query($conn, $sql);
@@ -64,6 +65,7 @@ ORDER BY
 		<td>".$row["quantity"]."</td>
 		".$status."
 		<td><button onclick='SuaSanPham(this)' id='btntable' class='btn btn-outline-warning'><i class='bx bxs-edit'></i></button></td>
+        <td><button onclick='Nhaphang(this)' id='btntable' class='btn btn-outline-success'><i class='bx bx-bookmark-alt-plus'></i></button></td>
         			<td><button onclick='XoaSanPham(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-message-square-x'></i></button></td></tr>";
 	}} else {
         echo "Không tìm thấy sản phẩm phù hợp!";

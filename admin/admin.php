@@ -382,6 +382,7 @@
                 <th>Số Lượng</th>
                 <th>Trạng Thái</th>
                 <th>Sửa</th>
+				<th>Nhập</th>
                 <th>Xóa</th>
             </tr>
         </thead>
@@ -413,7 +414,7 @@
 					sizes AS s ON psc.size_id = s.id
 				JOIN 
 					category AS cate ON cate.id =p.category_id
-				WHERE p.deleted = 0
+				
 				Order by p.id ASC	
 				;";
 			$result = $conn->query($sql);
@@ -443,7 +444,7 @@
 					<td>".$row["quantity"]."</td>
 					".$status."
 					<td><button onclick='SuaSanPham(this)' id='btntable' class='btn btn-outline-warning'><i class='bx bxs-edit'></i></button></td>
-					<td><button onclick='' id='btntable' class='btn btn-outline-success'><i class='bx bx-bookmark-alt-plus'></i></button></td>
+					<td><button onclick='Nhaphang(this)' id='btntable' class='btn btn-outline-success'><i class='bx bx-bookmark-alt-plus'></i></button></td>
         			<td><button onclick='XoaSanPham(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-message-square-x'></i></button></td>
 					</tr>";
 	}} 
@@ -610,6 +611,31 @@
 
   				xhttp.send();
 			}
+		
+			function Nhaphang(button) {
+
+			const row = button.parentNode.parentNode;
+			const firstCellContent = row.cells[0].textContent;
+			const size =row.cells[4].textContent;
+			const color =row.cells[5].textContent;
+
+			// Lấy nội dung ô đầu tiên
+			console.log("Nội dung ô đầu tiên:", firstCellContent);
+			var xhttp;    
+				xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu đã gửi thành công');
+					document.getElementById("Nhaphang").innerHTML = this.responseText;
+					showSanpham('sanpham4');
+					
+				}
+			};
+				xhttp.open("GET", "Nhaphang.php?q="+Number(firstCellContent)+"&size="+size+"&color="+color, true);
+
+				xhttp.send();
+			}
+
 		</script>
 
 
@@ -618,6 +644,14 @@
 
 			<div id="sanpham3" class="sanpham" style="display:none;">
 				<div id="SuaSanPham">
+					
+				</div>
+			</div>	
+
+
+			
+			<div id="sanpham4" class="sanpham" style="display:none;">
+				<div id="Nhaphang">
 					
 				</div>
 			</div>	
