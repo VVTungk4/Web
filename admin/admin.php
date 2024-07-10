@@ -152,7 +152,7 @@
 				$conn->close();?></span>
 			</a>
 			<a href="#" class="profile">
-				<img src="img/people.png">
+				<img src="img/admin.jpg">
 			</a>
 		</nav>
 		<!-- NAVBAR -->
@@ -259,7 +259,7 @@
 			$conn =  mysqli_connect('localhost', 'root', '') or die("Lỗi kết nối");
 			mysqli_select_db($conn, 'webhangban') or die('Not find DataBase');
 			// Truy vấn lấy dữ liệu
-				$sql = "Select * From orders ORDER BY order_date DESC LIMIT 5; ";
+				$sql = "Select * From orders ORDER BY order_date DESC LIMIT 10; ";
 				$result = $conn->query($sql);
 			// Kiểm tra số lượng bản ghi trả về
 				if ($result->num_rows > 0) {
@@ -285,7 +285,7 @@
 				else {$trangthai='status error';
 					$tt='Đã Hủy';}
 				
-				echo "<tr><td><img src=\"img/people.png\"><p>" . $row["fullname"] . "</p></td><td>" .
+				echo "<tr><td><img src=\"../image/people.png\" style='width:25px;height:25px'><p style='margin:0px'>" . $row["fullname"] . "</p></td><td>" .
     		 $row["order_date"] . "</td><td><span class=\"$trangthai\">".$tt."</span></td><td>";
 			}}
 			 else {echo "Chưa Có Đơn Hàng Nào!";}
