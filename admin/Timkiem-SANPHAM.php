@@ -56,8 +56,8 @@ ORDER BY
 		<td>".$row["discount"]."%</td>
 		<td>".$row["quantity"]."</td>
 		".$status."
-		<td><a href='#' >Sửa</a></td>
-        <td><a href='#' >Xóa</a></td></tr>";
+		<td><button onclick='SuaSanPham(this)' id='btntable' class='btn btn-outline-warning'><i class='bx bxs-edit'></i></button></td>
+        			<td><button onclick='XoaSanPham(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-message-square-x'></i></button></td></tr>";
 	}} else {
         echo "Không tìm thấy sản phẩm phù hợp!";
     }

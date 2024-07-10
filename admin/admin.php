@@ -361,6 +361,12 @@
 						<button onclick="Timkiem_SANPHAM()" class="search-btn">
 							<i class='bx bx-search' ></i>
 							 </button>
+							 <button onclick="Sapxeptang()">
+							 <i class='bx bxs-up-arrow-alt'></i>
+							 </button>
+							 <button onclick="Sapxepgiam()">
+							 <i class='bx bxs-down-arrow-alt' ></i>
+							</button>
 					</div>
 				<table class="table table-bordered">	
 					<thead class="table-primary">
@@ -407,7 +413,9 @@
 					sizes AS s ON psc.size_id = s.id
 				JOIN 
 					category AS cate ON cate.id =p.category_id
-				Order by p.id ASC	 ;";
+				WHERE p.deleted = 0
+				Order by p.id ASC	
+				;";
 			$result = $conn->query($sql);
 	// Kiểm tra số lượng bản ghi trả về
 			if ($result->num_rows > 0) {
@@ -435,7 +443,9 @@
 					<td>".$row["quantity"]."</td>
 					".$status."
 					<td><button onclick='SuaSanPham(this)' id='btntable' class='btn btn-outline-warning'><i class='bx bxs-edit'></i></button></td>
-        			<td><button onclick='' id='btntable' class='btn btn-outline-danger'><i class='bx bx-message-square-x'></i></button></td></tr>";
+					<td><button onclick='' id='btntable' class='btn btn-outline-success'><i class='bx bx-bookmark-alt-plus'></i></button></td>
+        			<td><button onclick='XoaSanPham(this)' id='btntable' class='btn btn-outline-danger'><i class='bx bx-message-square-x'></i></button></td>
+					</tr>";
 	}} 
 			$conn->close();?>	
         
@@ -458,6 +468,32 @@
    			 }
   			};
   				xhttp.open("GET", "Timkiem-SANPHAM.php?tukhoa="+tukhoa, true);
+  				xhttp.send();
+			}
+			function Sapxeptang() {
+			const tukhoa = document.getElementById('timkiemsanpham').value;
+			var xhttp;    
+  				xhttp = new XMLHttpRequest();
+  				xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu đã gửi thành công');
+					document.getElementById("bangsanpham").innerHTML = this.responseText;
+   			 }
+  			};
+  				xhttp.open("GET", "Sapxeptang.php?tukhoa="+tukhoa, true);
+  				xhttp.send();
+			}
+			function Sapxepgiam() {
+			const tukhoa = document.getElementById('timkiemsanpham').value;
+			var xhttp;    
+  				xhttp = new XMLHttpRequest();
+  				xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+					console.log('Yêu cầu đã gửi thành công');
+					document.getElementById("bangsanpham").innerHTML = this.responseText;
+   			 }
+  			};
+  				xhttp.open("GET", "Sapxepgiam.php?tukhoa="+tukhoa, true);
   				xhttp.send();
 			}
 	</script>
@@ -553,19 +589,25 @@
 			}
 
 			function XoaSanPham(button) {
+
             const row = button.parentNode.parentNode;
-            const firstCellContent = row.cells[0].textContent; // Lấy nội dung ô đầu tiên
+            const firstCellContent = row.cells[0].textContent;
+			const size =row.cells[4].textContent;
+			const color =row.cells[5].textContent;
+
+			 // Lấy nội dung ô đầu tiên
             console.log("Nội dung ô đầu tiên:", firstCellContent);
 			var xhttp;    
   				xhttp = new XMLHttpRequest();
   				xhttp.onreadystatechange = function() {
     			if (this.readyState == 4 && this.status == 200) {
 					console.log('Yêu cầu đã gửi thành công');
-					document.getElementById("XoaSanPham").innerHTML = this.responseText;
+					document.getElementById("bangsanpham").innerHTML = this.responseText;
 					
    			 }
   			};
-  				xhttp.open("GET", "XoaSanPham.php?q="+Number(firstCellContent), true);
+  				xhttp.open("GET", "XoaSanPham.php?q="+Number(firstCellContent)+"&size="+size+"&color="+color, true);
+
   				xhttp.send();
 			}
 		</script>
